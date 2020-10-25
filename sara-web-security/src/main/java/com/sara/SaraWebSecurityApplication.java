@@ -19,13 +19,13 @@ public class SaraWebSecurityApplication implements CommandLineRunner {
 	public static void main(String[] args) {
 		SpringApplication.run(SaraWebSecurityApplication.class, args);
 	}
-	@Bean
-	public String profilesActive(@Value("${profiles.active}") String profilesActive) {
-		log.info("\n\n\n" + "***************************************************\n"
-				+ "** @SpringBootApplication PROFILESACTIVE ==>>" + profilesActive + "\n"
-				+ "***************************************************\n\n\n");
-		return profilesActive;
-	}
+//	@Bean
+//	public String profilesActive(@Value("${profiles.active}") String profilesActive) {
+//		log.info("\n\n\n" + "***************************************************\n"
+//				+ "** @SpringBootApplication PROFILESACTIVE ==>>" + profilesActive + "\n"
+//				+ "***************************************************\n\n\n");
+//		return profilesActive;
+//	}
 	@Override
 	public void run(String... args) throws Exception {
 //		log.info("SaraWebApplication - BeanDefinitionNames");
