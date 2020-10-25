@@ -1,7 +1,7 @@
 
 // export const URL_BASE = 'http://localhost:8081';
-export const URL_BASE = 'http://localhost:5000';
-// export const URL_BASE = '';
+// export const URL_BASE = 'http://localhost:5000';
+export const URL_BASE = '';
 export const AUTH_URL_BASE = URL_BASE + '/auth';
 export const API_URL_BASE = URL_BASE + '/api/';
 
