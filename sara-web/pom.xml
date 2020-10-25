@@ -7,6 +7,7 @@
 		<artifactId>sara</artifactId>
 		<version>1</version>
 	</parent>
+
 	<groupId>com.sara.web</groupId>
 	<artifactId>sara-web</artifactId>
 	<name>sara-web</name>
@@ -14,9 +15,7 @@
 
 
 	<properties>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<project.war.name>bookworm</project.war.name>
+		<project.war.name>sara-web</project.war.name>
 		<frontend-bundle-dir>${project.basedir}/react/build/</frontend-bundle-dir>
 		<java.version>1.8</java.version>
 		<jjwt.version>0.9.1</jjwt.version>
@@ -32,25 +31,10 @@
 			<artifactId>sara-service</artifactId>
 			<version>1</version>
 		</dependency>
-		<!-- -->
 		<dependency>
 			<groupId>com.sara.web.security</groupId>
 			<artifactId>sara-web-security</artifactId>
 			<version>1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -63,23 +47,6 @@
 		</resources>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-help-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>show-profiles</id>
-						<phase>compile</phase>
-						<goals>
-							<goal>active-profiles</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<executions>
 					<execution>
@@ -89,9 +56,6 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<tasks>
-								<echo>current active profile: ${myProfile}</echo>
-							</tasks>
 							<overwrite>true</overwrite>
 							<outputDirectory>${project.build.directory}/classes/resources/</outputDirectory>
 							<resources>
@@ -106,22 +70,10 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-failsafe-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
+				<artifactId>maven-jar-plugin</artifactId>
 				<configuration>
 					<packagingExcludes>WEB-INF/lib/tomcat-*.jar</packagingExcludes>
-					<warName>${project.war.name}</warName>
+					<warName>${project.name}.war</warName>
 				</configuration>
 			</plugin>
 		</plugins>

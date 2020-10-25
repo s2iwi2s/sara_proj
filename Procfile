@@ -1,1 +1,1 @@
-web: java -jar sara-web/target/bookworm-1.jar
+web: java -jar sara-web/target/sara-web-1.jar
