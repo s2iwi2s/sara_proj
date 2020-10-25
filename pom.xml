@@ -53,8 +53,6 @@
 		</dependency>
 	</dependencies>
 
-	<!-- <build> <plugins> <plugin> <groupId>org.springframework.boot</groupId> 
-		<artifactId>spring-boot-maven-plugin</artifactId> </plugin> </plugins> </build> -->
 	<modules>
 		<module>sara-data</module>
 		<module>sara-service</module>
@@ -63,13 +61,21 @@
 	</modules>
 	<build>
 		<plugins>
-			<!-- <plugin> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-maven-plugin</artifactId> 
-				<executions> <execution> <goals> <goal>repackage</goal> </goals> <configuration> 
-				<mainClass>com.emo.core.Application</mainClass> </configuration> </execution> 
-				</executions> </plugin> <plugin> <groupId>org.apache.maven.plugins</groupId> 
-				<artifactId>maven-help-plugin</artifactId> <executions> <execution> <id>show-profiles</id> 
-				<phase>compile</phase> <goals> <goal>active-profiles</goal> </goals> </execution> 
-				</executions> </plugin> -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+						<configuration>
+							<mainClass>com.sara.SaraWebApplication</mainClass>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 
