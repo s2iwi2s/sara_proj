@@ -24,18 +24,33 @@
 		<dependency>
 			<groupId>com.sara.data</groupId>
 			<artifactId>sara-data</artifactId>
-			<version>1</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sara.service</groupId>
 			<artifactId>sara-service</artifactId>
-			<version>1</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sara.web.security</groupId>
 			<artifactId>sara-web-security</artifactId>
-			<version>1</version>
+			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!--  
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>-->
 	</dependencies>
 
 	<build>
@@ -45,37 +60,7 @@
 				<filtering>true</filtering>
 			</resource>
 		</resources>
-		<plugins>
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>copy-resources</id>
-						<phase>validate</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<overwrite>true</overwrite>
-							<outputDirectory>${project.build.directory}/classes/resources/</outputDirectory>
-							<resources>
-								<resource>
-									<directory>${frontend-bundle-dir}</directory>
-									<filtering>true</filtering>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<configuration>
-					<packagingExcludes>WEB-INF/lib/tomcat-*.jar</packagingExcludes>
-					<warName>${project.name}.war</warName>
-				</configuration>
-			</plugin>
-		</plugins>
+		<!-- 
+		 -->
 	</build>
 </project>

@@ -3,8 +3,6 @@ package com.sara.web.security;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -32,7 +30,7 @@ import com.sara.web.security.jwt.JwtUnAuthorizedResponseAuthenticationEntryPoint
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class CustomWebSecurityConfig extends WebSecurityConfigurerAdapter {
-	private Logger log = LoggerFactory.getLogger(this.getClass());
+//	private Logger log = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	private PasswordEncoder bcryptEncoder;
 	

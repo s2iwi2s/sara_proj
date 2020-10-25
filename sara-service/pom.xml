@@ -21,7 +21,7 @@
 			<!-- com.sara.data:sara-data -->
 			<groupId>com.sara.data</groupId>
 			<artifactId>sara-data</artifactId>
-			<version>1</version>
+			<version>${project.version}</version>
 		</dependency>
 
 	</dependencies>

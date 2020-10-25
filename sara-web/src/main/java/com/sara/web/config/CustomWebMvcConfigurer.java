@@ -3,8 +3,6 @@ package com.sara.web.config;
 import java.io.IOException;
 import java.util.Arrays;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -23,7 +21,7 @@ import com.sara.web.common.Constants;
 public class CustomWebMvcConfigurer implements WebMvcConfigurer {
 
 
-	private static final Logger log = LoggerFactory.getLogger(CustomWebMvcConfigurer.class);
+//	private static final Logger log = LoggerFactory.getLogger(CustomWebMvcConfigurer.class);
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
