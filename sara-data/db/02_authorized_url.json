@@ -1,0 +1,121 @@
+[{
+        "_id": {
+            "$oid": "5f8d025279765c4bbc9dd594"
+        },
+        "permit": true,
+        "url": "/",
+        "method": ""
+    }, {
+        "_id": {
+            "$oid": "5f8d025279765c4bbc9dd595"
+        },
+        "permit": true,
+        "url": "*",
+        "method": ""
+    }, {
+        "_id": {
+            "$oid": "5f8d025279765c4bbc9dd596"
+        },
+        "permit": true,
+        "url": "/favicon.ico",
+        "method": ""
+    }, {
+        "_id": {
+            "$oid": "5f8d025279765c4bbc9dd597"
+        },
+        "permit": true,
+        "url": "/static/**",
+        "method": ""
+    }, {
+        "_id": {
+            "$oid": "5f8d025279765c4bbc9dd598"
+        },
+        "permit": true,
+        "url": "/403",
+        "method": ""
+    }, {
+        "_id": {
+            "$oid": "5f8dddf24d87db50205a46fc"
+        },
+        "permit": true,
+        "url": "/auth",
+        "method": ""
+    }, {
+        "_id": {
+            "$oid": "5f8d025279765c4bbc9dd599"
+        },
+        "permit": true,
+        "url": "/login",
+        "method": ""
+    }, {
+        "_id": {
+            "$oid": "5f8d025279765c4bbc9dd59a"
+        },
+        "permit": true,
+        "url": "/logout",
+        "method": ""
+    }, {
+        "_id": {
+            "$oid": "5f8d025279765c4bbc9dd59b"
+        },
+        "permit": true,
+        "url": "/js/**",
+        "method": ""
+    }, {
+        "_id": {
+            "$oid": "5f8d025279765c4bbc9dd59c"
+        },
+        "permit": true,
+        "url": "/*.js",
+        "method": ""
+    }, {
+        "_id": {
+            "$oid": "5f8d025279765c4bbc9dd59d"
+        },
+        "permit": true,
+        "url": "/*.css",
+        "method": ""
+    }, {
+        "_id": {
+            "$oid": "5f8d025279765c4bbc9dd59e"
+        },
+        "permit": true,
+        "url": "styles.*.css",
+        "method": ""
+    }, {
+        "_id": {
+            "$oid": "5f8d025279765c4bbc9dd59f"
+        },
+        "permit": true,
+        "url": "/actuator/**",
+        "method": ""
+    }, {
+        "_id": {
+            "$oid": "5f8d025279765c4bbc9dd5a0"
+        },
+        "permit": true,
+        "url": "/api/home/**",
+        "method": ""
+    }, {
+        "_id": {
+            "$oid": "5f8d025279765c4bbc9dd5a1"
+        },
+        "permit": true,
+        "url": "/refresh/**",
+        "method": ""
+    }, {
+        "_id": {
+            "$oid": "5f8dcf8f4d87db50205a46fa"
+        },
+        "permit": true,
+        "url": "/manifest.json",
+        "method": ""
+    }, {
+        "_id": {
+            "$oid": "5f8dd0524d87db50205a46fb"
+        },
+        "permit": true,
+        "url": "/logo192.png",
+        "method": ""
+    }
+]

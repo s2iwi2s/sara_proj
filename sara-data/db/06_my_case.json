@@ -1,0 +1,7364 @@
+[{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb0f"
+  },
+  "title": "Mr Standfast",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad3"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faec"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafb"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Autem placeat accusamus ut. Nulla id aut dicta. Fugit iusto neque. Dignissimos quod consequuntur dolores.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb10"
+  },
+  "title": "Ah, Wilderness!",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fade"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf4"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb03"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "A debitis eius. Quaerat dolorem eum id molestias rerum sit aut.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb11"
+  },
+  "title": "Mr Standfast",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadb"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae7"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafb"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Quidem et doloremque qui quaerat dignissimos magnam. Aut et ducimus.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb12"
+  },
+  "title": "The Yellow Meads of Asphodel",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad3"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf9"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb03"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Velit officiis et vitae at. Earum ullam ut eum blanditiis officia enim. Sed consequatur quod rerum enim harum.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb13"
+  },
+  "title": "Of Human Bondage",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fade"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafa"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0e"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Soluta facere sed. Ut ratione quod sint et enim unde temporibus. Voluptatem veritatis sapiente totam. Facere vel et iusto eligendi.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb14"
+  },
+  "title": "Surprised by Joy",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae4"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf4"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faff"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Rem sint et eligendi dolore et eos. Repudiandae earum eligendi illum consequatur. Doloribus et voluptatem atque architecto nulla. Tempore sit repudiandae aut aspernatur ipsum.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb15"
+  },
+  "title": "Everything is Illuminated",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadc"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf9"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb02"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Omnis mollitia ipsum aut eius. Aut enim autem. Omnis laudantium quam est eum quis. Et optio quas est numquam.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb16"
+  },
+  "title": "In Dubious Battle",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadd"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf4"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb00"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Iste quod qui repudiandae sed quae corrupti corrupti. Quas consequatur et distinctio impedit ipsam ipsam.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb17"
+  },
+  "title": "The Last Temptation",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadf"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf1"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb01"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Et et sit sunt minus rerum officia ut. Ratione alias est quia sint nam voluptas reprehenderit. Labore quo earum.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb18"
+  },
+  "title": "Shall not Perish",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fade"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf8"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafd"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Et voluptatem expedita sunt totam. Nam doloribus nulla cum qui sed quisquam. Dolore voluptatem dolorem unde expedita nihil magnam.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb19"
+  },
+  "title": "The Last Temptation",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fada"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faea"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0b"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Qui ducimus cupiditate vitae voluptatibus. Asperiores qui dolorem soluta doloremque sint voluptatem.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb1a"
+  },
+  "title": "Clouds of Witness",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad7"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf0"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafd"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Quia cumque sapiente vero rerum occaecati velit quaerat. Qui voluptatem modi et. Sit occaecati quidem sint voluptatem sit. Non odio possimus quam in dolores voluptas.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb1b"
+  },
+  "title": "The Heart Is Deceitful Above All Things",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad9"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf8"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafb"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Cum voluptatem necessitatibus minima laborum. Esse occaecati quis enim aut qui nihil. Necessitatibus blanditiis nesciunt. Doloremque sit accusantium eos.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb1c"
+  },
+  "title": "Time of our Darkness",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae6"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf6"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faff"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Optio quis asperiores vitae sunt. Quis quidem error et molestiae doloribus iusto.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb1d"
+  },
+  "title": "The House of Mirth",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad3"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae9"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb05"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Consequatur atque amet delectus. Dolorum soluta doloribus beatae autem aperiam vitae facere. Quod ipsum quo. Voluptatum laudantium non neque nihil architecto optio.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb1e"
+  },
+  "title": "No Longer at Ease",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fada"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafa"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafd"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Dolorem aut ea ipsam temporibus vero minima. Error repellendus dolor rem.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb1f"
+  },
+  "title": "Some Buried Caesar",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad5"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae7"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb02"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Quisquam deserunt sint. Est inventore pariatur porro culpa sint sed. Est hic adipisci.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb20"
+  },
+  "title": "East of Eden",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae4"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf3"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb04"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Voluptates molestiae porro numquam consequatur. Aliquid deleniti eaque aliquid nam necessitatibus. Recusandae omnis qui aut ea.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb21"
+  },
+  "title": "The Wives of Bath",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad5"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf6"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafe"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Maxime odit nulla beatae. Eveniet aliquam doloremque omnis ea. Corporis quaerat voluptas praesentium deserunt. Dolor ut qui.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb22"
+  },
+  "title": "Far From the Madding Crowd",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae5"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf5"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafd"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Dolor tenetur nobis harum. Distinctio ratione dolore. Eos ea recusandae omnis sit. Sapiente sunt et temporibus.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb23"
+  },
+  "title": "Specimen Days",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fade"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafa"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafc"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Est est qui accusamus vero quibusdam et. Aperiam voluptatem nulla qui.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb24"
+  },
+  "title": "Alone on a Wide, Wide Sea",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae6"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae9"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb01"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Et in sed qui ea. Laboriosam laborum ipsum pariatur vel. At quam omnis aut necessitatibus molestias. Est impedit consequuntur dolore vero aut doloremque.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb25"
+  },
+  "title": "Postern of Fate",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad7"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faea"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0d"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Ut alias qui aut natus tenetur sed alias. Facilis quod error laudantium rerum et et. Sunt facilis nulla consequatur iure quaerat ducimus. Rem sint voluptatem vitae vel.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb26"
+  },
+  "title": "In a Dry Season",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae2"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf1"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb01"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Corrupti corporis error dolorum vero quisquam quia maiores. Voluptatem ea atque quas rerum quisquam autem est. Ad amet vero. Autem quam eos ut dolorem.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb27"
+  },
+  "title": "Where Angels Fear to Tread",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadb"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faed"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb02"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Velit quibusdam fugiat et. Omnis voluptatem ut quia. Nulla ex dolor quis iste.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb28"
+  },
+  "title": "The Moving Finger",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad9"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faed"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafc"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Omnis enim dicta dolor qui molestiae. Ipsa molestiae provident eligendi libero quisquam tempora sint. Vitae ut et.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb29"
+  },
+  "title": "Infinite Jest",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae2"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf3"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb05"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Perferendis consectetur porro quod qui sint. Ut aut architecto. Earum exercitationem debitis tempore dolorem odit perferendis. Ut consequatur qui quia quasi.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb2a"
+  },
+  "title": "Where Angels Fear to Tread",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae4"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf1"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0a"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Mollitia ut nulla quam nesciunt quaerat. Facere odit voluptatem. Sint et sit ea ut facere sit. Voluptates sint et optio eum odit.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb2b"
+  },
+  "title": "Postern of Fate",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad8"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae7"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0b"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Culpa in excepturi saepe expedita eveniet. Nam illo cum doloribus.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb2c"
+  },
+  "title": "If I Forget Thee Jerusalem",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae3"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faee"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb03"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Unde omnis nisi maxime. Minus suscipit soluta beatae. Cum qui ut quae necessitatibus aspernatur recusandae non.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb2d"
+  },
+  "title": "Noli Me Tangere",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae5"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf5"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0c"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Ut a similique quia ab corporis. Qui itaque dolorem saepe accusantium.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb2e"
+  },
+  "title": "All the King's Men",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadb"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf9"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb07"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Architecto et sequi aut aut doloribus. Quod earum ipsa accusamus.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb2f"
+  },
+  "title": "The Moon by Night",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae2"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf9"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb07"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Et molestiae iste nesciunt sed. Aspernatur impedit est voluptatibus perspiciatis et.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb30"
+  },
+  "title": "Lilies of the Field",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad3"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf9"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafe"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Ea excepturi commodi quidem. Soluta itaque eveniet eaque odio consequatur et atque.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb31"
+  },
+  "title": "A Time of Gifts",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad8"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf7"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0d"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Ea pariatur vero accusantium omnis. Nesciunt voluptatem fugit. Repellendus rerum ipsum eos ut nihil optio soluta.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb32"
+  },
+  "title": "A Time of Gifts",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadc"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faef"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafb"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Repellendus explicabo numquam sapiente adipisci quo voluptates. Voluptas quia itaque dolorem est aut ducimus id.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb33"
+  },
+  "title": "From Here to Eternity",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fade"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf8"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0e"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Et autem doloribus qui totam laboriosam. Quia cupiditate quia aliquam laborum doloribus ut.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb34"
+  },
+  "title": "Look to Windward",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadd"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf2"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0e"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Occaecati in ab consequatur. Repudiandae facere dolor eos repudiandae ea.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb35"
+  },
+  "title": "Ring of Bright Water",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad3"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faed"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0c"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Hic ad non beatae alias. Laborum eum rem fugit dolor quaerat libero aliquam. Dignissimos porro est eveniet quia cupiditate. Minus voluptatibus voluptatem placeat ut nihil molestiae.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb36"
+  },
+  "title": "Ego Dominus Tuus",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae1"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf0"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafc"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Aperiam consequatur aperiam rerum est. Est sit in culpa impedit soluta omnis.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb37"
+  },
+  "title": "Arms and the Man",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae6"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faeb"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafd"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Laboriosam nam nesciunt veniam quam modi quas. Magni omnis enim ut consectetur molestiae. Ut delectus ex nihil autem.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb38"
+  },
+  "title": "Eyeless in Gaza",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae4"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faeb"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb05"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Pariatur aut velit. Sunt quam eum enim nemo qui. Sunt illo ea cumque voluptatum laudantium.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb39"
+  },
+  "title": "Edna O'Brien",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad9"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae8"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb00"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "A eum ut quia rem velit quo beatae. Ex nulla est ut laudantium laborum placeat. Sint voluptate quia eveniet esse.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb3a"
+  },
+  "title": "Consider the Lilies",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fada"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae8"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0a"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Atque praesentium voluptatem ab. Cumque modi quia et nam mollitia labore animi. Iure beatae totam ducimus.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb3b"
+  },
+  "title": "Arms and the Man",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad4"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faeb"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0b"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Et aperiam consequuntur odio molestiae et asperiores. Laudantium adipisci in ut maxime.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb3c"
+  },
+  "title": "Nine Coaches Waiting",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fade"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf3"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb03"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Voluptas velit nihil sit a vel ea. Sunt iusto est sunt dolorem dolorem optio.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb3d"
+  },
+  "title": "The Moving Finger",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadf"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faec"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb03"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Quia vitae voluptas non voluptatibus. Dolore suscipit voluptates omnis quisquam. Quia rerum maxime omnis explicabo id tenetur.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb3e"
+  },
+  "title": "Precious Bane",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad4"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf7"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafb"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Et commodi facilis quia est velit. Repudiandae vel vero nihil illo. Ex nemo qui velit minus sunt. Et sunt est.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb3f"
+  },
+  "title": "When the Green Woods Laugh",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadf"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf9"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faff"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Repellat hic et ipsam. Itaque vero velit quisquam et.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb40"
+  },
+  "title": "In Dubious Battle",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae2"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf6"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faff"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Dicta quas sint blanditiis doloribus accusamus excepturi. Nostrum sequi aut vitae esse voluptatem. Earum architecto minus exercitationem et et mollitia vero. Facilis quae iusto et necessitatibus quo.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb41"
+  },
+  "title": "Where Angels Fear to Tread",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadf"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafa"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb02"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Possimus et ut mollitia ipsa. Et enim laudantium non. Hic facere eius. Expedita qui doloremque consectetur eligendi.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb42"
+  },
+  "title": "Far From the Madding Crowd",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae3"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faeb"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafb"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Magnam accusamus nobis. Quia voluptatibus iusto explicabo et minus sed. Dolor odit porro reprehenderit.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb43"
+  },
+  "title": "Ego Dominus Tuus",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadb"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faee"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0e"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Qui dolor veritatis impedit repudiandae molestiae quia. Facilis sit et consectetur. Est rerum et et.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb44"
+  },
+  "title": "Quo Vadis",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad9"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf1"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb08"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Corrupti magni sunt numquam. Adipisci deleniti adipisci aut quo totam eum.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb45"
+  },
+  "title": "Blue Remembered Earth",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad3"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faed"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb07"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Dignissimos assumenda perferendis ut. Quidem illum omnis. Dolorum inventore pariatur sit quibusdam aut voluptatem reprehenderit.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb46"
+  },
+  "title": "Ring of Bright Water",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad3"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faeb"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb09"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Odit labore maiores totam accusamus laboriosam. Pariatur aspernatur sint et doloremque et. Vel eveniet totam dicta ea iste modi. Autem et consequatur sapiente quisquam accusantium quos et.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb47"
+  },
+  "title": "Such, Such Were the Joys",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae1"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf2"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0d"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Voluptatibus sed blanditiis ut rerum laudantium culpa saepe. Adipisci enim quidem dolore aliquid corrupti libero quia. Tempore occaecati nesciunt accusamus. Voluptatem consequatur nam esse error.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb48"
+  },
+  "title": "Great Work of Time",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae6"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faea"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0b"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Atque placeat maxime similique magni error. Est unde quia nisi incidunt consequatur. Ratione dicta amet veniam minus. Consequatur commodi qui amet expedita nihil dicta tempore.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb49"
+  },
+  "title": "Consider the Lilies",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadb"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faea"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafd"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Non inventore placeat qui est perspiciatis consequuntur. Doloremque ad perspiciatis quisquam esse fugiat facilis iure. Similique est et facilis.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb4a"
+  },
+  "title": "A Scanner Darkly",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fada"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf5"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafc"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Laboriosam cumque et sint unde ea provident fuga. Enim omnis qui et eius ut non omnis.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb4b"
+  },
+  "title": "The Waste Land",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadd"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf3"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb03"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Animi nemo sunt in accusantium vel. Magnam esse est in recusandae excepturi. Maiores quo assumenda quam omnis dolores maiores quidem. Id omnis debitis ut delectus dicta doloremque.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb4c"
+  },
+  "title": "In a Dry Season",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae5"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf2"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb01"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Quibusdam maxime soluta. Necessitatibus dolor nobis eveniet et. Aut similique sit inventore.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb4d"
+  },
+  "title": "A Catskill Eagle",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadf"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faed"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb03"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Voluptate occaecati veritatis omnis a et. Culpa quod aut et fuga debitis quia. At qui tempora placeat laborum porro eos. Et modi et placeat earum maxime.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb4e"
+  },
+  "title": "Tirra Lirra by the River",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae4"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf1"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb03"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Aut quaerat ut consequatur et. Nemo fuga aut natus quis ut quam. Enim provident velit illo voluptas. Dolorem molestiae aut cumque.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb4f"
+  },
+  "title": "The Waste Land",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad4"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf6"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb00"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Ab cumque consequatur atque consequatur ea numquam qui. Distinctio voluptatem ut voluptas. Similique molestiae nostrum rem omnis animi dolores nesciunt. Fuga nihil explicabo voluptatibus corrupti.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb50"
+  },
+  "title": "Beyond the Mexique Bay",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad7"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae7"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faff"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Voluptatem officia autem accusamus consequatur nisi corrupti. Cupiditate laborum itaque consequatur ut. Ipsam labore sunt maxime.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb51"
+  },
+  "title": "The Other Side of Silence",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae0"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faef"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb09"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Ea officia voluptatem quibusdam asperiores ea. Expedita maiores et error quia veritatis. Nobis deserunt et et voluptates. Assumenda rem delectus vel ut illum ipsam dignissimos.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb52"
+  },
+  "title": "I Will Fear No Evil",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad4"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faee"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0c"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Et velit iure quam sit rerum accusamus. Quis voluptatem voluptas numquam ea minus dolorem autem. Consequuntur et eaque ea distinctio dolor mollitia. Ut pariatur sed repellat aut dignissimos quis.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb53"
+  },
+  "title": "Look Homeward, Angel",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae6"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf3"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb04"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Quisquam animi et rem porro. Dolores voluptas asperiores debitis. Consectetur inventore aut modi sed et numquam necessitatibus. Molestiae ut dolorem quasi aliquid et recusandae adipisci.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb54"
+  },
+  "title": "Have His Carcase",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad8"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faed"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafe"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Qui iusto aspernatur voluptas ut laudantium aliquam occaecati. Ea et accusamus nesciunt.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb55"
+  },
+  "title": "Such, Such Were the Joys",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae2"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faef"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafb"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Eligendi optio dolorum nulla nostrum. Odit quaerat voluptate.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb56"
+  },
+  "title": "The Painted Veil",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadc"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf2"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb04"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Aliquam blanditiis sapiente ratione officiis. Fugiat vel velit sit animi ea et temporibus. Aspernatur aliquam nihil sapiente quo. Totam aut vitae.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb57"
+  },
+  "title": "From Here to Eternity",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad8"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf9"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb04"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Error qui laborum numquam qui perferendis suscipit suscipit. Vitae consequuntur occaecati sed odio fugit perferendis. Earum quae ducimus ipsam totam.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb58"
+  },
+  "title": "East of Eden",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fada"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faec"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafd"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Vitae iusto enim itaque quis doloremque. Odio aut sunt itaque libero. Quis officia iste et aut voluptatem qui veritatis.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb59"
+  },
+  "title": "Ah, Wilderness!",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadc"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faee"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb00"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Dolor voluptatem molestiae at eius suscipit repudiandae. Temporibus ea aut impedit minus quisquam. Porro officiis quia esse necessitatibus qui inventore.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb5a"
+  },
+  "title": "Lilies of the Field",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fada"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf5"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb01"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Veritatis velit nulla non fugiat corporis minus. Ex ipsum labore illo eos sint. Omnis animi rerum aut fugit provident soluta. Et reprehenderit incidunt aut voluptates velit excepturi.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb5b"
+  },
+  "title": "No Country for Old Men",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadb"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faed"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafb"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Eos consectetur minus voluptatum. Mollitia et labore. Reprehenderit ratione qui natus laudantium.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb5c"
+  },
+  "title": "The House of Mirth",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad6"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf8"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb01"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Iusto enim omnis itaque odio. Et sed error voluptatibus.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb5d"
+  },
+  "title": "The Far-Distant Oxus",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae1"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf1"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb08"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Facilis saepe optio enim qui porro quia nisi. Ab eaque nihil esse iusto ipsam atque.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb5e"
+  },
+  "title": "The Wealth of Nations",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad5"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf2"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb06"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Enim reiciendis ratione. Eveniet eum corporis assumenda ex non.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb5f"
+  },
+  "title": "The Doors of Perception",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae2"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faed"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0a"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Id eos architecto aliquid et nisi earum. Explicabo molestiae ratione. A a amet occaecati ut.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb60"
+  },
+  "title": "Beyond the Mexique Bay",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae5"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf4"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb03"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Placeat quidem eos repellendus et a nihil. Dolores qui autem doloribus aut.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb61"
+  },
+  "title": "Butter In a Lordly Dish",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad7"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae7"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0a"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Corporis labore qui deserunt iste et veniam dignissimos. At consectetur laudantium aut nostrum vel. Nam quia animi earum exercitationem repellat velit exercitationem.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb62"
+  },
+  "title": "Behold the Man",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae3"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf3"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0c"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Ducimus ut est. Facilis non ipsum consequatur repudiandae commodi et vero. Eius doloremque ut. Ullam quia autem ut quod quasi necessitatibus earum.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb63"
+  },
+  "title": "Frequent Hearses",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fade"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafa"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0a"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Voluptas officia ipsum est. Quae quo libero.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb64"
+  },
+  "title": "Dying of the Light",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad4"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf9"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb06"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Iure reiciendis est nihil molestias in qui eius. Quos ipsa atque fugiat est eligendi eos debitis. Praesentium suscipit sint eum libero neque perspiciatis.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb65"
+  },
+  "title": "The Last Enemy",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad6"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae7"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0d"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Adipisci consequatur excepturi natus velit consequatur quas. Mollitia est repudiandae. Tempora omnis iusto in tempore. Ipsum et quisquam dolor ea illo quaerat et.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb66"
+  },
+  "title": "Dying of the Light",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad4"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf8"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb06"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Doloremque sint enim maxime est deleniti culpa. Ea non qui.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb67"
+  },
+  "title": "Oh! To be in England",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae4"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafa"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb09"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Id animi facere soluta natus. Repellat voluptatum odit fugiat neque assumenda quis eos. Inventore magni et dolor tenetur omnis laudantium.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb68"
+  },
+  "title": "No Highway",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae2"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf8"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafc"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Rerum iure eligendi. Quia facere ut quas. Assumenda dolorum asperiores.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb69"
+  },
+  "title": "The Skull Beneath the Skin",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad6"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf8"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0a"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Vero ea at rem aliquam sit eum aliquam. Sunt ea voluptatum.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb6a"
+  },
+  "title": "When the Green Woods Laugh",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad4"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf4"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0d"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Dolor voluptate velit velit culpa provident. Ut ullam laborum consequatur. Voluptas numquam non modi assumenda nihil laborum omnis. Est quis iure dolorum et.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb6b"
+  },
+  "title": "Of Mice and Men",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad7"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae8"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafc"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Et amet reiciendis commodi laudantium amet sit. Culpa quo earum quia eum et voluptatem consequuntur. Omnis provident tempore fugit temporibus consectetur odit.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb6c"
+  },
+  "title": "Unweaving the Rainbow",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadf"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf7"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb00"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Dolor quibusdam ut rerum et. Labore ea excepturi sed aut omnis quod distinctio.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb6d"
+  },
+  "title": "That Hideous Strength",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadd"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf5"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafb"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Praesentium unde pariatur. Quae ipsa in velit non perspiciatis rerum dicta. Doloribus repudiandae voluptatem.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb6e"
+  },
+  "title": "The House of Mirth",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae2"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf4"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0a"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Enim dolores recusandae quia fugit praesentium quibusdam. Laborum asperiores voluptatem pariatur est qui. Corporis exercitationem et voluptate iusto quo est. Explicabo error ab.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb6f"
+  },
+  "title": "Nine Coaches Waiting",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae4"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae9"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0c"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Et facere magnam possimus ab nemo. Ducimus commodi est veritatis dolor aut rerum commodi. Culpa voluptas ut.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb70"
+  },
+  "title": "The Yellow Meads of Asphodel",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fade"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf2"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb07"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Voluptatem sunt quo ut. Molestiae ipsam sed ea vero sit.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb71"
+  },
+  "title": "The Grapes of Wrath",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad4"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faef"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0b"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Alias ut voluptas voluptatem non. Nihil et similique fugit. Inventore cum id pariatur voluptate eaque.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb72"
+  },
+  "title": "Carrion Comfort",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae1"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf0"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafe"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Et maiores vitae cum. Nulla enim velit. Eum incidunt et ut voluptas officiis.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb73"
+  },
+  "title": "Mother Night",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadc"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae8"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb06"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Quos possimus magnam ex. Voluptas saepe in consequatur in minus exercitationem.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb74"
+  },
+  "title": "The Parliament of Man",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadc"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf9"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faff"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Odit sequi est sit dicta recusandae. Aut quidem adipisci sapiente.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb75"
+  },
+  "title": "No Longer at Ease",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad5"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae7"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb09"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Ut cupiditate assumenda inventore qui dolorem rerum debitis. Molestias dignissimos distinctio repellat. Ut eum tenetur reiciendis. Velit et voluptatem consequuntur alias.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb76"
+  },
+  "title": "The Wives of Bath",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae1"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae7"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb00"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Et dolores voluptate nisi est voluptatem vel ea. Et consequatur autem. Omnis nam dolorem architecto molestiae commodi odit modi. Eligendi voluptatem nam consequuntur corporis quam qui repudiandae.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb77"
+  },
+  "title": "Beyond the Mexique Bay",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadd"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf0"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafe"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Excepturi laboriosam similique. Ut et tenetur sit. Aut quia atque facilis corrupti libero cum.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb78"
+  },
+  "title": "Vile Bodies",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad9"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf7"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb04"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Nesciunt qui quia et neque architecto est earum. Corrupti architecto quis et. Sint labore placeat. Quo quos recusandae fugiat eos.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb79"
+  },
+  "title": "If I Forget Thee Jerusalem",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae0"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faec"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafb"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Nulla sunt voluptates enim omnis ducimus. Quidem consectetur eaque necessitatibus. Magni culpa sed nostrum sit iusto vero. Velit qui quo mollitia rerum quidem iusto eos.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb7a"
+  },
+  "title": "That Good Night",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadb"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faeb"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafe"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Placeat perferendis inventore. Quidem et corporis odit. Quia fuga qui.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb7b"
+  },
+  "title": "Fair Stood the Wind for France",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadd"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafa"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb06"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Cupiditate officiis possimus. Sit voluptatem itaque recusandae eos.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb7c"
+  },
+  "title": "The Violent Bear It Away",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadc"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafa"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0a"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Hic voluptatem harum voluptatem ad sit dolores quia. Sapiente ducimus vero velit.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb7d"
+  },
+  "title": "I Know Why the Caged Bird Sings",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad8"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf9"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0c"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Voluptatum et voluptatem corrupti incidunt minima cumque quo. Minus recusandae animi.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb7e"
+  },
+  "title": "Far From the Madding Crowd",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fada"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf7"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb06"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Debitis voluptatem deleniti culpa recusandae deserunt. Eaque distinctio quis. Omnis adipisci eos dolores.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb7f"
+  },
+  "title": "The Far-Distant Oxus",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae0"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf9"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb05"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Sit ea eveniet temporibus. Qui cum cupiditate accusantium voluptatum incidunt ut. Deserunt eos esse. Et eos quasi fugit.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb80"
+  },
+  "title": "Infinite Jest",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fada"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf1"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0c"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Quis labore quis doloribus. Error consequuntur voluptates cupiditate consequatur nisi laboriosam. Eos repudiandae est recusandae. Voluptatibus enim doloribus numquam non rerum fuga.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb81"
+  },
+  "title": "The Moon by Night",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad4"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf1"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0e"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Blanditiis illo aut rerum enim commodi. Laudantium eligendi iste consequatur dicta excepturi est. Aut quo assumenda nam doloremque.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb82"
+  },
+  "title": "A Time to Kill",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad5"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faed"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb04"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Deleniti quas culpa est alias. Blanditiis magni distinctio aperiam fuga. Laudantium qui voluptate non voluptas voluptates laudantium facere. Est natus magni.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb83"
+  },
+  "title": "The Yellow Meads of Asphodel",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad4"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf9"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafe"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Et laudantium aut est voluptatum accusantium voluptas aliquam. Mollitia suscipit perspiciatis quas explicabo in. Aliquid nihil voluptatem quod cumque perspiciatis aut. Dolor consequatur a veritatis voluptatum illum.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb84"
+  },
+  "title": "Ego Dominus Tuus",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae3"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf4"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faff"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Omnis nihil neque aut. Possimus non vel similique perferendis assumenda. Quibusdam porro amet aut deserunt optio. Dolorem sit vel rem.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb85"
+  },
+  "title": "An Acceptable Time",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad6"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf1"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb04"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Sed temporibus omnis assumenda voluptatem voluptatem modi nisi. Molestias fuga libero non quaerat. Est non praesentium sunt corporis dicta consequuntur. Magni officia vel alias.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb86"
+  },
+  "title": "Shall not Perish",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad5"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf0"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafd"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Laborum cumque delectus ea. Beatae aliquam velit numquam sunt dolor iusto. Qui voluptate delectus aut id quod accusantium.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb87"
+  },
+  "title": "Oh! To be in England",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadc"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae8"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb02"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Ex pariatur eos officia corporis. Iure et voluptates iste accusamus. Natus qui repellat ullam totam voluptas nulla.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb88"
+  },
+  "title": "A Many-Splendoured Thing",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae0"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf5"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb03"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Ea qui qui. Quidem necessitatibus ut qui. Quae ipsa commodi nihil distinctio. Perferendis recusandae quam aut quia itaque eaque.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb89"
+  },
+  "title": "A Time to Kill",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadb"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf0"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb03"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Quasi quaerat at voluptas consequuntur iusto vitae. Nisi earum non. Dicta facilis quia eum sit velit. Impedit eveniet voluptate reprehenderit veritatis ipsam fugit nostrum.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb8a"
+  },
+  "title": "What's Become of Waring",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad9"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf6"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb07"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Temporibus libero beatae. Esse similique ducimus optio. Nihil hic quia alias distinctio tenetur dolorum. Maxime aliquam rem molestias doloremque repudiandae.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb8b"
+  },
+  "title": "The Heart Is a Lonely Hunter",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fade"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf9"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0b"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Cumque consequatur architecto totam aliquam culpa voluptatem culpa. Et eum est ea.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb8c"
+  },
+  "title": "The Moon by Night",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fada"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf5"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0b"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Nulla voluptatem eveniet. Soluta fuga exercitationem sed quaerat magni.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb8d"
+  },
+  "title": "Blood's a Rover",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad5"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf6"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0c"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Nulla consectetur magnam dignissimos est. Autem distinctio minima ratione modi totam voluptatem. Vitae qui maxime odio repellat ad est.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb8e"
+  },
+  "title": "Number the Stars",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fade"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae7"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0b"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Id nihil inventore assumenda rem eos quia aut. Ut magni aliquid optio et delectus odit. Nam explicabo sint natus facilis placeat. Veritatis quod sequi.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb8f"
+  },
+  "title": "Now Sleeps the Crimson Petal",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fade"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf0"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb07"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Eligendi quo temporibus rerum. Iure quia vitae enim nihil. Dolores numquam facere libero.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb90"
+  },
+  "title": "Such, Such Were the Joys",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae5"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faee"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb05"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Sunt qui asperiores error. Qui neque nemo fuga repudiandae et rerum eligendi. Officiis vero laudantium repellendus similique consectetur eum aperiam. Aliquam cum cum quos nobis.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb91"
+  },
+  "title": "Everything is Illuminated",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad8"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf9"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0a"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Assumenda tenetur veniam assumenda veritatis quos repudiandae. Impedit velit officiis et quas. Aut sed autem ut id et voluptatum.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb92"
+  },
+  "title": "Things Fall Apart",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadd"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf7"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb00"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Illo praesentium nesciunt voluptatem ab quis expedita iure. Tenetur accusamus alias.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb93"
+  },
+  "title": "An Evil Cradling",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae0"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae7"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0a"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Veritatis molestiae vel assumenda officiis. Dolorem sed consequatur tempore natus exercitationem magni provident. Quia eum ipsa nostrum vero harum. Ut est repellendus voluptatem.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb94"
+  },
+  "title": "Mr Standfast",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadf"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae7"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0d"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Est voluptatem nostrum incidunt dolores. Autem ad alias. Maxime sunt nihil suscipit. Enim omnis eos veritatis possimus quia fugiat.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb95"
+  },
+  "title": "Nine Coaches Waiting",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae0"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faec"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb09"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Fuga velit voluptatem. Quam maxime eum enim commodi et commodi. Natus voluptas sequi sunt sed iste qui.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb96"
+  },
+  "title": "Vile Bodies",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae4"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faea"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0b"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Et tempore sit omnis distinctio incidunt provident id. Adipisci consectetur voluptatem consequatur explicabo omnis totam beatae.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb97"
+  },
+  "title": "I Know Why the Caged Bird Sings",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad5"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faee"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faff"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Eos sint quam est. At ab aut ratione possimus enim. Minima facilis sunt maiores. Eum earum quos dolorem.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb98"
+  },
+  "title": "To Your Scattered Bodies Go",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad8"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf7"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafc"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Quia sint magnam molestiae. Voluptatum iure omnis vel nemo blanditiis est. Consequatur excepturi ratione vel. Aut necessitatibus dolorem voluptas.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb99"
+  },
+  "title": "Bury My Heart at Wounded Knee",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadb"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf2"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafc"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Dolorem ea est quia. Minima enim voluptatem ad voluptatibus saepe perspiciatis.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb9a"
+  },
+  "title": "O Pioneers!",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadc"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faea"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafe"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Quae tempora et. Quo mollitia quasi rerum rem deserunt voluptatem. Dolore voluptatem sed dolores molestias nihil voluptatem. Iusto placeat officia dolor suscipit.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb9b"
+  },
+  "title": "Sleep the Brave",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadb"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf5"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0a"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Sit tempore quas aut unde consequuntur deleniti eos. Quis consequuntur quisquam magni beatae magni. Cumque voluptate suscipit rerum voluptates.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb9c"
+  },
+  "title": "The Moving Finger",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadd"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae7"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafc"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Provident est ipsam est ullam. Id iusto harum non. Ut quia facilis. Nobis vel in nihil praesentium harum dignissimos dicta.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb9d"
+  },
+  "title": "The Torment of Others",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad7"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf4"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0b"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Dolores voluptatem eum natus. Et veniam culpa minus sunt mollitia aut. Accusamus consequatur nobis dolorem sed. Qui est officia error.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb9e"
+  },
+  "title": "The Grapes of Wrath",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae6"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf5"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0e"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "In dolores qui adipisci cum alias non ea. Autem aut cumque totam eaque commodi. Dicta et sint nihil doloremque.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fb9f"
+  },
+  "title": "Recalled to Life",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadf"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faef"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0c"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Error placeat omnis eius temporibus. Doloribus sapiente et aut dolores reiciendis dolor quis. Debitis et pariatur perspiciatis ut molestiae.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fba0"
+  },
+  "title": "The Needle's Eye",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae0"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf5"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb09"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Aut in ut suscipit. Aspernatur ut repellat fuga enim qui. Earum sint accusamus ut a aperiam eaque.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fba1"
+  },
+  "title": "Shall not Perish",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad3"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf5"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0a"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Qui quis quo quam nihil quo nihil provident. Quo maxime hic. Eum quod consequatur.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fba2"
+  },
+  "title": "Alone on a Wide, Wide Sea",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad8"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf9"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb02"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "A corrupti dolor non ut ea itaque. Corporis ut sed reiciendis debitis.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fba3"
+  },
+  "title": "East of Eden",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae4"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf8"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faff"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Ab debitis numquam. Magni in velit libero temporibus laboriosam. Saepe est saepe nemo ratione molestiae aliquid porro.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fba4"
+  },
+  "title": "That Good Night",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae6"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafa"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafc"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Magni modi cupiditate est officia blanditiis similique. Rerum totam est amet eos.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fba5"
+  },
+  "title": "The Widening Gyre",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadc"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf7"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faff"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Corporis non blanditiis sed eos fuga voluptatem id. Ad numquam odit.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fba6"
+  },
+  "title": "The Wings of the Dove",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadb"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faea"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafd"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Doloribus voluptates totam reiciendis cupiditate corporis in. Quidem vero sit voluptatem est. Qui aspernatur doloribus consequatur sed.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fba7"
+  },
+  "title": "Bury My Heart at Wounded Knee",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad6"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf8"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb09"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Nostrum laudantium vel mollitia corrupti. Blanditiis cumque ipsum.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fba8"
+  },
+  "title": "The Torment of Others",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae1"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf6"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb04"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Quam error esse et et et laudantium. Repudiandae maxime officiis ut at quia.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fba9"
+  },
+  "title": "A Catskill Eagle",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae6"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf6"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafd"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Hic repellendus necessitatibus natus excepturi. Facilis dolores tenetur. Laborum quas repellat omnis. Minus ea dolor illum quibusdam.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbaa"
+  },
+  "title": "Have His Carcase",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad4"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae7"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafd"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Neque velit voluptatibus dolore soluta magnam iste. Occaecati cupiditate nobis vero.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbab"
+  },
+  "title": "Time of our Darkness",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad7"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf3"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb04"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Ab sequi alias. Dolorum necessitatibus nam.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbac"
+  },
+  "title": "Pale Kings and Princes",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad7"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf6"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb07"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Aliquid recusandae repellendus doloremque est asperiores est. Sint veritatis dolorem.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbad"
+  },
+  "title": "Dance Dance Dance",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad5"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae8"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0a"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Voluptatum eos enim recusandae occaecati rerum. Neque ipsum veritatis quae aliquid neque. Assumenda voluptas enim quo dolore sit animi qui.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbae"
+  },
+  "title": "Mr Standfast",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad3"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae9"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0b"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Distinctio quo enim ab sequi. Perferendis et quos sit ullam. Aspernatur minima totam inventore. Fugiat exercitationem omnis aut magni sit sed.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbaf"
+  },
+  "title": "Specimen Days",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fada"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf1"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0c"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Omnis voluptatem dolores expedita. Perferendis qui aspernatur et voluptatem cupiditate pariatur reprehenderit. Cupiditate cupiditate saepe. Error hic temporibus.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbb0"
+  },
+  "title": "I Will Fear No Evil",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad8"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf7"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0b"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Enim tempora perferendis assumenda. Ipsam reiciendis voluptas sit accusamus. Tenetur harum quia iste et et eius. Et qui modi aut.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbb1"
+  },
+  "title": "Recalled to Life",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadf"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faeb"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0b"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Omnis quidem illum dolorem alias. Totam fugit qui ipsam.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbb2"
+  },
+  "title": "Beneath the Bleeding",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae1"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf5"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb08"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Dolor maxime consequatur aspernatur rerum ea dicta. Iusto et et. Eaque quos ipsa accusamus.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbb3"
+  },
+  "title": "Unweaving the Rainbow",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad4"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf3"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafd"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Neque sunt fugit qui ab. Officiis non omnis ut. Ut est occaecati quia quod. Officia in adipisci ducimus quasi.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbb4"
+  },
+  "title": "Wildfire at Midnight",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae0"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf7"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb05"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Sint explicabo quo nobis laborum dolor dolores et. Expedita quia facere maiores harum accusamus veritatis. Ab aliquam quis et impedit est totam earum. Repudiandae non quia magni deleniti nostrum.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbb5"
+  },
+  "title": "From Here to Eternity",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad7"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf3"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0c"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Eos aliquid commodi. Atque quia qui ex adipisci omnis ratione laudantium. Minus ullam et.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbb6"
+  },
+  "title": "That Hideous Strength",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad9"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae9"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb01"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Placeat qui natus tempore. Deleniti et dolore sit eum voluptatem omnis.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbb7"
+  },
+  "title": "Absalom, Absalom!",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae1"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf1"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafd"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Eos id accusamus voluptate atque quis nihil quis. Quaerat optio eos ducimus aperiam earum quis laboriosam. Modi voluptas dolores minima perspiciatis corporis non. Doloremque accusamus eveniet.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbb8"
+  },
+  "title": "The Golden Apples of the Sun",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadb"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf6"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0b"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Temporibus hic omnis vero. Quasi aperiam qui alias necessitatibus eum qui.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbb9"
+  },
+  "title": "No Country for Old Men",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadc"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf9"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb00"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Repellat possimus aut non exercitationem voluptas. Saepe ut modi repudiandae quo maxime. Ipsa aut velit qui qui provident esse tenetur.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbba"
+  },
+  "title": "By Grand Central Station I Sat Down and Wept",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae2"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faea"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb03"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Expedita in ex et totam. Ipsum dolorem optio veniam eaque magni aspernatur minus.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbbb"
+  },
+  "title": "The Golden Bowl",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae4"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faea"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0a"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Et ab corrupti quas et. Cupiditate et accusantium autem. Aut est maiores ut repellendus quia. Aut natus aliquid quam quod in.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbbc"
+  },
+  "title": "Recalled to Life",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fade"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faef"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafd"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Accusamus alias aut molestias quia sunt rem. Atque officiis tempora consequatur animi ad.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbbd"
+  },
+  "title": "Consider Phlebas",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae3"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafa"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0e"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Magni praesentium est aut. Ad velit facere molestiae in. Quidem consequatur temporibus maxime possimus.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbbe"
+  },
+  "title": "Noli Me Tangere",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae1"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae9"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0e"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Occaecati unde voluptas veritatis voluptatem. Veritatis perspiciatis maxime voluptatem fugit qui sapiente nostrum.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbbf"
+  },
+  "title": "The Torment of Others",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fada"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faee"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faff"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Eligendi eaque ipsam debitis est rem. Mollitia quae molestiae placeat et saepe. Nam et nostrum quibusdam amet velit.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbc0"
+  },
+  "title": "Of Mice and Men",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae0"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faec"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faff"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Quae placeat corporis totam. Quia saepe qui. Odio enim et.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbc1"
+  },
+  "title": "As I Lay Dying",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad7"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf6"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0d"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Necessitatibus dolores et soluta labore ratione. Maxime dicta corrupti quo.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbc2"
+  },
+  "title": "A Handful of Dust",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fada"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf4"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb04"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Quaerat illo numquam non neque eum et quasi. Aut et nostrum.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbc3"
+  },
+  "title": "A Handful of Dust",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadc"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf6"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb01"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Enim et ea pariatur et culpa maiores nesciunt. Ducimus numquam suscipit laudantium. Eligendi aspernatur est enim minus maxime.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbc4"
+  },
+  "title": "Cover Her Face",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae6"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faeb"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafb"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Maiores voluptatem accusantium culpa. Odit quisquam maiores cumque soluta sit architecto earum. Est laborum facere nisi sint aliquid occaecati. Tempore error enim qui non.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbc5"
+  },
+  "title": "Clouds of Witness",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad9"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae8"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb09"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Et vitae voluptatem et velit. Vel eligendi aut provident. Laborum voluptas occaecati quia.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbc6"
+  },
+  "title": "A Darkling Plain",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae5"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae7"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafb"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Expedita aliquam deserunt qui deleniti. Est possimus exercitationem eveniet quia.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbc7"
+  },
+  "title": "The Way Through the Woods",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad4"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faea"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb02"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Itaque ullam modi nam voluptate. Ratione qui error aut ducimus ut nam iure. Quo nemo magni.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbc8"
+  },
+  "title": "Beneath the Bleeding",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae1"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf3"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb03"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Eius exercitationem vel et nemo dicta. Numquam porro inventore expedita. Ut totam repudiandae est et ad. Soluta ut consequatur qui.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbc9"
+  },
+  "title": "Beneath the Bleeding",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad4"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf2"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0c"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Provident modi ea adipisci sit. Voluptatem quae et et blanditiis veniam.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbca"
+  },
+  "title": "Where Angels Fear to Tread",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae2"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf0"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb02"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Nihil voluptas eos quidem corrupti quo nostrum. Provident sapiente nisi animi eius. In nulla dolores quia sunt veniam labore.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbcb"
+  },
+  "title": "This Side of Paradise",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae6"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf1"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb03"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Inventore ad vel hic assumenda odio. Minima tempore est reiciendis adipisci et commodi. Natus modi architecto qui ipsum.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbcc"
+  },
+  "title": "The Green Bay Tree",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadc"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf9"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0b"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Vel delectus pariatur et. Ducimus ut et quis amet velit alias.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbcd"
+  },
+  "title": "The Skull Beneath the Skin",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad3"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafa"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafe"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Reprehenderit omnis officia maxime est. Id possimus quibusdam ipsum veritatis tenetur aliquid autem.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbce"
+  },
+  "title": "The Way Through the Woods",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadd"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf3"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafe"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facf"
+    }
+  },
+  "comments": "Eum consequatur earum et. Et molestiae quos aspernatur nesciunt porro molestiae et.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbcf"
+  },
+  "title": "Frequent Hearses",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fadd"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf2"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faff"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Dolor harum doloremque eos. Consectetur voluptas sunt iste amet pariatur odio. Ut quia nobis nisi corporis cum repudiandae. Quibusdam magni ipsa reiciendis veritatis voluptas autem ad.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbd0"
+  },
+  "title": "Quo Vadis",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facb"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fade"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf1"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb07"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Voluptate harum ratione dolor. Autem eos ut mollitia ipsam debitis repellat dolorem. Aliquam repudiandae repudiandae ducimus velit itaque. Dolor neque est accusamus quia.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbd1"
+  },
+  "title": "Frequent Hearses",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae1"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae8"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafd"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Nemo repellendus porro. Iure nostrum voluptate. Sunt et aliquid laudantium ducimus voluptas error.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbd2"
+  },
+  "title": "The Curious Incident of the Dog in the Night-Time",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facc"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad9"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf0"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb05"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Mollitia aut ea ipsam quod rem laboriosam quisquam. Et quia consequuntur neque natus facilis. Quasi tempora quasi iste hic eum occaecati consectetur.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbd3"
+  },
+  "title": "The Heart Is a Lonely Hunter",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad9"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf5"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fafc"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad0"
+    }
+  },
+  "comments": "Aut distinctio vero perferendis est voluptas ut voluptatem. Delectus tempore officiis eius illo minima.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbd4"
+  },
+  "title": "In Dubious Battle",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102face"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae3"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102faf4"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb0e"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad1"
+    }
+  },
+  "comments": "Nulla et et voluptatum qui commodi velit amet. Totam voluptatem aperiam quia dolor.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbd5"
+  },
+  "title": "All the King's Men",
+  "status": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102facd"
+    }
+  },
+  "caseType1": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae6"
+    }
+  },
+  "caseType2": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fae8"
+    }
+  },
+  "caseType3": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fb08"
+    }
+  },
+  "statusCode": {
+    "$ref": "code_groups",
+    "$id": {
+      "$oid": "5f8dbf79746e4b25b102fad2"
+    }
+  },
+  "comments": "Aliquam ipsum ipsum illum aliquid. Commodi facere illo consequatur aut laborum fugiat.",
+  "_class": "com.angularreact.appgen.entity.MyCase"
+}]

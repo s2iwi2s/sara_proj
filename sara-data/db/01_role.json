@@ -1,0 +1,136 @@
+[{
+  "_id": {
+    "$oid": "5f8dbd30d266c45504e620d6"
+  },
+  "name": "ROLE_SUPER_ADMIN"
+},{
+  "_id": {
+    "$oid": "5f8dbd30d266c45504e620d7"
+  },
+  "name": "ROLE_ADDRESS::DETAILS"
+},{
+  "_id": {
+    "$oid": "5f8dbd30d266c45504e620d8"
+  },
+  "name": "ROLE_ADDRESS::DELETE"
+},{
+  "_id": {
+    "$oid": "5f8dbd30d266c45504e620d9"
+  },
+  "name": "ROLE_ADDRESS::LIST"
+},{
+  "_id": {
+    "$oid": "5f8dbd30d266c45504e620da"
+  },
+  "name": "ROLE_ADDRESS::SAVE"
+},{
+  "_id": {
+    "$oid": "5f8dbd30d266c45504e620db"
+  },
+  "name": "ROLE_ADDRESS::ADDRESSSEARCH"
+},{
+  "_id": {
+    "$oid": "5f8dbd30d266c45504e620dc"
+  },
+  "name": "ROLE_ADDRESS::ADDRESSBYENDUSER"
+},{
+  "_id": {
+    "$oid": "5f8dbd30d266c45504e620dd"
+  },
+  "name": "ROLE_CODEGROUPS::DELETE"
+},{
+  "_id": {
+    "$oid": "5f8dbd30d266c45504e620de"
+  },
+  "name": "ROLE_CODEGROUPS::LIST"
+},{
+  "_id": {
+    "$oid": "5f8dbd30d266c45504e620df"
+  },
+  "name": "ROLE_CODEGROUPS::SAVE"
+},{
+  "_id": {
+    "$oid": "5f8dbd30d266c45504e620e0"
+  },
+  "name": "ROLE_CODEGROUPS::DETAILS"
+},{
+  "_id": {
+    "$oid": "5f8dbd30d266c45504e620e1"
+  },
+  "name": "ROLE_ENDUSER::DELETE"
+},{
+  "_id": {
+    "$oid": "5f8dbd30d266c45504e620e2"
+  },
+  "name": "ROLE_ENDUSER::LIST"
+},{
+  "_id": {
+    "$oid": "5f8dbd30d266c45504e620e3"
+  },
+  "name": "ROLE_ENDUSER::SAVE"
+},{
+  "_id": {
+    "$oid": "5f8dbd30d266c45504e620e4"
+  },
+  "name": "ROLE_ENDUSER::DETAILS"
+},{
+  "_id": {
+    "$oid": "5f8dbd30d266c45504e620e5"
+  },
+  "name": "ROLE_HOME::DELETE"
+},{
+  "_id": {
+    "$oid": "5f8dbd30d266c45504e620e6"
+  },
+  "name": "ROLE_HOME::LIST"
+},{
+  "_id": {
+    "$oid": "5f8dbd30d266c45504e620e7"
+  },
+  "name": "ROLE_HOME::SAVE"
+},{
+  "_id": {
+    "$oid": "5f8dbd30d266c45504e620e8"
+  },
+  "name": "ROLE_HOME::DETAILS"
+},{
+  "_id": {
+    "$oid": "5f8dbd30d266c45504e620e9"
+  },
+  "name": "ROLE_MYCASE::DELETE"
+},{
+  "_id": {
+    "$oid": "5f8dbd30d266c45504e620ea"
+  },
+  "name": "ROLE_MYCASE::LIST"
+},{
+  "_id": {
+    "$oid": "5f8dbd30d266c45504e620eb"
+  },
+  "name": "ROLE_MYCASE::SAVE"
+},{
+  "_id": {
+    "$oid": "5f8dbd30d266c45504e620ec"
+  },
+  "name": "ROLE_MYCASE::DETAILS"
+},{
+  "_id": {
+    "$oid": "5f8dbd30d266c45504e620ed"
+  },
+  "name": "ROLE_USERDETAILS::DELETE"
+},{
+  "_id": {
+    "$oid": "5f8dbd30d266c45504e620ee"
+  },
+  "name": "ROLE_USERDETAILS::LIST"
+},{
+  "_id": {
+    "$oid": "5f8dbd30d266c45504e620ef"
+  },
+  "name": "ROLE_USERDETAILS::SAVE"
+},{
+  "_id": {
+    "$oid": "5f8dbd30d266c45504e620f0"
+  },
+  "name": "ROLE_USERDETAILS::DETAILS"
+}]

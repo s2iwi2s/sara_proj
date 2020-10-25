@@ -1,0 +1,22 @@
+[{
+  "_id": {
+    "$oid": "5f8dbf79746e4b25b102fac8"
+  },
+  "urlStr": "/my-case-list",
+  "name": "My Cases",
+  "_class": "com.angularreact.appgen.entity.Home"
+},{
+  "_id": {
+    "$oid": "5f8dbf79746e4b25b102fac9"
+  },
+  "urlStr": "/part-item-list",
+  "name": "Part Items",
+  "_class": "com.angularreact.appgen.entity.Home"
+},{
+  "_id": {
+    "$oid": "5f8dbf79746e4b25b102faca"
+  },
+  "urlStr": "/serial-item-list",
+  "name": "Serial Items",
+  "_class": "com.angularreact.appgen.entity.Home"
+}]

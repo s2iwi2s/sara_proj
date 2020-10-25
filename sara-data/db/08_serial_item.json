@@ -1,0 +1,1005 @@
+[{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbea"
+  },
+  "name": "4SN-I5JK-JR8I",
+  "description": "Lightweight Granite Bag",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbe9"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbeb"
+  },
+  "name": "GE8-EFE7-48Y6",
+  "description": "Small Granite Bag",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbec"
+  },
+  "name": "6RM-H8QD-TA6X",
+  "description": "Mediocre Leather Clock",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbed"
+  },
+  "name": "71Q-5B5F-V4V8",
+  "description": "Small Cotton Shirt",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbdb"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbee"
+  },
+  "name": "AJT-A89R-835D",
+  "description": "Ergonomic Iron Knife",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbef"
+  },
+  "name": "E6S-318M-E82R",
+  "description": "Heavy Duty Marble Shoes",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbf0"
+  },
+  "name": "3Z4-52FF-C0WV",
+  "description": "Rustic Marble Shoes",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbe1"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbf1"
+  },
+  "name": "0N0-S0YP-QTAQ",
+  "description": "Practical Paper Keyboard",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbf2"
+  },
+  "name": "BC1-26Q3-3X36",
+  "description": "Enormous Rubber Shirt",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbf3"
+  },
+  "name": "TW5-0798-1O98",
+  "description": "Enormous Wooden Keyboard",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbdc"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbf4"
+  },
+  "name": "5EL-75YR-8GU4",
+  "description": "Gorgeous Concrete Table",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbf5"
+  },
+  "name": "X09-30I5-F5IX",
+  "description": "Durable Marble Keyboard",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbf6"
+  },
+  "name": "6CX-PY73-JN44",
+  "description": "Fantastic Paper Computer",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbe0"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbf7"
+  },
+  "name": "2CQ-7YEU-B9DH",
+  "description": "Synergistic Bronze Pants",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbf8"
+  },
+  "name": "D33-5984-A1M6",
+  "description": "Durable Marble Computer",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbf9"
+  },
+  "name": "3RI-Q797-LX6W",
+  "description": "Ergonomic Linen Coat",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbe1"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbfa"
+  },
+  "name": "D20-4S29-A64K",
+  "description": "Small Copper Bottle",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbfb"
+  },
+  "name": "KS3-0VSM-OP6J",
+  "description": "Incredible Copper Lamp",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbfc"
+  },
+  "name": "3U6-06SV-511M",
+  "description": "Small Steel Bag",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbdf"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbfd"
+  },
+  "name": "8HF-1QWE-8470",
+  "description": "Heavy Duty Leather Coat",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbfe"
+  },
+  "name": "VHE-5YZD-19JR",
+  "description": "Gorgeous Wool Table",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbff"
+  },
+  "name": "0C8-5W37-J9RT",
+  "description": "Fantastic Granite Bottle",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbe1"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc00"
+  },
+  "name": "26N-099C-B59Q",
+  "description": "Intelligent Cotton Bench",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc01"
+  },
+  "name": "XC5-VF38-42T1",
+  "description": "Aerodynamic Iron Keyboard",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc02"
+  },
+  "name": "O9H-L1XG-77O8",
+  "description": "Lightweight Wool Computer",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbd8"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc03"
+  },
+  "name": "5E8-5F64-LTE3",
+  "description": "Ergonomic Cotton Keyboard",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc04"
+  },
+  "name": "N2L-N2B0-2EMJ",
+  "description": "Fantastic Bronze Table",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc05"
+  },
+  "name": "4NU-Y52V-Y3JS",
+  "description": "Heavy Duty Wool Bench",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbe4"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc06"
+  },
+  "name": "6O2-1QZE-25YL",
+  "description": "Gorgeous Copper Shoes",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc07"
+  },
+  "name": "FJ8-2369-D2UA",
+  "description": "Awesome Cotton Bag",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc08"
+  },
+  "name": "8C2-I86B-9W56",
+  "description": "Awesome Linen Pants",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbde"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc09"
+  },
+  "name": "QWN-7VPL-QH5R",
+  "description": "Synergistic Steel Bench",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc0a"
+  },
+  "name": "463-5XI4-2OYA",
+  "description": "Enormous Granite Computer",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc0b"
+  },
+  "name": "FT1-EL0H-U96C",
+  "description": "Synergistic Silk Computer",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbd8"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc0c"
+  },
+  "name": "0N7-7K1U-QX7G",
+  "description": "Gorgeous Plastic Table",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc0d"
+  },
+  "name": "WB5-I383-E586",
+  "description": "Gorgeous Linen Car",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc0e"
+  },
+  "name": "M5T-IR1G-32G0",
+  "description": "Awesome Concrete Clock",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbd9"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc0f"
+  },
+  "name": "KE3-H5WQ-6642",
+  "description": "Awesome Linen Computer",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc10"
+  },
+  "name": "0PW-41N1-Y42Q",
+  "description": "Intelligent Wool Pants",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc11"
+  },
+  "name": "QE0-W0YM-N0JG",
+  "description": "Mediocre Wool Table",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbe9"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc12"
+  },
+  "name": "697-4Z52-I040",
+  "description": "Lightweight Wool Pants",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc13"
+  },
+  "name": "65C-Y631-PMRW",
+  "description": "Intelligent Rubber Bottle",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc14"
+  },
+  "name": "5IT-0FJ5-X0J3",
+  "description": "Lightweight Linen Watch",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbd7"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc15"
+  },
+  "name": "3YJ-N6BC-QY25",
+  "description": "Ergonomic Copper Clock",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc16"
+  },
+  "name": "382-SJ43-X78O",
+  "description": "Intelligent Leather Computer",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc17"
+  },
+  "name": "10X-178V-653H",
+  "description": "Incredible Silk Knife",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbdc"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc18"
+  },
+  "name": "6AS-CP1R-08V8",
+  "description": "Awesome Wooden Computer",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc19"
+  },
+  "name": "7ME-7QWU-FDH9",
+  "description": "Aerodynamic Wool Table",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc1a"
+  },
+  "name": "O6O-R257-E308",
+  "description": "Durable Bronze Watch",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbdf"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc1b"
+  },
+  "name": "F0W-6DH7-R604",
+  "description": "Intelligent Iron Car",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc1c"
+  },
+  "name": "4CM-4JSD-68Y2",
+  "description": "Durable Concrete Lamp",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc1d"
+  },
+  "name": "141-W3Y2-A89C",
+  "description": "Lightweight Paper Hat",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbe7"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc1e"
+  },
+  "name": "0TQ-F1M4-371Y",
+  "description": "Mediocre Cotton Shirt",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc1f"
+  },
+  "name": "PQ0-028D-H42E",
+  "description": "Fantastic Wooden Shoes",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc20"
+  },
+  "name": "6BO-8K8Z-XEP1",
+  "description": "Synergistic Linen Shirt",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbdb"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc21"
+  },
+  "name": "Q5M-LVS1-Y6Q2",
+  "description": "Gorgeous Plastic Pants",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc22"
+  },
+  "name": "815-N1M7-88W9",
+  "description": "Awesome Paper Car",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc23"
+  },
+  "name": "YLC-K9P9-80OP",
+  "description": "Gorgeous Steel Gloves",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbe6"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc24"
+  },
+  "name": "U22-G14T-923O",
+  "description": "Ergonomic Wooden Chair",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc25"
+  },
+  "name": "4VL-79AU-67Z8",
+  "description": "Sleek Steel Car",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc26"
+  },
+  "name": "3N8-T8S7-3TKN",
+  "description": "Sleek Paper Bottle",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbd6"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc27"
+  },
+  "name": "R5O-01J6-MYX7",
+  "description": "Durable Bronze Pants",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc28"
+  },
+  "name": "UQM-UZ1S-T257",
+  "description": "Gorgeous Granite Coat",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc29"
+  },
+  "name": "39A-PMX0-FC03",
+  "description": "Enormous Concrete Plate",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbe0"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc2a"
+  },
+  "name": "5C7-8IX8-7HG9",
+  "description": "Sleek Wooden Bottle",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc2b"
+  },
+  "name": "2E4-TZR0-7R1F",
+  "description": "Enormous Silk Pants",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc2c"
+  },
+  "name": "B47-7XPV-1ZF9",
+  "description": "Ergonomic Bronze Gloves",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbe4"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc2d"
+  },
+  "name": "840-6GMG-FNN8",
+  "description": "Sleek Plastic Table",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc2e"
+  },
+  "name": "543-J6C7-X9EJ",
+  "description": "Intelligent Leather Table",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc2f"
+  },
+  "name": "1X6-1V5V-8ZTE",
+  "description": "Synergistic Wool Shoes",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbe8"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc30"
+  },
+  "name": "828-GV80-7A3K",
+  "description": "Incredible Leather Shoes",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc31"
+  },
+  "name": "2VN-0WH4-85CT",
+  "description": "Fantastic Marble Wallet",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc32"
+  },
+  "name": "542-21OF-548C",
+  "description": "Synergistic Wooden Chair",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbe4"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc33"
+  },
+  "name": "77V-94W5-A850",
+  "description": "Incredible Wool Bench",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc34"
+  },
+  "name": "79G-5339-2202",
+  "description": "Aerodynamic Aluminum Table",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc35"
+  },
+  "name": "XP8-KQMQ-ADR8",
+  "description": "Gorgeous Cotton Clock",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbe0"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc36"
+  },
+  "name": "048-051P-OX60",
+  "description": "Aerodynamic Aluminum Pants",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc37"
+  },
+  "name": "79T-3L8L-6298",
+  "description": "Durable Copper Coat",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc38"
+  },
+  "name": "2UY-2T2Y-O7S2",
+  "description": "Sleek Rubber Bottle",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbde"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc39"
+  },
+  "name": "LOW-2P7K-C65A",
+  "description": "Aerodynamic Cotton Car",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc3a"
+  },
+  "name": "84Q-EALH-XGE8",
+  "description": "Enormous Linen Clock",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc3b"
+  },
+  "name": "380-TP2S-46V2",
+  "description": "Fantastic Cotton Knife",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbe2"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc3c"
+  },
+  "name": "YC3-195X-511M",
+  "description": "Ergonomic Granite Computer",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc3d"
+  },
+  "name": "9DR-6X83-U9VP",
+  "description": "Durable Aluminum Wallet",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc3e"
+  },
+  "name": "VM9-D937-JPVU",
+  "description": "Small Paper Chair",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbdf"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc3f"
+  },
+  "name": "V20-NS3M-381Z",
+  "description": "Sleek Plastic Knife",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc40"
+  },
+  "name": "FE1-C753-N6KS",
+  "description": "Enormous Granite Lamp",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc41"
+  },
+  "name": "I8B-C676-U5D9",
+  "description": "Small Cotton Pants",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbde"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc42"
+  },
+  "name": "4KR-DER8-24TC",
+  "description": "Mediocre Plastic Coat",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc43"
+  },
+  "name": "0QS-OUDO-IR0Z",
+  "description": "Enormous Rubber Table",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc44"
+  },
+  "name": "2S5-X50U-ML6T",
+  "description": "Lightweight Cotton Lamp",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbe8"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc45"
+  },
+  "name": "PTH-4481-JD4Y",
+  "description": "Aerodynamic Steel Bag",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc46"
+  },
+  "name": "0T4-NS30-P74S",
+  "description": "Fantastic Wool Chair",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc47"
+  },
+  "name": "0W3-QTV6-A249",
+  "description": "Incredible Copper Wallet",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbe5"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc48"
+  },
+  "name": "25C-43BT-T35D",
+  "description": "Durable Marble Gloves",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc49"
+  },
+  "name": "G95-WMMR-1M87",
+  "description": "Heavy Duty Iron Keyboard",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc4a"
+  },
+  "name": "57Q-6IFW-R9J7",
+  "description": "Aerodynamic Iron Car",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbd9"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc4b"
+  },
+  "name": "2Z6-UZ11-6YF9",
+  "description": "Incredible Iron Keyboard",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc4c"
+  },
+  "name": "7ZL-P20A-5IK7",
+  "description": "Aerodynamic Cotton Plate",
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fc4d"
+  },
+  "name": "4O1-02OT-5T88",
+  "description": "Aerodynamic Marble Clock",
+  "partItem": {
+    "$ref": "part_item",
+    "$id": {
+      "$oid": "5f8dbf7a746e4b25b102fbdf"
+    }
+  },
+  "status": "Y",
+  "_class": "com.angularreact.appgen.entity.SerialItem"
+}]

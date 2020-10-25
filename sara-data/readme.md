@@ -1,0 +1,39 @@
+### Database setup
+
+```
+use sara_proj
+db.createUser( { user: "root",
+                 pwd: passwordPrompt(),  // Or  "<cleartext password
+                 roles: [] },
+               { w: "majority" , wtimeout: 5000 } )
+```
+
+### Load json files using MongoDB Compass
+* 01_home.json
+* 01_role.json
+* 02_authorized_url.json
+* 03_end_user.json
+* 04_address.json
+* 05_code_groups.json
+* 06_my_case.json
+* 07_part_item.json
+* 08_serial_item.json
+
+MongoDB Compass
+
+```
+mongodb+srv://learn:g389BDSRANliLC1f@cluster0.5qocd.mongodb.net/learn
+```
+
+Spring boot:
+
+```
+cluster application.properties:
+	spring.data.mongodb.uri=mongodb+srv://learn:g389BDSRANliLC1f@cluster0.5qocd.mongodb.net/learn?retryWrites=true&w=majority
+	spring.data.mongodb.database=learn
+
+local application.properties:
+	spring.data.mongodb.uri=mongodb://root:root@localhost:27017/sara_proj
+```
+
+

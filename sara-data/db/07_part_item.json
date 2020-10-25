@@ -1,0 +1,161 @@
+[{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbd6"
+  },
+  "name": "Z-76W-75NF",
+  "description": "SpecialSale261706",
+  "serialized": "Y",
+  "_class": "com.angularreact.appgen.entity.PartItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbd7"
+  },
+  "name": "V-8T0-O9M9",
+  "description": "AwesomePromotion850802",
+  "serialized": "Y",
+  "_class": "com.angularreact.appgen.entity.PartItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbd8"
+  },
+  "name": "Q-N1L-UNWT",
+  "description": "IncredibleDiscount081244",
+  "serialized": "Y",
+  "_class": "com.angularreact.appgen.entity.PartItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbd9"
+  },
+  "name": "M-2L8-6U1D",
+  "description": "StellarDiscount067012",
+  "serialized": "Y",
+  "_class": "com.angularreact.appgen.entity.PartItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbda"
+  },
+  "name": "D-936-804L",
+  "description": "GoodDeal844801",
+  "serialized": "N",
+  "_class": "com.angularreact.appgen.entity.PartItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbdb"
+  },
+  "name": "R-Y4J-GF36",
+  "description": "CoolCode318512",
+  "serialized": "Y",
+  "_class": "com.angularreact.appgen.entity.PartItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbdc"
+  },
+  "name": "D-C40-2163",
+  "description": "SweetPromo196156",
+  "serialized": "Y",
+  "_class": "com.angularreact.appgen.entity.PartItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbdd"
+  },
+  "name": "I-6VU-1C0D",
+  "description": "SweetDiscount210874",
+  "serialized": "N",
+  "_class": "com.angularreact.appgen.entity.PartItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbde"
+  },
+  "name": "M-9RB-KU59",
+  "description": "IncrediblePromotion860147",
+  "serialized": "Y",
+  "_class": "com.angularreact.appgen.entity.PartItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbdf"
+  },
+  "name": "Q-Q32-Y690",
+  "description": "StellarPromo001085",
+  "serialized": "Y",
+  "_class": "com.angularreact.appgen.entity.PartItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbe0"
+  },
+  "name": "V-616-C180",
+  "description": "KillerCode455273",
+  "serialized": "Y",
+  "_class": "com.angularreact.appgen.entity.PartItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbe1"
+  },
+  "name": "C-6K0-C433",
+  "description": "GreatCode185821",
+  "serialized": "Y",
+  "_class": "com.angularreact.appgen.entity.PartItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbe2"
+  },
+  "name": "S-9LE-CNDN",
+  "description": "SpecialPromotion656425",
+  "serialized": "Y",
+  "_class": "com.angularreact.appgen.entity.PartItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbe3"
+  },
+  "name": "V-653-V83K",
+  "description": "StellarPrice891025",
+  "serialized": "N",
+  "_class": "com.angularreact.appgen.entity.PartItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbe4"
+  },
+  "name": "Y-LU1-JO65",
+  "description": "StellarPromotion079812",
+  "serialized": "Y",
+  "_class": "com.angularreact.appgen.entity.PartItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbe5"
+  },
+  "name": "B-5Q2-PT26",
+  "description": "AwesomePrice121228",
+  "serialized": "Y",
+  "_class": "com.angularreact.appgen.entity.PartItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbe6"
+  },
+  "name": "W-JB4-0Z9M",
+  "description": "SweetSale067181",
+  "serialized": "Y",
+  "_class": "com.angularreact.appgen.entity.PartItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbe7"
+  },
+  "name": "O-U8R-70XY",
+  "description": "CoolSale667453",
+  "serialized": "Y",
+  "_class": "com.angularreact.appgen.entity.PartItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbe8"
+  },
+  "name": "J-550-GV80",
+  "description": "GoodDeal541200",
+  "serialized": "Y",
+  "_class": "com.angularreact.appgen.entity.PartItem"
+},{
+  "_id": {
+    "$oid": "5f8dbf7a746e4b25b102fbe9"
+  },
+  "name": "H-Y5E-5G84",
+  "description": "GreatCode435898",
+  "serialized": "Y",
+  "_class": "com.angularreact.appgen.entity.PartItem"
+}]
