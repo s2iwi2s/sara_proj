@@ -8,6 +8,7 @@ import EndUserDetailComponent from './forms/endUser/EndUserDetailComponent';
 import AddressListComponent from './forms/address/AddressListComponent';
 import AddressDetailComponent from './forms/address/AddressDetailComponent';
 
+import AuthenticatedRoute from './security/AuthenticatedRoute'
 import LoginComponent from './security/LoginComponent'
 import LogoutComponent from './security/LogoutComponent'
 import CodeGroupsListComponent from './forms/codeGroups/CodeGroupsListComponent';
@@ -24,16 +25,17 @@ class AppRouting extends React.Component {
       <div className="container pt-3">
        <Switch>
         <Route path="/" exact component={Dashboard} />
+        <Route path="/index.html" exact component={Dashboard} />
         <Route path="/login" component={LoginComponent} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/logout" component={LogoutComponent} />
-        <Route path="/end-user-list" exact component={EndUserListComponent} />
-        <Route path="/end-user-detail/:id" exact component={EndUserDetailComponent} />
-        <Route path="/address-list" exact component={AddressListComponent} />
-        <Route path="/address-detail/:id" exact component={AddressDetailComponent} />
-        <Route path="/address-detail/:id/:endUserId" exact component={AddressDetailComponent} />
-        <Route path="/code-groups-list" exact component={CodeGroupsListComponent} />
-        <Route path="/code-groups-detail/:id" exact component={CodeGroupsDetailComponent} />
+        <AuthenticatedRoute path="/end-user-list" exact component={EndUserListComponent} />
+        <AuthenticatedRoute path="/end-user-detail/:id" exact component={EndUserDetailComponent} />
+        <AuthenticatedRoute path="/address-list" exact component={AddressListComponent} />
+        <AuthenticatedRoute path="/address-detail/:id" exact component={AddressDetailComponent} />
+        <AuthenticatedRoute path="/address-detail/:id/:endUserId" exact component={AddressDetailComponent} />
+        <AuthenticatedRoute path="/code-groups-list" exact component={CodeGroupsListComponent} />
+        <AuthenticatedRoute path="/code-groups-detail/:id" exact component={CodeGroupsDetailComponent} />
         <Route component={ErrorComponent} />
        </Switch>
       </div>

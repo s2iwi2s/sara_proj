@@ -86,7 +86,7 @@ public class CustomWebSecurityConfig extends WebSecurityConfigurerAdapter {
 		}
 //		log.debug("authorizedUrls#####################################\n\n\n\n");
 
-		auth.antMatchers("/", "/static/**", "/403","/ui/**", "/actuator/**").permitAll().anyRequest().authenticated();
+		auth.antMatchers("/","/index.html", "/static/**", "/403","/ui/**", "/actuator/**").permitAll().anyRequest().authenticated();
 
 		httpSecurity.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
