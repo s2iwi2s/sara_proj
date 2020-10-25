@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.resource.PathResourceResolver;
 
@@ -20,14 +21,13 @@ import com.sara.web.common.Constants;
 @Configuration
 public class CustomWebMvcConfigurer implements WebMvcConfigurer {
 
-
 //	private static final Logger log = LoggerFactory.getLogger(CustomWebMvcConfigurer.class);
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
+
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/**").addResourceLocations("classpath:/resources/**").resourceChain(true)
@@ -41,11 +41,17 @@ public class CustomWebMvcConfigurer implements WebMvcConfigurer {
 					}
 				});
 	}
+
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/**")
 				// .allowedOrigins("*");
 				.allowedOrigins(Constants.CLIENT_URL)
 				.allowedMethods(Arrays.toString(RequestMethod.values()).replaceAll("^.|.$", "").split(", "));
+	}
+
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/").setViewName("forward:/index.html");
 	}
 }
