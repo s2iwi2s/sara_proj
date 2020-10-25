@@ -7,16 +7,13 @@ import SearchIcon from '@material-ui/icons/Search';
 import EndUserService from '../../api/endUser/EndUserService';
 
 class EndUserListComponent extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      list: [],
-      searchValue: '',
-      paging: {
-        rowsPerPage: 25,
-        totalElements: 0,
-        currentPage: 0
-      }
+  state = {
+    list: [],
+    searchValue: '',
+    paging: {
+      rowsPerPage: 25,
+      totalElements: 0,
+      currentPage: 0
     }
   }
   componentDidMount = () => {

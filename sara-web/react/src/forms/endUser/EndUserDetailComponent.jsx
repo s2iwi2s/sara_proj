@@ -5,13 +5,7 @@ import EndUserDetailHtml from './EndUserDetailHtml';
 import AddressListComponent from '../address/AddressListComponent';
 
 export default class EndUserDetailComponent extends React.Component {
-  state = {
-    "id": "",
-    "userName": '',
-    "firstName": '',
-    "lastName": "",
-    "address": []
-  }
+  state = this.getBlankDetails();
 
 
   getBlankDetails = () => {
