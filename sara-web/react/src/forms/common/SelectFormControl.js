@@ -2,7 +2,7 @@
 import React from 'react';
 import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 
-const SelectFormControl = props => {
+export default function SelectFormControl(props) {
   return (
     <FormControl fullWidth margin="normal">
       <InputLabel htmlFor={props.name + 'id'}>{props.label}</InputLabel>
@@ -16,7 +16,6 @@ const SelectFormControl = props => {
     </FormControl >
   );
 }
-export default SelectFormControl;
 // export default class SelectFormControl extends React.Component {
 //   constructor(props) {
 //     super(props);

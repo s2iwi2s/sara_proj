@@ -1,7 +1,8 @@
 
 import React from 'react';
 import { FormControl, TextField } from '@material-ui/core';
-const TextFormControl = props => {
+
+export default function TextFormControl(props) {
 
   return (
     <FormControl fullWidth margin="normal" >
@@ -23,7 +24,7 @@ const TextFormControl = props => {
     </FormControl >
   );
 }
-export default TextFormControl;
+
 
 // export default class TextFormControl extends React.Component {
 //   constructor(props) {

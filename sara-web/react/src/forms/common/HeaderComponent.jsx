@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 // import AuthenticationService from '../../security/AuthenticationService'
 import MenuComponent from './MenuComponent'
 import faker from 'faker'
+import NestedMenuComponent from './NestedMenuComponent';
 
 class HeaderComponent extends React.Component {
     gotoHome = () => {
