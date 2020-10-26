@@ -14,7 +14,7 @@ class AddressListComponent extends React.Component {
       totalElements: 0,
       currentPage: 0
     }
-  }
+  };
 
   componentDidMount = () => {
     this.retrieve();

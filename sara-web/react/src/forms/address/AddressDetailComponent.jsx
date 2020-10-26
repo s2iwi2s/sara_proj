@@ -6,11 +6,20 @@ import AddressService from '../../api/address/AddressService';
 import TextFormControl from '../common/TextFormControl';
 
 export default class AddressDetailComponent extends React.Component {
-
-  constructor(props) {
-    super(props)
-    this.state = this.getBlankDetails()
-  }
+  state = {
+    "id": '',
+    "endUserId": '',
+    "endUser": { id: "", firstName: "", lastName: "" },
+    "name": "",
+    "address1": "",
+    "address2": "",
+    "city": "",
+    "state": "",
+    "country": "",
+    "zipCode": "",
+    "billTo": "",
+    "shipTo": ""
+  };
 
   getBlankDetails = () => {
     return {

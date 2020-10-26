@@ -5,7 +5,13 @@ import EndUserDetailHtml from './EndUserDetailHtml';
 import AddressListComponent from '../address/AddressListComponent';
 
 export default class EndUserDetailComponent extends React.Component {
-  state = this.getBlankDetails();
+  state = {
+    "id": "",
+    "userName": '',
+    "firstName": '',
+    "lastName": "",
+    "address": []
+  };
 
 
   getBlankDetails = () => {
@@ -33,30 +39,28 @@ export default class EndUserDetailComponent extends React.Component {
         }
         thestate.listService = response.data.listService
         this.setState(thestate)
-      })
+      });
   }
 
   doSave = () => {
     console.log(`[EndUserDetailComponent.save] id==>${this.props.match.params.id}`)
     EndUserService.save({
+      id: this.state.id,
       userName: this.state.userName,
       password: this.state.password,
       firstName: this.state.firstName,
       lastName: this.state.lastName,
-      address: this.state.address,
-
-      id: this.state.id
+      address: this.state.address
     }).then(response => {
       console.log(`[EndUserDetailComponent.save] response==>`, response)
-
       this.props.history.push(`/end-user-list`);
-    })
+    });
   }
 
   doChangeState = (e) => {
     this.setState({
       [e.target.name]: e.target.value
-    })
+    });
   }
 
 
@@ -78,6 +82,7 @@ export default class EndUserDetailComponent extends React.Component {
         doChangeState={this.doChangeState}
         doSave={this.doSave}
         doCancel={this.doCancel}
+        doEditAddress={this.doEditAddress}
       >
         <AddressListComponent
           endUserId={this.props.match.params.id}

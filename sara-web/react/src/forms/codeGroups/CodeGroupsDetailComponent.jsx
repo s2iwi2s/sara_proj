@@ -6,7 +6,25 @@ import TextFormControl from '../common/TextFormControl';
 import CodeGroupsService from '../../api/codeGroups/CodeGroupsService';
 
 export default class CodeGroupsDetailComponent extends React.Component {
-  state = this.getBlankDetails()
+  state = {
+    "id": '',
+    "title": "",
+    "status": { "id": '' },
+    "caseType1": { "id": '' },
+    "caseType2": { "id": '' },
+    "caseType3": { "id": '' },
+    "statusCode": { "id": '' },
+    "comments": "",
+
+    "listService": {
+      "statusList": [],
+      "caseType1List": [],
+      "caseType2List": [],
+      "caseType3List": [],
+      "statusCodeList": []
+    }
+  };
+
 
   getBlankDetails = () => {
     return {

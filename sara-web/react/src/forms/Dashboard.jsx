@@ -1,9 +1,12 @@
 import React from 'react';
 import faker from 'faker'
+import { URL_BASE } from '../api/Utils'
 
 import AuthenticationService from '../security/AuthenticationService'
 
 const Dashboard = props => {
+  console.log(`process.env.NODE_ENV= ${process.env.NODE_ENV}`)
+  console.log(`URL_BASE= ${URL_BASE}`)
   const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
   return (
     <div className="container marketing pt-4">
