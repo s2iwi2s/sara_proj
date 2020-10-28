@@ -86,7 +86,7 @@ class EndUserListComponent extends React.Component {
 
   render = () => {
     return (
-      <div className="container">
+      <>
         <Typography variant="h4">Users</Typography>
         <Button variant="contained" color="primary" onClick={() => this.edit(-1)}>NEW</Button>
         <div className="text-right">
@@ -135,7 +135,7 @@ class EndUserListComponent extends React.Component {
           rowsPerPage={this.state.paging.rowsPerPage}
           onChangeRowsPerPage={this.handleChangeRowsPerPage}
         />
-      </div >
+      </ >
     );
   }
 }

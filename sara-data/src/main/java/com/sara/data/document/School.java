@@ -1,13 +1,15 @@
 package com.sara.data.document;
 
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.annotation.TypeAlias;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.github.javafaker.Faker;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,32 +21,19 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "code_groups")
-@TypeAlias("CodeGroups")
-public class CodeGroups {
+@Document(collection = "school")
+@TypeAlias("School")
+public class School {
 	@Transient
-    public static final String SEQUENCE_NAME = "code_groups_sequence";
-	
-	public CodeGroups(Faker faker) {
-		super();
-		this.code = faker.lorem().word();
-		this.value = faker.lorem().word();
-		this.description = faker.lorem().sentence();
-		this.bool = faker.lorem().word();
-		this.num = faker.lorem().word();
-	}
-
+    public static final String SEQUENCE_NAME = "school_sequence";
 	@Id
 	private String id;
 
-	private String code;
+	private String name;
+	private String shoolYear;
+	
 
-	private String value;
-
-	private String description;
-
-	private String bool;
-
-	private String num;
-
+	@JsonIgnore
+	@DBRef(lazy = true)
+	private List<Address> address;
 }

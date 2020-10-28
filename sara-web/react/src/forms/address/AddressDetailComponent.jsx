@@ -8,8 +8,8 @@ import TextFormControl from '../common/TextFormControl';
 export default class AddressDetailComponent extends React.Component {
   state = {
     "id": '',
-    "endUserId": '',
-    "endUser": { id: "", firstName: "", lastName: "" },
+    "userId": '',
+    "user": { id: "", firstName: "", lastName: "" },
     "name": "",
     "address1": "",
     "address2": "",
@@ -24,8 +24,8 @@ export default class AddressDetailComponent extends React.Component {
   getBlankDetails = () => {
     return {
       "id": '',
-      "endUserId": '',
-      "endUser": { id: "", firstName: "", lastName: "" },
+      "userId": '',
+      "user": { id: "", firstName: "", lastName: "" },
       "name": "",
       "address1": "",
       "address2": "",
@@ -43,15 +43,15 @@ export default class AddressDetailComponent extends React.Component {
   }
 
   retrieve = () => {
-    console.log(`[AddressDetailComponent.retrieve] id=${this.props.match.params.id}, endUserId=${this.props.match.params.endUserId}`);
+    console.log(`[AddressDetailComponent.retrieve] id=${this.props.match.params.id}, userId=${this.props.match.params.userId}`);
     let thestate = this.getBlankDetails();
-    if (this.props.match.params.id == -1 && this.props.match.params.endUserId) {
-      AddressService.getByEndUser(this.props.match.params.endUserId)
+    if (this.props.match.params.id === -1 && this.props.match.params.userId) {
+      AddressService.getByUser(this.props.match.params.userId)
         .then(response => {
           console.log(`[AddressDetailComponent.retrieve] response=>`, response);
           thestate = response.data.entity;
-          console.log(`[AddressDetailComponent.retrieve] thestate.endUser=>`, thestate.endUser);
-          thestate.endUserId = thestate.endUser.id
+          console.log(`[AddressDetailComponent.retrieve] thestate.user=>`, thestate.user);
+          thestate.userId = thestate.user.id
           thestate.listService = response.data.listService
           this.setState(thestate)
         })
@@ -59,7 +59,7 @@ export default class AddressDetailComponent extends React.Component {
       AddressService.get(this.props.match.params.id)
         .then(response => {
           thestate = response.data.entity;
-          thestate.endUserId = thestate.endUser.id
+          thestate.userId = thestate.user.id
           thestate.listService = response.data.listService
           this.setState(thestate)
         })
@@ -68,8 +68,8 @@ export default class AddressDetailComponent extends React.Component {
 
   save = () => {
     AddressService.save({
-      endUser: {
-        id: this.state.endUserId
+      user: {
+        id: this.state.userId
       },
       name: this.state.name,
       address1: this.state.address1,
@@ -80,13 +80,12 @@ export default class AddressDetailComponent extends React.Component {
       zipCode: this.state.zipCode,
       billTo: this.state.billTo,
       shipTo: this.state.shipTo,
-
       id: this.state.id
     }).then(response => {
       let routeUrl = `/address-list`;
-      let endUserId = this.props.match.params.endUserId
-      if (endUserId) {
-        routeUrl = `/end-user-detail/${endUserId}`
+      let userId = this.props.match.params.userId
+      if (userId) {
+        routeUrl = `/end-user-detail/${userId}`
       }
       this.props.history.push(routeUrl);
     })
@@ -111,9 +110,9 @@ export default class AddressDetailComponent extends React.Component {
   }
 
   cancel = () => {
-    console.log(`[AddressDetailComponent.cancel] endUserId=${this.props.match.params.endUserId}`);
-    if (this.props.match.params.endUserId) {
-      this.props.history.push(`/end-user-detail/${this.props.match.params.endUserId}`)
+    console.log(`[AddressDetailComponent.cancel] userId=${this.props.match.params.userId}`);
+    if (this.props.match.params.userId) {
+      this.props.history.push(`/end-user-detail/${this.props.match.params.userId}`)
     } else {
       this.props.history.push(`/address-list`)
     }
@@ -122,12 +121,12 @@ export default class AddressDetailComponent extends React.Component {
 
   render = () => {
     return (
-      <div className="container">
+      <>
         <Typography variant="h4">Address Detail</Typography>
         <form>
           <FormControl fullWidth margin="normal">
-            <span>End User: {this.state.endUser.lastName}, {this.state.endUser.firstName}</span>
-            <input name="endUserId" type="hidden" value={this.state.endUserId} />
+            <span>End User: {this.state.user.lastName}, {this.state.user.firstName}</span>
+            <input name="userId" type="hidden" value={this.state.userId} />
           </FormControl>
 
           <TextFormControl label="Name"
@@ -170,7 +169,7 @@ export default class AddressDetailComponent extends React.Component {
           <Button variant="contained" color="primary" onClick={() => this.cancel()}>Cancel</Button>
         </form>
 
-      </div >
+      </ >
     );
   }
 }

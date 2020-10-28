@@ -3,9 +3,9 @@ package com.sara.data.repository;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
-import com.sara.data.document.EndUser;
+import com.sara.data.document.User;
 
-public interface EndUserMongoRepository extends SaraRepositoryInterface<EndUser, String>,
-		MongoRepository<EndUser, String>, QuerydslPredicateExecutor<EndUser> {
-	public EndUser findByUserName(String userName);
+public interface EndUserMongoRepository extends SaraRepositoryInterface<User, String>,
+		MongoRepository<User, String>, QuerydslPredicateExecutor<User> {
+	public User findByUserName(String userName);
 }

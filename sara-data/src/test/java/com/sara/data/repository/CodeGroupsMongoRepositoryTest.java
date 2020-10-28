@@ -34,7 +34,7 @@ class CodeGroupsMongoRepositoryTest {
 
 	@Test
 	void testList() {
-		List<CodeGroups> codeGruopsList = codeGroupsMongoRepositoryTest.findByDistinctCode();
+		List<CodeGroups> codeGruopsList = codeGroupsMongoRepositoryTest.findByCode("STATUS");
 		assertTrue(codeGruopsList.size() > 0);
 	}
 

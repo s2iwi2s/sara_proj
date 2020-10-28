@@ -6,21 +6,19 @@ import AddressListComponent from '../address/AddressListComponent';
 
 export default class EndUserDetailComponent extends React.Component {
   state = {
-    "id": "",
-    "userName": '',
-    "firstName": '',
-    "lastName": "",
-    "address": []
+    'id': '',
+    'userName': '',
+    'firstName': '',
+    'lastName': ''
   };
 
 
   getBlankDetails = () => {
     return {
-      "id": "",
-      "userName": '',
-      "firstName": '',
-      "lastName": "",
-      "address": []
+      'id': '',
+      'userName': '',
+      'firstName': '',
+      'lastName': ''
     }
   }
 
@@ -34,7 +32,7 @@ export default class EndUserDetailComponent extends React.Component {
       .then(response => {
         console.log(`[EndUserDetailComponent.doRetrieve] response==>`, response)
         let thestate = this.getBlankDetails();
-        if (this.props.match.params.id != -1) {
+        if (this.props.match.params.id !== -1) {
           thestate = response.data.entity;
         }
         thestate.listService = response.data.listService
@@ -85,9 +83,9 @@ export default class EndUserDetailComponent extends React.Component {
         doEditAddress={this.doEditAddress}
       >
         <AddressListComponent
-          endUserId={this.props.match.params.id}
+          userId={this.props.match.params.id}
           doCancelAddress={this.doCancelAddress}
-          endUserHistory={this.props.history}
+          userHistory={this.props.history}
         />
       </EndUserDetailHtml>
 

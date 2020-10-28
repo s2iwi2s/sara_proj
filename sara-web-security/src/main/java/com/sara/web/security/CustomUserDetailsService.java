@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sara.data.document.EndUser;
+import com.sara.data.document.User;
 import com.sara.data.document.Role;
 import com.sara.data.repository.EndUserMongoRepository;
 
@@ -29,7 +29,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Transactional
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-		EndUser endUser = repository.findByUserName(userName);
+		User endUser = repository.findByUserName(userName);
 		log.info("==========================================================");
 		log.info("userName => {}", userName);
 		if (endUser == null) {

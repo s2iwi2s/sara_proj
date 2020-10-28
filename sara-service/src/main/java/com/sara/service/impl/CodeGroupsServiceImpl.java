@@ -1,5 +1,7 @@
 package com.sara.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,11 +38,8 @@ public class CodeGroupsServiceImpl extends AbstractService<CodeGroups, String> {
 	public CodeGroups getNewEntity() {
 		return new CodeGroups();
 	}
-
-	public CodeGroups findById(String id) {
-		if (id == null || "-1".equals(id)) {
-			return new CodeGroups();
-		}
-		return repository.findById(id).get();
+	
+	public List<CodeGroups> findByCode(String code) {
+		return repository.findByCode(code);
 	}
 }

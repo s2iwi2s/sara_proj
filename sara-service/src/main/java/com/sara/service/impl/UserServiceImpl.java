@@ -5,16 +5,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.querydsl.core.BooleanBuilder;
-import com.sara.data.document.EndUser;
-import com.sara.data.document.QEndUser;
+import com.sara.data.document.User;
+import com.sara.data.document.QUser;
 import com.sara.data.repository.EndUserMongoRepository;
 import com.sara.service.AbstractService;
 
 @Service
-public class EndUserServiceImpl extends AbstractService<EndUser, String> {
+public class UserServiceImpl extends AbstractService<User, String> {
 	Logger log = LoggerFactory.getLogger(this.getClass());
 
-	public EndUserServiceImpl(EndUserMongoRepository repo) {
+	public UserServiceImpl(EndUserMongoRepository repo) {
 		super(repo);
 	}
 //	private PasswordEncoder bcryptEncoder;
@@ -27,26 +27,27 @@ public class EndUserServiceImpl extends AbstractService<EndUser, String> {
 
 	@Override
 	public void findAllQBuilder(String searchValue, BooleanBuilder booleanBuilder) {
-		booleanBuilder.or(QEndUser.endUser.firstName.containsIgnoreCase(searchValue));
-		booleanBuilder.or(QEndUser.endUser.lastName.containsIgnoreCase(searchValue));
-		booleanBuilder.or(QEndUser.endUser.userName.containsIgnoreCase(searchValue));
+		booleanBuilder.or(QUser.user.firstName.containsIgnoreCase(searchValue));
+		booleanBuilder.or(QUser.user.lastName.containsIgnoreCase(searchValue));
+		booleanBuilder.or(QUser.user.userName.containsIgnoreCase(searchValue));
 	}
 
 	@Override
-	public EndUser getNewEntity() {
-		return new EndUser();
+	public User getNewEntity() {
+		return new User();
 	}
 
 	@Override
-	public EndUser save(EndUser entity) {
-		if (entity.getPassword() == null || entity.getPassword().trim().equals("")) {
-			EndUser endUser = super.findById(entity.getId());
+	public User save(User entity) {
+		log.info("save entity={}", entity);
+		if (entity.getId() !=null && entity.getId().length() > 0 && entity.getId().equalsIgnoreCase("-1") && (entity.getPassword() == null || entity.getPassword().trim().equals(""))) {
+			User endUser = super.findById(entity.getId());
 			entity.setPassword(endUser.getPassword());
-			super.save(entity);
+			
 		} else {
 //			entity.setPassword(bcryptEncoder.encode(endUser.getPassword()));
 		}
-
+		entity = super.save(entity);
 		return entity;
 	}
 }

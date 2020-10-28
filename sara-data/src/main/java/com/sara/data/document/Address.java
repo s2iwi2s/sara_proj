@@ -1,6 +1,7 @@
 package com.sara.data.document;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -21,6 +22,9 @@ import lombok.Setter;
 @TypeAlias("Address")
 public class Address {
 
+	@Transient
+    public static final String SEQUENCE_NAME = "address_sequence";
+	
 	public Address(com.github.javafaker.Address temp) {
 		this(temp.firstName() + " " + temp.lastName(), temp.streetAddress(), temp.secondaryAddress(), temp.city(),
 				temp.state(), temp.country(), temp.zipCode(), "", "");
@@ -44,7 +48,13 @@ public class Address {
 	private String id;
 
 	@DBRef(lazy = true)
-	private EndUser endUser;
+	private User user;
+	
+	@DBRef(lazy = true)
+	private Student student;
+	
+	@DBRef(lazy = true)
+	private School school;
 
 	private String name;
 

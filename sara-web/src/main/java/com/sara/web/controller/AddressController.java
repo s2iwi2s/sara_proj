@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sara.data.document.Address;
-import com.sara.data.document.EndUser;
+import com.sara.data.document.User;
 import com.sara.service.impl.AddressServiceImpl;
-import com.sara.service.impl.EndUserServiceImpl;
+import com.sara.service.impl.UserServiceImpl;
 import com.sara.web.beans.ResponseStatus;
 import com.sara.web.common.Constants;
 import com.sara.web.common.Constants.ADDRESS_SEARCH_TYPE;
@@ -32,7 +32,7 @@ public class AddressController extends AbstractCrudController<Address, String> {
 	private AddressServiceImpl addressService;
 
 	@Autowired
-	private EndUserServiceImpl endUserService;
+	private UserServiceImpl endUserService;
 
 //	@Autowired
 //	private CodeGroupsServiceImpl codeGroupsService;
@@ -55,8 +55,8 @@ public class AddressController extends AbstractCrudController<Address, String> {
 		res.setResponseStatus(status);
 		try {
 			address = new Address();
-			EndUser endUser = endUserService.findById(endUserId);
-			address.setEndUser(endUser);
+			User user = endUserService.findById(endUserId);
+			address.setUser(user);
 			status.setMessage("SUCCESS!");
 		} catch (Exception e) {
 			e.printStackTrace();

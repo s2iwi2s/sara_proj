@@ -5,7 +5,7 @@
   "code": "STATUS",
   "value": "New",
   "description": "New",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102facc"
@@ -13,7 +13,7 @@
   "code": "STATUS",
   "value": "Dispatched",
   "description": "Dispatched",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102facd"
@@ -21,7 +21,7 @@
   "code": "STATUS",
   "value": "Ack",
   "description": "Ack",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102face"
@@ -29,7 +29,7 @@
   "code": "STATUS",
   "value": "Closed",
   "description": "Closed",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102facf"
@@ -37,7 +37,7 @@
   "code": "STATUS_CODE",
   "value": "Open",
   "description": "Open",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fad0"
@@ -45,7 +45,7 @@
   "code": "STATUS_CODE",
   "value": "Open-Dispatched",
   "description": "Open-Dispatched",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fad1"
@@ -53,7 +53,7 @@
   "code": "STATUS_CODE",
   "value": "Awaiting Customer",
   "description": "Awaiting Customer",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fad2"
@@ -61,7 +61,7 @@
   "code": "STATUS_CODE",
   "value": "Closed",
   "description": "Closed",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fad3"
@@ -69,7 +69,7 @@
   "code": "CASE_TYPE_1",
   "value": "sit",
   "description": "sit",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fad4"
@@ -77,7 +77,7 @@
   "code": "CASE_TYPE_1",
   "value": "eaque",
   "description": "eaque",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fad5"
@@ -85,7 +85,7 @@
   "code": "CASE_TYPE_1",
   "value": "porro",
   "description": "porro",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fad6"
@@ -93,7 +93,7 @@
   "code": "CASE_TYPE_1",
   "value": "inventore",
   "description": "inventore",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fad7"
@@ -101,7 +101,7 @@
   "code": "CASE_TYPE_1",
   "value": "vel",
   "description": "vel",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fad8"
@@ -109,7 +109,7 @@
   "code": "CASE_TYPE_1",
   "value": "cupiditate",
   "description": "cupiditate",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fad9"
@@ -117,7 +117,7 @@
   "code": "CASE_TYPE_1",
   "value": "cupiditate",
   "description": "cupiditate",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fada"
@@ -125,7 +125,7 @@
   "code": "CASE_TYPE_1",
   "value": "sit",
   "description": "sit",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fadb"
@@ -133,7 +133,7 @@
   "code": "CASE_TYPE_1",
   "value": "repudiandae",
   "description": "repudiandae",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fadc"
@@ -141,7 +141,7 @@
   "code": "CASE_TYPE_1",
   "value": "eum",
   "description": "eum",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fadd"
@@ -149,7 +149,7 @@
   "code": "CASE_TYPE_1",
   "value": "odio",
   "description": "odio",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fade"
@@ -157,7 +157,7 @@
   "code": "CASE_TYPE_1",
   "value": "minima",
   "description": "minima",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fadf"
@@ -165,7 +165,7 @@
   "code": "CASE_TYPE_1",
   "value": "occaecati",
   "description": "occaecati",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fae0"
@@ -173,7 +173,7 @@
   "code": "CASE_TYPE_1",
   "value": "sed",
   "description": "sed",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fae1"
@@ -181,7 +181,7 @@
   "code": "CASE_TYPE_1",
   "value": "culpa",
   "description": "culpa",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fae2"
@@ -189,7 +189,7 @@
   "code": "CASE_TYPE_1",
   "value": "magni",
   "description": "magni",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fae3"
@@ -197,7 +197,7 @@
   "code": "CASE_TYPE_1",
   "value": "commodi",
   "description": "commodi",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fae4"
@@ -205,7 +205,7 @@
   "code": "CASE_TYPE_1",
   "value": "incidunt",
   "description": "incidunt",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fae5"
@@ -213,7 +213,7 @@
   "code": "CASE_TYPE_1",
   "value": "sit",
   "description": "sit",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fae6"
@@ -221,7 +221,7 @@
   "code": "CASE_TYPE_1",
   "value": "rerum",
   "description": "rerum",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fae7"
@@ -229,7 +229,7 @@
   "code": "CASE_TYPE_2",
   "value": "est",
   "description": "est",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fae8"
@@ -237,7 +237,7 @@
   "code": "CASE_TYPE_2",
   "value": "dolorum",
   "description": "dolorum",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fae9"
@@ -245,7 +245,7 @@
   "code": "CASE_TYPE_2",
   "value": "mollitia",
   "description": "mollitia",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102faea"
@@ -253,7 +253,7 @@
   "code": "CASE_TYPE_2",
   "value": "non",
   "description": "non",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102faeb"
@@ -261,7 +261,7 @@
   "code": "CASE_TYPE_2",
   "value": "saepe",
   "description": "saepe",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102faec"
@@ -269,7 +269,7 @@
   "code": "CASE_TYPE_2",
   "value": "eos",
   "description": "eos",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102faed"
@@ -277,7 +277,7 @@
   "code": "CASE_TYPE_2",
   "value": "iste",
   "description": "iste",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102faee"
@@ -285,7 +285,7 @@
   "code": "CASE_TYPE_2",
   "value": "at",
   "description": "at",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102faef"
@@ -293,7 +293,7 @@
   "code": "CASE_TYPE_2",
   "value": "omnis",
   "description": "omnis",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102faf0"
@@ -301,7 +301,7 @@
   "code": "CASE_TYPE_2",
   "value": "quas",
   "description": "quas",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102faf1"
@@ -309,7 +309,7 @@
   "code": "CASE_TYPE_2",
   "value": "cum",
   "description": "cum",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102faf2"
@@ -317,7 +317,7 @@
   "code": "CASE_TYPE_2",
   "value": "quia",
   "description": "quia",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102faf3"
@@ -325,7 +325,7 @@
   "code": "CASE_TYPE_2",
   "value": "eos",
   "description": "eos",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102faf4"
@@ -333,7 +333,7 @@
   "code": "CASE_TYPE_2",
   "value": "assumenda",
   "description": "assumenda",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102faf5"
@@ -341,7 +341,7 @@
   "code": "CASE_TYPE_2",
   "value": "nobis",
   "description": "nobis",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102faf6"
@@ -349,7 +349,7 @@
   "code": "CASE_TYPE_2",
   "value": "repellat",
   "description": "repellat",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102faf7"
@@ -357,7 +357,7 @@
   "code": "CASE_TYPE_2",
   "value": "perferendis",
   "description": "perferendis",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102faf8"
@@ -365,7 +365,7 @@
   "code": "CASE_TYPE_2",
   "value": "expedita",
   "description": "expedita",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102faf9"
@@ -373,7 +373,7 @@
   "code": "CASE_TYPE_2",
   "value": "possimus",
   "description": "possimus",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fafa"
@@ -381,7 +381,7 @@
   "code": "CASE_TYPE_2",
   "value": "quis",
   "description": "quis",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fafb"
@@ -389,7 +389,7 @@
   "code": "CASE_TYPE_3",
   "value": "vero",
   "description": "vero",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fafc"
@@ -397,7 +397,7 @@
   "code": "CASE_TYPE_3",
   "value": "eos",
   "description": "eos",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fafd"
@@ -405,7 +405,7 @@
   "code": "CASE_TYPE_3",
   "value": "recusandae",
   "description": "recusandae",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fafe"
@@ -413,7 +413,7 @@
   "code": "CASE_TYPE_3",
   "value": "sint",
   "description": "sint",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102faff"
@@ -421,7 +421,7 @@
   "code": "CASE_TYPE_3",
   "value": "omnis",
   "description": "omnis",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fb00"
@@ -429,7 +429,7 @@
   "code": "CASE_TYPE_3",
   "value": "corrupti",
   "description": "corrupti",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fb01"
@@ -437,7 +437,7 @@
   "code": "CASE_TYPE_3",
   "value": "modi",
   "description": "modi",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fb02"
@@ -445,7 +445,7 @@
   "code": "CASE_TYPE_3",
   "value": "minus",
   "description": "minus",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fb03"
@@ -453,7 +453,7 @@
   "code": "CASE_TYPE_3",
   "value": "eos",
   "description": "eos",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fb04"
@@ -461,7 +461,7 @@
   "code": "CASE_TYPE_3",
   "value": "consequuntur",
   "description": "consequuntur",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fb05"
@@ -469,7 +469,7 @@
   "code": "CASE_TYPE_3",
   "value": "blanditiis",
   "description": "blanditiis",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fb06"
@@ -477,7 +477,7 @@
   "code": "CASE_TYPE_3",
   "value": "dicta",
   "description": "dicta",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fb07"
@@ -485,7 +485,7 @@
   "code": "CASE_TYPE_3",
   "value": "possimus",
   "description": "possimus",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fb08"
@@ -493,7 +493,7 @@
   "code": "CASE_TYPE_3",
   "value": "voluptates",
   "description": "voluptates",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fb09"
@@ -501,7 +501,7 @@
   "code": "CASE_TYPE_3",
   "value": "id",
   "description": "id",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fb0a"
@@ -509,7 +509,7 @@
   "code": "CASE_TYPE_3",
   "value": "placeat",
   "description": "placeat",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fb0b"
@@ -517,7 +517,7 @@
   "code": "CASE_TYPE_3",
   "value": "id",
   "description": "id",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fb0c"
@@ -525,7 +525,7 @@
   "code": "CASE_TYPE_3",
   "value": "eos",
   "description": "eos",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fb0d"
@@ -533,7 +533,7 @@
   "code": "CASE_TYPE_3",
   "value": "magnam",
   "description": "magnam",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
 },{
   "_id": {
     "$oid": "5f8dbf79746e4b25b102fb0e"
@@ -541,5 +541,21 @@
   "code": "CASE_TYPE_3",
   "value": "quia",
   "description": "quia",
-  "_class": "com.angularreact.appgen.entity.CodeGroups"
+  "_class": "CodeGroups"
+},{
+  "_id": {
+    "$oid": "5f976963d1c167348f6f4960"
+  },
+  "code": "STUDENT_TYPE",
+  "value": "New",
+  "description": "New / Transferring Student",
+  "_class": "CodeGroups"
+},{
+  "_id": {
+    "$oid": "5f9769b4d1c167348f6f4961"
+  },
+  "code": "STUDENT_TYPE",
+  "value": "Returning",
+  "description": "Returning Student",
+  "_class": "CodeGroups"
 }]

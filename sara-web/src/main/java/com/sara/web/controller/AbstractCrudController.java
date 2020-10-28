@@ -1,5 +1,7 @@
 package com.sara.web.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -18,7 +20,9 @@ import com.sara.web.common.Constants;
 import com.sara.web.common.Response;
 
 public abstract class AbstractCrudController<T, ID> {
-//	private final Logger log = LoggerFactory.getLogger(this.getClass());
+	
+	private static final Logger log = LoggerFactory.getLogger(AbstractCrudController.class);
+
 
 	public abstract AbstractService<T, ID> getService();
 
@@ -88,6 +92,7 @@ public abstract class AbstractCrudController<T, ID> {
 		Response<T> res = getResponse();
 		res.setResponseStatus(status);
 		try {
+			log.info("entity==> {}", entity);
 			getService().save(entity);
 			status.setMessage("SUCCESS!");
 		} catch (Exception e) {

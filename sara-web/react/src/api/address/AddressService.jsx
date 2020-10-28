@@ -20,12 +20,12 @@ class AddressService {
   const theurl = `${Utils.urlSavePattern(ENTITY)}`
   return axios.post(theurl, data);
  }
- getListByEndUser = (endUserId, searchValue) => {
-  const theurl = `${API_URL_BASE}address/by/END_USER/${endUserId}?searchValue=${searchValue}`
+ getListByUser = (userId, searchValue) => {
+  const theurl = `${API_URL_BASE}address/by/END_USER/${userId}?searchValue=${searchValue}`
   return axios.get(theurl);
  }
- getByEndUser = (endUserId) => {
-  const theurl = `${API_URL_BASE}address/endUser/${endUserId}`
+ getByUser = (userId) => {
+  const theurl = `${API_URL_BASE}address/endUser/${userId}`
   return axios.get(theurl);
  }
 }

@@ -1,8 +1,10 @@
 import axios from "axios";
 import Utils from "../Utils";
 
-export const ENTITY = "user";
-class EndUserService {
+
+export const ENTITY = "student";
+
+class StudentService {
 
  getList = (searchValue, page, pageSize) => {
   const theurl = `${Utils.urlListPattern(ENTITY)}?searchValue=${searchValue}&page=${page}&size=${pageSize}`
@@ -22,6 +24,6 @@ class EndUserService {
  }
 }
 
-export default new EndUserService();
+export default new StudentService();
 
 

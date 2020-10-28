@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.annotation.TypeAlias;
@@ -29,9 +27,9 @@ import lombok.ToString;
 @Document(collection = "authorized_url")
 @TypeAlias("AuthorizedUrl")
 public class AuthorizedUrl {
-	@Transient
-	private Log log = LogFactory.getLog(this.getClass().getCanonicalName());
 
+	@Transient
+    public static final String SEQUENCE_NAME = "authorized_url_sequence";
 	@Id
 	private String id;
 

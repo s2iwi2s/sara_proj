@@ -9,7 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sara.data.document.EndUser;
+import com.sara.data.document.User;
 import com.sara.data.document.Role;
 
 public class CustomUserDetails implements UserDetails {
@@ -21,11 +21,11 @@ public class CustomUserDetails implements UserDetails {
 	private final String password;
 	private final Collection<? extends GrantedAuthority> authorities;
 
-	public CustomUserDetails(EndUser endUser, String role) {
+	public CustomUserDetails(User endUser, String role) {
 		this(endUser, Arrays.asList(new Role(role)));
 	}
 
-	public CustomUserDetails(EndUser endUser, Collection<Role> roles) {
+	public CustomUserDetails(User endUser, Collection<Role> roles) {
 		this(endUser.getId(), endUser.getUserName(), endUser.getPassword(), roles);
 	}
 

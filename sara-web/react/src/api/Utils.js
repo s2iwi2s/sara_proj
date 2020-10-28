@@ -1,10 +1,8 @@
-
 // export const URL_BASE = 'http://localhost:8081';
 export const URL_BASE_DEV = 'http://localhost:5000';
 export const URL_BASE = process.env.NODE_ENV === 'development' ? URL_BASE_DEV : '';
 export const AUTH_URL_BASE = URL_BASE + '/auth';
 export const API_URL_BASE = URL_BASE + '/api/';
-
 
 export const URL_LIST = "/l";
 export const URL_DELETE = "/d";
@@ -19,7 +17,28 @@ export const REQUIRED_DESCRIPTION = 'Description is required';
 export const REQUIRED_5_DESCRIPTION = 'Description should be atleast 5 characters';
 export const REQUIRED_TARGET_DATE = 'Target date is required';
 
+export const INIT_STATUS = {
+    INIT: 'INIT',
+    LOAD: 'LOAD',
+    RESET: 'RESET'
+}
+
+export const ERROR_CODE = {
+    RETRIEVE_ERROR: '100001',
+    SAVE_ERROR: '100002',
+    DELETE_ERROR: '100003',
+    LIST_ERROR: '100004'
+}
+
 class Utils {
+    getFormatedErrorMessage = (error, errorCode, formMethod, serviceName) => {
+        let errMsg = `Error (${errorCode}): ${error.message} `;
+        console.log(`[${formMethod}] ${serviceName} error msg: ${errMsg}`);
+
+        // const errStr = JSON.stringify(error);
+
+        return errMsg;
+    }
     urlListPattern = (entity) => {
         return API_URL_BASE + entity + URL_LIST;
     }

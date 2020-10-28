@@ -26,6 +26,13 @@ public class SaraWebApplication implements CommandLineRunner {
 				+ "***************************************************\n\n\n");
 		return profilesActive;
 	}
+	@Bean
+	public String mongodb(@Value("${spring.data.mongodb.uri}") String mongodb) {
+		log.info("\n\n\n" + "***************************************************\n"
+				+ "** @SpringBootApplication MONGODB ==>>" + mongodb + "\n"
+				+ "***************************************************\n\n\n");
+		return mongodb;
+	}
 	@Override
 	public void run(String... args) throws Exception {
 //		log.info("SaraWebApplication - BeanDefinitionNames");

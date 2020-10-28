@@ -3,9 +3,9 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { Table, TableHead, TableRow, TableCell, Button, TableBody, TablePagination, FormControl, Input, Grid } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-import CodeGroupsService from '../../api/codeGroups/CodeGroupsService';
+import StudentService from '../../api/student/StudentService'
 
-class CodeGroupsListComponent extends React.Component {
+export default class StudentListComponent extends React.Component {
   state = {
     list: [],
     searchValue: '',
@@ -19,7 +19,7 @@ class CodeGroupsListComponent extends React.Component {
     this.retrieve();
   }
   retrieve = () => {
-    CodeGroupsService.getList(this.state.searchValue, this.state.paging.currentPage, this.state.paging.rowsPerPage)
+    StudentService.getList(this.state.searchValue, this.state.paging.currentPage, this.state.paging.rowsPerPage)
       .then(response => {
         console.log(response)
         this.setState({
@@ -33,14 +33,14 @@ class CodeGroupsListComponent extends React.Component {
       })
   }
   edit = (id) => {
-    console.log(`[CodeGroupsComponent.edit] id=${id}`)
-    this.props.history.push(`/code-groups-detail/${id}`);
+    console.log(`[StudentComponent.edit] id=${id}`)
+    this.props.history.push(`/student-detail/${id}`);
   }
   delete = (id) => {
-    console.log(`[CodeGroupsComponent.delete] id=${id}`)
-    CodeGroupsService.delete(id)
+    console.log(`[StudentComponent.delete] id=${id}`)
+    StudentService.delete(id)
       .then(response => {
-        console.log(`[CodeGroupsComponent.delete] response==>`, response)
+        console.log(`[StudentComponent.delete] response==>`, response)
         this.retrieve();
       })
   }
@@ -77,8 +77,8 @@ class CodeGroupsListComponent extends React.Component {
     })
     if (e.key === 'Enter') {
       e.preventDefault();
-      console.log(`[CodeGroupsListComponent.handleKeyDown] searchValue=${this.state.searchValue}`)
-      console.log(`2 [CodeGroupsListComponent.handleKeyDown] ${e.target.value}, state=>`, this.state)
+      console.log(`[StudentListComponent.handleKeyDown] searchValue=${this.state.searchValue}`)
+      console.log(`2 [StudentListComponent.handleKeyDown] ${e.target.value}, state=>`, this.state)
       this.retrieve();
     }
   }
@@ -86,7 +86,7 @@ class CodeGroupsListComponent extends React.Component {
   render = () => {
     return (
       <>
-        <Typography variant="h4">CodeGroups List</Typography>
+        <Typography variant="h4">Student List</Typography>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={11}>
           </Grid>
@@ -116,14 +116,16 @@ class CodeGroupsListComponent extends React.Component {
             </FormControl>
           </Grid>
         </Grid>
+
+
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Code</TableCell>
-              <TableCell>Value</TableCell>
-              <TableCell>Description</TableCell>
-              <TableCell>Bool</TableCell>
-              <TableCell>Num</TableCell>
+              <TableCell>ID</TableCell>
+              <TableCell>LRN</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell>Gender</TableCell>
+              <TableCell>Grade Level</TableCell>
 
               <TableCell>Action</TableCell>
             </TableRow>
@@ -131,11 +133,11 @@ class CodeGroupsListComponent extends React.Component {
           <TableBody>
             {this.state.list.map(row => (
               <TableRow key={row.id}>
-                <TableCell>{row.code}</TableCell>
-                <TableCell>{row.value}</TableCell>
-                <TableCell>{row.description}</TableCell>
-                <TableCell>{row.bool}</TableCell>
-                <TableCell>{row.num}</TableCell>
+                <TableCell>{row.id}</TableCell>
+                <TableCell>{row.lrn}</TableCell>
+                <TableCell>{row.firstName} {row.lastName}</TableCell>
+                <TableCell>{row.gender}</TableCell>
+                <TableCell>{row.level && row.level.value}</TableCell>
 
                 <TableCell align="right">
                   <Button variant="contained" color="primary" onClick={() => this.edit(row.id)}>Edit</Button>&nbsp;
@@ -157,6 +159,6 @@ class CodeGroupsListComponent extends React.Component {
   }
 }
 
-export default CodeGroupsListComponent;
+
 
 

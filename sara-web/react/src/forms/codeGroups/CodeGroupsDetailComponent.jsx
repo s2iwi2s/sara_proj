@@ -57,7 +57,7 @@ export default class CodeGroupsDetailComponent extends React.Component {
       .then(response => {
         console.log(`[CodeGroupsDetailComponent.retrieve] response==>`, response)
         let thestate = this.getBlankDetails();
-        if (this.props.match.params.id != -1) {
+        if (this.props.match.params.id !== -1) {
           thestate = response.data.entity;
         }
         thestate.listService = response.data.listService
@@ -102,7 +102,7 @@ export default class CodeGroupsDetailComponent extends React.Component {
 
   render = () => {
     return (
-      <div className="container">
+      <>
         <Typography variant="h4">CodeGroups Detail</Typography>
         <form>
           <TextFormControl label="Code"
@@ -126,7 +126,7 @@ export default class CodeGroupsDetailComponent extends React.Component {
           <Button variant="contained" color="primary" onClick={() => this.props.history.push(`/code-groups-list`)}>Cancel</Button>
         </form>
 
-      </div >
+      </ >
     );
   }
 }

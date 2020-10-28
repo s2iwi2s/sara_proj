@@ -21,12 +21,12 @@ class AddressListComponent extends React.Component {
   }
 
   retrieve = () => {
-    //this.props.endUserId
-    console.log('this.props.endUserHistory=' + this.props.endUserHistory);
-    if (this.hasEndUser()) {
-      AddressService.getListByEndUser(this.props.endUserId, this.state.searchValue)
+    //this.props.userId
+    console.log('this.props.userHistory=' + this.props.userHistory);
+    if (this.hasUser()) {
+      AddressService.getListByUser(this.props.userId, this.state.searchValue)
         .then(response => {
-          console.log(`[AddressListComponent AddressService.getListByEndUser] response=>`, response)
+          console.log(`[AddressListComponent AddressService.getListByUser] response=>`, response)
           this.setState({
             searchValue: response.data.searchValue,
             list: response.data.list
@@ -51,8 +51,8 @@ class AddressListComponent extends React.Component {
     }
   }
   edit = (id) => {
-    if (this.hasEndUser()) {
-      this.props.endUserHistory.push(`/address-detail/${id}/${this.props.endUserId}`);
+    if (this.hasUser()) {
+      this.props.userHistory.push(`/address-detail/${id}/${this.props.userId}`);
     } else {
       this.props.history.push(`/address-detail/${id}`);
     }
@@ -86,8 +86,8 @@ class AddressListComponent extends React.Component {
     this.retrieve();
   }
 
-  hasEndUser = () => {
-    return this.props.endUserId;
+  hasUser = () => {
+    return this.props.userId;
   }
 
   changeState = (e) => {
@@ -109,7 +109,7 @@ class AddressListComponent extends React.Component {
   }
 
   renderPagination = () => {
-    if (this.hasEndUser()) {
+    if (this.hasUser()) {
       return (<></>);
     }
     return (
@@ -126,7 +126,7 @@ class AddressListComponent extends React.Component {
 
   render = () => {
     let hsize = 'h4';
-    if (this.hasEndUser()) {
+    if (this.hasUser()) {
       hsize = 'h5';
     }
     return (

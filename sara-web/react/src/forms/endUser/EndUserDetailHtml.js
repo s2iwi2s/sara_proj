@@ -4,7 +4,7 @@ import TextFormControl from '../common/TextFormControl';
 import { Button } from '@material-ui/core';
 const EndUserDetailHtml = props => {
       return (
-            <div className="container">
+            <>
                   <Typography variant="h4">User Detail</Typography>
                   <form>
                         <TextFormControl label="User Name"
@@ -29,7 +29,7 @@ const EndUserDetailHtml = props => {
                         <Button variant="contained" color="primary" onClick={() => props.doEditAddress(-1, props.id)}>Add Address</Button>&nbsp;
                         <Button variant="contained" color="primary" onClick={() => props.doCancel()}>Cancel</Button>
                   </form>
-            </div >
+            </ >
       );
 };
 
