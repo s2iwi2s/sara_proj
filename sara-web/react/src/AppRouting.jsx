@@ -18,43 +18,49 @@ import AppBarComponent from './forms/common/AppBarComponent';
 import StudentDetailComponent from './forms/student/StudentDetailComponent';
 import StudentListComponent from './forms/student/StudentListComponent';
 
-class AppRouting extends React.Component {
- isLogin
- render = () => {
-  return (
-   <div className="AppRouting">
-    <Router>
-     <>
-      <AppBarComponent />
+import { useStyles } from './forms/common/CSS'
 
-      <Container component="main" >
-       <CssBaseline />
-       <Switch>
-        <Route path="/" exact component={Dashboard} />
-        <Route path="/index.html" exact component={Dashboard} />
+const AppRouting = props => {
+ // class AppRouting extends React.Component {
 
-        <Route path="/dashboard" component={Dashboard} />
-        <Route path="/logout" component={LogoutComponent} />
-        <Route path="/login" component={SignInComponent} />
-        <Route path="/student-detail/:id" component={StudentDetailComponent} />
-        <Route path="/student-list" component={StudentListComponent} />
 
-        <AuthenticatedRoute path="/end-user-list" exact component={EndUserListComponent} />
-        <AuthenticatedRoute path="/end-user-detail/:id" exact component={EndUserDetailComponent} />
-        <AuthenticatedRoute path="/address-list" exact component={AddressListComponent} />
-        <AuthenticatedRoute path="/address-detail/:id" exact component={AddressDetailComponent} />
-        <AuthenticatedRoute path="/address-detail/:id/:userId" exact component={AddressDetailComponent} />
-        <AuthenticatedRoute path="/code-groups-list" exact component={CodeGroupsListComponent} />
-        <AuthenticatedRoute path="/code-groups-detail/:id" exact component={CodeGroupsDetailComponent} />
-        <Route component={ErrorComponent} />
-       </Switch>
-      </Container>
-      <FooterComponent />
-     </>
-    </Router>
-   </div>
-  );
- }
+ // render = () => {
+ const classes = useStyles();
+
+ return (
+  <div className="AppRouting">
+   <Router>
+    <>
+     <AppBarComponent />
+
+     <Container component="main" className={classes.container}>
+      <CssBaseline />
+      <Switch>
+       <Route path="/" exact component={Dashboard} />
+       <Route path="/index.html" exact component={Dashboard} />
+
+       <Route path="/dashboard" component={Dashboard} />
+       <Route path="/logout" component={LogoutComponent} />
+       <Route path="/login" component={SignInComponent} />
+       <Route path="/student-detail/:id" component={StudentDetailComponent} />
+       <Route path="/student-list" component={StudentListComponent} />
+
+       <AuthenticatedRoute path="/end-user-list" exact component={EndUserListComponent} />
+       <AuthenticatedRoute path="/end-user-detail/:id" exact component={EndUserDetailComponent} />
+       <AuthenticatedRoute path="/address-list" exact component={AddressListComponent} />
+       <AuthenticatedRoute path="/address-detail/:id" exact component={AddressDetailComponent} />
+       <AuthenticatedRoute path="/address-detail/:id/:userId" exact component={AddressDetailComponent} />
+       <AuthenticatedRoute path="/code-groups-list" exact component={CodeGroupsListComponent} />
+       <AuthenticatedRoute path="/code-groups-detail/:id" exact component={CodeGroupsDetailComponent} />
+       <Route component={ErrorComponent} />
+      </Switch>
+     </Container>
+     <FooterComponent />
+    </>
+   </Router>
+  </div>
+ );
+ // }
 }
 
 export default AppRouting;
