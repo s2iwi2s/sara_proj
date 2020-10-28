@@ -52,8 +52,8 @@ export default function NestedMenuComponent() {
   >
    {
     isUserLoggedIn && <>
-     <ListItem button>
-      {/* <ListItemIcon>
+     {/*<ListItem button>
+       <ListItemIcon>
        <InboxIcon />
       </ListItemIcon>
       <ListItemText primary="Users" onClick={() => history.push('/end-user-list')} />
@@ -64,46 +64,46 @@ export default function NestedMenuComponent() {
       </ListItemIcon>
       <ListItemText primary="Address" onClick={() => history.push('/address-list')} />
      </ListItem> */}
-      <ListItem button>
-       <ListItemIcon>
-        <InboxIcon />
-       </ListItemIcon>
-       <ListItemText primary="Code Groups" onClick={() => history.push('/code-groups-list')} />
-      </ListItem>
-      <ListItem button onClick={handleClick}>
-       <ListItemIcon>
-        <SendIcon />
-       </ListItemIcon>
-       <ListItemText primary="Student" />
-       {open ? <ExpandLess /> : <ExpandMore />}
-      </ListItem>
-
-      <Collapse in={open} timeout="auto" unmountOnExit>
-       <List component="div" disablePadding>
-        <ListItem button className={classes.nested}>
-         <ListItemIcon>
-          <AddIcon />
-         </ListItemIcon>
-         <ListItemText primary="New" onClick={() => history.push('/student-detail/-1')} />
-        </ListItem>
-        <ListItem button className={classes.nested}>
-         <ListItemIcon>
-          <FormatListNumberedIcon />
-         </ListItemIcon>
-         <ListItemText primary="List" onClick={() => history.push('/student-list')} />
-        </ListItem>
-       </List>
-      </Collapse>
-    </>
-   }
-
      <ListItem button>
       <ListItemIcon>
        <InboxIcon />
       </ListItemIcon>
-      {isUserLoggedIn && <ListItemText primary="Logout" onClick={() => history.push('/logout')} />}
-      {!isUserLoggedIn && <ListItemText primary="Login" onClick={() => history.push('/login')} />}
+      <ListItemText primary="Code Groups" onClick={() => history.push('/code-groups-list')} />
      </ListItem>
-    </List>
+     <ListItem button onClick={handleClick}>
+      <ListItemIcon>
+       <SendIcon />
+      </ListItemIcon>
+      <ListItemText primary="Student" />
+      {open ? <ExpandLess /> : <ExpandMore />}
+     </ListItem>
+
+     <Collapse in={open} timeout="auto" unmountOnExit>
+      <List component="div" disablePadding>
+       <ListItem button className={classes.nested}>
+        <ListItemIcon>
+         <AddIcon />
+        </ListItemIcon>
+        <ListItemText primary="New" onClick={() => history.push('/student-detail/-1')} />
+       </ListItem>
+       <ListItem button className={classes.nested}>
+        <ListItemIcon>
+         <FormatListNumberedIcon />
+        </ListItemIcon>
+        <ListItemText primary="List" onClick={() => history.push('/student-list')} />
+       </ListItem>
+      </List>
+     </Collapse>
+    </>
+   }
+
+   <ListItem button>
+    <ListItemIcon>
+     <InboxIcon />
+    </ListItemIcon>
+    {isUserLoggedIn && <ListItemText primary="Logout" onClick={() => history.push('/logout')} />}
+    {!isUserLoggedIn && <ListItemText primary="Login" onClick={() => history.push('/login')} />}
+   </ListItem>
+  </List>
  );
 }
