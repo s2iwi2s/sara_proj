@@ -47,15 +47,17 @@ public class Address {
 	@Id
 	private String id;
 
-	@DBRef(lazy = true)
+	private String refId;
+	
+	@DBRef
+	private CodeGroups addressType;
+	
+	@Transient
 	private User user;
 	
-	@DBRef(lazy = true)
+	@Transient
 	private Student student;
 	
-	@DBRef(lazy = true)
-	private School school;
-
 	private String name;
 
 	private String address1;

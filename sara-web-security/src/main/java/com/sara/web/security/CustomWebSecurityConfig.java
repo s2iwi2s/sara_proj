@@ -3,6 +3,8 @@ package com.sara.web.security;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -30,7 +32,7 @@ import com.sara.web.security.jwt.JwtUnAuthorizedResponseAuthenticationEntryPoint
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class CustomWebSecurityConfig extends WebSecurityConfigurerAdapter {
-//	private Logger log = LoggerFactory.getLogger(this.getClass());
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	private PasswordEncoder bcryptEncoder;
 	
@@ -71,7 +73,7 @@ public class CustomWebSecurityConfig extends WebSecurityConfigurerAdapter {
 		for (AuthorizedUrl au : authorizedUrls) {
 			List<String> newList = au.getAuthorizedUrlRoles().stream().map(r -> {
 				String roleName = r.getName();
-//				log.debug("1 authorizedUrls=> {}, {}",au.getUrl(), roleName); 
+				log.debug("1 authorizedUrls=> {}, {}",au.getUrl(), roleName); 
 				try {
 					roleName = roleName.substring(5);
 				} catch (Exception e) {
@@ -101,7 +103,7 @@ public class CustomWebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// String[] ignoredUrls =
 		// ignoredUrlList.stream().map(AuthorizedUrl::getUrl).toArray(String[]::new);
 		String[] ignoredUrls = ignoredUrlList.stream().map(au->{
-//			log.debug("ignoredUrls=> {}", au.getUrl());
+			log.debug("ignoredUrls=> {}", au.getUrl());
 			return au.getUrl();
 		}).toArray(String[]::new);
 

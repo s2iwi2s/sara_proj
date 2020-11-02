@@ -1,3 +1,7 @@
+
+import { TableRow } from '@material-ui/core';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+
 // export const URL_BASE = 'http://localhost:8081';
 export const URL_BASE_DEV = 'http://localhost:5000';
 export const URL_BASE = process.env.NODE_ENV === 'development' ? URL_BASE_DEV : '';
@@ -29,6 +33,27 @@ export const ERROR_CODE = {
     DELETE_ERROR: '100003',
     LIST_ERROR: '100004'
 }
+
+export const ADDRESS_TYPE = {
+    USER: '1',
+    STUDENT: '2',
+    PARENT: '3'
+}
+export const StyledTableHeadRow = withStyles((theme) => ({
+    root: {
+        '&:nth-of-type(odd)': {
+            backgroundColor: theme.palette.background,
+        },
+    },
+}))(TableRow);
+
+export const StyledTableRow = withStyles((theme) => ({
+    root: {
+        '&:nth-of-type(odd)': {
+            backgroundColor: theme.palette.action.hover,
+        },
+    },
+}))(TableRow);
 
 class Utils {
     getFormatedErrorMessage = (error, errorCode, formMethod, serviceName) => {

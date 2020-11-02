@@ -14,8 +14,24 @@ public class Constants {
 	public static final String URL_DETAILS = "/g/{id}";
 	public static final String URL_SAVE = "/s";
 
-	public static enum ADDRESS_SEARCH_TYPE {
-		END_USER
+	public static final String URL_LOGO = "/r/logo/{logo}";
+
+//	public static enum ADDRESS_SEARCH_TYPE {
+//		END_USER(1)
+//	}
+	
+	public enum ADDRESS_SEARCH_TYPE{
+		USER("1"), STUDENT("2"), PARENT("3");
+		
+		private String addressType;
+		
+		ADDRESS_SEARCH_TYPE(String addressType){
+			this.addressType = addressType;
+		}
+		
+		public String getAddressType() {
+			return addressType;
+		}
 	}
 
 }

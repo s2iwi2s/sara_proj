@@ -2,36 +2,35 @@ package com.sara.web.security.jwt.resource;
 
 import java.io.Serializable;
 
-public class  JwtTokenRequest implements Serializable {
-  
-  private static final long serialVersionUID = -5616176897013108345L;
+public class JwtTokenRequest implements Serializable {
 
-  private String username;
-    private String password;
+	private static final long serialVersionUID = -5616176897013108345L;
 
-    public JwtTokenRequest() {
-        super();
-    }
+	private String username;
+	private String password;
 
-    public JwtTokenRequest(String username, String password) {
-        this.setUsername(username);
-        this.setPassword(password);
-    }
+	public JwtTokenRequest() {
+		super();
+	}
 
-    public String getUsername() {
-        return this.username;
-    }
+	public JwtTokenRequest(String username, String password) {
+		this.setUsername(username);
+		this.setPassword(password);
+	}
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	public String getUsername() {
+		return this.username;
+	}
 
-    public String getPassword() {
-        return this.password;
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public String getPassword() {
+		return this.password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 }
-

@@ -1,9 +1,14 @@
 import React from 'react';
 
 import Typography from '@material-ui/core/Typography';
-import { Table, TableHead, TableRow, TableCell, Button, TableBody, TablePagination, FormControl, Input, Grid } from '@material-ui/core';
+import { Table, TableHead, TableRow, TableCell, TableBody, TablePagination, FormControl, Input, Grid, IconButton } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
+import AddIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/Edit';
+
 import SearchIcon from '@material-ui/icons/Search';
 import StudentService from '../../api/student/StudentService'
+import { StyledTableHeadRow, StyledTableRow } from '../../api/Utils';
 
 export default class StudentListComponent extends React.Component {
   state = {
@@ -87,13 +92,7 @@ export default class StudentListComponent extends React.Component {
     return (
       <>
         <Typography variant="h4">Student List</Typography>
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={11}>
-          </Grid>
-          <Grid item xs={12} sm={1}>
-            <Button variant="contained" color="primary" onClick={() => this.edit(-1)}>NEW</Button>
-          </Grid>
-        </Grid>
+
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
           </Grid>
@@ -120,19 +119,23 @@ export default class StudentListComponent extends React.Component {
 
         <Table>
           <TableHead>
-            <TableRow>
+            <StyledTableHeadRow>
               <TableCell>ID</TableCell>
               <TableCell>LRN</TableCell>
               <TableCell>Name</TableCell>
               <TableCell>Gender</TableCell>
               <TableCell>Grade Level</TableCell>
-
-              <TableCell>Action</TableCell>
-            </TableRow>
+              <TableCell align="right">
+                Action
+                <IconButton aria-label="add" onClick={() => this.edit(-1)}>
+                  <AddIcon fontSize="large" />
+                </IconButton>
+              </TableCell>
+            </StyledTableHeadRow>
           </TableHead>
           <TableBody>
             {this.state.list.map(row => (
-              <TableRow key={row.id}>
+              <StyledTableRow key={row.id}>
                 <TableCell>{row.id}</TableCell>
                 <TableCell>{row.lrn}</TableCell>
                 <TableCell>{row.firstName} {row.lastName}</TableCell>
@@ -140,9 +143,14 @@ export default class StudentListComponent extends React.Component {
                 <TableCell>{row.level && row.level.value}</TableCell>
 
                 <TableCell align="right">
-                  <Button variant="contained" color="primary" onClick={() => this.edit(row.id)}>Edit</Button>&nbsp;
-                  <Button variant="contained" color="primary" onClick={() => this.delete(row.id)}>Delete</Button></TableCell>
-              </TableRow>
+                  <IconButton aria-label="edit" onClick={() => this.edit(row.id)}>
+                    <EditIcon fontSize="large" />
+                  </IconButton>
+                  <IconButton aria-label="delete" onClick={() => this.delete(row.id)}>
+                    <DeleteIcon fontSize="large" />
+                  </IconButton>
+                </TableCell>
+              </StyledTableRow>
             ))}
           </TableBody>
         </Table>

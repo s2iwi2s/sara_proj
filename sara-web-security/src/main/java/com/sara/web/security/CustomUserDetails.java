@@ -9,38 +9,35 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sara.data.document.User;
 import com.sara.data.document.Role;
+import com.sara.data.document.User;
 
 public class CustomUserDetails implements UserDetails {
 
 	private static final long serialVersionUID = 5155720064139820502L;
 
-	private final String id;
-	private final String username;
-	private final String password;
+//	private final String id;
+	private final User user;
+//	private final String username;
+//	private final String password;
 	private final Collection<? extends GrantedAuthority> authorities;
 
-	public CustomUserDetails(User endUser, String role) {
-		this(endUser, Arrays.asList(new Role(role)));
+//	public CustomUserDetails(User user, String role) {
+//		this(user, Arrays.asList(new Role(role)));
+//	}
+
+//	public CustomUserDetails(User user, Collection<Role> roles) {
+//		this(user.getId(), user.getUserName(), user.getPassword(), roles);
+//	}
+
+	public CustomUserDetails(User user, String role) {
+		this(user, Arrays.asList(new Role(role)));
 	}
 
-	public CustomUserDetails(User endUser, Collection<Role> roles) {
-		this(endUser.getId(), endUser.getUserName(), endUser.getPassword(), roles);
-	}
-
-	public CustomUserDetails(String id, String username, String password, String role) {
-		this(id, username, password, Arrays.asList(new Role(role)));
-	}
-
-	public CustomUserDetails(String id, String username, String password, Role role) {
-		this(id, username, password, Arrays.asList(role));
-	}
-
-	public CustomUserDetails(String id, String username, String password, Collection<Role> roles) {
-		this.id = id;
-		this.username = username;
-		this.password = password;
+	public CustomUserDetails(User user, Collection<Role> roles) {
+		this.user = user;
+//		this.username = username;
+//		this.password = password;
 
 //		List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
 //		roles.stream().map(r -> {
@@ -60,18 +57,18 @@ public class CustomUserDetails implements UserDetails {
 
 	@JsonIgnore
 	public String getId() {
-		return id;
+		return user.getId();
 	}
 
 	@JsonIgnore
 	@Override
 	public String getPassword() {
-		return password;
+		return user.getPassword();
 	}
 
 	@Override
 	public String getUsername() {
-		return username;
+		return user.getUserName();
 	}
 
 	@JsonIgnore
@@ -96,5 +93,9 @@ public class CustomUserDetails implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
+	public User getUser() {
+		return this.user;
+	}
+	
 
 }

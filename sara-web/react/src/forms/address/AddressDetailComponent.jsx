@@ -4,6 +4,7 @@ import { MenuItem, Button, FormControl } from '@material-ui/core';
 
 import AddressService from '../../api/address/AddressService';
 import TextFormControl from '../common/TextFormControl';
+import { ADDRESS_TYPE } from '../../api/Utils'
 
 export default class AddressDetailComponent extends React.Component {
   state = {
@@ -22,6 +23,7 @@ export default class AddressDetailComponent extends React.Component {
   };
 
   getBlankDetails = () => {
+
     return {
       "id": '',
       "userId": '',
@@ -43,14 +45,14 @@ export default class AddressDetailComponent extends React.Component {
   }
 
   retrieve = () => {
-    console.log(`[AddressDetailComponent.retrieve] id=${this.props.match.params.id}, userId=${this.props.match.params.userId}`);
+    console.log(`[AddressDetailComponent.retrieve] id=${this.props.match.params.id}, userId=${this.props.match.params.refId}`);
     let thestate = this.getBlankDetails();
-    if (this.props.match.params.id === -1 && this.props.match.params.userId) {
-      AddressService.getByUser(this.props.match.params.userId)
+    if (this.props.match.params.id == -1 && this.props.match.params.refId) {
+      AddressService.getByRefId(this.props.match.params.refId, this.props.match.params.typeId)
         .then(response => {
-          console.log(`[AddressDetailComponent.retrieve] response=>`, response);
+          console.log(`[AddressDetailComponent.retrieve AddressService.getByRefId] response=>`, response);
           thestate = response.data.entity;
-          console.log(`[AddressDetailComponent.retrieve] thestate.user=>`, thestate.user);
+          console.log(`[AddressDetailComponent.retrieve AddressService.getByRefId] thestate.user=>`, thestate.user);
           thestate.userId = thestate.user.id
           thestate.listService = response.data.listService
           this.setState(thestate)
@@ -58,6 +60,7 @@ export default class AddressDetailComponent extends React.Component {
     } else {
       AddressService.get(this.props.match.params.id)
         .then(response => {
+          console.log(`[AddressDetailComponent.retrieve AddressService.get] response=>`, response);
           thestate = response.data.entity;
           thestate.userId = thestate.user.id
           thestate.listService = response.data.listService
@@ -68,9 +71,7 @@ export default class AddressDetailComponent extends React.Component {
 
   save = () => {
     AddressService.save({
-      user: {
-        id: this.state.userId
-      },
+      refId: this.state.userId,
       name: this.state.name,
       address1: this.state.address1,
       address2: this.state.address2,
@@ -83,7 +84,7 @@ export default class AddressDetailComponent extends React.Component {
       id: this.state.id
     }).then(response => {
       let routeUrl = `/address-list`;
-      let userId = this.props.match.params.userId
+      let userId = this.props.match.params.refId
       if (userId) {
         routeUrl = `/end-user-detail/${userId}`
       }
@@ -110,9 +111,9 @@ export default class AddressDetailComponent extends React.Component {
   }
 
   cancel = () => {
-    console.log(`[AddressDetailComponent.cancel] userId=${this.props.match.params.userId}`);
-    if (this.props.match.params.userId) {
-      this.props.history.push(`/end-user-detail/${this.props.match.params.userId}`)
+    console.log(`[AddressDetailComponent.cancel] userId=${this.props.match.params.refId}`);
+    if (this.props.match.params.refId && this.props.match.params.typeId == ADDRESS_TYPE.USER) {
+      this.props.history.push(`/end-user-detail/${this.props.match.params.refId}`)
     } else {
       this.props.history.push(`/address-list`)
     }

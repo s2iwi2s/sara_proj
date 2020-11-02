@@ -2,28 +2,24 @@ package com.sara.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.querydsl.core.BooleanBuilder;
 import com.sara.data.document.User;
 import com.sara.data.document.QUser;
-import com.sara.data.repository.EndUserMongoRepository;
+import com.sara.data.repository.UserMongoRepository;
 import com.sara.service.AbstractService;
 
 @Service
 public class UserServiceImpl extends AbstractService<User, String> {
 	Logger log = LoggerFactory.getLogger(this.getClass());
-
-	public UserServiceImpl(EndUserMongoRepository repo) {
+	private UserMongoRepository repository;
+	@Autowired
+	public UserServiceImpl(UserMongoRepository repo) {
 		super(repo);
+		this.repository = repository;
 	}
-//	private PasswordEncoder bcryptEncoder;
-
-//	@Autowired
-//	public EndUserServiceImpl(EndUserMongoRepository repo, PasswordEncoder bcryptEncoder) {
-//		super(repo);
-//		this.bcryptEncoder = bcryptEncoder;
-//	}
 
 	@Override
 	public void findAllQBuilder(String searchValue, BooleanBuilder booleanBuilder) {
@@ -40,14 +36,18 @@ public class UserServiceImpl extends AbstractService<User, String> {
 	@Override
 	public User save(User entity) {
 		log.info("save entity={}", entity);
-		if (entity.getId() !=null && entity.getId().length() > 0 && entity.getId().equalsIgnoreCase("-1") && (entity.getPassword() == null || entity.getPassword().trim().equals(""))) {
+		if (entity.getId() != null && entity.getId().length() > 0 && !(entity.getId().equalsIgnoreCase("-1")
+				|| entity.getPassword() == null || entity.getPassword().trim().equals(""))) {
 			User endUser = super.findById(entity.getId());
 			entity.setPassword(endUser.getPassword());
-			
 		} else {
-//			entity.setPassword(bcryptEncoder.encode(endUser.getPassword()));
+			entity.setPassword("$2a$10$fdxH3igDJy0ZKUdpKWtAsuri0GRed6sO14NTxchvC5PdyztTD4ztm");
 		}
 		entity = super.save(entity);
 		return entity;
+	}
+	
+	public User findByUserName(String userName){
+		return repository.findByUserName(userName);
 	}
 }

@@ -16,7 +16,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@JsonIgnoreProperties(ignoreUnknown = true, value="address")
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
 @AllArgsConstructor
@@ -37,10 +37,14 @@ public class Student {
 	private String lastName;
 	private Date birthDate;
 	private String birthPlace;
+	
+	@DBRef(lazy = true)
 	private CodeGroups level;
-	private School school;
 
 	@DBRef(lazy = true)
+	private School school;
+
+	@Transient
 	private List<Address> address;
 
 	@Override

@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Divider, FormControlLabel, FormLabel, Grid, Hidden, MenuItem, Radio, RadioGroup, TextField, Typography } from '@material-ui/core';
+import { Button, Divider, FormControlLabel, FormLabel, Grid, IconButton, MenuItem, Radio, RadioGroup, TextField, Typography } from '@material-ui/core';
+import CancelIcon from '@material-ui/icons/Cancel';
+import SaveIcon from '@material-ui/icons/Save';
+import AddIcon from '@material-ui/icons/Add';
+
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import Alert from '@material-ui/lab/Alert';
@@ -19,16 +23,7 @@ const StudentDetailHtml = props => {
       props.onRetrieve(props.entity.entityId);
     } if (props.entity.initStatus === INIT_STATUS.RESET) {
       reset(props.entity)
-    } else {
-
     }
-
-    // if (props.entity.entityId != -1) {
-    //   props.onRetrieve(props.entity.entityId);
-    // } else {
-    //   reset(props.entity)
-    // }
-
   }, [props.entity])
 
   return (
@@ -46,13 +41,13 @@ const StudentDetailHtml = props => {
           <Grid item xs={12} sm={9}>
           </Grid>
           <Grid item xs={12} sm={1}>
-            <Button type="submit" variant="contained" color="primary" >Save</Button>
+            <Button variant="contained" color="primary" type="submit" startIcon={<SaveIcon />}>Save</Button>
           </Grid>
           <Grid item xs={12} sm={1}>
-            <Button variant="contained" color="primary" href="/student-detail/-1">New</Button>
+            <Button variant="contained" href="/student-detail/-1" startIcon={<AddIcon />}>New</Button>
           </Grid>
           <Grid item xs={12} sm={1}>
-            <Button variant="contained" color="primary" onClick={() => history.push("/student-list")}>Cancel</Button>
+            <Button variant="contained" onClick={() => history.push("/student-list")} startIcon={<CancelIcon />}>Cancel</Button>
           </Grid>
         </Grid>
         <Grid container spacing={3}>
@@ -255,13 +250,13 @@ const StudentDetailHtml = props => {
           <Grid item xs={12} sm={9}>
           </Grid>
           <Grid item xs={12} sm={1}>
-            <Button type="submit" variant="contained" color="primary" >Save</Button>
+            <Button variant="contained" color="primary" type="submit" startIcon={<SaveIcon />}>Save</Button>
           </Grid>
           <Grid item xs={12} sm={1}>
-            <Button variant="contained" color="primary" href="/student-detail/-1">New</Button>
+            <Button variant="contained" href="/student-detail/-1" startIcon={<AddIcon />}>New</Button>
           </Grid>
           <Grid item xs={12} sm={1}>
-            <Button variant="contained" color="primary" onClick={() => history.push("/student-list")}>Cancel</Button>
+            <Button variant="contained" onClick={() => history.push("/student-list")} startIcon={<CancelIcon />}>Cancel</Button>
           </Grid>
         </Grid>
       </form>

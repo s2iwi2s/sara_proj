@@ -117,5 +117,12 @@
         "permit": true,
         "url": "/logo192.png",
         "method": ""
+    }, {
+        "_id": {
+            "$oid": "5f9c8e46e4234b45634037da"
+        },
+        "permit": true,
+        "url": "/r/**",
+        "method": ""
     }
 ]

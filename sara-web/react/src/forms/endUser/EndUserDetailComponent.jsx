@@ -3,6 +3,7 @@ import React from 'react';
 import EndUserService from '../../api/endUser/EndUserService';
 import EndUserDetailHtml from './EndUserDetailHtml';
 import AddressListComponent from '../address/AddressListComponent';
+import { ADDRESS_TYPE } from '../../api/Utils'
 
 export default class EndUserDetailComponent extends React.Component {
   state = {
@@ -66,7 +67,7 @@ export default class EndUserDetailComponent extends React.Component {
     this.props.history.push(`/end-user-list`);
   }
   doEditAddress = (addressId, userId) => {
-    this.props.history.push(`/address-detail/${addressId}/${userId}`);
+    this.props.history.push(`/address-detail/${addressId}/${userId}/${ADDRESS_TYPE.USER}`);
   }
 
   render = () => {

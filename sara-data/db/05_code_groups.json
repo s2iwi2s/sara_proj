@@ -558,4 +558,20 @@
   "value": "Returning",
   "description": "Returning Student",
   "_class": "CodeGroups"
+},{
+  "_id": {
+    "$oid": "5f98aee0419c2a4777cfa86d"
+  },
+  "code": "STUDENT_LEVEL",
+  "value": "Grade 1",
+  "description": "Grade 1",
+  "_class": "CodeGroups"
+},{
+  "_id": {
+    "$oid": "5f98aeec419c2a4777cfa86e"
+  },
+  "code": "STUDENT_LEVEL",
+  "value": "Grade 2",
+  "description": "Grade 2",
+  "_class": "CodeGroups"
 }]

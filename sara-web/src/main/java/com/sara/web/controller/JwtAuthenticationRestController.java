@@ -4,6 +4,8 @@ import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -20,22 +22,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sara.data.document.User;
+import com.sara.data.repository.UserMongoRepository;
+import com.sara.service.impl.UserServiceImpl;
+import com.sara.web.security.CustomUserDetails;
+import com.sara.web.security.CustomUserDetailsService;
 import com.sara.web.security.jwt.JwtTokenUtil;
 import com.sara.web.security.jwt.resource.AuthenticationException;
 import com.sara.web.security.jwt.resource.JwtTokenRequest;
 import com.sara.web.security.jwt.resource.JwtTokenResponse;
 
-
-
 @RestController
 //@CrossOrigin(origins = "http://localhost:3000")
 public class JwtAuthenticationRestController {
+
+	private static final Logger log = LoggerFactory.getLogger(JwtAuthenticationRestController.class);
 
 	@Value("${jwt.http.request.header}")
 	private String tokenHeader;
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
+
+	@Autowired
+	private CustomUserDetailsService userService;
 
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
@@ -49,24 +59,23 @@ public class JwtAuthenticationRestController {
 
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
-		final UserDetails userDetails = jwtUserDetailsService
-				.loadUserByUsername(authenticationRequest.getUsername());
+		final CustomUserDetails userDetails = userService.loadUserByUsername(authenticationRequest.getUsername());
 
 		final String token = jwtTokenUtil.generateToken(userDetails);
+		// User user = userService.findByUserName(authenticationRequest.getUsername());
 
-		return ResponseEntity.ok(new JwtTokenResponse(token));
+		return ResponseEntity
+				.ok(new JwtTokenResponse(token, new com.sara.web.security.bean.UserDetails(userDetails.getUser())));
 	}
 
 	@RequestMapping(value = "${jwt.refresh.token.uri}", method = RequestMethod.GET)
 	public ResponseEntity<?> refreshAndGetAuthenticationToken(HttpServletRequest request) {
 		String authToken = request.getHeader(tokenHeader);
 		final String token = authToken.substring(7);
-//		String username = jwtTokenUtil.getUsernameFromToken(token);
-//		CustomUserDetails user = (CustomUserDetails) jwtUserDetailsService.loadUserByUsername(username);
 
 		if (jwtTokenUtil.canTokenBeRefreshed(token)) {
 			String refreshedToken = jwtTokenUtil.refreshToken(token);
-			return ResponseEntity.ok(new JwtTokenResponse(refreshedToken));
+			return ResponseEntity.ok(new JwtTokenResponse(refreshedToken, null));
 		} else {
 			return ResponseEntity.badRequest().body(null);
 		}

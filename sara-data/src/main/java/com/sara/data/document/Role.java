@@ -30,8 +30,9 @@ public class Role {
 	private String id;
 
 	private String name;
+	
 	@DBRef(lazy = true)
-	private Collection<User> endUsers;
+	private Collection<User> users;
 
 	@DBRef(lazy = true)
 	private Collection<AuthorizedUrl> authorizedUrls;

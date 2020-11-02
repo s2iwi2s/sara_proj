@@ -3,6 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import { Table, TableHead, TableRow, TableCell, Button, TableBody, TablePagination, FormControl, Input } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 
+import { StyledTableRow } from '../../api/Utils'
 import AddressService from '../../api/address/AddressService';
 
 class AddressListComponent extends React.Component {
@@ -156,7 +157,7 @@ class AddressListComponent extends React.Component {
           <TableBody>
             {
               this.state.list.map(row => (
-                <TableRow key={row.id}>
+                <StyledTableRow key={row.id}>
                   <TableCell>{row.name}</TableCell>
                   <TableCell>
                     <div>{row.address1}</div>
@@ -169,7 +170,7 @@ class AddressListComponent extends React.Component {
                     <Button variant="contained" color="primary" onClick={() => this.edit(row.id)}>Edit</Button>&nbsp;
                     <Button variant="contained" color="primary" onClick={() => this.delete(row.id)}>Delete</Button>
                   </TableCell>
-                </TableRow>
+                </StyledTableRow>
               ))
             }
           </TableBody>

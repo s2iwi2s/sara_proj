@@ -9,8 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.sara.data.repository.AddressMongoRepository;
+import com.sara.data.repository.AuthorizedUrlMongoRepository;
 import com.sara.data.repository.CodeGroupsMongoRepository;
-import com.sara.data.repository.EndUserMongoRepository;
+import com.sara.data.repository.UserMongoRepository;
+import com.sara.data.repository.RoleMongoRepository;
+import com.sara.data.repository.SchoolMongoRepository;
+import com.sara.data.repository.StudentMongoRepository;
 
 @SpringBootTest
 class SaraDataApplicationTest {
@@ -20,8 +24,22 @@ class SaraDataApplicationTest {
 
 	@Autowired
 	private CodeGroupsMongoRepository codeGroupsMongoRepository;
+	
 	@Autowired
-	private EndUserMongoRepository endUserMongoRepository;
+	private UserMongoRepository userMongoRepository;
+
+	@Autowired
+	private AuthorizedUrlMongoRepository authorizedUrlMongoRepository;
+	
+	@Autowired
+	private RoleMongoRepository roleMongoRepository;
+	
+	@Autowired
+	private StudentMongoRepository studentMongoRepository;
+	
+	@Autowired
+	private SchoolMongoRepository schoolMongoRepository;
+	
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -40,7 +58,11 @@ class SaraDataApplicationTest {
 	void test() {
 		assertNotNull(addressMongoRepository);
 		assertNotNull(codeGroupsMongoRepository);
-		assertNotNull(endUserMongoRepository);
+		assertNotNull(userMongoRepository);
+		assertNotNull(authorizedUrlMongoRepository);
+		assertNotNull(roleMongoRepository);
+		assertNotNull(studentMongoRepository);
+		assertNotNull(schoolMongoRepository);
 	}
 
 }

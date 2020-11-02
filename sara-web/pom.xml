@@ -50,6 +50,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.5</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -97,4 +102,27 @@
 
 		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<profiles.active>dev</profiles.active>
+				<db.mongodb.url>mongodb://root:root@localhost:27017/sara_proj</db.mongodb.url>
+				<logo.location>logo</logo.location>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>prod</id>
+			<properties>
+				<profiles.active>prod</profiles.active>
+				<db.mongodb.url>mongodb+srv://learn:g389BDSRANliLC1f@cluster0.5qocd.mongodb.net/learn?retryWrites=true&amp;w=majority</db.mongodb.url>
+				<logo.location>logo</logo.location>
+			</properties>
+		</profile>
+	</profiles>
 </project>

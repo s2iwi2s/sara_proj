@@ -49,7 +49,7 @@ const AppRouting = props => {
        <AuthenticatedRoute path="/end-user-detail/:id" exact component={EndUserDetailComponent} />
        <AuthenticatedRoute path="/address-list" exact component={AddressListComponent} />
        <AuthenticatedRoute path="/address-detail/:id" exact component={AddressDetailComponent} />
-       <AuthenticatedRoute path="/address-detail/:id/:userId" exact component={AddressDetailComponent} />
+       <AuthenticatedRoute path="/address-detail/:id/:refId/:typeId" exact component={AddressDetailComponent} />
        <AuthenticatedRoute path="/code-groups-list" exact component={CodeGroupsListComponent} />
        <AuthenticatedRoute path="/code-groups-detail/:id" exact component={CodeGroupsDetailComponent} />
        <Route component={ErrorComponent} />

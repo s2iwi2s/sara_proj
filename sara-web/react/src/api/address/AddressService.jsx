@@ -1,5 +1,5 @@
 import axios from "axios";
-import Utils, { API_URL_BASE } from '../Utils'
+import Utils, { API_URL_BASE, ADDRESS_TYPE } from '../Utils'
 
 export const ENTITY = "address";
 class AddressService {
@@ -20,12 +20,12 @@ class AddressService {
   const theurl = `${Utils.urlSavePattern(ENTITY)}`
   return axios.post(theurl, data);
  }
- getListByUser = (userId, searchValue) => {
-  const theurl = `${API_URL_BASE}address/by/END_USER/${userId}?searchValue=${searchValue}`
+ getListByUser = (refId, searchValue) => {
+  const theurl = `${API_URL_BASE}address/by/${refId}?searchValue=${searchValue}`
   return axios.get(theurl);
  }
- getByUser = (userId) => {
-  const theurl = `${API_URL_BASE}address/endUser/${userId}`
+ getByRefId = (refId, typeId) => {
+  const theurl = `${API_URL_BASE}address/byRefId/${typeId}/${refId}`//ADDRESS_TYPE
   return axios.get(theurl);
  }
 }

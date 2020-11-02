@@ -19,20 +19,19 @@ public class SaraWebApplication implements CommandLineRunner {
 	public static void main(String[] args) {
 		SpringApplication.run(SaraWebApplication.class, args);
 	}
+
 	@Bean
-	public String profilesActive(@Value("${profiles.active}") String profilesActive) {
+	public String profilesActive(@Value("${profiles.active}") String profilesActive,
+			@Value("${logo.location}") String logoLocation,
+			@Value("${spring.data.mongodb.uri}") String mongodb) {
 		log.info("\n\n\n" + "***************************************************\n"
 				+ "** @SpringBootApplication PROFILESACTIVE ==>>" + profilesActive + "\n"
+				+ "** @SpringBootApplication MONGODB ==>>" + mongodb + "\n"
+				+ "** @SpringBootApplication LOGOLOCATION ==>>" + logoLocation + "\n"
 				+ "***************************************************\n\n\n");
 		return profilesActive;
 	}
-	@Bean
-	public String mongodb(@Value("${spring.data.mongodb.uri}") String mongodb) {
-		log.info("\n\n\n" + "***************************************************\n"
-				+ "** @SpringBootApplication MONGODB ==>>" + mongodb + "\n"
-				+ "***************************************************\n\n\n");
-		return mongodb;
-	}
+
 	@Override
 	public void run(String... args) throws Exception {
 //		log.info("SaraWebApplication - BeanDefinitionNames");

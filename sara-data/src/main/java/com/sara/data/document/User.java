@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.annotation.TypeAlias;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -16,7 +17,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@JsonIgnoreProperties(ignoreUnknown = true, value = {"address","endUsersRoles", "password"})
+@JsonIgnoreProperties(ignoreUnknown = true, value = {"roles", "password"})
 @Getter
 @Setter
 @AllArgsConstructor
@@ -29,19 +30,16 @@ public class User {
 	@Id
 	private String id;
 	
+	@Indexed(unique = true)
 	private String userName;
-
 	private String password;
-
 	private String lastName;
 	private String firstName;
 	
-	@DBRef(lazy = true)
-	private List<Role> endUsersRoles = new ArrayList<Role>();
+	@DBRef
+	private List<Role> roles = new ArrayList<Role>();
 
-	
-	@DBRef(lazy = true)
-	private List<Address> address;
 
+	@DBRef
 	private School school;
 }

@@ -31,9 +31,7 @@ public class School {
 
 	private String name;
 	private String shoolYear;
-	
 
-	@JsonIgnore
-	@DBRef(lazy = true)
-	private List<Address> address;
+	private String logo;
+	private String address;
 }
