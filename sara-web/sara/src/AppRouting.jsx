@@ -28,13 +28,16 @@ import BillingSearchComponent from './forms/billing/BillingSearchComponent';
 import { PAGE_URL } from './api/Utils';
 import { useStyles } from './forms/common/CSS'
 import { AuthenticationProvider, useAuth } from './security/AuthenticationProvider';
-import AuthenticationService from './security/AuthenticationService';
 
+import AuthenticationService from './security/AuthenticationService';
 
 const AppRouting = props => {
  const [userObj, setUserObj] = useAuth();
 
  useEffect(() => {
+  const themeDarkMode = sessionStorage.getItem('theme-darkMode');
+  console.log(`[AuthenticationService.useEffect] themeDarkMode=${themeDarkMode}`)
+  setDarkMode(themeDarkMode == 'Y' ? true : false);
   setUserObj(AuthenticationService.getLoggedUserObj());
  }, []);
 
@@ -47,7 +50,10 @@ const AppRouting = props => {
    type: darkMode ? "dark" : "light",
   },
  });
- const toggleDarkMode = () => setDarkMode(!darkMode);
+ const toggleDarkMode = () => {
+  setDarkMode(!darkMode);
+  sessionStorage.setItem('theme-darkMode', !darkMode ? 'Y' : 'N');
+ }
 
  // render = () => {
  const classes = useStyles();
