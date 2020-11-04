@@ -18,6 +18,6 @@ public class StudentListService implements ListService<Student> {
 	private List<CodeGroups> studentLevelList = null;
 
 	public StudentListService(StudentServiceImpl studentListService, CodeGroupsServiceImpl codeGroupsServiceImpl) {
-		studentLevelList = codeGroupsServiceImpl.findByCode("STUDENT_LEVEL");
+		studentLevelList = codeGroupsServiceImpl.findByCodeList("STUDENT_LEVEL");
 	}
 }

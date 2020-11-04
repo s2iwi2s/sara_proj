@@ -88,11 +88,11 @@ public abstract class AbstractCrudController<T, ID> {
 
 	@PostMapping(path = Constants.URL_SAVE, consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public T save(@RequestBody T entity) {
+		log.debug("save entity => {}", entity);
 		ResponseStatus status = new ResponseStatus();
 		Response<T> res = getResponse();
 		res.setResponseStatus(status);
 		try {
-			log.info("entity==> {}", entity);
 			getService().save(entity);
 			status.setMessage("SUCCESS!");
 		} catch (Exception e) {

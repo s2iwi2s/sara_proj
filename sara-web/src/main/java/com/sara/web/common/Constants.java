@@ -1,6 +1,16 @@
 package com.sara.web.common;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
 public class Constants {
+	
+	private static final Logger log = LoggerFactory.getLogger(Constants.class);
+
 	public static final String NL = "\n";
 
 	public static final String CLIENT_URL = "http://localhost:3000";// 3000 4200
@@ -13,6 +23,9 @@ public class Constants {
 	public static final String URL_DELETE = "/d/{id}";
 	public static final String URL_DETAILS = "/g/{id}";
 	public static final String URL_SAVE = "/s";
+
+	public static final String URL_BILLING_USER_SEARCH = "/search/{by}";
+	public static final String URL_BILLING_USER_PAYABLES = "/payables/{id}";
 
 	public static final String URL_LOGO = "/r/logo/{logo}";
 
@@ -31,6 +44,15 @@ public class Constants {
 		
 		public String getAddressType() {
 			return addressType;
+		}
+	}
+	public static void toJson(Object obj) {
+		try {
+			ObjectMapper jsonObjMap = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+			String json = jsonObjMap.writeValueAsString(obj);
+			log.debug("jInfo:\n" + json);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
 		}
 	}
 
