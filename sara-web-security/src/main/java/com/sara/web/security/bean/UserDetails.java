@@ -9,16 +9,18 @@ import lombok.Getter;
 public class UserDetails {
 	private String userName;
 	private String userFullName;
+	private String schoolId;
 	private String schoolName;
 	private String schoolLogo;
-	
+
 	public UserDetails(User user) {
 		super();
 		this.userName = user.getUserName();
 		this.userFullName = user.getFirstName() + " " + user.getLastName();
-		
+
 		School school = user.getSchool();
-		if(user.getSchool() != null) {
+		if (user.getSchool() != null) {
+			this.schoolId = school.getId();
 			this.schoolName = school.getName();
 			this.schoolLogo = school.getLogo();
 		}
