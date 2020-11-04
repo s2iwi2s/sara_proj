@@ -7,7 +7,7 @@ export const ENTITY = "codeGroups";
 class CodeGroupsService {
 
  getList = (searchValue, page, pageSize) => {
-  const theurl = `${Utils.urlListPattern(ENTITY)}?searchValue=${searchValue}&page=${page}&size=${pageSize}`
+  const theurl = `${Utils.urlListPattern(ENTITY)}?searchValue=${searchValue}&page=${page}&size=${pageSize}&sort=code,priority,description`
   return axios.get(theurl);
  }
  get = (id) => {

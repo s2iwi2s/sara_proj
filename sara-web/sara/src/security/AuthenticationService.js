@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from "axios";
 import { AUTH_URL_BASE, AUTH_USER, AUTH_USER_OBJ, JWT_TOKEN } from '../api/Utils.js'
-import { useAuth } from './AuthenticationProvider';
 
 
 let myInterceptor

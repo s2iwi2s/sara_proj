@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Typography from '@material-ui/core/Typography';
-import { Table, TableHead, TableRow, TableCell, TableBody, TablePagination, FormControl, Input, Grid, IconButton, Box } from '@material-ui/core';
+import { Table, TableHead, TableCell, TableBody, TablePagination, FormControl, Input, Grid, IconButton, Box } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
@@ -117,7 +117,7 @@ export default class StudentListComponent extends React.Component {
         <Table>
           <TableHead>
             <StyledTableHeadRow>
-              <TableCell>ID</TableCell>
+              <TableCell>Student ID</TableCell>
               <TableCell>LRN</TableCell>
               <TableCell>Name</TableCell>
               <TableCell>Gender</TableCell>
@@ -133,11 +133,11 @@ export default class StudentListComponent extends React.Component {
           <TableBody>
             {this.state.list.map(row => (
               <StyledTableRow key={row.id}>
-                <TableCell>{row.id}</TableCell>
+                <TableCell>{row.studentId}</TableCell>
                 <TableCell>{row.lrn}</TableCell>
                 <TableCell>{row.firstName} {row.lastName}</TableCell>
                 <TableCell>{row.gender}</TableCell>
-                <TableCell>{row.level && row.level.value}</TableCell>
+                <TableCell>{row.level && row.level.description}</TableCell>
 
                 <TableCell align="right">
                   <IconButton aria-label="edit" onClick={() => this.edit(row.id)}>

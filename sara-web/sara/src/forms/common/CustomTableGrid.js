@@ -1,7 +1,7 @@
 
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Table, TableHead, TableRow, TableCell, Button, TableBody, TablePagination, FormControl, Input, Grid, IconButton } from '@material-ui/core';
+import { Table, TableHead, TableRow, TableCell, TableBody, TablePagination, FormControl, Input, Grid, IconButton } from '@material-ui/core';
 
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
@@ -15,9 +15,9 @@ export default function CustomTableGrid(props) {
 
  useEffect(() => {
   console.log('==>props.store=>', props.store)
-  if (props.store.INIT_STATUS == INIT_STATUS.INIT) {
+  if (props.store.INIT_STATUS === INIT_STATUS.INIT) {
    props.doRetrieve();
-  } else if (props.store.INIT_STATUS == INIT_STATUS.LOAD) {
+  } else if (props.store.INIT_STATUS === INIT_STATUS.LOAD) {
    reset(props.store);
   }
  }, [props.store])
@@ -72,7 +72,7 @@ export default function CustomTableGrid(props) {
       ))}
       <TableCell align="right">
        Action
-        <IconButton aria-label="add" onClick={() => this.edit(-1)}>
+        <IconButton aria-label="add" onClick={() => props.doEdit(-1)}>
         <AddIcon fontSize="large" />
        </IconButton>
       </TableCell>

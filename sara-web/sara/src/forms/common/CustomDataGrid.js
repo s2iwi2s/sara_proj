@@ -1,15 +1,10 @@
 import * as React from 'react';
-import Button from '@material-ui/core/Button';
 import { DataGrid } from '@material-ui/data-grid';
 import { IconButton } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
-import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 
 export default function CustomDataGrid(props) {
-   const display = params => {
-      console.log('====>', params)
-   }
 
    const getRowCount = rowCount => {
       if (!rowCount) {

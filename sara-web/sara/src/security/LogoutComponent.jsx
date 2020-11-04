@@ -2,20 +2,17 @@ import React, { useEffect } from 'react';
 
 import AuthenticationService from './AuthenticationService.js'
 import { useAuth } from './AuthenticationProvider';
+import { USER_TEMP } from '../api/Utils'
 
 
 export default function LogoutComponent() {
     const [userObj, setUserObj] = useAuth();
 
     useEffect(() => {
+        console.log('[SignInComponent.onSubmitPage]: userObj', userObj);
         AuthenticationService.logout();
-        setUserObj({
-            userName: '',
-            userFullName: 'Guest',
-            schoolName: '',
-            schoolLogo: ''
-        });
-    }, []);
+        setUserObj(USER_TEMP);
+    });
 
     return (
         <div className="container" >

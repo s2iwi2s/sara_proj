@@ -4,28 +4,37 @@ import Utils, { INIT_STATUS, ERROR_CODE, PAGE_URL } from '../../api/Utils'
 import StudentDetailHtml from './StudentDetailHtml.js';
 import StudentService from '../../api/student/StudentService'
 import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../security/AuthenticationProvider';
 
 export default function StudentDetailComponent(props) {
   const history = useHistory();
 
   const [message, setMessage] = useState("");
+  const [userObj] = useAuth();
 
   const [store, setStore] = useState({
     initStatus: ((props.match.params.id === -1) ? INIT_STATUS.INIT : INIT_STATUS.LOAD),
+    school: { 'id': userObj.schoolId },
     id: '',
     entityId: props.match.params.id,
-    firstName: 'XXXXXXXXX',
-    lastName: 'XXXX',
+    firstName: '',
+    lastName: '',
     birthDate: moment().format('YYYY-MM-DD'),
-    birthPlace: 'XXXXXXXX',
-    gender: 'Male',
-    level: { 'id': '5f98aeec419c2a4777cfa86e' },
-    address: [{
-      address1: '0000 XXXXXXXX XXXX XXXXXXXX ',
-      address2: '00000',
-      city: 'XXXXXXXX',
-      zipCode: '00000000000'
-    }],
+    birthPlace: '',
+    gender: '',
+    contactNo: '',
+    level: { 'id': '' },
+    address1: '',
+    address2: '',
+    city: '',
+    zipCode: '',
+    country: 'Philippines',
+    fathersName: '',
+    fathersOccupation: '',
+    mothersName: '',
+    mothersOccupation: '',
+    parentCivilStatus: '',
+    guardianName: '',
     optionsList: {
       studentLevelList: []
     }
@@ -34,12 +43,6 @@ export default function StudentDetailComponent(props) {
   const onInitFormData = (data) => {
     if (data.birthDate) {
       data.birthDate = moment(data.birthDate).format('YYYY-MM-DD');
-    }
-    if (!data.address || data.address.length === 0) {
-      data.address = [{ 'id': '' }];
-    }
-    if (!data.level) {
-      data.level = { 'id': '' };
     }
     if (!data.level) {
       data.level = { 'id': '' };
@@ -52,7 +55,7 @@ export default function StudentDetailComponent(props) {
   }
 
   const onSubmitForm = (data) => {
-    console.log('[StudentDetailComponent.onSubmit] data==>', data)
+    console.log('[StudentDetailComponent.onSubmitForm] data==>', data)
 
     setMessage(``);
     StudentService.save(data).then(response => onSubmitFormResponseAction(response))
@@ -79,7 +82,7 @@ export default function StudentDetailComponent(props) {
 
     setMessage(`Loading. Please wait...`);
     StudentService.get(id ? id : props.match.params.id).then(response => onRetrieveResponseAction(response, id))
-    // .catch(error => setError(error, ERROR_CODE.RETRIEVE_ERROR, 'StudentDetailComponent.onRetrieve', 'StudentService.get'));
+      .catch(error => setError(error, ERROR_CODE.RETRIEVE_ERROR, 'StudentDetailComponent.onRetrieve', 'StudentService.get'));
   }
 
   const onRetrieveResponseAction = (response, id) => {
@@ -88,8 +91,10 @@ export default function StudentDetailComponent(props) {
     if (!data) {
       data = {};
     }
+
     console.log(`[StudentDetailComponent.onRetrieveResponseAction] data==>`, data)
     data.optionsList = response.data.listService
+    data.school = { 'id': userObj.schoolId };
     onInitFormData(data);
 
     data.initStatus = INIT_STATUS.RESET;

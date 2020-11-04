@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { AppBar, IconButton, Toolbar, Typography, Avatar, Box, FormControlLabel, Switch } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
@@ -21,15 +21,13 @@ export default function AppBarComponent(props) {
 
  const classes = useStyles();
  // const userName = AuthenticationService.getLoginUserName();
- const isLogin = AuthenticationService.isUserLoggedIn();
+ // const isLogin = AuthenticationService.isUserLoggedIn();
 
- const printme = (d) => {
-  console.log(d);
- }
- printme(userObj);
+ // printme(userObj);
 
  return (
   < div className={classes.appbar_root} >
+   {console.log('[AppBarComponent.return] userObj=>', userObj)}
    <AppBar position="static">
     <Toolbar>
      <IconButton

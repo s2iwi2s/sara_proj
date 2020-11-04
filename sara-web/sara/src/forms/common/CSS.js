@@ -152,6 +152,9 @@ export const useStyles = makeStyles((theme) => ({
         height: '100vh',
         overflow: 'auto',
     },
+    payableTableStyles: {
+        maxWidth: 700,
+    },
 }));
 
 class CSS {

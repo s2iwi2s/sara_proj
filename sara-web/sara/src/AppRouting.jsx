@@ -25,34 +25,48 @@ import StudentListComponent from './forms/student/StudentListComponent';
 
 import BillingSearchComponent from './forms/billing/BillingSearchComponent';
 
-import { PAGE_URL } from './api/Utils';
+import { PAGE_URL, INIT_STATUS, THEME } from './api/Utils';
 import { useStyles } from './forms/common/CSS'
-import { AuthenticationProvider, useAuth } from './security/AuthenticationProvider';
+import { useAuth } from './security/AuthenticationProvider';
 
 import AuthenticationService from './security/AuthenticationService';
 
-const AppRouting = props => {
+const AppRouting = () => {
+ const [store, setStore] = useState({ 'INIT_STATUS': INIT_STATUS.INIT_STATUS });
  const [userObj, setUserObj] = useAuth();
 
  useEffect(() => {
-  const themeDarkMode = sessionStorage.getItem('theme-darkMode');
-  console.log(`[AuthenticationService.useEffect] themeDarkMode=${themeDarkMode}`)
-  setDarkMode(themeDarkMode == 'Y' ? true : false);
-  setUserObj(AuthenticationService.getLoggedUserObj());
- }, []);
+  console.log(`[AuthenticationService.useEffect] userObj=>`, userObj)
+  if (store.INIT_STATUS === INIT_STATUS.INIT_STATUS) {
+   //initialize theme
+   initTheme();
 
- const [data, setData] = useState([]);
- const [country, setCountry] = useState('');
+   //initialize user
+   setUserObj(AuthenticationService.getLoggedUserObj());
+
+   // update INIT_STATUS to DONE to prevent inifinite loop
+   setStore({
+    INIT_STATUS: INIT_STATUS.DONE
+   });
+  }
+ });
+ const initTheme = () => {
+  const themeDarkMode = localStorage.getItem(THEME.THEME_STORAGE_NAME);
+  console.log(`[AuthenticationService.useEffect] themeDarkMode=${themeDarkMode}, userObj=>`, userObj)
+
+  setDarkMode(themeDarkMode === 'Y' ? true : false);
+ }
+
  const [darkMode, setDarkMode] = useState(false);
 
  const theme = createMuiTheme({
   palette: {
-   type: darkMode ? "dark" : "light",
+   type: darkMode ? THEME.DARK_MODE : THEME.LIGHT_MODE,
   },
  });
  const toggleDarkMode = () => {
   setDarkMode(!darkMode);
-  sessionStorage.setItem('theme-darkMode', !darkMode ? 'Y' : 'N');
+  localStorage.setItem(THEME.THEME_STORAGE_NAME, !darkMode ? 'Y' : 'N');
  }
 
  // render = () => {
@@ -69,7 +83,6 @@ const AppRouting = props => {
 
       <AppBarComponent darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
-
       <Container component="main" className={classes.container}>
        <Switch>
         <Route path={PAGE_URL.ROOT} exact component={Dashboard} />
@@ -81,6 +94,7 @@ const AppRouting = props => {
         <Route path={PAGE_URL.STUDENT_LIST} component={StudentListComponent} />
         <Route path={PAGE_URL.STUDENT_DETAIL} component={StudentDetailComponent} />
 
+        <AuthenticatedRoute path={PAGE_URL.BILLING_PAYABLES} exact component={BillingSearchComponent} />
         <AuthenticatedRoute path={PAGE_URL.BILLING} exact component={BillingSearchComponent} />
 
         <AuthenticatedRoute path={PAGE_URL.USER_LIST} exact component={EndUserListComponent} />

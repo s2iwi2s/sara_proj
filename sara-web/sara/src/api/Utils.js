@@ -2,6 +2,14 @@
 import { TableRow } from '@material-ui/core';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 
+export const USER_TEMP = {
+    userName: '',
+    userFullName: 'Guest',
+    schoolName: 'SARA PROJECT',
+    schoolLogo: '',
+    schoolId: ''
+}
+
 // export const URL_BASE = 'http://localhost:8081';
 export const URL_BASE_DEV = 'http://localhost:5000';
 export const URL_BASE = process.env.NODE_ENV === 'development' ? URL_BASE_DEV : '';
@@ -21,7 +29,11 @@ export const UPDATE_ERROR = 'Error: Unable to update. Please contact system admi
 export const REQUIRED_DESCRIPTION = 'Description is required';
 export const REQUIRED_5_DESCRIPTION = 'Description should be atleast 5 characters';
 export const REQUIRED_TARGET_DATE = 'Target date is required';
-
+export const THEME = {
+    DARK_MODE: 'dark',
+    LIGHT_MODE: 'light',
+    THEME_STORAGE_NAME: 'THEME_DARK_MODE'
+}
 export const PAGE_URL = {
     LOGO_URL: '/r/logo/',
     ROOT: '/',
@@ -32,7 +44,9 @@ export const PAGE_URL = {
     STUDENT_LIST: '/ui/student-list',
     STUDENT_DETAIL: '/ui/student-detail/:id',
     STUDENT_DETAIL_URL: '/ui/student-detail',
-    BILLING: '/ui/billing-search',
+    BILLING: '/ui/billing',
+    BILLING_PAYABLES: '/ui/billing/:id',
+    BILLING_PAYABLES_URL: '/ui/billing',
     USER_LIST: '/ui/user-list',
     USER_DETAIL: '/ui/user-detail/:id',
     USER_DETAIL_URL: '/ui/user-detail',
@@ -46,8 +60,10 @@ export const PAGE_URL = {
 
 export const INIT_STATUS = {
     INIT: 'INIT',
+    DONE: 'DONE',
     LOAD: 'LOAD',
-    RESET: 'RESET'
+    RESET: 'RESET',
+    PAYABLES: 'PAYABLES'
 }
 
 export const ERROR_CODE = {
@@ -68,6 +84,14 @@ export const StyledTableHeadRow = withStyles((theme) => ({
             backgroundColor: theme.palette.background,
         },
     },
+    // head: {
+    // backgroundColor: theme.palette.common.white,
+    // color: theme.palette.common.white,
+    // },
+    // body: {
+    //     fontSize: 14,
+    //     fontWeight: "bold",
+    // },
 }))(TableRow);
 
 export const StyledTableRow = withStyles((theme) => ({
@@ -75,8 +99,21 @@ export const StyledTableRow = withStyles((theme) => ({
         '&:nth-of-type(odd)': {
             backgroundColor: theme.palette.action.hover,
         },
+        // fontSize: 20,
+        // fontWeight: "bold",
     },
 }))(TableRow);
+
+// export const StyledTableCell = withStyles((theme) => ({
+//     head: {
+//         backgroundColor: theme.palette.common.black,
+//         color: theme.palette.common.white,
+//     },
+//     body: {
+//         fontSize: 14,
+//     },
+// }))(TableCell);
+
 
 class Utils {
     getFormatedErrorMessage = (error, errorCode, formMethod, serviceName) => {

@@ -24,7 +24,8 @@ export default function SignInComponent() {
         console.log('[SignInComponent.onSubmitPage]: response', response);
         AuthenticationService.registerJwtSucessfulLogin(response.data.userDetails, response.data.token)
 
-        setUserObj(response.data.userDetails)
+        setUserObj(response.data.userDetails);
+        console.log('[SignInComponent.onSubmitPage]: userObj', userObj);
 
         //registerBasicAuthSucessfulLogin(this.state.username, this.state.password);
         setMessage('Login Successful!');

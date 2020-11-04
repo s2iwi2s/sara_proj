@@ -76,8 +76,6 @@ export default function CodeGroupsListComponent(props) {
     doRetrieve();
   }
 
-
-
   const cols = [
     {
       field: 'code',
@@ -90,15 +88,7 @@ export default function CodeGroupsListComponent(props) {
     {
       field: 'description',
       headerName: 'Description',
-    },
-    {
-      field: 'bool',
-      headerName: 'Bool',
-    },
-    {
-      field: 'num',
-      headerName: 'Num',
-    },
+    }
   ];
 
   return (

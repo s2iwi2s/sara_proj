@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Typography from '@material-ui/core/Typography';
-import { Table, TableHead, TableRow, TableCell, Button, TableBody, TablePagination, FormControl, Input, Grid, IconButton, Box } from '@material-ui/core';
+import { Table, TableHead, TableRow, TableCell, TableBody, TablePagination, FormControl, Input, Grid, IconButton, Box } from '@material-ui/core';
 
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
@@ -9,7 +9,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import SearchIcon from '@material-ui/icons/Search';
 
 import EndUserService from '../../api/endUser/EndUserService';
-
+import { PAGE_URL } from '../../api/Utils'
 class EndUserListComponent extends React.Component {
   state = {
     list: [],
@@ -43,7 +43,7 @@ class EndUserListComponent extends React.Component {
   }
   edit = (id) => {
     console.log(`[EndUserListComponent.edit] id=${id}`)
-    this.props.history.push(`/end-user-detail/${id}`);
+    this.props.history.push(`${PAGE_URL.USER_DETAIL_URL}/${id}`);
   }
   delete = (id) => {
     console.log(`[EndUserListComponent.delete] id=${id}`)

@@ -1,134 +1,224 @@
-import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import { MenuItem, Button } from '@material-ui/core';
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 
-import TextFormControl from '../common/TextFormControl';
+import { Button, Grid, TextField, Typography } from '@material-ui/core';
+
+import CancelIcon from '@material-ui/icons/Cancel';
+import SaveIcon from '@material-ui/icons/Save';
+import AddIcon from '@material-ui/icons/Add';
+
+
 import CodeGroupsService from '../../api/codeGroups/CodeGroupsService';
-import { PAGE_URL } from '../../api/Utils';
+import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
+import { useAuth } from '../../security/AuthenticationProvider';
+import Alert from '@material-ui/lab/Alert';
 
-export default class CodeGroupsDetailComponent extends React.Component {
-  state = {
-    "id": '',
-    "title": "",
-    "status": { "id": '' },
-    "caseType1": { "id": '' },
-    "caseType2": { "id": '' },
-    "caseType3": { "id": '' },
-    "statusCode": { "id": '' },
-    "comments": "",
+export default function CodeGroupsDetailComponent(props) {
 
-    "listService": {
-      "statusList": [],
-      "caseType1List": [],
-      "caseType2List": [],
-      "caseType3List": [],
-      "statusCodeList": []
+  const history = useHistory();
+  const { register, handleSubmit, reset } = useForm();
+  const [userObj] = useAuth();
+  const [message, setMessage] = useState('Loading. Please wait...');
+
+  const [store, setStore] = useState({
+    INIT_STATUS: ((props.match.params.id === -1) ? INIT_STATUS.INIT : INIT_STATUS.LOAD),
+    'school': { 'id': userObj.schoolId },
+    'id': props.match.params.id,
+    'priority': 1,
+    'code': '',
+    'value': '',
+    'description': '',
+    'json': '',
+    'listService': {}
+  });
+
+
+  useEffect(() => {
+    console.log(`[CodeGroupsDetailComponent.useEffect] store==>`, store)
+    console.log(`[CodeGroupsDetailComponent.useEffect] userObj==>`, userObj)
+    //retrieve();
+    if (store.INIT_STATUS === INIT_STATUS.LOAD) {
+      retrieve();
+    } if (store.INIT_STATUS === INIT_STATUS.RESET) {
+      reset(store)
     }
-  };
+  }, [store]);
 
 
-  getBlankDetails = () => {
+  const getBlankDetails = () => {
     return {
-      "id": '',
-      "title": "",
-      "status": { "id": '' },
-      "caseType1": { "id": '' },
-      "caseType2": { "id": '' },
-      "caseType3": { "id": '' },
-      "statusCode": { "id": '' },
-      "comments": "",
-
-      "listService": {
-        "statusList": [],
-        "caseType1List": [],
-        "caseType2List": [],
-        "caseType3List": [],
-        "statusCodeList": []
-      }
+      'message': '',
+      'school': { 'id': userObj.schoolId },
+      'id': '',
+      'priority': 1,
+      'code': '',
+      'value': '',
+      'description': '',
+      'json': '',
+      'optionsList': {}
     }
   }
-
-  componentDidMount = () => {
-    this.retrieve();
-  }
-
-  retrieve = () => {
-    console.log(`[CodeGroupsDetailComponent.retrieve] id==>${this.props.match.params.id}`)
-    CodeGroupsService.get(this.props.match.params.id)
+  const retrieve = () => {
+    console.log(`[CodeGroupsDetailComponent.retrieve] id==>${props.match.params.id}`)
+    setMessage('Loading. Please wait...');
+    CodeGroupsService.get(props.match.params.id)
       .then(response => {
         console.log(`[CodeGroupsDetailComponent.retrieve] response==>`, response)
-        let thestate = this.getBlankDetails();
-        if (this.props.match.params.id !== -1) {
+        let thestate = getBlankDetails();
+        if (props.match.params.id !== -1) {
           thestate = response.data.entity;
         }
-        thestate.listService = response.data.listService
-        this.setState(thestate)
-      })
+        thestate.school = { 'id': userObj.schoolId };
+        thestate.INIT_STATUS = INIT_STATUS.RESET;
+
+        //thestate.optionsList = response.data.optionsList
+        setStore(thestate)
+        setMessage('');
+        console.log(`[CodeGroupsDetailComponent.retrieve] store==>`, store)
+      }).catch(error => setError(error, ERROR_CODE.RETRIEVE_ERROR, 'CodeGroupsDetailComponent.retrieve', 'CodeGroupsService.get'));
+  }
+  const setError = (error, errorCode, formMethod, serviceName) => {
+    let errMsg = Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName);
+    setMessage(errMsg);
   }
 
-  save = () => {
-    console.log(`[CodeGroupsDetailComponent.save] id==>${this.props.match.params.id}`)
-    CodeGroupsService.save({
-      code: this.state.code,
-      value: this.state.value,
-      description: this.state.description,
-      bool: this.state.bool,
-      num: this.state.num,
-
-      id: this.state.id
-    }).then(response => {
+  function save(data) {
+    console.log(`[CodeGroupsDetailComponent.save] data==>`, data)
+    CodeGroupsService.save(data).then(response => {
       console.log(`[CodeGroupsDetailComponent.save] response==>`, response)
-      this.props.history.push(PAGE_URL.CODE_GROUPS_LIST);
-    })
+      history.push(PAGE_URL.CODE_GROUPS_LIST);
+    }).catch(error => setError(error, ERROR_CODE.SAVE_ERROR, 'CodeGroupsDetailComponent.save', 'CodeGroupsService.save'));
   }
 
-  changeState = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value
-    })
-  }
-
-  changeSelectState = (e) => {
-    this.setState({
-      [e.target.name]: { "id": e.target.value }
-    })
-  }
-
-  renderOptions = (optionsList) => {
-    return (optionsList.map(row => (
-      <MenuItem key={row.id} value={row.id}>{row.description}</MenuItem>
-    )))
-  }
-
-  render = () => {
-    return (
-      <>
-        <Typography variant="h4">CodeGroups Detail</Typography>
-        <form>
-          <TextFormControl label="Code"
-            name="code" value={this.state.code}
-            changeState={this.changeState} />
-          <TextFormControl label="Value"
-            name="value" value={this.state.value}
-            changeState={this.changeState} />
-          <TextFormControl label="Description"
-            name="description" value={this.state.description}
-            changeState={this.changeState} />
-          <TextFormControl label="Bool"
-            name="bool" value={this.state.bool}
-            changeState={this.changeState} />
-          <TextFormControl label="Num"
-            name="num" value={this.state.num}
-            changeState={this.changeState} />
+  return (
+    <>
+      {console.log(`[CodeGroupsDetailComponent.render] store==>`, store)}
+      <Typography variant="h4">CodeGroups Detail</Typography>
+      {message && <Alert severity="info">{message}</Alert>}
 
 
-          <Button variant="contained" color="primary" onClick={() => this.save()}>Save</Button>&nbsp;
-          <Button variant="contained" color="primary" onClick={() => this.props.history.push(PAGE_URL.CODE_GROUPS_LIST)}>Cancel</Button>
-        </form>
+      <form onSubmit={handleSubmit(save)}>
 
-      </ >
-    );
-  }
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={9}>
+          </Grid>
+          <Grid item xs={12} sm={1}>
+            <Button variant="contained" color="primary" type="submit" startIcon={<SaveIcon />}>Save</Button>
+          </Grid>
+          <Grid item xs={12} sm={1}>
+            <Button variant="contained" href={PAGE_URL.CODE_GROUPS_DETAIL_URL + '/-1'} startIcon={<AddIcon />}>New</Button>
+          </Grid>
+          <Grid item xs={12} sm={1}>
+            <Button variant="contained" onClick={() => history.push(PAGE_URL.CODE_GROUPS_LIST)} startIcon={<CancelIcon />}>Cancel</Button>
+          </Grid>
+        </Grid>
+
+        <TextField type="hidden"
+          name="id"
+          inputRef={register}
+          defaultValue={store.id}
+        />
+        <TextField type="hidden"
+          name="school.id"
+          inputRef={register}
+          defaultValue={store.school.id}
+        />
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              required
+              id="code"
+              name="code"
+              label="Code"
+              fullWidth
+              autoComplete="code-groups-code"
+              autoFocus
+              variant="filled"
+              InputLabelProps={{ shrink: true }}
+              inputRef={register}
+              defaultValue={store.code}
+            />
+          </Grid>
+          <Grid item xs={12} sm={5}>
+            <TextField
+              required
+              id="value"
+              name="value"
+              label="Value"
+              fullWidth
+              autoComplete="code-groups-value"
+              variant="filled"
+              InputLabelProps={{ shrink: true }}
+              inputRef={register}
+              defaultValue={store.code}
+            />
+          </Grid>
+          <Grid item xs={12} sm={1}>
+            <TextField
+              required
+              type="number"
+              id="priority"
+              name="priority"
+              label="priority"
+              fullWidth
+              autoComplete="code-groups-priority"
+              variant="filled"
+              InputLabelProps={{ shrink: true }}
+              inputRef={register}
+              defaultValue={store.priority}
+            />
+          </Grid>
+          <Grid item xs={12} sm={12}>
+            <TextField
+              required
+              id="description"
+              name="description"
+              label="Description"
+              fullWidth
+              autoComplete="code-groups-description"
+              variant="filled"
+              InputLabelProps={{ shrink: true }}
+              inputRef={register}
+              defaultValue={store.description}
+            />
+            <Grid item xs={12} sm={12}>&nbsp;</Grid>
+            <Grid item xs={12} sm={12}>
+              <TextField
+                multiline
+                rows={4}
+                id="json"
+                name="json"
+                label="JSON"
+                fullWidth
+                autoComplete="code-groups-json"
+                variant="filled"
+                InputLabelProps={{ shrink: true }}
+                inputRef={register}
+                defaultValue={store.json}
+              />
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={9}>
+          </Grid>
+          <Grid item xs={12} sm={1}>
+            <Button variant="contained" color="primary" type="submit" startIcon={<SaveIcon />}>Save</Button>
+          </Grid>
+          <Grid item xs={12} sm={1}>
+            <Button variant="contained" href={PAGE_URL.CODE_GROUPS_DETAIL_URL + '/-1'} startIcon={<AddIcon />}>New</Button>
+          </Grid>
+          <Grid item xs={12} sm={1}>
+            <Button variant="contained" onClick={() => history.push(PAGE_URL.CODE_GROUPS_LIST)} startIcon={<CancelIcon />}>Cancel</Button>
+          </Grid>
+        </Grid>
+
+      </form>
+
+    </ >
+  )
 }
 
 

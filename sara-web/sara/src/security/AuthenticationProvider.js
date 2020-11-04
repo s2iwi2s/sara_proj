@@ -1,3 +1,4 @@
+import { USER_TEMP } from '../api/Utils'
 import { createContext, useContext, useMemo, useState } from 'react';
 
 const AuthenticationContext = createContext();
@@ -11,12 +12,7 @@ function useAuth() {
 }
 
 function AuthenticationProvider(props) {
- const [userObj, setUserObj] = useState({
-  userName: '',
-  userFullName: 'Guest',
-  schoolName: '',
-  schoolLogo: ''
- });
+ const [userObj, setUserObj] = useState(USER_TEMP);
 
  const value = useMemo(() => [userObj, setUserObj], [userObj])
  return <AuthenticationContext.Provider value={value} {...props} />

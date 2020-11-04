@@ -47,7 +47,7 @@ export default class AddressDetailComponent extends React.Component {
   retrieve = () => {
     console.log(`[AddressDetailComponent.retrieve] id=${this.props.match.params.id}, userId=${this.props.match.params.refId}`);
     let thestate = this.getBlankDetails();
-    if (this.props.match.params.id == -1 && this.props.match.params.refId) {
+    if (this.props.match.params.id !== -1 && this.props.match.params.refId) {
       AddressService.getByRefId(this.props.match.params.refId, this.props.match.params.typeId)
         .then(response => {
           console.log(`[AddressDetailComponent.retrieve AddressService.getByRefId] response=>`, response);
@@ -112,7 +112,7 @@ export default class AddressDetailComponent extends React.Component {
 
   cancel = () => {
     console.log(`[AddressDetailComponent.cancel] userId=${this.props.match.params.refId}`);
-    if (this.props.match.params.refId && this.props.match.params.typeId == ADDRESS_TYPE.USER) {
+    if (this.props.match.params.refId && this.props.match.params.typeId === ADDRESS_TYPE.USER) {
       this.props.history.push(`${PAGE_URL.USER_DETAIL_URL}/${this.props.match.params.refId}`)
     } else {
       this.props.history.push(PAGE_URL.ADDRESS_LIST)

@@ -1,97 +1,71 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import EndUserService from '../../api/endUser/EndUserService';
 import EndUserDetailHtml from './EndUserDetailHtml';
-import AddressListComponent from '../address/AddressListComponent';
-import { ADDRESS_TYPE } from '../../api/Utils'
+import { INIT_STATUS, PAGE_URL } from '../../api/Utils'
 
-export default class EndUserDetailComponent extends React.Component {
-  state = {
+export default function EndUserDetailComponent(props) {
+
+  const [store, setStore] = useState({
+    'INIT_STATUS': ((props.match.params.id === -1) ? INIT_STATUS.INIT : INIT_STATUS.LOAD),
+    'school': { 'id': '' },
+    'entityId': props.match.params.id,
     'id': '',
     'userName': '',
+    'password': '',
     'firstName': '',
-    'lastName': ''
-  };
+    'lastName': '',
+    'optionsList': { schoolList: [] }
+  });
 
-
-  getBlankDetails = () => {
+  const getBlankDetails = () => {
     return {
+      INIT_STATUS: '',
+      'school': { 'id': '' },
       'id': '',
+      'entityId': props.match.params.id,
       'userName': '',
+      'password': '',
       'firstName': '',
-      'lastName': ''
+      'lastName': '',
+      'optionsList': { schoolList: [] }
     }
   }
 
-  componentDidMount = () => {
-    this.doRetrieve();
-  }
-
-  doRetrieve = () => {
-    console.log(`[EndUserDetailComponent.doRetrieve] id==>${this.props.match.params.id}`)
-    EndUserService.get(this.props.match.params.id)
+  const doRetrieve = () => {
+    console.log(`[EndUserDetailComponent.doRetrieve] id==>${props.match.params.id}`)
+    EndUserService.get(props.match.params.id)
       .then(response => {
         console.log(`[EndUserDetailComponent.doRetrieve] response==>`, response)
-        let thestate = this.getBlankDetails();
-        if (this.props.match.params.id !== -1) {
+        let thestate = getBlankDetails();
+        if (props.match.params.id !== -1) {
           thestate = response.data.entity;
         }
-        thestate.listService = response.data.listService
-        this.setState(thestate)
+        thestate.INIT_STATUS = INIT_STATUS.RESET;
+        thestate.optionsList = response.data.listService
+        setStore(thestate)
       });
   }
 
-  doSave = () => {
-    console.log(`[EndUserDetailComponent.save] id==>${this.props.match.params.id}`)
-    EndUserService.save({
-      id: this.state.id,
-      userName: this.state.userName,
-      password: this.state.password,
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      address: this.state.address
-    }).then(response => {
+  const onSubmitForm = (data) => {
+    console.log(`[EndUserDetailComponent.onSubmitForm] data==>`, data)
+    EndUserService.save(data).then(response => {
       console.log(`[EndUserDetailComponent.save] response==>`, response)
-      this.props.history.push(`/end-user-list`);
+      props.history.push(PAGE_URL.USER_LIST);
     });
   }
 
-  doChangeState = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+  const doCancel = () => {
+    props.history.push(PAGE_URL.USER_LIST);
   }
 
+  return (
+    <EndUserDetailHtml store={store}
+      doRetrieve={doRetrieve}
+      onSubmitForm={onSubmitForm}
+      doCancel={doCancel} />
 
-  doCancel = () => {
-    this.props.history.push(`/end-user-list`);
-  }
-  doEditAddress = (addressId, userId) => {
-    this.props.history.push(`/address-detail/${addressId}/${userId}/${ADDRESS_TYPE.USER}`);
-  }
-
-  render = () => {
-    return (
-      <EndUserDetailHtml userName={this.state.userName}
-        id={this.state.id}
-        password={this.state.password}
-        firstName={this.state.firstName}
-        lastName={this.state.lastName}
-        address={this.state.address}
-        doChangeState={this.doChangeState}
-        doSave={this.doSave}
-        doCancel={this.doCancel}
-        doEditAddress={this.doEditAddress}
-      >
-        <AddressListComponent
-          userId={this.props.match.params.id}
-          doCancelAddress={this.doCancelAddress}
-          userHistory={this.props.history}
-        />
-      </EndUserDetailHtml>
-
-    );
-  }
+  );
 }
 
 
