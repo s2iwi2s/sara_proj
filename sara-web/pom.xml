@@ -102,27 +102,4 @@
 
 		</plugins>
 	</build>
-
-	<profiles>
-		<profile>
-			<id>dev</id>
-			<properties>
-				<profiles.active>dev</profiles.active>
-				<db.mongodb.url>mongodb://root:root@localhost:27017/sara_proj</db.mongodb.url>
-				<logo.location>logo</logo.location>
-			</properties>
-		</profile>
-
-		<profile>
-			<id>prod</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<profiles.active>prod</profiles.active>
-				<db.mongodb.url>mongodb+srv://learn:g389BDSRANliLC1f@cluster0.5qocd.mongodb.net/learn?retryWrites=true&amp;w=majority</db.mongodb.url>
-				<logo.location>logo</logo.location>
-			</properties>
-		</profile>
-	</profiles>
 </project>
