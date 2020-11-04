@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import com.sara.data.document.DatabaseSequence;
+import com.sara.data.document.Student;
 
 @Service
 public class SequenceGeneratorService {
@@ -31,19 +33,30 @@ public class SequenceGeneratorService {
 		this.mongoOperations = mongoOperations;
 	}
 
-	public String nextSeq(String seqName) {
-		Format fmt = new SimpleDateFormat("yyyyMMdd");
-		Format fmtNum = new DecimalFormat("#########################################00000000");
-		String prefix = fmt.format(new Date());
+	public String nextSeq( String seqName) {
+		return nextSeq(null, seqName);
+	}
 
-		final String _seq = prefix + "_" + seqName;
+	public String nextSeq(String prefix, String seqName) {
+//		Format fmt = new SimpleDateFormat("yyyyMMdd");
+		Format fmtNum = new DecimalFormat("#########################################00000000");
+//		String prefix = fmt.format(new Date());
+
+		 String _seq = seqName;
+		if(!StringUtils.isBlank(prefix)) {
+			_seq = prefix + "_" + seqName;
+		}
 		long seq = 0;
 		synchronized (_seq) {
 			DatabaseSequence counter = mongoOperations.findAndModify(query(where("_id").is(_seq)),
 					new Update().inc("seq", 1), options().returnNew(true).upsert(true), DatabaseSequence.class);
 			seq = !Objects.isNull(counter) ? counter.getSeq() : 1;
 		}
-		String nextSeq = prefix + "-" + fmtNum.format(seq);
+		String nextSeq = "" + seq;
+		if(!StringUtils.isBlank(prefix)) {
+			nextSeq = prefix + "-" + fmtNum.format(seq);
+		}
+		
 		log.info("nextSeq==>" + nextSeq);
 		return nextSeq;
 

@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.querydsl.core.BooleanBuilder;
-import com.sara.data.document.User;
 import com.sara.data.document.QUser;
+import com.sara.data.document.User;
 import com.sara.data.repository.UserMongoRepository;
 import com.sara.service.AbstractService;
 

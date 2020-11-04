@@ -1,5 +1,7 @@
 package com.sara.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -7,7 +9,7 @@ import com.querydsl.core.BooleanBuilder;
 
 public interface ServiceInterface<T, ID> {
 	public Page<T> findAll(String searchValue, Pageable pageable);
-
+	public List<T> findAll();
 	public void findAllQBuilder(String searchValue, BooleanBuilder booleanBuilder);
 
 	public T getNewEntity();
