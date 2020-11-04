@@ -1,7 +1,6 @@
 package com.sara.data.document;
 
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
@@ -26,26 +25,44 @@ import lombok.Setter;
 public class Student {
 	@Transient
     public static final String SEQUENCE_NAME = "student_sequence";
+    public static final String SEQUENCE_STUDENT_ID = "student_id_sequence";
 
 	@Id
 	private String id;
 
 	private String lrn;
+	private String studentId;
+	
 	private String firstName;
 	private String gender;
+	private String contactNo;
 
 	private String lastName;
 	private Date birthDate;
 	private String birthPlace;
+	private String citizenship;
+	private String nationality;
+	private String address1;
+	private String address2;
+	private String city;
+	private String zipCode;
+	private String country;
+
+	private String fathersName;
+	private String fathersOccupation;
+	private String mothersName;
+	private String mothersOccupation;
+	private String parentCivilStatus;
+	private String guardianName;
+	
+	
+	
 	
 	@DBRef(lazy = true)
 	private CodeGroups level;
 
 	@DBRef(lazy = true)
 	private School school;
-
-	@Transient
-	private List<Address> address;
 
 	@Override
 	public String toString() {

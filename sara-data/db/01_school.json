@@ -1,0 +1,10 @@
+[{
+  "_id": {
+    "$oid": "5f9c52b3ef7618233e66f80e"
+  },
+  "name": "ST. LORENZO RUIZ ACADEMY OF TAGUM, INC.",
+  "shoolYear": "2020-2021",
+  "logo": "stlorenzoruiz",
+  "address": "Tagum City, Davao del Norte",
+  "_class": "School"
+}]

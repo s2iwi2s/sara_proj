@@ -17,7 +17,9 @@ public interface CodeGroupsMongoRepository
 		extends SaraRepositoryInterface<CodeGroups, String>, MongoRepository<CodeGroups, String>,
 		QuerydslPredicateExecutor<CodeGroups>, QuerydslBinderCustomizer<QCodeGroups> {
 //	@Query(Constants.CODE_GROUPS_QUERY)
-	public List<CodeGroups> findByCode(String code);
+	public List<CodeGroups> findByCodeOrderByPriority(String code);
+
+	public CodeGroups findByCode(String code);
 
 	@Override
 	// for QuerydslBinderCustomizer

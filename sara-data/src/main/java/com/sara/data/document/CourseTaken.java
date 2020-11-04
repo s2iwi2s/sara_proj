@@ -11,35 +11,20 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "school")
-@TypeAlias("School")
-public class School {
+@Document(collection = "course_taken")
+@TypeAlias("CourseTaken")
+public class CourseTaken {
+
 	@Transient
     public static final String SEQUENCE_NAME = "school_sequence";
 	@Id
 	private String id;
-
-	private String name;
-	private String shoolYear;
-
-	private String logo;
-	private String address;
 	
-	@Transient
-	public String getSchoolId() {
-		return id;
-	}
-
-	@Override
-	public String toString() {
-		return String.format("School [id=%s, name=%s, shoolYear=%s, logo=%s, address=%s]", id, name, shoolYear, logo,
-				address);
-	}
+	private School school;
 }

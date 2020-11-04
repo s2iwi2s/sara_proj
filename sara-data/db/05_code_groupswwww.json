@@ -1,0 +1,41 @@
+[{
+  "_id": {
+    "$oid": "5f98aeec419c2a4777cfa86e"
+  },
+  "code": "STUDENT_LEVEL",
+  "value": "Grade 2",
+  "description": "Grade 2",
+  "_class": "CodeGroups"
+},{
+  "_id": {
+    "$oid": "5f992354b45bd30d243387fa"
+  },
+  "code": "ADDRESS_TYPE",
+  "value": "1",
+  "description": "User Address",
+  "_class": "CodeGroups"
+},{
+  "_id": {
+    "$oid": "5f992435b45bd30d243387fb"
+  },
+  "code": "ADDRESS_TYPE",
+  "value": "2",
+  "description": "Student Address",
+  "_class": "CodeGroups"
+},{
+  "_id": {
+    "$oid": "5f992444b45bd30d243387fc"
+  },
+  "code": "ADDRESS_TYPE",
+  "value": "3",
+  "description": "Parent Address",
+  "_class": "CodeGroups"
+},{
+  "_id": {
+    "$oid": "5fa077353213dd53bb0f181c"
+  },
+  "code": "STUDENT_TYPE",
+  "value": "test",
+  "description": "test",
+  "_class": "CodeGroups"
+}]

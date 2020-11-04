@@ -1,17 +1,47 @@
 [{
   "_id": {
-    "$oid": "5f8d025279765c4bbc9dd592"
+    "$oid": "5f9c5e2d46aaf43d8da49976"
   },
-  "userName": "test",
-  "password": "$2a$10$fdxH3igDJy0ZKUdpKWtAsuri0GRed6sO14NTxchvC5PdyztTD4ztm",
+  "userName": "wpidor",
+  "password": "$2a$10$SGlG29uErMdpDl6FZPA5P.dJ/Mzx3M72PidzwRK2bZVhBH1e/XgbW",
+  "lastName": "Pidor",
   "firstName": "Winston",
-  "lastName": "pidor"
+  "roles": [
+    {
+      "$ref": "role",
+      "$id": {
+        "$oid": "5f8dbd30d266c45504e620d6"
+      }
+    }
+  ],
+  "school": {
+    "$ref": "school",
+    "$id": {
+      "$oid": "5f9c52b3ef7618233e66f80e"
+    }
+  },
+  "_class": "User"
 },{
   "_id": {
-    "$oid": "5f8d025279765c4bbc9dd593"
+    "$oid": "5f9c5e2d46aaf43d8da49977"
   },
-  "userName": "stoi",
-  "password": "$2a$10$fdxH3igDJy0ZKUdpKWtAsuri0GRed6sO14NTxchvC5PdyztTD4ztm",
-  "firstName": "stoi",
-  "lastName": "pidor"
+  "userName": "test",
+  "password": "$2a$10$i2iaNsOyWO40VHUg4Qsgtu1OwWIpe5SYSVi0u76ZlJ59IkmkK0Wlu",
+  "lastName": "test",
+  "firstName": "test",
+  "roles": [
+    {
+      "$ref": "role",
+      "$id": {
+        "$oid": "5f8dbd30d266c45504e620d6"
+      }
+    }
+  ],
+  "school": {
+    "$ref": "school",
+    "$id": {
+      "$oid": "5f9c52b3ef7618233e66f80e"
+    }
+  },
+  "_class": "User"
 }]
