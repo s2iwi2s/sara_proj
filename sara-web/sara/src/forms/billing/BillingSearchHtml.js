@@ -109,7 +109,7 @@ export default function BillingSearchHtml(props) {
                                 <Box py={3}><Divider /></Box>
                                 <Box pb={3}><Typography variant="h5">Payables</Typography></Box>
                                 <TableContainer component={Paper}>
-                                        <Table className={classes.payableTableStyles}>
+                                        <Table>
                                                 <TableHead>
                                                         <StyledTableHeadRow>
                                                                 <TableCell variant="head">Payables</TableCell>
