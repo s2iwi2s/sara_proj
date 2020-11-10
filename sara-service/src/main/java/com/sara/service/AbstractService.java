@@ -9,6 +9,9 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.sara.data.document.QStudent;
+import com.sara.data.document.User;
 import com.sara.data.repository.SaraRepositoryInterface;
 
 public abstract class AbstractService<T, ID> implements ServiceInterface<T, ID> {
@@ -32,15 +35,23 @@ public abstract class AbstractService<T, ID> implements ServiceInterface<T, ID> 
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public Page<T> findAll(String searchValue, Pageable pageable) {
-		if (searchValue != null && searchValue.trim().length() > 0) {
-			BooleanBuilder booleanBuilder = new BooleanBuilder();
-			findAllQBuilder(searchValue, booleanBuilder);
-			Predicate predicate = booleanBuilder.getValue();
-			return ((QuerydslPredicateExecutor<T>)repo).findAll(predicate, pageable);
-		}
+	public Page<T> findAll(String searchValue, Pageable pageable, User user) {	
+		BooleanBuilder searchbb = new BooleanBuilder();
+		findAllQBuilder(searchValue, searchbb, user);
+		
+		Predicate predicate = findAllPredicate(user, searchbb);
+		
+		return ((QuerydslPredicateExecutor<T>)repo).findAll(predicate, pageable);
+		//return findAll(pageable);
+	}
 
-		return findAll(pageable);
+	public Predicate findAllPredicate(User user, BooleanBuilder searchbb) {
+		BooleanBuilder mainbb = new BooleanBuilder();
+		BooleanExpression bex = getFindAllBooleanExpression(user);
+		mainbb.and(bex);
+		mainbb.and(searchbb);
+		Predicate predicate = mainbb.getValue();
+		return predicate;
 	}
 
 	@Override

@@ -5,12 +5,16 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.BooleanBuilder;
+import com.sara.data.document.User;
 
 public interface ServiceInterface<T, ID> {
-	public Page<T> findAll(String searchValue, Pageable pageable);
+	public Page<T> findAll(String searchValue, Pageable pageable, User user);
 	public List<T> findAll();
-	public void findAllQBuilder(String searchValue, BooleanBuilder booleanBuilder);
+	public void findAllQBuilder(String searchValue, BooleanBuilder mainbb, User user);
+	public BooleanExpression getFindAllBooleanExpression(User user);
 
 	public T getNewEntity();
 

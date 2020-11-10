@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.sara.data.document.Address;
 import com.sara.data.document.QAddress;
+import com.sara.data.document.QStudent;
 import com.sara.data.document.Student;
 import com.sara.data.document.User;
 import com.sara.data.repository.AddressMongoRepository;
@@ -33,16 +35,25 @@ public class AddressServiceImpl extends AbstractService<Address, String> {
 		super(repo);
 		this.repository = repo;
 	}
-
+	
 	@Override
-	public void findAllQBuilder(String searchValue, BooleanBuilder booleanBuilder) {
-		booleanBuilder.or(QAddress.address.name.containsIgnoreCase(searchValue));
-		booleanBuilder.or(QAddress.address.address1.containsIgnoreCase(searchValue));
-		booleanBuilder.or(QAddress.address.address2.containsIgnoreCase(searchValue));
-		booleanBuilder.or(QAddress.address.city.containsIgnoreCase(searchValue));
-		booleanBuilder.or(QAddress.address.state.containsIgnoreCase(searchValue));
-		booleanBuilder.or(QAddress.address.zipCode.containsIgnoreCase(searchValue));
-		booleanBuilder.or(QAddress.address.country.containsIgnoreCase(searchValue));
+	public BooleanExpression getFindAllBooleanExpression(User user) {
+		return null;
+	}
+	
+	public Predicate findAllPredicate(User user, BooleanBuilder searchbb) {
+		return searchbb.getValue();
+	}
+	
+	@Override
+	public void findAllQBuilder(String searchValue, BooleanBuilder searchbb, User user) {
+		searchbb.or(QAddress.address.name.containsIgnoreCase(searchValue));
+		searchbb.or(QAddress.address.address1.containsIgnoreCase(searchValue));
+		searchbb.or(QAddress.address.address2.containsIgnoreCase(searchValue));
+		searchbb.or(QAddress.address.city.containsIgnoreCase(searchValue));
+		searchbb.or(QAddress.address.state.containsIgnoreCase(searchValue));
+		searchbb.or(QAddress.address.zipCode.containsIgnoreCase(searchValue));
+		searchbb.or(QAddress.address.country.containsIgnoreCase(searchValue));
 	}
 
 	@Override

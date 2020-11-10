@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.sara.data.document.QStudent;
 import com.sara.data.document.QUser;
 import com.sara.data.document.User;
 import com.sara.data.repository.UserMongoRepository;
@@ -14,18 +17,30 @@ import com.sara.service.AbstractService;
 @Service
 public class UserServiceImpl extends AbstractService<User, String> {
 	Logger log = LoggerFactory.getLogger(this.getClass());
+	
 	private UserMongoRepository repository;
+	
 	@Autowired
 	public UserServiceImpl(UserMongoRepository repo) {
 		super(repo);
-		this.repository = repository;
+		this.repository = repo;
 	}
-
+	
 	@Override
-	public void findAllQBuilder(String searchValue, BooleanBuilder booleanBuilder) {
-		booleanBuilder.or(QUser.user.firstName.containsIgnoreCase(searchValue));
-		booleanBuilder.or(QUser.user.lastName.containsIgnoreCase(searchValue));
-		booleanBuilder.or(QUser.user.userName.containsIgnoreCase(searchValue));
+	public BooleanExpression getFindAllBooleanExpression(User user) {
+		return null;
+	}
+	
+	@Override
+	public Predicate findAllPredicate(User user, BooleanBuilder searchbb) {
+		return searchbb.getValue();
+	}
+	
+	@Override
+	public void findAllQBuilder(String searchValue, BooleanBuilder searchbb, User user) {
+		searchbb.or(QUser.user.firstName.containsIgnoreCase(searchValue));
+		searchbb.or(QUser.user.lastName.containsIgnoreCase(searchValue));
+		searchbb.or(QUser.user.userName.containsIgnoreCase(searchValue));
 	}
 
 	@Override

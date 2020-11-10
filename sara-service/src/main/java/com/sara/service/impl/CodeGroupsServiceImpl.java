@@ -2,6 +2,7 @@ package com.sara.service.impl;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,18 +11,27 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.sara.data.document.CodeGroups;
+import com.sara.data.document.QAddress;
 import com.sara.data.document.QCodeGroups;
+import com.sara.data.document.QStudent;
 import com.sara.data.document.School;
 import com.sara.data.document.Student;
+import com.sara.data.document.User;
 import com.sara.data.repository.CodeGroupsMongoRepository;
 import com.sara.service.AbstractService;
+import com.sara.service.SequenceGeneratorService;
 
 @Service
 public class CodeGroupsServiceImpl extends AbstractService<CodeGroups, String> {
 	
 	private static final Logger log = LoggerFactory.getLogger(CodeGroupsServiceImpl.class);
 
+	@Autowired
+	private SequenceGeneratorService sequenceGeneratorService;
+	
 	private CodeGroupsMongoRepository repository;
 	private SchoolServiceImpl schoolServiceImpl;
 
@@ -35,12 +45,17 @@ public class CodeGroupsServiceImpl extends AbstractService<CodeGroups, String> {
 	public Page<CodeGroups> findAll(Pageable pageable) {
 		return repository.findAll(pageable);
 	}
+	
+	@Override
+	public BooleanExpression getFindAllBooleanExpression(User user) {
+		return QCodeGroups.codeGroups.school.eq(user.getSchool());
+	}
 
 	@Override
-	public void findAllQBuilder(String searchValue, BooleanBuilder booleanBuilder) {
-		booleanBuilder.or(QCodeGroups.codeGroups.code.containsIgnoreCase(searchValue));
-		booleanBuilder.or(QCodeGroups.codeGroups.value.containsIgnoreCase(searchValue));
-		booleanBuilder.or(QCodeGroups.codeGroups.description.containsIgnoreCase(searchValue));
+	public void findAllQBuilder(String searchValue, BooleanBuilder searchbb, User user) {
+		searchbb.or(QCodeGroups.codeGroups.code.containsIgnoreCase(searchValue));
+		searchbb.or(QCodeGroups.codeGroups.value.containsIgnoreCase(searchValue));
+		searchbb.or(QCodeGroups.codeGroups.description.containsIgnoreCase(searchValue));
 	}
 
 	@Override
@@ -60,6 +75,11 @@ public class CodeGroupsServiceImpl extends AbstractService<CodeGroups, String> {
 	public CodeGroups save(CodeGroups entity) {
 		log.info("save CodeGroups entity==>{}", entity); 
 		log.info("save CodeGroups schoolId==>{}", entity.getSchool()); 
+		if(StringUtils.isBlank(entity.getId())) {
+			String id = sequenceGeneratorService.nextSeq(CodeGroups.SEQUENCE_NAME);
+			entity.setId(id);
+		}
+		
 		if(entity.getSchool() != null) {
 			School school = schoolServiceImpl.findById(entity.getSchool().getId());
 			entity.setSchool(school);

@@ -6,8 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.sara.data.document.QCodeGroups;
 import com.sara.data.document.QSchool;
 import com.sara.data.document.School;
+import com.sara.data.document.User;
 import com.sara.data.repository.SchoolMongoRepository;
 import com.sara.service.AbstractService;
 import com.sara.service.SequenceGeneratorService;
@@ -15,6 +19,7 @@ import com.sara.service.SequenceGeneratorService;
 @Service
 public class SchoolServiceImpl extends AbstractService<School, String> {
 	Logger log = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private SequenceGeneratorService sequenceGeneratorService;
 	
@@ -24,13 +29,22 @@ public class SchoolServiceImpl extends AbstractService<School, String> {
 		super(repo);
 		repository = repo;
 	}
-
+	
 	@Override
-	public void findAllQBuilder(String searchValue, BooleanBuilder booleanBuilder) {
-		searchValue = "%" + searchValue + "%";
-		booleanBuilder.or(QSchool.school.name.likeIgnoreCase(searchValue));
-		booleanBuilder.or(QSchool.school.logo.likeIgnoreCase(searchValue));
-		booleanBuilder.or(QSchool.school.address.likeIgnoreCase(searchValue));
+	public BooleanExpression getFindAllBooleanExpression(User user) {
+		return null;
+	}
+	
+	@Override
+	public Predicate findAllPredicate(User user, BooleanBuilder searchbb) {
+		return searchbb.getValue();
+	}
+	
+	@Override
+	public void findAllQBuilder(String searchValue, BooleanBuilder searchbb, User user) {
+		searchbb.or(QSchool.school.name.containsIgnoreCase(searchValue));
+		searchbb.or(QSchool.school.logo.containsIgnoreCase(searchValue));
+		searchbb.or(QSchool.school.address.containsIgnoreCase(searchValue));
 //		booleanBuilder.or(QSchool.school.address.address1.containsIgnoreCase(searchValue));
 	}
 
