@@ -2,6 +2,7 @@ package com.sara.web.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -14,10 +15,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.sara.data.document.User;
 import com.sara.service.AbstractService;
+import com.sara.service.impl.UserServiceImpl;
 import com.sara.web.beans.ResponseStatus;
 import com.sara.web.common.Constants;
 import com.sara.web.common.Response;
+import com.sara.web.common.UserUtil;
 
 public abstract class AbstractCrudController<T, ID> {
 	
@@ -28,6 +32,9 @@ public abstract class AbstractCrudController<T, ID> {
 
 	public abstract Response<T> getResponse();
 
+	@Autowired
+	private UserServiceImpl userServiceImpl;
+	
 	public AbstractCrudController() {
 	}
 
@@ -41,7 +48,8 @@ public abstract class AbstractCrudController<T, ID> {
 
 		Page<T> pagingList = null;
 		try {
-			pagingList = getService().findAll(searchValue, pageable);
+			User user = UserUtil.getAuthenticatedUser(userServiceImpl);
+			pagingList = getService().findAll(searchValue, pageable, user);
 			status.setMessage("SUCCESS!");
 		} catch (Exception e) {
 			status.setException(e);

@@ -1,5 +1,6 @@
 package com.sara.web.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,8 +15,12 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,52 +28,74 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.sara.data.document.CodeGroups;
+import com.sara.data.document.Payables;
 import com.sara.data.document.Student;
+import com.sara.data.document.User;
+import com.sara.service.bean.PaymentInfo;
 import com.sara.service.impl.CodeGroupsServiceImpl;
+import com.sara.service.impl.PayablesServiceImpl;
 import com.sara.service.impl.StudentServiceImpl;
-import com.sara.web.beans.Payables;
+import com.sara.service.impl.UserServiceImpl;
 import com.sara.web.common.Constants;
+import com.sara.web.common.UserUtil;
 
 @RestController
 @RequestMapping(path = Constants.URL_API_BASE + BillingController.URL_BASE)
 public class BillingController {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(BillingController.class);
 
 	public static final String URL_BASE = "/billing";
 
 	@Autowired
-	private StudentServiceImpl studentServiceImpl;
-	
+	private PayablesServiceImpl payablesServiceImpl;
+
 	@Autowired
-	private CodeGroupsServiceImpl codeGroupsServiceImpl;
-	
+	private UserServiceImpl userServiceImpl;
+
+	@Autowired
+	private StudentServiceImpl studentServiceImpl;
+
 	@GetMapping(Constants.URL_BILLING_USER_SEARCH)
-	public ResponseEntity<Page<Student>> search(@PathVariable("by") String by, @RequestParam("searchValue") String searchValue,
-			@PageableDefault(sort = {
-					"lastName", "firstName" }, direction = Direction.ASC, page = Constants.DEFAULT_PAGE_NUMBER, size = Constants.DEFAULT_PAGE_SIZE) Pageable pageable) {
+	public ResponseEntity<Page<Student>> search(@PathVariable("by") String by,
+			@RequestParam("searchValue") String searchValue, @PageableDefault(sort = { "lastName",
+					"firstName" }, direction = Direction.ASC, page = Constants.DEFAULT_PAGE_NUMBER, size = Constants.DEFAULT_PAGE_SIZE) Pageable pageable) {
 		log.debug("by={}, searchValue={}", by, searchValue);
-		Page<Student> list = studentServiceImpl.findAllBy(by, searchValue, pageable);
+
+		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
+		
+		Page<Student> list = studentServiceImpl.findAllBy(by, searchValue, pageable, user.getSchool());
 		ResponseEntity<Page<Student>> responseEntity = new ResponseEntity<Page<Student>>(list, HttpStatus.OK);
 		return responseEntity;
 	}
-	
-	@GetMapping(path=Constants.URL_BILLING_USER_PAYABLES, produces = MediaType.APPLICATION_JSON_VALUE)
+
+	@GetMapping(path = Constants.URL_BILLING_USER_PAYABLES, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Map<String, ?>> payables(@PathVariable("id") String id) throws Exception {
 		Map<String, Object> map = new HashMap<>();
 
 		Student student = studentServiceImpl.findById(id);
 		map.put("student", student);
+
+		List<Payables> payables = payablesServiceImpl.getStudentPayables(student);
+		map.put("payables", payables);
+
+		ResponseEntity<Map<String, ?>> responseEntity = new ResponseEntity<>(map, HttpStatus.OK);
+		return responseEntity;
+	}
+
+	@PostMapping(path = Constants.URL_SAVE + "/{id}")
+	public ResponseEntity<Map<String, ?>> savePayables(@RequestBody List<Payables> payableList,
+			@PathVariable("id") String id) throws Exception {
+		log.debug("payableList=>{}", payableList);
 		
-		CodeGroups payables = codeGroupsServiceImpl.findByCode("PAYABLES_" + student.getLevel().getValue());
-		log.debug("payables=>{}", payables);
-		ObjectMapper mapper = new ObjectMapper();
-		CollectionType javaType = mapper.getTypeFactory()
-			      .constructCollectionType(List.class, Payables.class);
-		List<Payables> payableList = mapper.readValue(payables.getJson(), javaType);
-		map.put("payables", payableList);
+		Map<String, Object> map = new HashMap<>();
 		
-		log.debug("map=>{}", map);
+		Student student = studentServiceImpl.findById(id);
+		map.put("student", student);
+
+		List<Payables> payables = payablesServiceImpl.savePayables(payableList, student);
+		map.put("payables", payables);
+
 		ResponseEntity<Map<String, ?>> responseEntity = new ResponseEntity<>(map, HttpStatus.OK);
 		return responseEntity;
 	}
