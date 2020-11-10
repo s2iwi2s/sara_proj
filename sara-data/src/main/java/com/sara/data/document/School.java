@@ -27,7 +27,7 @@ public class School {
 	private String id;
 
 	private String name;
-	private String shoolYear;
+	private String schoolYear;
 
 	private String logo;
 	private String address;
@@ -39,7 +39,7 @@ public class School {
 
 	@Override
 	public String toString() {
-		return String.format("School [id=%s, name=%s, shoolYear=%s, logo=%s, address=%s]", id, name, shoolYear, logo,
+		return String.format("School [id=%s, name=%s, schoolYear=%s, logo=%s, address=%s]", id, name, schoolYear, logo,
 				address);
 	}
 }
