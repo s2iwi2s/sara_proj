@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Divider, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, Typography } from '@material-ui/core';
+import { Box, Divider, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, Typography } from '@material-ui/core';
 
 
 import DeleteIcon from '@material-ui/icons/Delete';

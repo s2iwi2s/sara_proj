@@ -70,6 +70,7 @@ const EndUserDetailHtml = props => {
                               <Grid item xs={12} sm={6}>
                                     <TextField
                                           id="password"
+                                          type="password"
                                           name="password"
                                           label="Password"
                                           fullWidth

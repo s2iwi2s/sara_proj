@@ -1,12 +1,11 @@
 
 import React, { useEffect } from 'react';
 
-import { Box, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, Typography } from '@material-ui/core';
-import { StyledTableCell, StyledTableHeadCell, StyledTableHeadRow, StyledTableRow } from '../../api/Utils';
+import { Box, Grid, Paper, Typography } from '@material-ui/core';
 
-import { formatter } from '../../api/Utils'
 
 export default function SavePayablesConfimationHtml(props) {
+
  useEffect(() => {
   console.log(`[SavePayablesConfimationHtml.useEffect] confirmStore=>`, props.confirmStore)
  }, [])
