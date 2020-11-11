@@ -197,7 +197,7 @@ const PayablesHtmlComponent = (props) => {
                             onBlur={e => onPaymentBlur(e)}
                             fullWidth
                             inputRef={register}
-                            disabled={row.balance === 0}
+                            // disabled={row.balance === 0}
                             defaultValue={row.payment}
                             variant="filled"
                             InputProps={{

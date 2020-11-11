@@ -42,7 +42,22 @@ export default function BillingComponent(props) {
         description: ''
       }
     },
-    payables: [],
+    "payables": [
+      {
+        "id": null,
+        "invoiceNo": null,
+        "code": "no_data",
+        "name": "NO DATA",
+        "amount": 0,
+        "payment": 0.0,
+        "order": 0,
+        "student": null,
+        "createdDate": null,
+        "lastModifiedDate": null,
+        "user": null,
+        "balance": 0.0,
+        "paid": 0
+      }],
     optionsList: optionsList,
     paging: {
       rowsPerPage: 25,
@@ -80,10 +95,10 @@ export default function BillingComponent(props) {
   }
 
   const doRetrieve = (data) => {
-    console.log(`[BillingSearchComponent.doRetrieve] data==>`, data)
+    console.log(`[BillingComponent.doRetrieve] data==>`, data)
     BillingService.getListBy(data.searchBy, data.searchValue, store.paging.currentPage, store.paging.rowsPerPage)
       .then(response => {
-        console.log(`[BillingSearchComponent.doRetrieve BillingService.getListBy] response==>`, response)
+        console.log(`[BillingComponent.doRetrieve BillingService.getListBy] response==>`, response)
         let formData = {
           ...store,
           INIT_STATUS: INIT_STATUS.RESET,
@@ -144,11 +159,11 @@ export default function BillingComponent(props) {
 
   const doPayables = () => {
     BillingService.getStudentPayables(props.match.params.id).then(response => {
-      console.log(`[BillingSearchComponent.doPayables BillingService.getStudentPayables] response==>`, response)
+      console.log(`[BillingComponent.doPayables BillingService.getStudentPayables] response==>`, response)
       let payables = response.data.payables;
       payables.map((row, i) => {
-        let value = row.payment ? row.payment.replaceAll(',', '') : 0;
-        row.payment = formatter.format(value);
+        // let value = row.payment ? row.payment.replaceAll(',', '') : 0;
+        row.payment = formatter.format(row.payment);
       });
       let formData = {
         ...store,
@@ -163,7 +178,7 @@ export default function BillingComponent(props) {
     })
   }
   const doShowSaveConfirmDialog = (data) => {
-    console.log(`[BillingSearchComponent.doShowSaveConfirmDialog] data==>`, data);
+    console.log(`[BillingComponent.doShowSaveConfirmDialog] data==>`, data);
     let total = 0;
     data.payables.map((row, i) => {
       let value = row.payment ? row.payment.replaceAll(',', '') : 0;
@@ -180,16 +195,16 @@ export default function BillingComponent(props) {
     }
     doInitConfirmStore(confirmStoreTemp);
 
-    console.log(`[BillingSearchComponent.doSavePayables] confirmStoreTemp==>`, confirmStoreTemp);
+    console.log(`[BillingComponent.doSavePayables] confirmStoreTemp==>`, confirmStoreTemp);
     setConfirmStore(confirmStoreTemp);
   }
   const doConfirmSavePayables = () => {
-    console.log(`[BillingSearchComponent.doConfirmSavePayables] confirmStore==>`, confirmStore);
+    console.log(`[BillingComponent.doConfirmSavePayables] confirmStore==>`, confirmStore);
     doSavePayables(confirmStore);
   }
 
   const doSavePayables = (data) => {
-    console.log(`[BillingSearchComponent.doSavePayables] data==>`, data);
+    console.log(`[BillingComponent.doSavePayables] data==>`, data);
     data.payables.map((row, i) => {
       let value = row.payment ? row.payment.replaceAll(',', '') : 0;
       row.payment = value;
@@ -206,7 +221,7 @@ export default function BillingComponent(props) {
     // setConfirmStore(confirmStoreTemp);
 
     BillingService.save(data.payables, props.match.params.id).then(response => {
-      console.log(`[BillingSearchComponent.doSavePayables BillingService.save] response==>`, response)
+      console.log(`[BillingComponent.doSavePayables BillingService.save] response==>`, response)
       let formData = {
         ...store,
         INIT_STATUS: INIT_STATUS.PAYABLES_RESET,
