@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sara.data.document.Student;
+import com.sara.data.document.User;
 import com.sara.service.impl.CodeGroupsServiceImpl;
 import com.sara.service.impl.StudentServiceImpl;
+import com.sara.service.impl.UserServiceImpl;
 import com.sara.web.common.Constants;
+import com.sara.web.common.UserUtil;
 import com.sara.web.controller.student.StudentListService;
 import com.sara.web.controller.student.StudentResponse;
 
@@ -27,6 +30,9 @@ public class StudentController extends AbstractCrudController<Student, String> {
 	}
 
 	@Autowired
+	private UserServiceImpl userServiceImpl;
+
+	@Autowired
 	private StudentServiceImpl studentServiceImpl;
 
 	@Autowired
@@ -39,6 +45,7 @@ public class StudentController extends AbstractCrudController<Student, String> {
 
 	@Override
 	public StudentResponse getResponse() {
-		return new StudentResponse(new StudentListService(studentServiceImpl, codeGroupsServiceImpl));
+		User authenticatedUser = UserUtil.getAuthenticatedUser(userServiceImpl);
+		return new StudentResponse(new StudentListService(authenticatedUser.getSchool(), studentServiceImpl, codeGroupsServiceImpl));
 	}
 }
