@@ -86,7 +86,7 @@
 			<properties>
 				<profiles.active>dev</profiles.active>
 				<db.mongodb.url>mongodb://root:root@localhost:27017/sara_proj</db.mongodb.url>
-				<logo.location>..//</logo.location>
+				<logo.location>../logo/</logo.location>
 			</properties>
 		</profile>
 
