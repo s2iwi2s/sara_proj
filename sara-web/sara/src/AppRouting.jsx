@@ -6,6 +6,10 @@ import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 
 import { Container, CssBaseline } from '@material-ui/core';
 
+import { PAGE_URL, INIT_STATUS, THEME } from './api/Utils';
+import { useStyles } from './forms/common/CSS'
+import { useAuth } from './security/AuthenticationProvider';
+
 import ErrorComponent from './api/ErrorComponent'
 import FooterComponent from './forms/common/FooterComponent'
 import EndUserListComponent from './forms/endUser/EndUserListComponent';
@@ -22,16 +26,14 @@ import Dashboard from './forms/Dashboard';
 import AppBarComponent from './forms/common/AppBarComponent';
 import StudentDetailComponent from './forms/student/StudentDetailComponent';
 import StudentListComponent from './forms/student/StudentListComponent';
-
-import BillingSearchComponent from './forms/billing/BillingSearchComponent';
-
-import { PAGE_URL, INIT_STATUS, THEME } from './api/Utils';
-import { useStyles } from './forms/common/CSS'
-import { useAuth } from './security/AuthenticationProvider';
+import SchoolDetailComponent from './forms/school/SchoolDetailComponent';
+import SchoolListComponent from './forms/school/SchoolListComponent';
 
 import AuthenticationService from './security/AuthenticationService';
+import BillingComponent from './forms/billing/BillingComponent';
 
 const AppRouting = () => {
+
  const [store, setStore] = useState({ 'INIT_STATUS': INIT_STATUS.INIT_STATUS });
  const [userObj, setUserObj] = useAuth();
 
@@ -94,8 +96,8 @@ const AppRouting = () => {
         <Route path={PAGE_URL.STUDENT_LIST} component={StudentListComponent} />
         <Route path={PAGE_URL.STUDENT_DETAIL} component={StudentDetailComponent} />
 
-        <AuthenticatedRoute path={PAGE_URL.BILLING_PAYABLES} exact component={BillingSearchComponent} />
-        <AuthenticatedRoute path={PAGE_URL.BILLING} exact component={BillingSearchComponent} />
+        <AuthenticatedRoute path={PAGE_URL.BILLING_PAYABLES} exact component={BillingComponent} />
+        <AuthenticatedRoute path={PAGE_URL.BILLING} exact component={BillingComponent} />
 
         <AuthenticatedRoute path={PAGE_URL.USER_LIST} exact component={EndUserListComponent} />
         <AuthenticatedRoute path={PAGE_URL.USER_DETAIL} exact component={EndUserDetailComponent} />
@@ -106,6 +108,9 @@ const AppRouting = () => {
 
         <AuthenticatedRoute path={PAGE_URL.CODE_GROUPS_LIST} exact component={CodeGroupsListComponent} />
         <AuthenticatedRoute path={PAGE_URL.CODE_GROUPS_DETAIL} exact component={CodeGroupsDetailComponent} />
+
+        <AuthenticatedRoute path={PAGE_URL.SCHOOL_LIST} exact component={SchoolListComponent} />
+        <AuthenticatedRoute path={PAGE_URL.SCHOOL_DETAIL} exact component={SchoolDetailComponent} />
         <Route component={ErrorComponent} />
        </Switch>
       </Container>

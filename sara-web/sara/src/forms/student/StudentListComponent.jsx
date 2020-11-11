@@ -1,14 +1,14 @@
 import React from 'react';
 
 import Typography from '@material-ui/core/Typography';
-import { Table, TableHead, TableCell, TableBody, TablePagination, FormControl, Input, Grid, IconButton, Box } from '@material-ui/core';
+import { Table, TableHead, TableCell, TableBody, TablePagination, FormControl, Input, Grid, IconButton, Box, TableContainer, Paper } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 
 import SearchIcon from '@material-ui/icons/Search';
 import StudentService from '../../api/student/StudentService'
-import { PAGE_URL, StyledTableHeadRow, StyledTableRow } from '../../api/Utils';
+import { PAGE_URL, StyledTableHeadCell, StyledTableHeadRow, StyledTableRow } from '../../api/Utils';
 
 export default class StudentListComponent extends React.Component {
   state = {
@@ -107,50 +107,52 @@ export default class StudentListComponent extends React.Component {
               component="div"
               count={this.state.paging.totalElements}
               page={this.state.paging.currentPage}
-              onChangePage={this.handleChangePage}
               rowsPerPage={this.state.paging.rowsPerPage}
+              onChangePage={this.handleChangePage}
               onChangeRowsPerPage={this.handleChangeRowsPerPage}
             />
           </Grid>
         </Grid>
 
-        <Table>
-          <TableHead>
-            <StyledTableHeadRow>
-              <TableCell>Student ID</TableCell>
-              <TableCell>LRN</TableCell>
-              <TableCell>Name</TableCell>
-              <TableCell>Gender</TableCell>
-              <TableCell>Grade Level</TableCell>
-              <TableCell align="right">
-                Action
+        <TableContainer component={Paper} elevation={3} variant="elevation" >
+          <Table>
+            <TableHead>
+              <StyledTableHeadRow>
+                <StyledTableHeadCell>Student ID</StyledTableHeadCell>
+                <StyledTableHeadCell>LRN</StyledTableHeadCell>
+                <StyledTableHeadCell>Name</StyledTableHeadCell>
+                <StyledTableHeadCell>Gender</StyledTableHeadCell>
+                <StyledTableHeadCell>Grade Level</StyledTableHeadCell>
+                <StyledTableHeadCell align="right">
+                  Action
                 <IconButton aria-label="add" onClick={() => this.edit(-1)}>
-                  <AddIcon fontSize="large" />
-                </IconButton>
-              </TableCell>
-            </StyledTableHeadRow>
-          </TableHead>
-          <TableBody>
-            {this.state.list.map(row => (
-              <StyledTableRow key={row.id}>
-                <TableCell>{row.studentId}</TableCell>
-                <TableCell>{row.lrn}</TableCell>
-                <TableCell>{row.firstName} {row.lastName}</TableCell>
-                <TableCell>{row.gender}</TableCell>
-                <TableCell>{row.level && row.level.description}</TableCell>
+                    <AddIcon fontSize="large" />
+                  </IconButton>
+                </StyledTableHeadCell>
+              </StyledTableHeadRow>
+            </TableHead>
+            <TableBody>
+              {this.state.list.map(row => (
+                <StyledTableRow key={row.id}>
+                  <TableCell>{row.studentId}</TableCell>
+                  <TableCell>{row.lrn}</TableCell>
+                  <TableCell>{row.firstName} {row.lastName}</TableCell>
+                  <TableCell>{row.gender}</TableCell>
+                  <TableCell>{row.level && row.level.description}</TableCell>
 
-                <TableCell align="right">
-                  <IconButton aria-label="edit" onClick={() => this.edit(row.id)}>
-                    <EditIcon fontSize="large" />
-                  </IconButton>
-                  <IconButton aria-label="delete" onClick={() => this.delete(row.id)}>
-                    <DeleteIcon fontSize="large" />
-                  </IconButton>
-                </TableCell>
-              </StyledTableRow>
-            ))}
-          </TableBody>
-        </Table>
+                  <TableCell align="right">
+                    <IconButton aria-label="edit" onClick={() => this.edit(row.id)}>
+                      <EditIcon fontSize="large" />
+                    </IconButton>
+                    <IconButton aria-label="delete" onClick={() => this.delete(row.id)}>
+                      <DeleteIcon fontSize="large" />
+                    </IconButton>
+                  </TableCell>
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
         <TablePagination
           component="div"
           count={this.state.paging.totalElements}

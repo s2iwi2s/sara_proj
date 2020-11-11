@@ -5,7 +5,7 @@ export const ENTITY = "address";
 class AddressService {
 
  getList = (searchValue, page, pageSize) => {
-  const theurl = `${Utils.urlListPattern(ENTITY)}?searchValue=${searchValue}&page=${page}&size=${pageSize}`
+  const theurl = `${Utils.urlListPattern(ENTITY)}?searchValue=${searchValue}&page=${page}&size=${pageSize}&sort=name,address1,city`
   return axios.get(theurl);
  }
  get = (id) => {

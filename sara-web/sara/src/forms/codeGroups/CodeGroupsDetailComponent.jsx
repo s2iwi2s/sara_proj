@@ -94,7 +94,7 @@ export default function CodeGroupsDetailComponent(props) {
   return (
     <>
       {console.log(`[CodeGroupsDetailComponent.render] store==>`, store)}
-      <Typography variant="h4">CodeGroups Detail</Typography>
+      <Typography variant="h4">Code Groups Detail</Typography>
       {message && <Alert severity="info">{message}</Alert>}
 
 

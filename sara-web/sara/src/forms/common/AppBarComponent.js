@@ -2,10 +2,10 @@
 import React from 'react';
 import { AppBar, IconButton, Toolbar, Typography, Avatar, Box, FormControlLabel, Switch } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import SchoolIcon from '@material-ui/icons/School';
 
 import { useStyles } from './CSS';
 import { PAGE_URL, URL_BASE } from '../../api/Utils'
-import AuthenticationService from '../../security/AuthenticationService'
 import { useAuth } from '../../security/AuthenticationProvider';
 import MenuComponent from './MenuComponent';
 
@@ -39,7 +39,8 @@ export default function AppBarComponent(props) {
       <MenuComponent />
      </IconButton>
 
-     {userObj && <Avatar src={(URL_BASE + PAGE_URL.LOGO_URL + userObj.schoolLogo)} />}
+     {userObj && userObj.schoolLogo && <Avatar src={(URL_BASE + PAGE_URL.LOGO_URL + userObj.schoolLogo)} />}
+     {(!userObj || !userObj.schoolLogo) && <SchoolIcon />}
 
      <Typography className={classes.appbar_title} variant="h6" noWrap>
       <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>

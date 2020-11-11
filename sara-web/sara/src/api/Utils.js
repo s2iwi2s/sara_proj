@@ -1,6 +1,11 @@
 
-import { TableRow } from '@material-ui/core';
+import { TableCell, TableRow } from '@material-ui/core';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
+
+export const formatter = new Intl.NumberFormat('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+});
 
 export const USER_TEMP = {
     userName: '',
@@ -9,7 +14,6 @@ export const USER_TEMP = {
     schoolLogo: '',
     schoolId: ''
 }
-
 // export const URL_BASE = 'http://localhost:8081';
 export const URL_BASE_DEV = 'http://localhost:5000';
 export const URL_BASE = process.env.NODE_ENV === 'development' ? URL_BASE_DEV : '';
@@ -41,6 +45,9 @@ export const PAGE_URL = {
     DASHBOARD: '/dashboard',
     LOGOUT: '/logout',
     LOGIN: '/login',
+    SCHOOL_LIST: '/ui/school-list',
+    SCHOOL_DETAIL: '/ui/school-detail/:id',
+    SCHOOL_DETAIL_URL: '/ui/school-detail',
     STUDENT_LIST: '/ui/student-list',
     STUDENT_DETAIL: '/ui/student-detail/:id',
     STUDENT_DETAIL_URL: '/ui/student-detail',
@@ -63,7 +70,8 @@ export const INIT_STATUS = {
     DONE: 'DONE',
     LOAD: 'LOAD',
     RESET: 'RESET',
-    PAYABLES: 'PAYABLES'
+    PAYABLES: 'PAYABLES',
+    PAYABLES_RESET: 'PAYABLES_RESET'
 }
 
 export const ERROR_CODE = {
@@ -80,14 +88,15 @@ export const ADDRESS_TYPE = {
 }
 export const StyledTableHeadRow = withStyles((theme) => ({
     root: {
-        '&:nth-of-type(odd)': {
-            backgroundColor: theme.palette.background,
-        },
+        fontWeight: "bold",
+        // '&:nth-of-type(odd)': {
+        //     backgroundColor: theme.palette.background,
+        // },
     },
-    // head: {
-    // backgroundColor: theme.palette.common.white,
-    // color: theme.palette.common.white,
-    // },
+    head: {
+        // backgroundColor: theme.palette.common.black,
+        // color: theme.palette.common.white,
+    },
     // body: {
     //     fontSize: 14,
     //     fontWeight: "bold",
@@ -98,21 +107,38 @@ export const StyledTableRow = withStyles((theme) => ({
     root: {
         '&:nth-of-type(odd)': {
             backgroundColor: theme.palette.action.hover,
-        },
-        // fontSize: 20,
-        // fontWeight: "bold",
+        }
     },
 }))(TableRow);
 
-// export const StyledTableCell = withStyles((theme) => ({
-//     head: {
-//         backgroundColor: theme.palette.common.black,
-//         color: theme.palette.common.white,
-//     },
-//     body: {
-//         fontSize: 14,
-//     },
-// }))(TableCell);
+export const StyledTableHeadCell = withStyles((theme) => ({
+    head: {
+        fontWeight: "bold",
+        fontStyle: "bold",
+        fontSize: 16,
+        //     backgroundColor: theme.palette.common.black,
+        //     color: theme.palette.common.white,
+    },
+    body: {
+        fontSize: 12,
+    },
+}))(TableCell);
+
+
+export const StyledTableCell = withStyles((theme) => ({
+    head: {
+        fontWeight: "bold",
+        fontStyle: "bold",
+        fontSize: 14,
+        //     backgroundColor: theme.palette.common.black,
+        //     color: theme.palette.common.white,
+    },
+    body: {
+        fontWeight: "bold",
+        fontStyle: "bold",
+        fontSize: 20,
+    },
+}))(TableCell);
 
 
 class Utils {

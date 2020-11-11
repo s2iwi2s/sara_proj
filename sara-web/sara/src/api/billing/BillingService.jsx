@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_URL_BASE } from "../Utils";
+import Utils, { API_URL_BASE } from "../Utils";
 
 
 class BillingService {
@@ -11,6 +11,10 @@ class BillingService {
  getStudentPayables = (id) => {
   const theurl = `${API_URL_BASE}billing/payables/${id}`
   return axios.get(theurl);
+ }
+ save = (data, id) => {
+  const theurl = `${Utils.urlSavePattern('billing')}/${id}`
+  return axios.post(theurl, data);
  }
 }
 

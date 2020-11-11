@@ -248,7 +248,6 @@ const StudentDetailHtml = props => {
               inputRef={register}
               variant="filled"
               control={control}
-              inputRef={register}
             />
           </Grid>
 

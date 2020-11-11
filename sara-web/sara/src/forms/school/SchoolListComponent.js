@@ -4,10 +4,10 @@ import Typography from '@material-ui/core/Typography';
 import { Box } from '@material-ui/core';
 
 import { INIT_STATUS, PAGE_URL } from '../../api/Utils'
-import CodeGroupsService from '../../api/codeGroups/CodeGroupsService';
+import SchoolService from '../../api/school/SchoolService';
 import CustomTableGrid from '../common/CustomTableGrid'
 
-export default function CodeGroupsListComponent(props) {
+export default function SchoolListComponent(props) {
   const [store, setStore] = useState({
     INIT_STATUS: INIT_STATUS.INIT,
     list: [],
@@ -20,7 +20,7 @@ export default function CodeGroupsListComponent(props) {
   });
 
   const doRetrieve = () => {
-    CodeGroupsService.getList(store.searchValue, store.paging.currentPage, store.paging.rowsPerPage)
+    SchoolService.getList(store.searchValue, store.paging.currentPage, store.paging.rowsPerPage)
       .then(response => {
         console.log(response)
         let data = {
@@ -38,21 +38,21 @@ export default function CodeGroupsListComponent(props) {
       })
   }
   const doEdit = (id) => {
-    console.log(`[CodeGroupsComponent.edit] id=${id}`)
-    props.history.push(`${PAGE_URL.CODE_GROUPS_DETAIL_URL}/${id}`);
+    console.log(`[SchoolComponent.edit] id=${id}`)
+    props.history.push(`${PAGE_URL.SCHOOL_DETAIL_URL}/${id}`);
   }
 
   const doDelete = (id) => {
-    console.log(`[CodeGroupsComponent.delete] id=${id}`)
-    CodeGroupsService.delete(id)
+    console.log(`[SchoolComponent.delete] id=${id}`)
+    SchoolService.delete(id)
       .then(response => {
-        console.log(`[CodeGroupsComponent.delete] response==>`, response)
+        console.log(`[SchoolComponent.delete] response==>`, response)
         doRetrieve();
       })
   }
 
   const doHandleChangePage = (e, newPage) => {
-    console.log(`[CodeGroupsComponent.delete] doHandleChangePage=${newPage}`)
+    console.log(`[SchoolComponent.delete] doHandleChangePage=${newPage}`)
     // let paging = this.state.paging;
     // paging.currentPage = newPage
     // this.setState({
@@ -69,7 +69,7 @@ export default function CodeGroupsListComponent(props) {
   }
 
   const doHandleChangeRowsPerPage = (e) => {
-    console.log(`[CodeGroupsComponent.doHandleChangeRowsPerPage] rowsPerPage=${e.target.value}`)
+    console.log(`[SchoolComponent.doHandleChangeRowsPerPage] rowsPerPage=${e.target.value}`)
     let data = {
       ...store
     }
@@ -88,22 +88,22 @@ export default function CodeGroupsListComponent(props) {
 
   const cols = [
     {
-      field: 'code',
-      headerName: 'Code',
+      field: 'name',
+      headerName: 'Name',
     },
     {
-      field: 'value',
-      headerName: 'Value',
+      field: 'schoolYear',
+      headerName: 'School Year',
     },
     {
-      field: 'description',
-      headerName: 'Description',
+      field: 'logo',
+      headerName: 'Logo',
     }
   ];
 
   return (
     <>
-      <Box pb={3}><Typography variant="h4">Code Groups List</Typography></Box>
+      <Box pb={3}><Typography variant="h4">School List</Typography></Box>
 
       <CustomTableGrid
         store={store}

@@ -3,15 +3,15 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import SaveIcon from '@material-ui/icons/Save';
 import AddIcon from '@material-ui/icons/Add';
 
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import Typography from '@material-ui/core/Typography';
-import { Button, Grid, MenuItem, TextField } from '@material-ui/core';
+import { Box, Button, Grid, MenuItem, TextField } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
 import { INIT_STATUS, PAGE_URL } from '../../api/Utils';
 
 const EndUserDetailHtml = props => {
-      const { register, handleSubmit, errors, reset } = useForm();
+      const { control, register, handleSubmit, errors, reset } = useForm();
 
       const history = useHistory();
 
@@ -62,6 +62,7 @@ const EndUserDetailHtml = props => {
                                           autoComplete="user-userName"
                                           variant="filled"
                                           autoFocus
+                                          InputLabelProps={{ shrink: true }}
                                           inputRef={register}
                                           defaultValue={props.store.userName}
                                     />
@@ -74,6 +75,7 @@ const EndUserDetailHtml = props => {
                                           fullWidth
                                           autoComplete="user-password"
                                           variant="filled"
+                                          InputLabelProps={{ shrink: true }}
                                           inputRef={register}
                                           defaultValue={props.store.password}
                                     />
@@ -87,6 +89,7 @@ const EndUserDetailHtml = props => {
                                           fullWidth
                                           autoComplete="user-firstName"
                                           variant="filled"
+                                          InputLabelProps={{ shrink: true }}
                                           inputRef={register}
                                           defaultValue={props.store.firstName}
                                     />
@@ -100,6 +103,7 @@ const EndUserDetailHtml = props => {
                                           fullWidth
                                           autoComplete="user-lastName"
                                           variant="filled"
+                                          InputLabelProps={{ shrink: true }}
                                           inputRef={register}
                                           defaultValue={props.store.lastName}
                                     />
@@ -108,21 +112,47 @@ const EndUserDetailHtml = props => {
                         </Grid>
 
                         <Grid item xs={12} sm={6}>
-                              <TextField id="school"
-                                    select
-                                    name="school.id"
-                                    label="School"
-                                    fullWidth
-                                    autoComplete="user-school"
-                                    variant="filled"
-                                    inputRef={register}
-                                    defaultValue={props.store.school.id}
-                                    error={!!errors.name}
-                              >
-                                    {props.store.optionsList.schoolList.map(row => (
-                                          <MenuItem key={row.id} value={row.id}>{row.name}</MenuItem>
-                                    ))}
-                              </TextField>
+                              <Box pt={3}>
+                                    {/* <TextField id="school"
+                                          select
+                                          required
+                                          name="school.id"
+                                          label="School"
+                                          fullWidth
+                                          autoComplete="user-school"
+                                          variant="filled"
+                                          inputRef={register}
+                                          defaultValue={props.store.school.id}
+                                          error={!!errors.name}
+                                    >
+                                          {props.store.optionsList.schoolList.map(row => (
+                                                <MenuItem key={row.id} value={row.id}>{row.name}</MenuItem>
+                                          ))}
+                                    </TextField> */}
+                                    <Controller
+                                          as={
+                                                <TextField id="school"
+                                                      required
+                                                      select
+                                                      label="School"
+                                                      fullWidth
+                                                      autoComplete="student-school"
+                                                      variant="filled"
+                                                      InputLabelProps={{ shrink: true }}
+                                                      inputRef={register}
+                                                // error={!!errors.name}
+                                                >
+                                                      {props.store.optionsList.schoolList.map(row => (
+                                                            <MenuItem key={row.id} value={row.id}>{row.name}</MenuItem>
+                                                      ))}
+                                                </TextField>
+                                          }
+                                          name="school.id"
+                                          control={control}
+                                          defaultValue={props.store.school.id}
+                                          options={props.store.optionsList.studentLevelList}
+                                    />
+                              </Box>
                         </Grid>
 
                         <Grid container spacing={3}>

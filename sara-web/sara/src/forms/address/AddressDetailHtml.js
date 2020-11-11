@@ -4,10 +4,9 @@ import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 
 const StudentDetailHtml = props => {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit } = useForm();
   const history = useHistory();
-  function onSubmitForm(formData) {
-  }
+
   return (
     <>
       <Typography variant="h4" gutterBottom>Student Detail</Typography>

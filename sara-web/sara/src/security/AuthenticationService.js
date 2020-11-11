@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from "axios";
-import { AUTH_URL_BASE, AUTH_USER, AUTH_USER_OBJ, JWT_TOKEN } from '../api/Utils.js'
+import { AUTH_URL_BASE, AUTH_USER, AUTH_USER_OBJ, JWT_TOKEN, USER_TEMP } from '../api/Utils.js'
 
 
 let myInterceptor
@@ -84,12 +84,7 @@ class AuthenticationService extends React.Component {
         let user = JSON.parse(sessionStorage.getItem(AUTH_USER_OBJ));
         console.log('[AuthenticationService.getLoggedUserObj] 1 user=>', user);
         if (!user) {
-            user = {
-                userName: '',
-                userFullName: 'Guest',
-                schoolName: '',
-                schoolLogo: ''
-            }
+            user = USER_TEMP;
         }
         console.log('[AuthenticationService.getLoggedUserObj] 2 user=>', user);
         return user;

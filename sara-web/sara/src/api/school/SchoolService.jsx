@@ -2,12 +2,12 @@ import axios from "axios";
 import Utils from "../Utils";
 
 
-export const ENTITY = "student";
+export const ENTITY = "school";
 
-class StudentService {
+class SchoolService {
 
  getList = (searchValue, page, pageSize) => {
-  const theurl = `${Utils.urlListPattern(ENTITY)}?searchValue=${searchValue}&page=${page}&size=${pageSize}&sort=firstName,lastName`
+  const theurl = `${Utils.urlListPattern(ENTITY)}?searchValue=${searchValue}&page=${page}&size=${pageSize}&sort=schoolYear,name&direction=DESC`
   return axios.get(theurl);
  }
  get = (id) => {
@@ -24,6 +24,6 @@ class StudentService {
  }
 }
 
-export default new StudentService();
+export default new SchoolService();
 
 

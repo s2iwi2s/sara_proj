@@ -18,17 +18,14 @@ export default function EndUserDetailComponent(props) {
     'optionsList': { schoolList: [] }
   });
 
-  const getBlankDetails = () => {
-    return {
-      INIT_STATUS: '',
-      'school': { 'id': '' },
-      'id': '',
-      'entityId': props.match.params.id,
-      'userName': '',
-      'password': '',
-      'firstName': '',
-      'lastName': '',
-      'optionsList': { schoolList: [] }
+  const doInitFormData = data => {
+    if (!data.school) {
+      data.school = {
+        id: ''
+      }
+    }
+    if (!data.optionsList) {
+      data.optionsList = { schoolList: [] }
     }
   }
 
@@ -37,12 +34,17 @@ export default function EndUserDetailComponent(props) {
     EndUserService.get(props.match.params.id)
       .then(response => {
         console.log(`[EndUserDetailComponent.doRetrieve] response==>`, response)
-        let thestate = getBlankDetails();
+        let thestate = {
+          ...store
+        }
         if (props.match.params.id !== -1) {
           thestate = response.data.entity;
         }
         thestate.INIT_STATUS = INIT_STATUS.RESET;
         thestate.optionsList = response.data.listService
+
+        doInitFormData(thestate);
+
         setStore(thestate)
       });
   }
