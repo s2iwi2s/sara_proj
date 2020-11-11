@@ -88,15 +88,15 @@ public class StudentServiceImpl extends AbstractService<Student, String> {
 
 			param.and(QStudent.student.school.eq(school));
 
-			log.debug("findAllBy={}, searchValue={}", by, searchValue);
+			//log.debug("findAllBy={}, searchValue={}", by, searchValue);
 			BooleanBuilder studentbb = new BooleanBuilder();
 			if ("STUDENT_ID".equalsIgnoreCase(by)) {
 				studentbb.or(QStudent.student.studentId.containsIgnoreCase(searchValue));
 			} else if ("STUDENT_NAME".equalsIgnoreCase(by)) {
 				String[] name = searchValue.split(" ");
-				log.debug("findAllBy={}, {}", by, searchValue);
+				//log.debug("findAllBy={}, {}", by, searchValue);
 				for (String value : name) {
-					log.debug(value);
+					//log.debug(value);
 					if (!StringUtils.isBlank(value)) {
 						studentbb.or(QStudent.student.firstName.containsIgnoreCase(value));
 						studentbb.or(QStudent.student.lastName.containsIgnoreCase(value));
