@@ -150,7 +150,7 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 				}
 			}
 			if (!hasPayment) {
-				entity.setBalance(entity.getAmount());
+				//entity.setBalance(entity.getAmount());
 			}
 		}
 
