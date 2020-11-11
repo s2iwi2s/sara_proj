@@ -40,10 +40,10 @@ import com.sara.web.common.Constants;
 import com.sara.web.common.UserUtil;
 
 @RestController
-@RequestMapping(path = Constants.URL_API_BASE + BillingController.URL_BASE)
-public class BillingController {
+@RequestMapping(path = Constants.URL_API_BASE + PayablesController.URL_BASE)
+public class PayablesController {
 
-	private static final Logger log = LoggerFactory.getLogger(BillingController.class);
+	private static final Logger log = LoggerFactory.getLogger(PayablesController.class);
 
 	public static final String URL_BASE = "/billing";
 

@@ -144,6 +144,7 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 					double payment = entity.getPaid() + sumEntity.getPayment();
 					entity.setPaid(payment);
 					entity.setBalance(entity.getAmount() - payment);
+					entity.setPayment(0);
 					hasPayment = true;
 					break;
 				}
