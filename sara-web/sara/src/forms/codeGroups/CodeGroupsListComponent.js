@@ -98,6 +98,10 @@ export default function CodeGroupsListComponent(props) {
     {
       field: 'description',
       headerName: 'Description',
+    },
+    {
+      field: 'priority',
+      headerName: 'Priority',
     }
   ];
 
