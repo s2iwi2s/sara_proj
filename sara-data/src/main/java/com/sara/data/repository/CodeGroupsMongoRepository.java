@@ -12,14 +12,15 @@ import com.querydsl.core.types.dsl.StringPath;
 import com.sara.data.common.Constants;
 import com.sara.data.document.CodeGroups;
 import com.sara.data.document.QCodeGroups;
+import com.sara.data.document.School;
 
 public interface CodeGroupsMongoRepository
 		extends SaraRepositoryInterface<CodeGroups, String>, MongoRepository<CodeGroups, String>,
 		QuerydslPredicateExecutor<CodeGroups>, QuerydslBinderCustomizer<QCodeGroups> {
 //	@Query(Constants.CODE_GROUPS_QUERY)
-	public List<CodeGroups> findByCodeOrderByPriority(String code);
+	public List<CodeGroups> findByCodeAndSchoolOrderByPriority(String code, School org);
 
-	public CodeGroups findByCode(String code);
+	public CodeGroups findByCodeAndSchool(String code, School org);
 
 	@Override
 	// for QuerydslBinderCustomizer
