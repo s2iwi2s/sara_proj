@@ -175,7 +175,8 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 
 	public List<Payables> getStudentPayablesTemplate(Student student)
 			throws JsonMappingException, JsonProcessingException {
-		CodeGroups payables = codeGroupsServiceImpl.findByCode("PAYABLES_" + student.getLevel().getValue());
+		
+		CodeGroups payables = codeGroupsServiceImpl.findByCode("PAYABLES_" + student.getLevel().getValue(), student.getSchool());
 
 		ObjectMapper mapper = new ObjectMapper();
 		CollectionType javaType = mapper.getTypeFactory().constructCollectionType(List.class, Payables.class);

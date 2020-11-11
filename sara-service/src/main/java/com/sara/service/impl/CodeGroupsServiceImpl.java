@@ -63,12 +63,12 @@ public class CodeGroupsServiceImpl extends AbstractService<CodeGroups, String> {
 		return new CodeGroups();
 	}
 	
-	public List<CodeGroups> findByCodeList(String code) {
-		return repository.findByCodeOrderByPriority(code);
+	public List<CodeGroups> findByCodeList(String code, School school) {
+		return repository.findByCodeAndSchoolOrderByPriority(code, school);
 	}
 	
-	public CodeGroups findByCode(String code) {
-		return repository.findByCode(code);
+	public CodeGroups findByCode(String code, School school) {
+		return repository.findByCodeAndSchool(code, school);
 	}
 	
 	@Override
