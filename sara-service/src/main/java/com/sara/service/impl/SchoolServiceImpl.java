@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
-import com.sara.data.document.QCodeGroups;
 import com.sara.data.document.QSchool;
 import com.sara.data.document.School;
 import com.sara.data.document.User;
@@ -23,11 +22,10 @@ public class SchoolServiceImpl extends AbstractService<School, String> {
 	@Autowired
 	private SequenceGeneratorService sequenceGeneratorService;
 	
-	SchoolMongoRepository repository;
-	
+
+	@Autowired
 	public SchoolServiceImpl(SchoolMongoRepository repo) {
 		super(repo);
-		repository = repo;
 	}
 	
 	@Override

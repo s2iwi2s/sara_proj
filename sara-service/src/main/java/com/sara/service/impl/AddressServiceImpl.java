@@ -14,8 +14,6 @@ import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.sara.data.document.Address;
 import com.sara.data.document.QAddress;
-import com.sara.data.document.QStudent;
-import com.sara.data.document.Student;
 import com.sara.data.document.User;
 import com.sara.data.repository.AddressMongoRepository;
 import com.sara.service.AbstractService;
@@ -24,16 +22,10 @@ import com.sara.service.AbstractService;
 public class AddressServiceImpl extends AbstractService<Address, String> {
 	Logger log = LoggerFactory.getLogger(this.getClass());
 
-	private AddressMongoRepository repository;
-
-	@Autowired
-	private StudentServiceImpl studentServiceImpl;
-	@Autowired
-	private UserServiceImpl userServiceImpl;
+	
 	@Autowired
 	public AddressServiceImpl(AddressMongoRepository repo) {
 		super(repo);
-		this.repository = repo;
 	}
 	
 	@Override
@@ -76,10 +68,10 @@ public class AddressServiceImpl extends AbstractService<Address, String> {
 					.or(QAddress.address.country.containsIgnoreCase(searchValue)));
 		}
 		Predicate predicate = booleanBuilder.getValue();
-		return repository.findAll(predicate, Sort.by(Direction.ASC, "name"));
+		return repo.findAll(predicate, Sort.by(Direction.ASC, "name"));
 	}
 	
 	public List<Address> saveAll(List<Address> entities) {
-		return repository.saveAll(entities);
+		return repo.saveAll(entities);
 	}
 }

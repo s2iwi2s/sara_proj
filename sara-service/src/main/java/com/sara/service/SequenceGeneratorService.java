@@ -6,8 +6,6 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 
 import java.text.DecimalFormat;
 import java.text.Format;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
@@ -19,7 +17,6 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import com.sara.data.document.DatabaseSequence;
-import com.sara.data.document.Student;
 
 @Service
 public class SequenceGeneratorService {

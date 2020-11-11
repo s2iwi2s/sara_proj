@@ -25,7 +25,7 @@ export default function BillingHtmlComponent(props) {
 
         return (
                 <>
-                        <Box pb={3}><Typography variant="h4">Billing</Typography></Box>
+                        <Box pb={3}><Typography variant="h4">Payables</Typography></Box>
 
                         <form onSubmit={handleSubmit(props.doRetrieve)}>
                                 <Paper elevation={3} variant="elevation" >

@@ -8,11 +8,9 @@ import static org.springframework.data.mongodb.core.aggregation.Aggregation.proj
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.sort;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -35,7 +33,6 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.sara.data.document.CodeGroups;
 import com.sara.data.document.Payables;
-import com.sara.data.document.QCodeGroups;
 import com.sara.data.document.QPayables;
 import com.sara.data.document.Student;
 import com.sara.data.document.User;
@@ -49,7 +46,7 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 
 	private static final Logger log = LoggerFactory.getLogger(PayablesServiceImpl.class);
 
-	private PayablesMongoRepository repository;
+//	private PayablesMongoRepository repository;
 
 	@Autowired
 	private SequenceGeneratorService sequenceGeneratorService;
@@ -66,7 +63,7 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 	@Autowired
 	public PayablesServiceImpl(PayablesMongoRepository repo, SchoolServiceImpl schoolServiceImpl) {
 		super(repo);
-		this.repository = repo;
+//		this.repository = repo;
 	}
 	
 	@Override
@@ -75,7 +72,7 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 	}
 
 	public Page<Payables> findAll(Pageable pageable) {
-		return repository.findAll(pageable);
+		return repo.findAll(pageable);
 	}
 
 	@Override
@@ -125,7 +122,7 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 		return payables;
 	}
 
-	public List<Payables> getStudentPayables(String id) throws JsonMappingException, JsonProcessingException {
+	public List<Payables> getStudentPayables(String id) throws JsonMappingException, JsonProcessingException, IllegalArgumentException {
 		Student student = studentServiceImpl.findById(id);
 		return getStudentPayables(student);
 	}
@@ -168,7 +165,7 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 		return payables;
 	}
 
-	public List<Payables> getStudentPayablesTemplate(String id) throws JsonMappingException, JsonProcessingException {
+	public List<Payables> getStudentPayablesTemplate(String id) throws JsonMappingException, JsonProcessingException, IllegalArgumentException {
 		Student student = studentServiceImpl.findById(id);
 		return getStudentPayablesTemplate(student);
 	}
@@ -207,10 +204,10 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 				entity.setInvoiceNo(invoiceNo);
 			}
 		}
-		return repository.saveAll(list);
+		return repo.saveAll(list);
 	}
 
-	public List<PaymentInfo> findPaymentSumByStudent(String id) {
+	public List<PaymentInfo> findPaymentSumByStudent(String id) throws IllegalArgumentException{
 		Student student = studentServiceImpl.findById(id);
 		return findPaymentSumByStudent(student);
 	}

@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
-import com.sara.data.document.QPayables;
 import com.sara.data.document.QStudent;
 import com.sara.data.document.School;
 import com.sara.data.document.Student;
@@ -30,21 +29,19 @@ public class StudentServiceImpl extends AbstractService<Student, String> {
 	@Autowired
 	private SequenceGeneratorService sequenceGeneratorService;
 
-	StudentMongoRepository repository;
 
 	@Autowired
 	SchoolMongoRepository schoolMongoRepository;
 
 	public StudentServiceImpl(StudentMongoRepository repo) {
 		super(repo);
-		repository = repo;
 	}
-	
+
 	@Override
 	public BooleanExpression getFindAllBooleanExpression(User user) {
 		return QStudent.student.school.eq(user.getSchool());
 	}
-	
+
 	@Override
 	public void findAllQBuilder(String searchValue, BooleanBuilder searchbb, User user) {
 		searchbb.or(QStudent.student.firstName.containsIgnoreCase(searchValue));
@@ -71,11 +68,12 @@ public class StudentServiceImpl extends AbstractService<Student, String> {
 				entity.setSchool(schoolOpt.get());
 			}
 		}
-		
+
 		if (StringUtils.isBlank(entity.getStudentId())) {
 			School school = entity.getSchool();
-			if(school != null) {
-				String studentId = sequenceGeneratorService.nextSeq(school.getSchoolYear().replaceAll("-", ""),Student.SEQUENCE_STUDENT_ID);
+			if (school != null) {
+				String studentId = sequenceGeneratorService.nextSeq(school.getSchoolYear().replaceAll("-", ""),
+						Student.SEQUENCE_STUDENT_ID);
 				entity.setStudentId(studentId);
 			}
 		}
@@ -85,32 +83,32 @@ public class StudentServiceImpl extends AbstractService<Student, String> {
 
 	public Page<Student> findAllBy(String by, String searchValue, Pageable pageable, School school) {
 		if (!StringUtils.isBlank(by) && !StringUtils.isBlank(searchValue)) {
-			//searchValue = searchValue.toLowerCase();
+			// searchValue = searchValue.toLowerCase();
 			BooleanBuilder param = new BooleanBuilder();
-			
+
 			param.and(QStudent.student.school.eq(school));
-			
-			log.debug("findAllBy={}, searchValue={}",by, searchValue);
+
+			log.debug("findAllBy={}, searchValue={}", by, searchValue);
 			BooleanBuilder studentbb = new BooleanBuilder();
 			if ("STUDENT_ID".equalsIgnoreCase(by)) {
-				studentbb.or(QStudent.student.studentId.like("%" + searchValue + "%"));
+				studentbb.or(QStudent.student.studentId.containsIgnoreCase(searchValue));
 			} else if ("STUDENT_NAME".equalsIgnoreCase(by)) {
 				String[] name = searchValue.split(" ");
-				log.debug("findAllBy={}, {}",by, searchValue);
-				for(String value : name) {
+				log.debug("findAllBy={}, {}", by, searchValue);
+				for (String value : name) {
 					log.debug(value);
-					if(!StringUtils.isBlank(value)) {
-						studentbb.or(QStudent.student.firstName.like("%" + value + "%"));
-						studentbb.or(QStudent.student.lastName.like("%" + value + "%"));
-//						booleanBuilder.or(QStudent.student.firstName.like("%" + value + "%"));
-//						booleanBuilder.or(QStudent.student.lastName.like("%" + value + "%"));
+					if (!StringUtils.isBlank(value)) {
+						studentbb.or(QStudent.student.firstName.containsIgnoreCase(value));
+						studentbb.or(QStudent.student.lastName.containsIgnoreCase(value));
+//						booleanBuilder.or(QStudent.student.firstName.like( value ));
+//						booleanBuilder.or(QStudent.student.lastName.like( value ));
 					}
 				}
 			}
 			param.and(studentbb);
-			
+			log.debug("findAllBy=>" + param.toString());
 			Predicate predicate = param.getValue();
-			return repository.findAll(predicate, pageable);
+			return repo.findAll(predicate, pageable);
 		}
 
 		return findAll(pageable);

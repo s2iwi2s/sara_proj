@@ -1,7 +1,5 @@
 package com.sara.web.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +20,7 @@ import com.sara.web.controller.student.StudentResponse;
 @RequestMapping(path = Constants.URL_API_BASE + StudentController.URL_BASE)
 public class StudentController extends AbstractCrudController<Student, String> {
 	
-	private static final Logger log = LoggerFactory.getLogger(StudentController.class);
+//	private static final Logger log = LoggerFactory.getLogger(StudentController.class);
 
 	public static final String URL_BASE = "/student";
 

@@ -11,14 +11,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.querydsl.core.BooleanBuilder;
-import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.sara.data.document.CodeGroups;
-import com.sara.data.document.QAddress;
 import com.sara.data.document.QCodeGroups;
-import com.sara.data.document.QStudent;
 import com.sara.data.document.School;
-import com.sara.data.document.Student;
 import com.sara.data.document.User;
 import com.sara.data.repository.CodeGroupsMongoRepository;
 import com.sara.service.AbstractService;
@@ -32,18 +28,16 @@ public class CodeGroupsServiceImpl extends AbstractService<CodeGroups, String> {
 	@Autowired
 	private SequenceGeneratorService sequenceGeneratorService;
 	
-	private CodeGroupsMongoRepository repository;
 	private SchoolServiceImpl schoolServiceImpl;
 
 	@Autowired
 	public CodeGroupsServiceImpl(CodeGroupsMongoRepository repo, SchoolServiceImpl schoolServiceImpl) {
 		super(repo);
-		this.repository = repo;
 		this.schoolServiceImpl = schoolServiceImpl;
 	}
 
 	public Page<CodeGroups> findAll(Pageable pageable) {
-		return repository.findAll(pageable);
+		return repo.findAll(pageable);
 	}
 	
 	@Override
@@ -64,11 +58,11 @@ public class CodeGroupsServiceImpl extends AbstractService<CodeGroups, String> {
 	}
 	
 	public List<CodeGroups> findByCodeList(String code, School school) {
-		return repository.findByCodeAndSchoolOrderByPriority(code, school);
+		return ((CodeGroupsMongoRepository)repo).findByCodeAndSchoolOrderByPriority(code, school);
 	}
 	
 	public CodeGroups findByCode(String code, School school) {
-		return repository.findByCodeAndSchool(code, school);
+		return ((CodeGroupsMongoRepository)repo).findByCodeAndSchool(code, school);
 	}
 	
 	@Override

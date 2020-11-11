@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
-import com.sara.data.document.QStudent;
 import com.sara.data.document.QUser;
 import com.sara.data.document.User;
 import com.sara.data.repository.UserMongoRepository;
@@ -18,12 +17,9 @@ import com.sara.service.AbstractService;
 public class UserServiceImpl extends AbstractService<User, String> {
 	Logger log = LoggerFactory.getLogger(this.getClass());
 	
-	private UserMongoRepository repository;
-	
 	@Autowired
 	public UserServiceImpl(UserMongoRepository repo) {
 		super(repo);
-		this.repository = repo;
 	}
 	
 	@Override
@@ -63,6 +59,6 @@ public class UserServiceImpl extends AbstractService<User, String> {
 	}
 	
 	public User findByUserName(String userName){
-		return repository.findByUserName(userName);
+		return ((UserMongoRepository)repo).findByUserName(userName);
 	}
 }
