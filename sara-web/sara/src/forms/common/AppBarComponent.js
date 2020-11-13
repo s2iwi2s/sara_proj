@@ -1,17 +1,56 @@
 
 import React from 'react';
-import { AppBar, IconButton, Toolbar, Typography, Avatar, Box, FormControlLabel, Switch } from '@material-ui/core';
+import clsx from 'clsx';
+import { AppBar, IconButton, Toolbar, Typography, Avatar, Box, FormControlLabel, Switch, makeStyles } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+
+import MenuIcon from '@material-ui/icons/Menu';
 import SchoolIcon from '@material-ui/icons/School';
 
-import { useStyles } from './CSS';
 import { PAGE_URL, URL_BASE } from '../../api/Utils'
 import { useAuth } from '../../security/AuthenticationProvider';
 import MenuComponent from './MenuComponent';
+import MiniDrawer from './MiniDrawer';
 
 export default function AppBarComponent(props) {
  const [userObj, setUserObj] = useAuth();
 
+ const drawerWidth = 240;
+ const useStylesAppBar = makeStyles((theme) => ({
+  root: {
+   display: 'flex',
+  },
+  appBar: {
+   zIndex: theme.zIndex.drawer + 1,
+   transition: theme.transitions.create(['width', 'margin'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+   }),
+  },
+  appBarShift: {
+   marginLeft: drawerWidth,
+   width: `calc(100% - ${drawerWidth}px)`,
+   transition: theme.transitions.create(['width', 'margin'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen,
+   }),
+  },
+  menuButton: {
+   marginRight: 36,
+  },
+  hide: {
+   display: 'none',
+  },
+  title: {
+   flexGrow: 1,
+   display: 'none',
+   [theme.breakpoints.up('sm')]: {
+    display: 'block',
+    paddingLeft: theme.spacing(1)
+   },
+   //backgroundColor: fade(theme.palette.common.white, 0.25),
+  },
+ }));
  // const [userObj, setUserObj] = useState({
  //  userName: '',
  //  userFullName: 'Guest',
@@ -19,55 +58,59 @@ export default function AppBarComponent(props) {
  //  schoolLogo: ''
  // });
 
- const classes = useStyles();
+ const classes = useStylesAppBar();
  // const userName = AuthenticationService.getLoginUserName();
  // const isLogin = AuthenticationService.isUserLoggedIn();
 
  // printme(userObj);
 
+ const [drawerOpen, setDrawerOpen] = React.useState(false);
+
+ const doHandleDrawerOpen = () => {
+  setDrawerOpen(true);
+  console.log(`[AppBarComponent.doHandleDrawerOpen] drawerOpen=>${drawerOpen}`)
+ }
+ const doHandleDrawerClose = () => {
+  setDrawerOpen(false);
+  console.log(`[AppBarComponent.doHandleDrawerClose] doHandleDrawerClose=>${drawerOpen}`)
+ }
  return (
-  < div className={classes.appbar_root} >
+  < div className={classes.root} >
    {console.log('[AppBarComponent.return] userObj=>', userObj)}
-   <AppBar position="static">
+   <AppBar
+    position="fixed"
+    className={clsx(classes.appBar, {
+     [classes.appBarShift]: drawerOpen,
+    })}>
     <Toolbar>
      <IconButton
-      edge="start"
-      className={classes.appbar_menuButton}
       color="inherit"
       aria-label="open drawer"
+      onClick={doHandleDrawerOpen}
+      edge="start"
+      className={clsx(classes.menuButton, {
+       [classes.hide]: drawerOpen,
+      })}
      >
-      <MenuComponent />
+      <MenuIcon />
      </IconButton>
 
      {userObj && userObj.schoolLogo && <Avatar src={(URL_BASE + PAGE_URL.LOGO_URL + userObj.schoolLogo)} />}
      {(!userObj || !userObj.schoolLogo) && <SchoolIcon />}
 
-     <Typography className={classes.appbar_title} variant="h6" noWrap>
+     <Typography className={classes.title} variant="h6" noWrap>
       <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
        {userObj && <b>{userObj.schoolName}</b>}
       </Link>
      </Typography>
      {userObj && <div>Welcome <b>{userObj.userFullName}</b></div>}
 
-     {/* <div className={classes.appbar_search}>
-      <div className={classes.appbar_searchIcon}>
-       <SearchIcon />
-      </div>
-      <InputBase
-       placeholder="Search…"
-       classes={{
-        root: classes.appbar_inputRoot,
-        input: classes.appbar_inputInput,
-       }}
-       inputProps={{ 'aria-label': 'search' }}
-      />
-     </div> */}
-
      <Box pl={5}>
       <FormControlLabel control={<Switch checked={props.darkMode} onChange={props.toggleDarkMode} />} />
      </Box>
     </Toolbar>
    </AppBar>
+   <MiniDrawer drawerOpen={drawerOpen} doHandleDrawerClose={doHandleDrawerClose} />
   </div >
  );
 }

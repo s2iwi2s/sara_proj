@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 
 import { Container, CssBaseline } from '@material-ui/core';
@@ -22,7 +22,7 @@ import SignInComponent from './security/SignInComponent';
 import LogoutComponent from './security/LogoutComponent'
 import CodeGroupsListComponent from './forms/codeGroups/CodeGroupsListComponent';
 import CodeGroupsDetailComponent from './forms/codeGroups/CodeGroupsDetailComponent';
-import Dashboard from './forms/Dashboard';
+import Dashboard from './forms/dashboard/Dashboard';
 import AppBarComponent from './forms/common/AppBarComponent';
 import StudentDetailComponent from './forms/student/StudentDetailComponent';
 import StudentListComponent from './forms/student/StudentListComponent';
@@ -31,6 +31,37 @@ import SchoolListComponent from './forms/school/SchoolListComponent';
 
 import AuthenticationService from './security/AuthenticationService';
 import BillingComponent from './forms/billing/BillingComponent';
+
+const useStylesRouting = makeStyles((theme) => ({
+ root: {
+  display: 'flex',
+ },
+ toolbar: {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+ },
+ content: {
+  flexGrow: 1,
+  padding: theme.spacing(3),
+ },
+ container: {
+  paddingTop: theme.spacing(4),
+  paddingBottom: theme.spacing(4),
+ },
+ // content: {
+ //  backgroundColor:
+ //   theme.palette.mode === 'light'
+ //    ? theme.palette.grey[100]
+ //    : theme.palette.grey[900],
+ //  flexGrow: 1,
+ //  height: '100vh',
+ //  overflow: 'auto',
+ // },
+}));
 
 const AppRouting = () => {
 
@@ -72,20 +103,20 @@ const AppRouting = () => {
  }
 
  // render = () => {
- const classes = useStyles();
+ const classes = useStylesRouting();
 
  return (
-  <MuiThemeProvider theme={theme}>
-   <CssBaseline />
-
-   <div className="AppRouting">
+  <div className="">
+   <MuiThemeProvider theme={theme}>
+    <CssBaseline />
     <Router>
-     <>
-      {/* <AppBarDrawerComponent /> */}
+     <div className={classes.root}>
 
       <AppBarComponent darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
-      <Container component="main" className={classes.container}>
+      <main className={classes.content}>
+       <div className={classes.toolbar} />
+       {/* <Container component="main" className={classes.container}> */}
        <Switch>
         <Route path={PAGE_URL.ROOT} exact component={Dashboard} />
         <Route path={PAGE_URL.INDEX} exact component={Dashboard} />
@@ -113,12 +144,13 @@ const AppRouting = () => {
         <AuthenticatedRoute path={PAGE_URL.SCHOOL_DETAIL} exact component={SchoolDetailComponent} />
         <Route component={ErrorComponent} />
        </Switch>
-      </Container>
-      <FooterComponent />
-     </>
+       {/* </Container> */}
+       <FooterComponent />
+      </main>
+     </div>
     </Router>
-   </div>
-  </MuiThemeProvider>
+   </MuiThemeProvider>
+  </div>
  );
  // }
 }

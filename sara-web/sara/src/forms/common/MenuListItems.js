@@ -22,6 +22,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
 import AuthenticationService from '../../security/AuthenticationService';
 import { PAGE_URL } from '../../api/Utils'
+import { Divider } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NestedMenuComponent() {
+export default function MenuListItems() {
   const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
 
   const history = useHistory();
@@ -42,8 +43,8 @@ export default function NestedMenuComponent() {
 
   const [store, setStore] = React.useState({});
 
-  const handleClick = (sourceName) => {
-    console.log(`[NestedMenuComponent.handleClick] sourceName=${sourceName}, store=>`, store)
+  const doHandleClick = (sourceName) => {
+    console.log(`[NestedMenuComponent.doHandleClick] sourceName=${sourceName}, store=>`, store)
 
     let isopen = store[sourceName] ? false : true;
     setStore({
@@ -67,12 +68,12 @@ export default function NestedMenuComponent() {
         isUserLoggedIn && <>
           <ListItem button>
             <ListItemIcon>
-              <AccountBalanceWalletIcon />
+              <AccountBalanceWalletIcon onClick={() => history.push(PAGE_URL.BILLING)} />
             </ListItemIcon>
             <ListItemText primary="Billing" onClick={() => history.push(PAGE_URL.BILLING)} />
           </ListItem>
 
-          <ListItem button onClick={() => handleClick("students")}>
+          <ListItem button onClick={() => doHandleClick("students")}>
             <ListItemIcon>
               <LocalLibraryIcon />
             </ListItemIcon>
@@ -81,76 +82,70 @@ export default function NestedMenuComponent() {
           </ListItem>
           <Collapse in={store.students} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              <ListItem button className={classes.nested}>
+              <ListItem button className={classes.nested} onClick={() => history.push(PAGE_URL.STUDENT_DETAIL_URL + '/-1')} >
                 <ListItemIcon>
                   <AddIcon />
                 </ListItemIcon>
-                <ListItemText primary="New" onClick={() => history.push(PAGE_URL.STUDENT_DETAIL_URL + '/-1')} />
+                <ListItemText primary="New" />
               </ListItem>
-              <ListItem button className={classes.nested}>
+              <ListItem button className={classes.nested} onClick={() => history.push(PAGE_URL.STUDENT_LIST)}>
                 <ListItemIcon>
                   <FormatListNumberedIcon />
                 </ListItemIcon>
-                <ListItemText primary="List" onClick={() => history.push(PAGE_URL.STUDENT_LIST)} />
+                <ListItemText primary="List" />
               </ListItem>
             </List>
           </Collapse>
 
-          <ListItem button>
+          <ListItem button onClick={() => doHandleClick("school")} >
             <ListItemIcon>
               <SchoolIcon />
             </ListItemIcon>
-            <ListItemText primary="School" onClick={() => handleClick("school")} />
+            <ListItemText primary="School" />
             {store.school ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
           <Collapse in={store.school} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              <ListItem button className={classes.nested}>
+              <ListItem button className={classes.nested} onClick={() => history.push(PAGE_URL.SCHOOL_DETAIL_URL + '/-1')} >
                 <ListItemIcon>
                   <AddIcon />
                 </ListItemIcon>
-                <ListItemText primary="New" onClick={() => history.push(PAGE_URL.SCHOOL_DETAIL_URL + '/-1')} />
+                <ListItemText primary="New" />
               </ListItem>
-              <ListItem button className={classes.nested}>
+              <ListItem button className={classes.nested} onClick={() => history.push(PAGE_URL.SCHOOL_LIST)}>
                 <ListItemIcon>
                   <FormatListNumberedIcon />
                 </ListItemIcon>
-                <ListItemText primary="List" onClick={() => history.push(PAGE_URL.SCHOOL_LIST)} />
+                <ListItemText primary="List" />
               </ListItem>
             </List>
           </Collapse>
 
-          <ListItem button>
+          <ListItem button onClick={() => doHandleClick("users")} >
             <ListItemIcon>
               <PersonIcon />
             </ListItemIcon>
-            <ListItemText primary="Users" onClick={() => handleClick("users")} />
+            <ListItemText primary="Users" />
             {store.users ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
           <Collapse in={store.users} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              <ListItem button className={classes.nested}>
+              <ListItem button className={classes.nested} onClick={() => history.push(PAGE_URL.USER_DETAIL_URL + '/-1')} >
                 <ListItemIcon>
                   <AddIcon />
                 </ListItemIcon>
-                <ListItemText primary="New" onClick={() => history.push(PAGE_URL.USER_DETAIL_URL + '/-1')} />
+                <ListItemText primary="New" />
               </ListItem>
-              <ListItem button className={classes.nested}>
+              <ListItem button className={classes.nested} onClick={() => history.push(PAGE_URL.USER_LIST)} >
                 <ListItemIcon>
                   <FormatListNumberedIcon />
                 </ListItemIcon>
-                <ListItemText primary="List" onClick={() => history.push(PAGE_URL.USER_LIST)} />
+                <ListItemText primary="List" />
               </ListItem>
             </List>
           </Collapse>
-          {/* <ListItem button>
-            <ListItemIcon>
-              <DraftsIcon />
-            </ListItemIcon>
-            <ListItemText primary="Address" onClick={() => history.push(PAGE_URL.ADDRESS_LIST)} />
-          </ListItem> */}
 
-          <ListItem button onClick={() => handleClick("codeGroups")}>
+          <ListItem button onClick={() => doHandleClick("codeGroups")}>
             <ListItemIcon>
               <CodeIcon />
             </ListItemIcon>
@@ -159,17 +154,17 @@ export default function NestedMenuComponent() {
           </ListItem>
           <Collapse in={store.codeGroups} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              <ListItem button className={classes.nested}>
+              <ListItem button className={classes.nested} onClick={() => history.push(PAGE_URL.CODE_GROUPS_DETAIL_URL + '/-1')}>
                 <ListItemIcon>
                   <AddIcon />
                 </ListItemIcon>
-                <ListItemText primary="New" onClick={() => history.push(PAGE_URL.CODE_GROUPS_DETAIL_URL + '/-1')} />
+                <ListItemText primary="New" />
               </ListItem>
-              <ListItem button className={classes.nested}>
+              <ListItem button className={classes.nested} onClick={() => history.push(PAGE_URL.CODE_GROUPS_LIST)}>
                 <ListItemIcon>
                   <FormatListNumberedIcon />
                 </ListItemIcon>
-                <ListItemText primary="List" onClick={() => history.push(PAGE_URL.CODE_GROUPS_LIST)} />
+                <ListItemText primary="List" />
               </ListItem>
             </List>
           </Collapse>
@@ -177,18 +172,19 @@ export default function NestedMenuComponent() {
         </>
       }
 
+      <Divider />
       {isUserLoggedIn && <ListItem button>
-        <ListItemIcon>
+        <ListItemIcon onClick={() => history.push(PAGE_URL.LOGOUT)} >
           <ExitToAppIcon />
         </ListItemIcon>
-        <ListItemText primary="Logout" onClick={() => history.push(PAGE_URL.LOGOUT)} />
+        <ListItemText primary="Logout" />
       </ListItem>}
 
       {!isUserLoggedIn && <ListItem button>
-        <ListItemIcon>
+        <ListItemIcon onClick={() => history.push(PAGE_URL.LOGIN)} >
           <VpnKeyIcon />
         </ListItemIcon>
-        <ListItemText primary="Login" onClick={() => history.push(PAGE_URL.LOGIN)} />
+        <ListItemText primary="Login" />
       </ListItem>}
 
     </List>

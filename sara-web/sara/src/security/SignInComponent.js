@@ -32,10 +32,10 @@ export default function SignInComponent() {
         history.push(`/`);
 
       })
-    // .catch(error => {
-    //   console.log(`[SignInComponent.onSubmitPage]: error=>`, error);
-    //   setMessage('Login in failed. Your User Name and Password do not match.');
-    // });
+      .catch(error => {
+        console.log(`[SignInComponent.onSubmitPage]: error=>`, error);
+        setMessage('Login in failed. Your User Name and Password do not match.');
+      });
   }
   return (
     <SignInHtml message={message} onSignon={onSignon} />
