@@ -172,20 +172,25 @@ export default function MenuListItems() {
         </>
       }
 
-      <Divider />
-      {isUserLoggedIn && <ListItem button onClick={() => history.push(PAGE_URL.LOGOUT)} >
-        <ListItemIcon>
-          <ExitToAppIcon />
-        </ListItemIcon>
-        <ListItemText primary="Logout" />
-      </ListItem>}
+      {isUserLoggedIn &&
+        <>
+          <Divider />
+          <ListItem button onClick={() => history.push(PAGE_URL.LOGOUT)} >
+            <ListItemIcon>
+              <ExitToAppIcon />
+            </ListItemIcon>
+            <ListItemText primary="Logout" />
+          </ListItem>
+        </>
+      }
 
-      {!isUserLoggedIn && <ListItem button onClick={() => history.push(PAGE_URL.LOGIN)} >
-        <ListItemIcon>
-          <VpnKeyIcon />
-        </ListItemIcon>
-        <ListItemText primary="Login" />
-      </ListItem>}
+      {!isUserLoggedIn &&
+        <ListItem button onClick={() => history.push(PAGE_URL.LOGIN)} >
+          <ListItemIcon>
+            <VpnKeyIcon />
+          </ListItemIcon>
+          <ListItemText primary="Login" />
+        </ListItem>}
 
     </List>
   );

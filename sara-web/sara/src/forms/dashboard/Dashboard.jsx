@@ -5,7 +5,9 @@ import { useStyles } from '../common/CSS'
 
 import AuthenticationService from '../../security/AuthenticationService'
 import { Avatar, Box, Button, Divider, Grid } from '@material-ui/core';
-// import Chart from './Chart';
+import Chart from './Chart';
+import StackedBarChart from './StackedBarChart';
+import CustomContentOfTooltip from './CustomContentOfTooltip';
 
 export default function Dashboard(props) {
   const classes = useStyles();
@@ -14,7 +16,8 @@ export default function Dashboard(props) {
 
   const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
   return (
-    <>
+    <>{
+      !isUserLoggedIn &&
       <Grid container spacing={3}>
         <Grid item xs={12} sm={4}>
           <Avatar src={faker.image.fashion(140, 140)} className={classes.avatar_40} />
@@ -35,12 +38,29 @@ export default function Dashboard(props) {
           <p><Button variant="contained" color="primary" href="#">View details</Button></p>
         </Grid>
       </Grid>
+    }
 
 
       {
         isUserLoggedIn &&
         <>
-          {/* <Chart /> */}
+
+          <Grid container spacing={3}>
+            <Grid item xs={12} sm={3}>
+              <Chart />
+            </Grid>
+            <Grid item xs={12} sm={3}>
+              <StackedBarChart />
+            </Grid>
+            <Grid item xs={12} sm={3}>
+              <CustomContentOfTooltip />
+            </Grid>
+            <Grid item xs={12} sm={3}>
+            </Grid>
+          </Grid>
+
+
+
         </>
       }
     </ >
