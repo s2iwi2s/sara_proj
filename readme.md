@@ -1,4 +1,4 @@
-# Url = http://localhost:8081/
+# Url = http://localhost:5000/
 
 * Springboot 2.3.3.RELEASE
 * Angular
@@ -45,93 +45,6 @@ maven profiles
 ### Start Client Server
 ```
 ng serve -o
-```
-
-### Generate Crude Components
-* Before running the main class, configure CrudeGen_objects.json.
-* Main class is com.angularreact.appgen.util.gen.CrudeGenerator. It will read json files CrudeGen_objects.json;
-* For angular, after running the main class, you need to add the new component in 'appgen-angularreact-crud-nosql/ui/angular/src/app/app.module.ts' and 'appgen-angularreact-crud-nosql/ui/angular/src/app/app-routing.module.ts'
-
-### Sample json Object
-```
-	/appgen-angularreact-crud-nosql/tmpl/CrudeGen_objects.json
-	
-	"OBJECTS": [{
-		"NAME": "MyCases",
-		"FIELDS": [
-			{
-				"LABEL": "Title",
-				"NAME": "Title",
-				"TYPE": "String",
-				"MAPPING": "",
-				"REQUIRED": "Y"
-			},
-			{
-				"LABEL": "Status",
-				"NAME": "Status",
-				"TYPE": "CodeGroups",
-				"MAPPING": "@ManyToOne",
-				"CODE_GROUP": "STATUS",
-				"LIST_TYPE": "STATUS",
-				"REQUIRED": "Y"
-			},
-			{
-				"LABEL": "Case Type 1",
-				"NAME": "CaseType1",
-				"TYPE": "CodeGroups",
-				"MAPPING": "@ManyToOne",
-				"CODE_GROUP": "CASE_TYPE_1",
-				"LIST_TYPE": "CASE_TYPE_1",
-				"REQUIRED": "Y"
-			},
-			{
-				"LABEL": "Case Type 2",
-				"NAME": "CaseType2",
-				"TYPE": "CodeGroups",
-				"MAPPING": "@ManyToOne",
-				"CODE_GROUP": "CASE_TYPE_2",
-				"LIST_TYPE": "CASE_TYPE_2",
-				"REQUIRED": "Y"
-			},
-			{
-				"LABEL": "Case Type 3",
-				"NAME": "CaseType3",
-				"TYPE": "CodeGroups",
-				"MAPPING": "@ManyToOne",
-				"CODE_GROUP": "CASE_TYPE_3",
-				"LIST_TYPE": "CASE_TYPE_3",
-				"REQUIRED": "Y"
-			},
-			{
-				"LABEL": "Status Code",
-				"NAME": "StatusCode",
-				"TYPE": "CodeGroups",
-				"MAPPING": "@ManyToOne",
-				"CODE_GROUP": "STATUS_CODE",
-				"LIST_TYPE": "STATUS_CODE"
-			},
-			{
-				"LABEL": "Comments",
-				"NAME": "Comments",
-				"TYPE": "String",
-				"MAPPING": ""
-			}
-		]
-	}
-```
-
-### Manual fix
-- Add new components in 'appgen-angularreact-crud-nosql/ui/angular/client/src/app/app.module.ts' and 'appgen-angularreact-crud-nosql/ui/angular/src/app/app-routing.module.ts'
-- Fix the generated detail component. Fix null error after clicking new button from the list. This error may be the cause if you have Code Groups or List of Values
-
-```
-  details: any = {
-    status: { id: '' },
-    caseType1: { id: '' },
-    caseType2: { id: '' },
-    caseType3: { id: '' },
-    statusCode: { id: '' },
-  }
 ```
 
 ### GIT
