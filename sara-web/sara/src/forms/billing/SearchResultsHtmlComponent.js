@@ -15,7 +15,7 @@ const SearchResultsHtmlComponent = (props) => {
  return (
   <>
    <Box py={3}><Divider /></Box>
-   <Box pb={3}><Typography variant="h5">Search Results</Typography></Box>
+   <Box ><Typography variant="h5">Search Results</Typography></Box>
 
    <PaginationComponent
     paging={props.store.paging}

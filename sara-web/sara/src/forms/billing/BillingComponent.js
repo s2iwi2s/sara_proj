@@ -7,10 +7,15 @@ import BillingService from '../../api/billing/BillingService'
 import BillingHtmlComponent from './BillingHtmlComponent';
 import SaveBillingDialog from './SaveBillingDialog';
 import SavePayablesConfimationHtml from './SavePayablesConfimationHtml';
+import { Snackbar } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
 
 export default function BillingComponent(props) {
   const history = useHistory();
-
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: ''
+  })
   const optionsList = {
     billingSearchBy: [{
       id: '1',
@@ -179,19 +184,26 @@ export default function BillingComponent(props) {
   }
   const doShowSaveConfirmDialog = (data) => {
     console.log(`[BillingComponent.doShowSaveConfirmDialog] data==>`, data);
-    let total = 0;
+    let paymentTotal = 0;
+    let totalBalance = 0;
     data.payables.map((row, i) => {
-      let value = row.payment ? row.payment.replaceAll(',', '') : 0;
-      row.payment = formatter.format(value);
-      let numValue = Number(value);
-      total += numValue;
+      let balance = row.balance ? row.balance.replaceAll(',', '') : 0;
+      let payment = row.payment ? row.payment.replaceAll(',', '') : 0;
+
+      row.balance = Number(balance);
+      row.payment = Number(payment);
+
+      totalBalance += row.balance;
+      paymentTotal += row.payment;
     });
+
     let confirmStoreTemp = {
       ...confirmStore,
       open: true,
       entity: store.entity,
       payables: data.payables,
-      total: formatter.format(total)
+      total: paymentTotal,
+      totalBalance: totalBalance - paymentTotal
     }
     doInitConfirmStore(confirmStoreTemp);
 
@@ -205,20 +217,6 @@ export default function BillingComponent(props) {
 
   const doSavePayables = (data) => {
     console.log(`[BillingComponent.doSavePayables] data==>`, data);
-    data.payables.map((row, i) => {
-      let value = row.payment ? row.payment.replaceAll(',', '') : 0;
-      row.payment = value;
-    });
-
-    // let confirmStoreTemp = {
-    //   ...confirmStore,
-    //   open: true,
-    //   entity: store.entity,
-    //   payables: data.payables,
-    //   total: formatter.format(total)
-    // }
-    //doInitConfirmStore(confirmStoreTemp);
-    // setConfirmStore(confirmStoreTemp);
 
     BillingService.save(data.payables, props.match.params.id).then(response => {
       console.log(`[BillingComponent.doSavePayables BillingService.save] response==>`, response)
@@ -241,6 +239,11 @@ export default function BillingComponent(props) {
         open: false,
         total: formatter.format(0)
       });
+
+      setSnackbar({
+        open: true,
+        message: 'Payables saved successfully!'
+      })
     })
   }
   const doCloseSaveBillingDialog = () => {
@@ -269,6 +272,13 @@ export default function BillingComponent(props) {
     }
   }
 
+  const doCloseSnackbar = () => {
+    setSnackbar({
+      open: false,
+      message: ''
+    })
+  }
+
   return (
     <>
       <BillingHtmlComponent
@@ -282,11 +292,19 @@ export default function BillingComponent(props) {
         doSavePayables={doSavePayables}
       />
 
-      <SaveBillingDialog open={confirmStore.open}
+      <SaveBillingDialog title="Please click save button to confirm."
+        open={confirmStore.open}
         closeDialog={doCloseSaveBillingDialog}
         saveDialog={doConfirmSavePayables}>
         <SavePayablesConfimationHtml confirmStore={confirmStore} />
       </SaveBillingDialog>
+
+
+      <Snackbar open={snackbar.open} autoHideDuration={6000} onClose={doCloseSnackbar}>
+        <Alert onClose={doCloseSnackbar} severity="success">
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </>
   )
 }

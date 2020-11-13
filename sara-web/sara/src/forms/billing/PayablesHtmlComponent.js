@@ -99,7 +99,7 @@ const PayablesHtmlComponent = (props) => {
         </Box>
       </Paper>
       <Box py={3}><Divider /></Box>
-      <Box pb={3}><Typography variant="h5">Payables</Typography></Box>
+      <Box ><Typography variant="h5">Payables</Typography></Box>
       <form onSubmit={handleSubmit(props.doShowSaveBillingDialog)}>
         <TextField
           type="hidden"
@@ -200,6 +200,7 @@ const PayablesHtmlComponent = (props) => {
                             // disabled={row.balance === 0}
                             defaultValue={row.payment}
                             variant="filled"
+                            inputStyle={{ textAlign: 'center' }}
                             InputProps={{
                               startAdornment: <InputAdornment position="start">P</InputAdornment>,
                             }} />

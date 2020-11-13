@@ -25,13 +25,13 @@ export default function BillingHtmlComponent(props) {
 
         return (
                 <>
-                        <Box pb={3}><Typography variant="h4">Payables</Typography></Box>
+                        <Box ><Typography variant="h4">Payables</Typography></Box>
 
                         <form onSubmit={handleSubmit(props.doRetrieve)}>
                                 <Paper elevation={3} variant="elevation" >
                                         <Box my={3} mx={3}>
                                                 <Grid container spacing={3}>
-                                                        <Grid item xs={12} sm={2}><Typography variant="h5">Search By</Typography></Grid>
+                                                        <Grid item xs={12} sm={2}><Typography variant="h6">Search By</Typography></Grid>
                                                         <Grid item xs={12} sm={2}>
                                                                 <Controller
                                                                         as={<Select fullWidth >
