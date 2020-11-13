@@ -4,7 +4,7 @@ import { URL_BASE } from '../../api/Utils'
 import { useStyles } from '../common/CSS'
 
 import AuthenticationService from '../../security/AuthenticationService'
-import { Avatar, Box, Button, Divider, Grid } from '@material-ui/core';
+import { Avatar, Box, Button, Divider, Grid, Paper, Typography } from '@material-ui/core';
 import Chart from './Chart';
 import StackedBarChart from './StackedBarChart';
 import CustomContentOfTooltip from './CustomContentOfTooltip';
@@ -44,23 +44,20 @@ export default function Dashboard(props) {
       {
         isUserLoggedIn &&
         <>
-
-          <Grid container spacing={3}>
-            <Grid item xs={12} sm={3}>
-              <Chart />
+          <Box component={Paper} elevation={3} variant="elevation" px={3} py={3} m="auto">
+            <Typography variant="h4">Chart samples click <a href="https://recharts.org/en-US/examples">here</a></Typography>
+            <Grid container spacing={5}>
+              <Grid item xs={12} sm={4}>
+                <Chart />
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <StackedBarChart />
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <CustomContentOfTooltip />
+              </Grid>
             </Grid>
-            <Grid item xs={12} sm={3}>
-              <StackedBarChart />
-            </Grid>
-            <Grid item xs={12} sm={3}>
-              <CustomContentOfTooltip />
-            </Grid>
-            <Grid item xs={12} sm={3}>
-            </Grid>
-          </Grid>
-
-
-
+          </Box>
         </>
       }
     </ >
