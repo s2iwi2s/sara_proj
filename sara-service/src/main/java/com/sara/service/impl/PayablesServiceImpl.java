@@ -8,6 +8,7 @@ import static org.springframework.data.mongodb.core.aggregation.Aggregation.proj
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.sort;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +22,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.AggregationOperation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Service;
@@ -66,7 +68,7 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 		super(repo);
 //		this.repository = repo;
 	}
-	
+
 	@Override
 	public BooleanExpression getFindAllBooleanExpression(User user) {
 		return QPayables.payables.student.school.eq(user.getSchool());
@@ -99,6 +101,8 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 
 	public StudentPayables savePayables(List<Payables> list, Student student) throws Exception {
 		double remainingAmt = 0;
+		student = studentServiceImpl.findById(student.getId());
+		String schoolYear = student.getSchool().getSchoolYear();
 		for (Payables p : list) {
 			double payment = p.getPayment() + remainingAmt;
 			double balance = p.getAmount() - p.getPaid();
@@ -110,31 +114,35 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 				p.setPayment(payment);
 				remainingAmt = 0;
 			}
+			p.setStudent(student);
+			p.setSchoolYear(schoolYear);
 		}
 
-		if (remainingAmt > 0) {
-			list.add(new Payables("balance", "Balance", 0, -(remainingAmt), list.size(), student, 0, 0));
-		}
+		Date invoiceDate = new Date();
+		String invoiceNo = this.save(list, invoiceDate);
 
-		String invoiceNo = this.save(list);
-
-		List<Payables> payables = getStudentPayables(student);
-
-		StudentPayables studentPayables = new StudentPayables(invoiceNo, payables);
-		return studentPayables;
+		List<Payables> payables = getStudentPayables(student, student.getSchool().getSchoolYear());
+		List<Payables> payablesByInvoiceNo = getStudentPayables(student, student.getSchool().getSchoolYear(),
+				invoiceNo);
+		
+		return new StudentPayables(payables, payablesByInvoiceNo, invoiceNo, invoiceDate);
 	}
 
-	public List<Payables> getStudentPayables(String id) throws JsonMappingException, JsonProcessingException, IllegalArgumentException {
+	public List<Payables> getStudentPayables(String id, String schoolYear)
+			throws JsonMappingException, JsonProcessingException, IllegalArgumentException {
 		Student student = studentServiceImpl.findById(id);
-		return getStudentPayables(student);
+		return getStudentPayables(student, schoolYear);
 	}
 
-	public List<Payables> getStudentPayables(Student student) throws JsonMappingException, JsonProcessingException {
+	public List<Payables> getStudentPayables(Student student, String schoolYear)
+			throws JsonMappingException, JsonProcessingException {
+		return getStudentPayables(student, schoolYear, null);
+	}
+
+	public List<Payables> getStudentPayables(Student student, String schoolYear, String invoiceNo)
+			throws JsonMappingException, JsonProcessingException {
 		List<Payables> payables = getStudentPayablesTemplate(student);
-
-		List<PaymentInfo> sumPayableList = findPaymentSumByStudent(student);
-
-		log.debug("PaymentInfo sumPayableList=>{}", sumPayableList);
+		List<PaymentInfo> sumPayableList = findPaymentSumByStudent(student, schoolYear, invoiceNo);
 
 		for (Payables entity : payables) {
 			boolean hasPayment = false;
@@ -149,7 +157,7 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 				}
 			}
 			if (!hasPayment) {
-				//entity.setBalance(entity.getAmount());
+				entity.setBalance(entity.getAmount());
 			}
 		}
 
@@ -167,15 +175,17 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 		return payables;
 	}
 
-	public List<Payables> getStudentPayablesTemplate(String id) throws JsonMappingException, JsonProcessingException, IllegalArgumentException {
+	public List<Payables> getStudentPayablesTemplate(String id)
+			throws JsonMappingException, JsonProcessingException, IllegalArgumentException {
 		Student student = studentServiceImpl.findById(id);
 		return getStudentPayablesTemplate(student);
 	}
 
 	public List<Payables> getStudentPayablesTemplate(Student student)
 			throws JsonMappingException, JsonProcessingException {
-		
-		CodeGroups payables = codeGroupsServiceImpl.findByCode("PAYABLES_" + student.getLevel().getValue(), student.getSchool());
+
+		CodeGroups payables = codeGroupsServiceImpl.findByCode("PAYABLES_" + student.getLevel().getValue(),
+				student.getSchool());
 
 		ObjectMapper mapper = new ObjectMapper();
 		CollectionType javaType = mapper.getTypeFactory().constructCollectionType(List.class, Payables.class);
@@ -189,7 +199,7 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 		return payableList;
 	}
 
-	private String save(List<Payables> list) {
+	private String save(List<Payables> list, Date invoiceDate) {
 		String invoiceNo = null;
 
 		Iterator<Payables> it = list.iterator();
@@ -204,22 +214,37 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 				String id = sequenceGeneratorService.nextSeq(Payables.SEQUENCE_NAME);
 				entity.setId(id);
 				entity.setInvoiceNo(invoiceNo);
+				entity.setInvoiceDate(invoiceDate);
 			}
 		}
 		repo.saveAll(list);
-		
+
 		return invoiceNo;
 	}
 
-	public List<PaymentInfo> findPaymentSumByStudent(String id) throws IllegalArgumentException{
-		Student student = studentServiceImpl.findById(id);
-		return findPaymentSumByStudent(student);
-	}
+//	public List<PaymentInfo> findPaymentSumByStudent(String id) throws IllegalArgumentException{
+//		Student student = studentServiceImpl.findById(id);
+//		return findPaymentSumByStudent(student, student.getSchool().getSchoolYear(), null);
+//	}
 
-	public List<PaymentInfo> findPaymentSumByStudent(Student student) {
-		Aggregation aggregation = newAggregation(match(Criteria.where("student").is(student)),
-				group("code", "name", "order").sum("payment").as("payment"),
-				sort(Sort.Direction.ASC, previousOperation(), "order"), project("code", "name", "order", "payment"));
+	public List<PaymentInfo> findPaymentSumByStudent(Student student, String schoolYear, String invoiceNo) {
+		AggregationOperation match = match(Criteria.where("student").is(student));
+		AggregationOperation match2 = match(Criteria.where("schoolYear").is(schoolYear));
+
+		Aggregation aggregation;
+		if (!StringUtils.isBlank(invoiceNo)) {
+			AggregationOperation match3 = match(Criteria.where("invoiceNo").is(invoiceNo));
+			aggregation = newAggregation(match, match2, match3,
+					group("code", "name", "order").sum("payment").as("payment"),
+					sort(Sort.Direction.ASC, previousOperation(), "order"),
+					project("code", "name", "order", "payment"));
+
+		} else {
+			aggregation = newAggregation(match, match2, group("code", "name", "order").sum("payment").as("payment"),
+					sort(Sort.Direction.ASC, previousOperation(), "order"),
+					project("code", "name", "order", "payment"));
+
+		}
 
 		AggregationResults<PaymentInfo> groupResults = mongoTemplate.aggregate(aggregation, Payables.class,
 				PaymentInfo.class);
