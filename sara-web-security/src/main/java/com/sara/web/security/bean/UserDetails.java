@@ -11,6 +11,7 @@ public class UserDetails {
 	private String userFullName;
 	private String schoolId;
 	private String schoolName;
+	private String schoolAddress;
 	private String schoolLogo;
 
 	public UserDetails(User user) {
@@ -22,6 +23,7 @@ public class UserDetails {
 		if (user.getSchool() != null) {
 			this.schoolId = school.getId();
 			this.schoolName = school.getName();
+			this.schoolAddress = school.getAddress();
 			this.schoolLogo = school.getLogo();
 		}
 	}
