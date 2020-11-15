@@ -1,8 +1,10 @@
 package com.sara.service.impl;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.querydsl.core.BooleanBuilder;
@@ -16,7 +18,7 @@ import com.sara.service.AbstractService;
 @Service
 public class UserServiceImpl extends AbstractService<User, String> {
 	Logger log = LoggerFactory.getLogger(this.getClass());
-	
+	private PasswordEncoder passwordEncoder;
 	@Autowired
 	public UserServiceImpl(UserMongoRepository repo) {
 		super(repo);
@@ -47,12 +49,11 @@ public class UserServiceImpl extends AbstractService<User, String> {
 	@Override
 	public User save(User entity) {
 		log.info("save entity={}", entity);
-		if (entity.getId() != null && entity.getId().length() > 0 && !(entity.getId().equalsIgnoreCase("-1")
-				|| entity.getPassword() == null || entity.getPassword().trim().equals(""))) {
+		if (!StringUtils.isBlank(entity.getId()) && StringUtils.isBlank(entity.getPassword())) {
 			User endUser = super.findById(entity.getId());
 			entity.setPassword(endUser.getPassword());
 		} else {
-			entity.setPassword("$2a$10$fdxH3igDJy0ZKUdpKWtAsuri0GRed6sO14NTxchvC5PdyztTD4ztm");
+			entity.setPassword(passwordEncoder.encode(entity.getPassword()));
 		}
 		entity = super.save(entity);
 		return entity;

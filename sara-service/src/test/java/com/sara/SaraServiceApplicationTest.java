@@ -14,6 +14,7 @@ import com.sara.service.impl.AddressServiceImpl;
 @SpringBootTest
 @EnableAutoConfiguration
 class SaraServiceApplicationTest {
+	
 	@Autowired
 	private AddressServiceImpl addressServiceImpl;
 
@@ -35,5 +36,4 @@ class SaraServiceApplicationTest {
 	void test() {
 		assertNotNull(addressServiceImpl);
 	}
-
 }

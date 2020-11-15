@@ -40,6 +40,7 @@ import com.sara.data.repository.PayablesMongoRepository;
 import com.sara.service.AbstractService;
 import com.sara.service.SequenceGeneratorService;
 import com.sara.service.bean.PaymentInfo;
+import com.sara.service.bean.StudentPayables;
 
 @Service
 public class PayablesServiceImpl extends AbstractService<Payables, String> {
@@ -96,7 +97,7 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 		return super.save(entity);
 	}
 
-	public List<Payables> savePayables(List<Payables> list, Student student) throws Exception {
+	public StudentPayables savePayables(List<Payables> list, Student student) throws Exception {
 		double remainingAmt = 0;
 		for (Payables p : list) {
 			double payment = p.getPayment() + remainingAmt;
@@ -115,11 +116,12 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 			list.add(new Payables("balance", "Balance", 0, -(remainingAmt), list.size(), student, 0, 0));
 		}
 
-		this.save(list);
+		String invoiceNo = this.save(list);
 
 		List<Payables> payables = getStudentPayables(student);
 
-		return payables;
+		StudentPayables studentPayables = new StudentPayables(invoiceNo, payables);
+		return studentPayables;
 	}
 
 	public List<Payables> getStudentPayables(String id) throws JsonMappingException, JsonProcessingException, IllegalArgumentException {
@@ -187,7 +189,7 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 		return payableList;
 	}
 
-	private List<Payables> save(List<Payables> list) {
+	private String save(List<Payables> list) {
 		String invoiceNo = null;
 
 		Iterator<Payables> it = list.iterator();
@@ -204,7 +206,9 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 				entity.setInvoiceNo(invoiceNo);
 			}
 		}
-		return repo.saveAll(list);
+		repo.saveAll(list);
+		
+		return invoiceNo;
 	}
 
 	public List<PaymentInfo> findPaymentSumByStudent(String id) throws IllegalArgumentException{
