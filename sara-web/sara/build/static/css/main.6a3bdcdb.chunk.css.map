@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://src/App.css"],"names":[],"mappings":"AAEA,aACE,eACE,YACF,CACF","file":"main.6a3bdcdb.chunk.css","sourcesContent":["/* @import '~bootstrap/dist/css/bootstrap.min.css'; */\r\n/* @import 'https://fonts.googleapis.com/icon?family=Material+Icons' */\r\n@media print {\r\n  .not-printable {\r\n    display: none;\r\n  }\r\n}"]}
