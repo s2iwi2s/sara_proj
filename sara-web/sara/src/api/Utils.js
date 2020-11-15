@@ -11,6 +11,7 @@ export const USER_TEMP = {
     userName: '',
     userFullName: 'Guest',
     schoolName: 'SARA PROJECT',
+    schoolAddress: '',
     schoolLogo: '',
     schoolId: ''
 }

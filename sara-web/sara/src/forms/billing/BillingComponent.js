@@ -311,7 +311,7 @@ export default function BillingComponent(props) {
         ...confirmStore,
         INIT_STATUS: INIT_STATUS.RESET,
         payables: [],
-        invoiceDate: moment(response.data.studentPayables.invoiceDate).format('YYYY-MM-DD'),
+        invoiceDate: moment(response.data.studentPayables.invoiceDate).format('lll'),
         invoiceNo: response.data.studentPayables.invoiceNo,
         payablesByInvoiceNo: payablesByInvoiceNo,
         paymentTotal: paymentTotal,

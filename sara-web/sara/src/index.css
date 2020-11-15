@@ -41,3 +41,48 @@ code {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 } */
+
+@media all {
+  .page-break {
+    display: none;
+  }
+}
+
+@media print {
+  html, body {
+    height: initial !important;
+    overflow: initial !important;
+    color:black;
+    background: white;
+    -webkit-print-color-adjust: exact;
+  }
+  div.root {
+    padding: 10px;
+  }
+  table {
+    border-collapse: collapse;
+  }
+  table, td, th {
+    color:black;
+    background: white;
+    /* border: 1px solid black; */
+  }
+
+  th {
+    font-weight: bold;
+  }
+  
+}
+
+@media print {
+  .page-break {
+    margin-top: 1rem;
+    display: block;
+    page-break-before: auto;
+  }
+}
+
+@page {
+  size: auto;
+  margin: 20mm;
+}
