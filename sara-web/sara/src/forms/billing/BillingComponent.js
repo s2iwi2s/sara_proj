@@ -5,17 +5,19 @@ import { formatter, INIT_STATUS, PAGE_URL } from '../../api/Utils'
 
 import BillingService from '../../api/billing/BillingService'
 import BillingHtmlComponent from './BillingHtmlComponent';
-import SaveBillingDialog from './SaveBillingDialog';
 import SavePayablesConfimationHtml from './SavePayablesConfimationHtml';
 import { Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 
 export default function BillingComponent(props) {
-  const history = useHistory();
   const [snackbar, setSnackbar] = useState({
     open: false,
-    message: ''
+    message: '',
+    vertical: 'top',
+    horizontal: 'center'
   })
+  const { message, open, vertical, horizontal } = snackbar
+
   const optionsList = {
     billingSearchBy: [{
       id: '1',
@@ -28,6 +30,17 @@ export default function BillingComponent(props) {
     }]
   }
   const [confirmStore, setConfirmStore] = useState({
+    entity: {
+      studentId: '',
+      firstName: '',
+      lastName: '',
+      level: {
+        id: '',
+        value: '',
+        description: ''
+      }
+    },
+    payables: [],
     open: false
   })
   const [store, setStore] = useState({
@@ -47,22 +60,25 @@ export default function BillingComponent(props) {
         description: ''
       }
     },
-    "payables": [
-      {
-        "id": null,
-        "invoiceNo": null,
-        "code": "no_data",
-        "name": "NO DATA",
-        "amount": 0,
-        "payment": 0.0,
-        "order": 0,
-        "student": null,
-        "createdDate": null,
-        "lastModifiedDate": null,
-        "user": null,
-        "balance": 0.0,
-        "paid": 0
-      }],
+    studentPayables: {
+      invoiceNo: '',
+      "payables": [
+        {
+          "id": null,
+          "invoiceNo": null,
+          "code": "no_data",
+          "name": "NO DATA",
+          "amount": 0,
+          "payment": 0.0,
+          "order": 0,
+          "student": null,
+          "createdDate": null,
+          "lastModifiedDate": null,
+          "user": null,
+          "balance": 0.0,
+          "paid": 0
+        }]
+    },
     optionsList: optionsList,
     paging: {
       rowsPerPage: 25,
@@ -158,14 +174,10 @@ export default function BillingComponent(props) {
     });
   }
 
-  const doEdit = (id) => {
-    history.push(PAGE_URL.STUDENT_DETAIL_URL + '/' + id)
-  }
-
   const doPayables = () => {
     BillingService.getStudentPayables(props.match.params.id).then(response => {
       console.log(`[BillingComponent.doPayables BillingService.getStudentPayables] response==>`, response)
-      let payables = response.data.payables;
+      let payables = response.data.studentPayables.payables;
       payables.map((row, i) => {
         // let value = row.payment ? row.payment.replaceAll(',', '') : 0;
         row.payment = formatter.format(row.payment);
@@ -174,7 +186,10 @@ export default function BillingComponent(props) {
         ...store,
         INIT_STATUS: INIT_STATUS.RESET,
         entity: response.data.student,
-        payables: payables,
+        studentPayables: {
+          ...response.data.studentPayables,
+          payables: payables
+        },
         searchFlag: false,
         payablesFlag: true
       }
@@ -197,18 +212,33 @@ export default function BillingComponent(props) {
       paymentTotal += row.payment;
     });
 
-    let confirmStoreTemp = {
-      ...confirmStore,
-      open: true,
-      entity: store.entity,
-      payables: data.payables,
-      total: paymentTotal,
-      totalBalance: totalBalance - paymentTotal
-    }
-    doInitConfirmStore(confirmStoreTemp);
+    // doOpenSnackBar({
+    //   message: `Total amount is ${paymentTotal}`
+    // })
 
-    console.log(`[BillingComponent.doSavePayables] confirmStoreTemp==>`, confirmStoreTemp);
-    setConfirmStore(confirmStoreTemp);
+    if (Number(paymentTotal) == 0) {
+      console.log(`[BillingComponent.doShowSaveConfirmDialog] 1 totalBalance=${totalBalance}, paymentTotal=${paymentTotal}`);
+
+      doOpenSnackBar({
+        message: `Total amount is ${paymentTotal}`
+      })
+    } else {
+      console.log(`[BillingComponent.doShowSaveConfirmDialog] 2 totalBalance=${totalBalance}, paymentTotal=${paymentTotal}`);
+      let confirmStoreTemp = {
+        ...confirmStore,
+        open: true,
+        entity: store.entity,
+        payables: data.payables,
+        total: paymentTotal,
+        totalBalance: totalBalance - paymentTotal,
+        invoiceNo: ''
+      }
+      doInitConfirmStore(confirmStoreTemp);
+
+      console.log(`[BillingComponent.doSavePayables] confirmStoreTemp==>`, confirmStoreTemp);
+      setConfirmStore(confirmStoreTemp);
+    }
+
   }
   const doConfirmSavePayables = () => {
     console.log(`[BillingComponent.doConfirmSavePayables] confirmStore==>`, confirmStore);
@@ -224,24 +254,27 @@ export default function BillingComponent(props) {
         ...store,
         INIT_STATUS: INIT_STATUS.PAYABLES_RESET,
         entity: response.data.student,
-        payables: response.data.payables,
+        studentPayables: response.data.studentPayables,
         searchFlag: false,
         payablesFlag: true,
       }
 
       doInitFormData(formData);
       setStore(formData);
-
-      // close dialog
       setConfirmStore({
         ...confirmStore,
-        payables: [],
-        open: false,
-        total: formatter.format(0)
+        invoiceNo: response.data.studentPayables.invoiceNo
       });
+      // close dialog
+      // setConfirmStore({
+      //   ...confirmStore,
+      //   payables: [],
+      //   open: false,
+      //   total: formatter.format(0),
+      //   totalBalance: formatter.format(0)
+      // });
 
-      setSnackbar({
-        open: true,
+      doOpenSnackBar({
         message: 'Payables saved successfully!'
       })
     })
@@ -272,8 +305,16 @@ export default function BillingComponent(props) {
     }
   }
 
+  const doOpenSnackBar = (state) => {
+    setSnackbar({
+      ...snackbar,
+      open: true,
+      ...state
+    })
+  }
   const doCloseSnackbar = () => {
     setSnackbar({
+      ...snackbar,
       open: false,
       message: ''
     })
@@ -283,7 +324,6 @@ export default function BillingComponent(props) {
     <>
       <BillingHtmlComponent
         store={store}
-        doEdit={doEdit}
         doRetrieve={doRetrieve}
         doPayables={doPayables}
         onChangePage={onChangePage}
@@ -291,18 +331,25 @@ export default function BillingComponent(props) {
         doShowSaveConfirmDialog={doShowSaveConfirmDialog}
         doSavePayables={doSavePayables}
       />
-
-      <SaveBillingDialog title="Please click save button to confirm."
+      <SavePayablesConfimationHtml
+        confirmStore={confirmStore}
+        title="Please click save button to confirm."
         open={confirmStore.open}
         closeDialog={doCloseSaveBillingDialog}
-        saveDialog={doConfirmSavePayables}>
-        <SavePayablesConfimationHtml confirmStore={confirmStore} />
-      </SaveBillingDialog>
+        saveDialog={doConfirmSavePayables} />
+      {/* <SaveBillingDialog title="Please click save button to confirm."
+        open={confirmStore.open}
+        <SavePayablesConfimationHtml confirmStore={confirmStore}/>
+      </SaveBillingDialog> */}
 
 
-      <Snackbar open={snackbar.open} autoHideDuration={6000} onClose={doCloseSnackbar}>
+      <Snackbar open={open}
+        autoHideDuration={6000}
+        onClose={doCloseSnackbar}
+        anchorOrigin={{ vertical, horizontal }}
+      >
         <Alert onClose={doCloseSnackbar} severity="success">
-          {snackbar.message}
+          {message}
         </Alert>
       </Snackbar>
     </>

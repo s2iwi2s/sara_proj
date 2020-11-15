@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { Box, Divider, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, Typography } from '@material-ui/core';
 
 
@@ -10,7 +11,22 @@ import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import { PAGE_URL, StyledTableHeadCell, StyledTableHeadRow, StyledTableRow } from '../../api/Utils';
 import PaginationComponent from '../common/PaginationComponent';
 
+
+
 const SearchResultsHtmlComponent = (props) => {
+ const history = useHistory();
+
+ const doPayables = (id) => {
+  history.push(PAGE_URL.BILLING_PAYABLES_URL + '/' + id)
+ }
+
+ const doEditUser = (id) => {
+  history.push(PAGE_URL.STUDENT_DETAIL_URL + '/' + id)
+ }
+
+ const doDeleteUser = (id) => {
+  // history.push(PAGE_URL.STUDENT_DETAIL_URL + '/' + id)
+ }
 
  return (
   <>
@@ -44,15 +60,17 @@ const SearchResultsHtmlComponent = (props) => {
         <TableCell>{row.firstName} {row.lastName}</TableCell>
         <TableCell>{row.level.description}</TableCell>
         <TableCell align="right">
+         {/* href={PAGE_URL.BILLING_PAYABLES_URL + '/' + row.id} */}
+         {/* onClick={() => doPayables(row.id)} */}
          <IconButton aria-label="payment" href={PAGE_URL.BILLING_PAYABLES_URL + '/' + row.id}>
           <AccountBalanceWalletIcon fontSize="large" />
          </IconButton>
-         <IconButton aria-label="edit" onClick={() => props.doEdit(row.id)}>
+         <IconButton aria-label="edit" onClick={() => doEditUser(row.id)}>
           <EditIcon fontSize="large" />
          </IconButton>
-         <IconButton aria-label="delete" onClick={() => props.doDelete(row.id)}>
+         {/* <IconButton aria-label="delete" onClick={() => doDeleteUser(row.id)}>
           <DeleteIcon fontSize="large" />
-         </IconButton>
+         </IconButton> */}
         </TableCell>
        </StyledTableRow>
       ))}

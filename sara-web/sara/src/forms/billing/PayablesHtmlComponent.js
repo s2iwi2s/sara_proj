@@ -120,7 +120,7 @@ const PayablesHtmlComponent = (props) => {
             </TableHead>
             <TableBody>
               {
-                props.store.payables.map((row, i) => (
+                props.store.studentPayables.payables.map((row, i) => (
                   < StyledTableRow >
                     <TableCell>{row.name}</TableCell>
 
@@ -219,17 +219,17 @@ const PayablesHtmlComponent = (props) => {
         </TableContainer>
         <Box pt={3}>
           <Grid container spacing={3}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={10}>
             </Grid>
             <Grid item xs={12} sm={2}>
               <Button variant="contained" color="primary" type="submit" startIcon={<SaveIcon />}>Save Payment</Button>
             </Grid>
-            <Grid item xs={12} sm={2}>
+            {/* <Grid item xs={12} sm={2}>
               <Button variant="contained" color="primary" type="submit" startIcon={<PrintIcon />}>Print Reciept</Button>
             </Grid>
             <Grid item xs={12} sm={2}>
               <Button variant="contained" color="primary" type="submit" startIcon={<PrintIcon />}>Print Invoice</Button>
-            </Grid>
+            </Grid> */}
           </Grid>
         </Box>
       </form>

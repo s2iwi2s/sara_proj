@@ -15,7 +15,7 @@ export default function BillingHtmlComponent(props) {
 
         useEffect(() => {
                 setCounter(counter + 1);
-                console.log(`[BillingSearchHtml.useEffect] counter=${counter}, INIT_STATUS=${props.store.INIT_STATUS}, props.store=>`, props.store)
+                console.log(`[BillingHtmlComponent.useEffect] counter=${counter}, INIT_STATUS=${props.store.INIT_STATUS}, props.store=>`, props.store)
                 if (props.store.INIT_STATUS === INIT_STATUS.PAYABLES) {
                         props.doPayables();
                 } else if (props.store.INIT_STATUS === INIT_STATUS.RESET) {
@@ -25,6 +25,7 @@ export default function BillingHtmlComponent(props) {
 
         return (
                 <>
+                        {console.log(`[BillingHtmlComponent.return] counter=${counter}, INIT_STATUS=${props.store.INIT_STATUS}, props.store=>`, props.store)}
                         <Box ><Typography variant="h4">Payables</Typography></Box>
 
                         <form onSubmit={handleSubmit(props.doRetrieve)}>
@@ -70,7 +71,6 @@ export default function BillingHtmlComponent(props) {
                         {props.store.searchFlag &&
                                 <SearchResultsHtmlComponent
                                         store={props.store}
-                                        doEdit={props.doEdit}
                                         onChangePage={props.onChangePage}
                                         onChangeRowsPerPage={props.onChangeRowsPerPage}
                                 />}

@@ -40,7 +40,6 @@ export default function Dashboard(props) {
       </Grid>
     }
 
-
       {
         isUserLoggedIn &&
         <>
