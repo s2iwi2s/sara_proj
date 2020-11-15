@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import moment from 'moment';
 
 import { formatter, INIT_STATUS, PAGE_URL } from '../../api/Utils'
 
@@ -30,6 +31,7 @@ export default function BillingComponent(props) {
     }]
   }
   const [confirmStore, setConfirmStore] = useState({
+    INIT_STATUS: INIT_STATUS.INIT,
     entity: {
       studentId: '',
       firstName: '',
@@ -41,8 +43,10 @@ export default function BillingComponent(props) {
       }
     },
     payables: [],
+    payablesByInvoiceNo: [],
     open: false
   })
+
   const [store, setStore] = useState({
     INIT_STATUS: (props.match.params.id ? INIT_STATUS.PAYABLES : INIT_STATUS.INIT),
     searchFlag: (props.match.params.id ? false : true),
@@ -62,7 +66,23 @@ export default function BillingComponent(props) {
     },
     studentPayables: {
       invoiceNo: '',
-      "payables": [
+      payables: [
+        {
+          "id": null,
+          "invoiceNo": null,
+          "code": "no_data",
+          "name": "NO DATA",
+          "amount": 0,
+          "payment": 0.0,
+          "order": 0,
+          "student": null,
+          "createdDate": null,
+          "lastModifiedDate": null,
+          "user": null,
+          "balance": 0.0,
+          "paid": 0
+        }],
+      payablesByInvoiceNo: [
         {
           "id": null,
           "invoiceNo": null,
@@ -110,8 +130,19 @@ export default function BillingComponent(props) {
         }
       };
     }
-    if (!data.payables) {
-      data.payables = [];
+
+    if (!data.studentPayables) {
+      data.studentPayables = {
+        invoiceNo: '',
+        payables: [],
+        payablesByInvoiceNo: []
+      };
+    }
+    if (!data.studentPayables.payables) {
+      data.studentPayables.payables = [];
+    }
+    if (!data.studentPayables.payablesByInvoiceNo) {
+      data.studentPayables.payablesByInvoiceNo = [];
     }
   }
 
@@ -200,7 +231,7 @@ export default function BillingComponent(props) {
   const doShowSaveConfirmDialog = (data) => {
     console.log(`[BillingComponent.doShowSaveConfirmDialog] data==>`, data);
     let paymentTotal = 0;
-    let totalBalance = 0;
+    let balanceTotal = 0;
     data.payables.map((row, i) => {
       let balance = row.balance ? row.balance.replaceAll(',', '') : 0;
       let payment = row.payment ? row.payment.replaceAll(',', '') : 0;
@@ -208,7 +239,7 @@ export default function BillingComponent(props) {
       row.balance = Number(balance);
       row.payment = Number(payment);
 
-      totalBalance += row.balance;
+      balanceTotal += row.balance;
       paymentTotal += row.payment;
     });
 
@@ -217,20 +248,22 @@ export default function BillingComponent(props) {
     // })
 
     if (Number(paymentTotal) == 0) {
-      console.log(`[BillingComponent.doShowSaveConfirmDialog] 1 totalBalance=${totalBalance}, paymentTotal=${paymentTotal}`);
+      console.log(`[BillingComponent.doShowSaveConfirmDialog] 1 totalBalance=${balanceTotal}, paymentTotal=${paymentTotal}`);
 
       doOpenSnackBar({
         message: `Total amount is ${paymentTotal}`
       })
     } else {
-      console.log(`[BillingComponent.doShowSaveConfirmDialog] 2 totalBalance=${totalBalance}, paymentTotal=${paymentTotal}`);
+      console.log(`[BillingComponent.doShowSaveConfirmDialog] 2 totalBalance=${balanceTotal}, paymentTotal=${paymentTotal}`);
       let confirmStoreTemp = {
         ...confirmStore,
+        INIT_STATUS: INIT_STATUS.RESET,
         open: true,
         entity: store.entity,
         payables: data.payables,
-        total: paymentTotal,
-        totalBalance: totalBalance - paymentTotal,
+        payablesByInvoiceNo: [],
+        paymentTotal: paymentTotal,
+        balanceTotal: balanceTotal - paymentTotal,
         invoiceNo: ''
       }
       doInitConfirmStore(confirmStoreTemp);
@@ -261,9 +294,28 @@ export default function BillingComponent(props) {
 
       doInitFormData(formData);
       setStore(formData);
+
+      let payablesByInvoiceNo = [
+        ...response.data.studentPayables.payablesByInvoiceNo
+      ]
+      console.log(`[BillingComponent.doSavePayables BillingService.save] payablesByInvoiceNo==>`, payablesByInvoiceNo)
+
+      let paymentTotal = 0;
+      payablesByInvoiceNo.map((row, i) => {
+        row.paid = Number(row.paid);
+        paymentTotal += row.paid;
+      });
+      console.log(`[BillingComponent.doSavePayables BillingService.save] payablesByInvoiceNo==>`, payablesByInvoiceNo)
+
       setConfirmStore({
         ...confirmStore,
-        invoiceNo: response.data.studentPayables.invoiceNo
+        INIT_STATUS: INIT_STATUS.RESET,
+        payables: [],
+        invoiceDate: moment(response.data.studentPayables.invoiceDate).format('YYYY-MM-DD'),
+        invoiceNo: response.data.studentPayables.invoiceNo,
+        payablesByInvoiceNo: payablesByInvoiceNo,
+        paymentTotal: paymentTotal,
+        balanceTotal: 0
       });
       // close dialog
       // setConfirmStore({
@@ -271,7 +323,7 @@ export default function BillingComponent(props) {
       //   payables: [],
       //   open: false,
       //   total: formatter.format(0),
-      //   totalBalance: formatter.format(0)
+      //   balanceTotal: formatter.format(0)
       // });
 
       doOpenSnackBar({
