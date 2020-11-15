@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sara.data.document.Payables;
 import com.sara.data.document.Student;
 import com.sara.data.document.User;
+import com.sara.service.bean.StudentPayables;
 import com.sara.service.impl.PayablesServiceImpl;
 import com.sara.service.impl.StudentServiceImpl;
 import com.sara.service.impl.UserServiceImpl;
@@ -69,7 +70,9 @@ public class PayablesController {
 		map.put("student", student);
 
 		List<Payables> payables = payablesServiceImpl.getStudentPayables(student);
-		map.put("payables", payables);
+
+		StudentPayables studentPayables = new StudentPayables(payables);
+		map.put("studentPayables", studentPayables);
 
 		ResponseEntity<Map<String, ?>> responseEntity = new ResponseEntity<>(map, HttpStatus.OK);
 		return responseEntity;
@@ -85,8 +88,8 @@ public class PayablesController {
 		Student student = studentServiceImpl.findById(id);
 		map.put("student", student);
 
-		List<Payables> payables = payablesServiceImpl.savePayables(payableList, student);
-		map.put("payables", payables);
+		StudentPayables studentPayables = payablesServiceImpl.savePayables(payableList, student);
+		map.put("studentPayables", studentPayables);
 
 		ResponseEntity<Map<String, ?>> responseEntity = new ResponseEntity<>(map, HttpStatus.OK);
 		return responseEntity;
