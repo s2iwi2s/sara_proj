@@ -1,5 +1,6 @@
 package com.sara.web.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,9 +70,8 @@ public class PayablesController {
 		Student student = studentServiceImpl.findById(id);
 		map.put("student", student);
 
-		List<Payables> payables = payablesServiceImpl.getStudentPayables(student);
-
-		StudentPayables studentPayables = new StudentPayables(payables);
+		List<Payables> payables = payablesServiceImpl.getStudentPayables(student, student.getSchool().getSchoolYear());
+		StudentPayables studentPayables = new StudentPayables(payables, new ArrayList<Payables>(), null, null);
 		map.put("studentPayables", studentPayables);
 
 		ResponseEntity<Map<String, ?>> responseEntity = new ResponseEntity<>(map, HttpStatus.OK);
