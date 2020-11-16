@@ -124,7 +124,7 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 		List<Payables> payables = getStudentPayables(student, student.getSchool().getSchoolYear());
 		List<Payables> payablesByInvoiceNo = getStudentPayables(student, student.getSchool().getSchoolYear(),
 				invoiceNo);
-		
+
 		return new StudentPayables(payables, payablesByInvoiceNo, invoiceNo, invoiceDate);
 	}
 
@@ -141,38 +141,56 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 
 	public List<Payables> getStudentPayables(Student student, String schoolYear, String invoiceNo)
 			throws JsonMappingException, JsonProcessingException {
-		List<Payables> payables = getStudentPayablesTemplate(student);
-		List<PaymentInfo> sumPayableList = findPaymentSumByStudent(student, schoolYear, invoiceNo);
+		List<Payables> payablesTmpl = getStudentPayablesTemplate(student);
+		List<PaymentInfo> totalPayableList = findPaymentSumByStudent(student, schoolYear);
+//		log.debug("payablesTmpl={}", payablesTmpl);
+//		log.debug("totalPayableList={}", totalPayableList);
 
-		for (Payables entity : payables) {
-			boolean hasPayment = false;
-			for (PaymentInfo sumEntity : sumPayableList) {
-				if (entity.getCode().equals(sumEntity.getCode())) {
-					double payment = entity.getPaid() + sumEntity.getPayment();
-					entity.setPaid(payment);
-					entity.setBalance(entity.getAmount() - payment);
-					entity.setPayment(0);
-					hasPayment = true;
-					break;
+		List<Payables> payableList = new ArrayList<Payables>();
+		for (Payables tmpl : payablesTmpl) {
+			if(!StringUtils.isBlank(invoiceNo)) {
+				List<PaymentInfo> sumPayableList = findPaymentSumByStudent(student, schoolYear, invoiceNo);
+				Optional<PaymentInfo> pinfo = sumPayableList.stream().filter(sp -> tmpl.getCode().equals(sp.getCode()))
+						.findFirst();
+//				log.debug("sumPayableList={}", sumPayableList);
+				if (pinfo.isPresent()) {
+					PaymentInfo paymentInfo = pinfo.get();
+					tmpl.setPaid(paymentInfo.getPayment());
+					
+					Optional<PaymentInfo> ptinfo = totalPayableList.stream().filter(ptp -> tmpl.getCode().equals(ptp.getCode()))
+							.findFirst();
+					if (ptinfo.isPresent()) {
+						PaymentInfo paymentTotalInfo = ptinfo.get();
+						tmpl.setBalance(tmpl.getAmount() - paymentTotalInfo.getPayment());
+					}
+					payableList.add(tmpl);
 				}
-			}
-			if (!hasPayment) {
-				entity.setBalance(entity.getAmount());
+			} else {
+				Optional<PaymentInfo> ptinfo = totalPayableList.stream().filter(ptp -> tmpl.getCode().equals(ptp.getCode()))
+						.findFirst();
+				if (ptinfo.isPresent()) {
+					PaymentInfo paymentInfo = ptinfo.get();
+					tmpl.setBalance(tmpl.getAmount() - paymentInfo.getPayment());
+					tmpl.setPaid(paymentInfo.getPayment());
+
+				}else {
+					tmpl.setBalance(tmpl.getAmount());
+				}
+				payableList.add(tmpl);
 			}
 		}
 
-		Optional<PaymentInfo> balPayable = sumPayableList.stream().filter(p -> {
-			return p.getCode().equals("balance");
-		}).findFirst();
-		log.debug("balPayable=>{}", balPayable);
-		log.debug("balPayable.isPresent()=>{}", balPayable.isPresent());
-		if (balPayable.isPresent()) {
-			PaymentInfo payInfo = balPayable.get();
-			payables.add(new Payables(payInfo.getCode(), payInfo.getName(), 0, payInfo.getPayment(), payables.size(),
-					student, 0, 0));
-		}
+//		Optional<PaymentInfo> balPayable = sumPayableList.stream().filter(p -> {
+//			return p.getCode().equals("balance");
+//		}).findFirst();
+//
+//		if (balPayable.isPresent()) {
+//			PaymentInfo payInfo = balPayable.get();
+//			payableList.add(new Payables(payInfo.getCode(), payInfo.getName(), 0, payInfo.getPayment(),
+//					payableList.size(), student, 0, 0));
+//		}
 
-		return payables;
+		return payableList;
 	}
 
 	public List<Payables> getStudentPayablesTemplate(String id)
@@ -226,6 +244,9 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 //		Student student = studentServiceImpl.findById(id);
 //		return findPaymentSumByStudent(student, student.getSchool().getSchoolYear(), null);
 //	}
+	public List<PaymentInfo> findPaymentSumByStudent(Student student, String schoolYear) {
+		return findPaymentSumByStudent(student, schoolYear, null);
+	}
 
 	public List<PaymentInfo> findPaymentSumByStudent(Student student, String schoolYear, String invoiceNo) {
 		AggregationOperation match = match(Criteria.where("student").is(student));
@@ -234,15 +255,14 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 		Aggregation aggregation;
 		if (!StringUtils.isBlank(invoiceNo)) {
 			AggregationOperation match3 = match(Criteria.where("invoiceNo").is(invoiceNo));
-			aggregation = newAggregation(match, match2, match3,
-					group("code", "name", "order").sum("payment").as("payment"),
-					sort(Sort.Direction.ASC, previousOperation(), "order"),
-					project("code", "name", "order", "payment"));
+			aggregation = newAggregation(match, match2, match3, group("code", "name").sum("payment").as("payment"),
+//					sort(Sort.Direction.ASC, previousOperation(), "order"),
+					project("code", "name", "payment"));
 
 		} else {
-			aggregation = newAggregation(match, match2, group("code", "name", "order").sum("payment").as("payment"),
-					sort(Sort.Direction.ASC, previousOperation(), "order"),
-					project("code", "name", "order", "payment"));
+			aggregation = newAggregation(match, match2, group("code", "name").sum("payment").as("payment"),
+//					sort(Sort.Direction.ASC, previousOperation(), "order"),
+					project("code", "name", "payment"));
 
 		}
 
