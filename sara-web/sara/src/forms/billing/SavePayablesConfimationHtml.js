@@ -183,7 +183,7 @@ export default function SavePayablesConfimationHtml(props) {
             <th width="25%" align="right">Amount Paid</th>
           </tr>
           {props.confirmStore.payablesByInvoiceNo.map((row, i) => <>
-            {row.paid > 0 &&
+            {row.paid != 0 &&
               <tr>
                 <td align="left">{row.name}</td>
                 <td align="right">{formatter.format(row.amount)}</td>
