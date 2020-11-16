@@ -77,8 +77,8 @@ public class Payables {
 
 	@Override
 	public String toString() {
-		return String.format("Payables [id=%s, code=%s, name=%s, schoolYear=%s, amount=%s, payment=%s, balance=%s, paid=%s, paid=%s]",
-				id, code, name, schoolYear, amount, payment, balance, paid, student.getId());
+		return String.format("Payables [id=%s, code=%s, name=%s, schoolYear=%s, amount=%s, payment=%s, balance=%s, paid=%s]",
+				id, code, name, schoolYear, amount, payment, balance, paid);
 	}
 
 }
