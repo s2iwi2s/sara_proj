@@ -17,7 +17,7 @@ import lombok.Setter;
 public class StudentListService implements ListService<Student> {
 	
 	private List<CodeGroups> studentLevelList = null;
-	public StudentListService(School school, StudentServiceImpl studentListService, CodeGroupsServiceImpl codeGroupsServiceImpl) {
+	public StudentListService(School school, CodeGroupsServiceImpl codeGroupsServiceImpl) {
 		studentLevelList = codeGroupsServiceImpl.findByCodeList("STUDENT_LEVEL", school);
 	}
 }

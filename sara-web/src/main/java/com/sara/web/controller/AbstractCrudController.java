@@ -2,7 +2,6 @@ package com.sara.web.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sara.data.document.User;
 import com.sara.service.AbstractService;
+import com.sara.service.impl.CodeGroupsServiceImpl;
 import com.sara.service.impl.UserServiceImpl;
 import com.sara.web.beans.ResponseStatus;
 import com.sara.web.common.Constants;
@@ -30,25 +30,28 @@ public abstract class AbstractCrudController<T, ID> {
 
 	public abstract AbstractService<T, ID> getService();
 
-	public abstract Response<T> getResponse();
+	public abstract Response<T> getResponse(User user);
 
-	@Autowired
-	private UserServiceImpl userServiceImpl;
+	protected UserServiceImpl userServiceImpl;
+	protected CodeGroupsServiceImpl codeGroupsServiceImpl;
 	
-	public AbstractCrudController() {
+	public AbstractCrudController(UserServiceImpl userServiceImpl, CodeGroupsServiceImpl codeGroupsServiceImpl) {
+		this.userServiceImpl = userServiceImpl;
+		this.codeGroupsServiceImpl = codeGroupsServiceImpl;
 	}
 
 	@GetMapping(Constants.URL_LIST)
 	public Response<T> list(@RequestParam("searchValue") String searchValue, @PageableDefault(sort = {
 			"id" }, direction = Direction.ASC, page = Constants.DEFAULT_PAGE_NUMBER, size = Constants.DEFAULT_PAGE_SIZE) Pageable pageable) {
-		Response<T> res = getResponse();
+
+		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
+		Response<T> res = getResponse(user);
 		ResponseStatus status = new ResponseStatus();
 		res.setResponseStatus(status);
 		res.setSearchValue(searchValue);
 
 		Page<T> pagingList = null;
 		try {
-			User user = UserUtil.getAuthenticatedUser(userServiceImpl);
 			pagingList = getService().findAll(searchValue, pageable, user);
 			status.setMessage("SUCCESS!");
 		} catch (Exception e) {
@@ -63,7 +66,8 @@ public abstract class AbstractCrudController<T, ID> {
 	@DeleteMapping(Constants.URL_DELETE)
 	public Response<T> delete(@PathVariable("id") ID id) {
 		ResponseStatus status = new ResponseStatus();
-		Response<T> res = getResponse();
+		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
+		Response<T> res = getResponse(user);
 		res.setResponseStatus(status);
 		try {
 			getService().deleteById(id);
@@ -78,8 +82,9 @@ public abstract class AbstractCrudController<T, ID> {
 	@GetMapping(Constants.URL_DETAILS)
 	public Response<T> details(@PathVariable("id") ID id) {
 		T entity = null;
+		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
 		ResponseStatus status = new ResponseStatus();
-		Response<T> res = getResponse();
+		Response<T> res = getResponse(user);
 		res.setResponseStatus(status);
 
 		try {
@@ -98,10 +103,11 @@ public abstract class AbstractCrudController<T, ID> {
 	public T save(@RequestBody T entity) {
 		log.debug("save entity => {}", entity);
 		ResponseStatus status = new ResponseStatus();
-		Response<T> res = getResponse();
+		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
+		Response<T> res = getResponse(user);
 		res.setResponseStatus(status);
 		try {
-			getService().save(entity);
+			entity = getService().save(entity, user.getSchool());
 			status.setMessage("SUCCESS!");
 		} catch (Exception e) {
 			status.setException(e);

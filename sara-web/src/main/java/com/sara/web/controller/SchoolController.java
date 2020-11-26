@@ -1,11 +1,13 @@
 package com.sara.web.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sara.data.document.School;
+import com.sara.data.document.User;
+import com.sara.service.impl.CodeGroupsServiceImpl;
 import com.sara.service.impl.SchoolServiceImpl;
+import com.sara.service.impl.UserServiceImpl;
 import com.sara.web.common.Constants;
 import com.sara.web.controller.school.SchoolListService;
 import com.sara.web.controller.school.SchoolResponse;
@@ -13,26 +15,25 @@ import com.sara.web.controller.school.SchoolResponse;
 @RestController
 @RequestMapping(path = Constants.URL_API_BASE + SchoolController.URL_BASE)
 public class SchoolController extends AbstractCrudController<School, String> {
+
 	public static final String URL_BASE = "/school";
 
+	private SchoolServiceImpl schoolServiceImpl;
 
-	public SchoolController() {
+	public SchoolController(UserServiceImpl userServiceImpl, CodeGroupsServiceImpl codeGroupsServiceImpl,
+			SchoolServiceImpl schoolServiceImpl) {
+		super(userServiceImpl, codeGroupsServiceImpl);
+		this.schoolServiceImpl = schoolServiceImpl;
 	}
-
-	@Autowired
-	private SchoolServiceImpl codeGroupsServiceImpl;
-
-//	@Autowired
-//	private SchoolServiceImpl codeGroupsService;
-
+	
 	@Override
 	public SchoolServiceImpl getService() {
-		return codeGroupsServiceImpl;
+		return schoolServiceImpl;
 	}
 
 	@Override
-	public SchoolResponse getResponse() {
-		return new SchoolResponse(new SchoolListService(codeGroupsServiceImpl));
+	public SchoolResponse getResponse(User user) {
+		return new SchoolResponse(new SchoolListService(schoolServiceImpl));
 	}
 
 }

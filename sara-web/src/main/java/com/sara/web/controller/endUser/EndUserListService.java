@@ -5,7 +5,6 @@ import java.util.List;
 import com.sara.data.document.School;
 import com.sara.data.document.User;
 import com.sara.service.impl.SchoolServiceImpl;
-import com.sara.service.impl.UserServiceImpl;
 import com.sara.web.common.ListService;
 
 import lombok.Getter;
@@ -17,7 +16,7 @@ public class EndUserListService implements ListService<User> {
 
 	private List<School> schoolList = null;
 
-	public EndUserListService(UserServiceImpl userServiceImpl, SchoolServiceImpl schoolServiceImpl) {
+	public EndUserListService(SchoolServiceImpl schoolServiceImpl) {
 		schoolList = schoolServiceImpl.findAll();
 		// statusList = codeGroupsService.findByCode("STATUS");
 	}
