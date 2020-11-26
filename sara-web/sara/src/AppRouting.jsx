@@ -12,6 +12,7 @@ import { useAuth } from './security/AuthenticationProvider';
 
 import ErrorComponent from './api/ErrorComponent'
 import FooterComponent from './forms/common/FooterComponent'
+
 import EndUserListComponent from './forms/endUser/EndUserListComponent';
 import EndUserDetailComponent from './forms/endUser/EndUserDetailComponent';
 import AddressListComponent from './forms/address/AddressListComponent';
@@ -31,6 +32,12 @@ import SchoolListComponent from './forms/school/SchoolListComponent';
 
 import AuthenticationService from './security/AuthenticationService';
 import BillingComponent from './forms/billing/BillingComponent';
+
+import AccountPayablesSettingsListComponent from './forms/accountPayables/AccountPayablesSettingsListComponent';
+import AccountPayablesSettingsDetailComponent from './forms/accountPayables/AccountPayablesSettingsDetailComponent';
+
+import GradeLevelPayablesListComponent from './forms/gradeLevelPayables/GradeLevelPayablesListComponent';
+import GradeLevelPayablesDetailsComponent from './forms/gradeLevelPayables/GradeLevelPayablesDetailsComponent';
 
 const useStylesRouting = makeStyles((theme) => ({
  root: {
@@ -142,6 +149,13 @@ const AppRouting = () => {
 
         <AuthenticatedRoute path={PAGE_URL.SCHOOL_LIST} exact component={SchoolListComponent} />
         <AuthenticatedRoute path={PAGE_URL.SCHOOL_DETAIL} exact component={SchoolDetailComponent} />
+
+        <AuthenticatedRoute path={PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_LIST} exact component={AccountPayablesSettingsListComponent} />
+        <AuthenticatedRoute path={PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_DETAIL} exact component={AccountPayablesSettingsDetailComponent} />
+
+        <AuthenticatedRoute path={PAGE_URL.GRADE_LEVEL_PAYABLES_LIST} exact component={GradeLevelPayablesListComponent} />
+        <AuthenticatedRoute path={PAGE_URL.GRADE_LEVEL_PAYABLES_DETAIL} exact component={GradeLevelPayablesDetailsComponent} />
+
         <Route component={ErrorComponent} />
        </Switch>
        {/* </Container> */}

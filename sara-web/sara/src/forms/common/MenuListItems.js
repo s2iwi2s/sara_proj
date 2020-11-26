@@ -73,6 +73,54 @@ export default function MenuListItems() {
             <ListItemText primary="Billing" onClick={() => history.push(PAGE_URL.BILLING)} />
           </ListItem>
 
+          <ListItem button onClick={() => doHandleClick("accountPayablesSettings")}>
+            <ListItemIcon>
+              <LocalLibraryIcon />
+            </ListItemIcon>
+            <ListItemText primary="Account Payables Settings" />
+            {store.accountPayablesSettings ? <ExpandLess /> : <ExpandMore />}
+          </ListItem>
+          <Collapse in={store.accountPayablesSettings} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItem button className={classes.nested} onClick={() => history.push(PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_DETAIL_URL + '/-1')} >
+                <ListItemIcon>
+                  <AddIcon />
+                </ListItemIcon>
+                <ListItemText primary="New" />
+              </ListItem>
+              <ListItem button className={classes.nested} onClick={() => history.push(PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_LIST)}>
+                <ListItemIcon>
+                  <FormatListNumberedIcon />
+                </ListItemIcon>
+                <ListItemText primary="List" />
+              </ListItem>
+            </List>
+          </Collapse>
+          <ListItem button onClick={() => doHandleClick("gradeLevelPayables")}>
+            <ListItemIcon>
+              <LocalLibraryIcon />
+            </ListItemIcon>
+            <ListItemText primary="Grade Level Payables" />
+            {store.gradeLevelPayables ? <ExpandLess /> : <ExpandMore />}
+          </ListItem>
+          <Collapse in={store.gradeLevelPayables} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItem button className={classes.nested} onClick={() => history.push(PAGE_URL.GRADE_LEVEL_PAYABLES_DETAIL_URL + '/-1')} >
+
+                <ListItemIcon>
+                  <AddIcon />
+                </ListItemIcon>
+                <ListItemText primary="New" />
+              </ListItem>
+              <ListItem button className={classes.nested} onClick={() => history.push(PAGE_URL.GRADE_LEVEL_PAYABLES_LIST)}>
+                <ListItemIcon>
+                  <FormatListNumberedIcon />
+                </ListItemIcon>
+                <ListItemText primary="List" />
+              </ListItem>
+            </List>
+          </Collapse>
+
           <ListItem button onClick={() => doHandleClick("students")}>
             <ListItemIcon>
               <LocalLibraryIcon />

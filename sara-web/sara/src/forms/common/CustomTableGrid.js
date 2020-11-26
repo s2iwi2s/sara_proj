@@ -12,7 +12,7 @@ import { INIT_STATUS, StyledTableHeadCell, StyledTableHeadRow, StyledTableRow } 
 import PaginationComponent from './PaginationComponent';
 
 export default function CustomTableGrid(props) {
- const { showPaging = true } = props;
+ const { showPaging = true, showSearch = true } = props;
 
  const { register, reset } = useForm();
  const [counter, setCounter] = useState(0);
@@ -38,17 +38,18 @@ export default function CustomTableGrid(props) {
   <>
 
    <Grid container spacing={3}>
-    <Grid item xs={12} sm={8}>
-     <FormControl variant="filled">
-      <Input name="searchValue"
-       defaultValue={props.store.searchValue}
-       onKeyDown={e => doHandleKeyDown(e)}
-       placeholder="Search"
-       inputRef={register}
-       endAdornment={<SearchIcon onClick={() => props.doRetrieve()} />}
-      />
-     </FormControl>
-    </Grid>
+    {showSearch &&
+     <Grid item xs={12} sm={8}>
+      <FormControl variant="filled">
+       <Input name="searchValue"
+        defaultValue={props.store.searchValue}
+        onKeyDown={e => doHandleKeyDown(e)}
+        placeholder="Search"
+        inputRef={register}
+        endAdornment={<SearchIcon onClick={() => props.doRetrieve()} />}
+       />
+      </FormControl>
+     </Grid>}
 
     <Grid item xs={12} sm={4}>
      {showPaging && <PaginationComponent
@@ -65,7 +66,7 @@ export default function CustomTableGrid(props) {
       <StyledTableHeadRow>
        {props.cols.map(params => (
         <>
-         <StyledTableHeadCell>{params.headerName}</StyledTableHeadCell>
+         <StyledTableHeadCell key={params.field}>{params.headerName}</StyledTableHeadCell>
         </>
        ))}
        <StyledTableHeadCell align="right">

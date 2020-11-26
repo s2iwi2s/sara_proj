@@ -1,19 +1,18 @@
 
 import React, { useEffect, useRef } from 'react';
 
-import { Box, Button, Collapse, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@material-ui/core';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, Typography } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import PrintIcon from '@material-ui/icons/Print';
 import CancelIcon from '@material-ui/icons/Cancel';
 import SaveIcon from '@material-ui/icons/Save';
-import ReceiptIcon from '@material-ui/icons/Receipt';
 import { useForm } from 'react-hook-form';
 import { useReactToPrint } from "react-to-print";
 
 import { formatter, INIT_STATUS, StyledTableCell, StyledTableHeadCell, StyledTableHeadRow, StyledTableRow } from '../../api/Utils';
 import { useAuth } from '../../security/AuthenticationProvider';
 
-const printStyles = makeStyles((theme) => ({
+const printStyles = makeStyles(() => ({
   root: {
     color: 'black',
     backgroundColor: 'white',
@@ -27,13 +26,8 @@ const printStyles = makeStyles((theme) => ({
   },
 }));
 export default function SavePayablesConfimationHtml(props) {
-  const [userObj, setUserObj] = useAuth();
-  const classes = printStyles();
-  const tableStyle = {
-    border: "1px solid black",
-    collapse: "collapse"
-  }
-  const { control, register, handleSubmit, error, reset } = useForm(props.confirmStore);
+  const [userObj] = useAuth();
+  const { reset } = useForm(props.confirmStore);
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current
@@ -93,7 +87,7 @@ export default function SavePayablesConfimationHtml(props) {
               </StyledTableHeadRow>
             </TableHead>
             <TableBody>
-              {props.confirmStore.payables.map((row, i) => <>
+              {props.confirmStore.payables.map((row) => <>
                 {row.payment > 0 &&
                   <StyledTableRow>
                     <TableCell>{row.name}</TableCell>
@@ -182,7 +176,7 @@ export default function SavePayablesConfimationHtml(props) {
             <th width="25%" align="right">Balance</th>
             <th width="25%" align="right">Amount Paid</th>
           </tr>
-          {props.confirmStore.payablesByInvoiceNo.map((row, i) => <>
+          {props.confirmStore.payablesByInvoiceNo.map((row) => <>
             {row.paid != 0 &&
               <tr>
                 <td align="left">{row.name}</td>
