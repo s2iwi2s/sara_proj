@@ -1,7 +1,5 @@
 package com.sara.service.impl;
 
-import java.util.Optional;
-
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +15,6 @@ import com.sara.data.document.QStudent;
 import com.sara.data.document.School;
 import com.sara.data.document.Student;
 import com.sara.data.document.User;
-import com.sara.data.repository.SchoolMongoRepository;
 import com.sara.data.repository.StudentMongoRepository;
 import com.sara.service.AbstractService;
 import com.sara.service.SequenceGeneratorService;
@@ -29,12 +26,8 @@ public class StudentServiceImpl extends AbstractService<Student, String> {
 	@Autowired
 	private SequenceGeneratorService sequenceGeneratorService;
 
-
-	@Autowired
-	SchoolMongoRepository schoolMongoRepository;
-
-	public StudentServiceImpl(StudentMongoRepository repo) {
-		super(repo);
+	public StudentServiceImpl(StudentMongoRepository repo, SequenceGeneratorService sequenceGeneratorService) {
+		super(repo, sequenceGeneratorService);
 	}
 
 	@Override
@@ -56,29 +49,20 @@ public class StudentServiceImpl extends AbstractService<Student, String> {
 	}
 
 	@Override
-	public Student save(Student entity) {
+	public Student save(Student entity, School school) {
 		if (StringUtils.isBlank(entity.getId())) {
 			String id = sequenceGeneratorService.nextSeq(Student.SEQUENCE_NAME);
 			entity.setId(id);
 		}
-		if (entity.getSchool() != null && StringUtils.isBlank(entity.getSchool().getName())) {
-			String schoolId = entity.getSchool().getId();
-			Optional<School> schoolOpt = schoolMongoRepository.findById(schoolId);
-			if (schoolOpt.isPresent()) {
-				entity.setSchool(schoolOpt.get());
-			}
-		}
+		entity.setSchool(school);
 
 		if (StringUtils.isBlank(entity.getStudentId())) {
-			School school = entity.getSchool();
-			if (school != null) {
-				String studentId = sequenceGeneratorService.nextSeq(school.getSchoolYear().replaceAll("-", ""),
-						Student.SEQUENCE_STUDENT_ID);
-				entity.setStudentId(studentId);
-			}
+			String studentId = sequenceGeneratorService.nextSeq(school.getSchoolYear().replaceAll("-", ""),
+					Student.SEQUENCE_STUDENT_ID);
+			entity.setStudentId(studentId);
 		}
 
-		return super.save(entity);
+		return super.save(entity, school);
 	}
 
 	public Page<Student> findAllBy(String by, String searchValue, Pageable pageable, School school) {
@@ -88,15 +72,15 @@ public class StudentServiceImpl extends AbstractService<Student, String> {
 
 			param.and(QStudent.student.school.eq(school));
 
-			//log.debug("findAllBy={}, searchValue={}", by, searchValue);
+			// log.debug("findAllBy={}, searchValue={}", by, searchValue);
 			BooleanBuilder studentbb = new BooleanBuilder();
 			if ("STUDENT_ID".equalsIgnoreCase(by)) {
 				studentbb.or(QStudent.student.studentId.containsIgnoreCase(searchValue));
 			} else if ("STUDENT_NAME".equalsIgnoreCase(by)) {
 				String[] name = searchValue.split(" ");
-				//log.debug("findAllBy={}, {}", by, searchValue);
+				// log.debug("findAllBy={}, {}", by, searchValue);
 				for (String value : name) {
-					//log.debug(value);
+					// log.debug(value);
 					if (!StringUtils.isBlank(value)) {
 						studentbb.or(QStudent.student.firstName.containsIgnoreCase(value));
 						studentbb.or(QStudent.student.lastName.containsIgnoreCase(value));

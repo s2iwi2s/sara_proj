@@ -22,24 +22,19 @@ import com.sara.service.SequenceGeneratorService;
 
 @Service
 public class CodeGroupsServiceImpl extends AbstractService<CodeGroups, String> {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(CodeGroupsServiceImpl.class);
 
 	@Autowired
-	private SequenceGeneratorService sequenceGeneratorService;
-	
-	private SchoolServiceImpl schoolServiceImpl;
-
-	@Autowired
-	public CodeGroupsServiceImpl(CodeGroupsMongoRepository repo, SchoolServiceImpl schoolServiceImpl) {
-		super(repo);
-		this.schoolServiceImpl = schoolServiceImpl;
+	public CodeGroupsServiceImpl(CodeGroupsMongoRepository repo, SchoolServiceImpl schoolServiceImpl,
+			SequenceGeneratorService sequenceGeneratorService) {
+		super(repo, sequenceGeneratorService);
 	}
 
 	public Page<CodeGroups> findAll(Pageable pageable) {
 		return repo.findAll(pageable);
 	}
-	
+
 	@Override
 	public BooleanExpression getFindAllBooleanExpression(User user) {
 		return QCodeGroups.codeGroups.school.eq(user.getSchool());
@@ -56,28 +51,26 @@ public class CodeGroupsServiceImpl extends AbstractService<CodeGroups, String> {
 	public CodeGroups getNewEntity() {
 		return new CodeGroups();
 	}
-	
+
 	public List<CodeGroups> findByCodeList(String code, School school) {
-		return ((CodeGroupsMongoRepository)repo).findByCodeAndSchoolOrderByPriority(code, school);
+		return ((CodeGroupsMongoRepository) repo).findByCodeAndSchoolOrderByPriority(code, school);
 	}
-	
+
 	public CodeGroups findByCode(String code, School school) {
-		return ((CodeGroupsMongoRepository)repo).findByCodeAndSchool(code, school);
+		return ((CodeGroupsMongoRepository) repo).findByCodeAndSchool(code, school);
 	}
-	
+
 	@Override
-	public CodeGroups save(CodeGroups entity) {
-		log.info("save CodeGroups entity==>{}", entity); 
-		log.info("save CodeGroups schoolId==>{}", entity.getSchool()); 
-		if(StringUtils.isBlank(entity.getId())) {
+	public CodeGroups save(CodeGroups entity, School school) {
+		log.info("save CodeGroups entity==>{}", entity);
+		log.info("save CodeGroups schoolId==>{}", entity.getSchool());
+		if (StringUtils.isBlank(entity.getId())) {
 			String id = sequenceGeneratorService.nextSeq(CodeGroups.SEQUENCE_NAME);
 			entity.setId(id);
 		}
-		
-		if(entity.getSchool() != null) {
-			School school = schoolServiceImpl.findById(entity.getSchool().getId());
-			entity.setSchool(school);
-		}
-		return super.save(entity);
+
+		entity.setSchool(school);
+
+		return super.save(entity, school);
 	}
 }

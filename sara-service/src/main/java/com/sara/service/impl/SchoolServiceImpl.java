@@ -2,7 +2,6 @@ package com.sara.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.querydsl.core.BooleanBuilder;
@@ -19,13 +18,8 @@ import com.sara.service.SequenceGeneratorService;
 public class SchoolServiceImpl extends AbstractService<School, String> {
 	Logger log = LoggerFactory.getLogger(this.getClass());
 	
-	@Autowired
-	private SequenceGeneratorService sequenceGeneratorService;
-	
-
-	@Autowired
-	public SchoolServiceImpl(SchoolMongoRepository repo) {
-		super(repo);
+	public SchoolServiceImpl(SchoolMongoRepository repo, SequenceGeneratorService sequenceGeneratorService) {
+		super(repo, sequenceGeneratorService);
 	}
 	
 	@Override
@@ -51,11 +45,11 @@ public class SchoolServiceImpl extends AbstractService<School, String> {
 		return new School();
 	}
 	@Override
-	public School save(School entity) {
+	public School save(School entity, School school) {
 		if(entity.getId() == null || entity.getId().trim().length() == 0) {
 			String id = sequenceGeneratorService.nextSeq(School.SEQUENCE_NAME);
 			entity.setId(id);
 		}
-		return super.save(entity);
+		return super.save(entity, school);
 	}
 }

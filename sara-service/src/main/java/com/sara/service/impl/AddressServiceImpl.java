@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
@@ -17,26 +16,25 @@ import com.sara.data.document.QAddress;
 import com.sara.data.document.User;
 import com.sara.data.repository.AddressMongoRepository;
 import com.sara.service.AbstractService;
+import com.sara.service.SequenceGeneratorService;
 
 @Service
 public class AddressServiceImpl extends AbstractService<Address, String> {
 	Logger log = LoggerFactory.getLogger(this.getClass());
 
-	
-	@Autowired
-	public AddressServiceImpl(AddressMongoRepository repo) {
-		super(repo);
+	public AddressServiceImpl(AddressMongoRepository repo, SequenceGeneratorService sequenceGeneratorService) {
+		super(repo, sequenceGeneratorService);
 	}
-	
+
 	@Override
 	public BooleanExpression getFindAllBooleanExpression(User user) {
 		return null;
 	}
-	
+
 	public Predicate findAllPredicate(User user, BooleanBuilder searchbb) {
 		return searchbb.getValue();
 	}
-	
+
 	@Override
 	public void findAllQBuilder(String searchValue, BooleanBuilder searchbb, User user) {
 		searchbb.or(QAddress.address.name.containsIgnoreCase(searchValue));
@@ -70,7 +68,7 @@ public class AddressServiceImpl extends AbstractService<Address, String> {
 		Predicate predicate = booleanBuilder.getValue();
 		return repo.findAll(predicate, Sort.by(Direction.ASC, "name"));
 	}
-	
+
 	public List<Address> saveAll(List<Address> entities) {
 		return repo.saveAll(entities);
 	}

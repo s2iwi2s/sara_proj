@@ -3,9 +3,7 @@ package com.sara.service.impl;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.group;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.match;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.newAggregation;
-import static org.springframework.data.mongodb.core.aggregation.Aggregation.previousOperation;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.project;
-import static org.springframework.data.mongodb.core.aggregation.Aggregation.sort;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,10 +14,8 @@ import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationOperation;
@@ -36,6 +32,7 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.sara.data.document.CodeGroups;
 import com.sara.data.document.Payables;
 import com.sara.data.document.QPayables;
+import com.sara.data.document.School;
 import com.sara.data.document.Student;
 import com.sara.data.document.User;
 import com.sara.data.repository.PayablesMongoRepository;
@@ -51,22 +48,19 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 
 //	private PayablesMongoRepository repository;
 
-	@Autowired
-	private SequenceGeneratorService sequenceGeneratorService;
-
-	@Autowired
 	private CodeGroupsServiceImpl codeGroupsServiceImpl;
 
-	@Autowired
 	private StudentServiceImpl studentServiceImpl;
 
-	@Autowired
-	MongoTemplate mongoTemplate;
+	private MongoTemplate mongoTemplate;
 
-	@Autowired
-	public PayablesServiceImpl(PayablesMongoRepository repo, SchoolServiceImpl schoolServiceImpl) {
-		super(repo);
-//		this.repository = repo;
+	public PayablesServiceImpl(PayablesMongoRepository repo, SequenceGeneratorService sequenceGeneratorService,
+			MongoTemplate mongoTemplate, CodeGroupsServiceImpl codeGroupsServiceImpl,
+			StudentServiceImpl studentServiceImpl) {
+		super(repo, sequenceGeneratorService);
+		this.codeGroupsServiceImpl = codeGroupsServiceImpl;
+		this.studentServiceImpl = studentServiceImpl;
+		this.mongoTemplate = mongoTemplate;
 	}
 
 	@Override
@@ -91,12 +85,12 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 	}
 
 	@Override
-	public Payables save(Payables entity) {
+	public Payables save(Payables entity, School school) {
 		if (StringUtils.isBlank(entity.getId())) {
 			String id = sequenceGeneratorService.nextSeq(Payables.SEQUENCE_NAME);
 			entity.setId(id);
 		}
-		return super.save(entity);
+		return super.save(entity, school);
 	}
 
 	public StudentPayables savePayables(List<Payables> list, Student student) throws Exception {
@@ -148,7 +142,7 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 
 		List<Payables> payableList = new ArrayList<Payables>();
 		for (Payables tmpl : payablesTmpl) {
-			if(!StringUtils.isBlank(invoiceNo)) {
+			if (!StringUtils.isBlank(invoiceNo)) {
 				List<PaymentInfo> sumPayableList = findPaymentSumByStudent(student, schoolYear, invoiceNo);
 				Optional<PaymentInfo> pinfo = sumPayableList.stream().filter(sp -> tmpl.getCode().equals(sp.getCode()))
 						.findFirst();
@@ -156,9 +150,9 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 				if (pinfo.isPresent()) {
 					PaymentInfo paymentInfo = pinfo.get();
 					tmpl.setPaid(paymentInfo.getPayment());
-					
-					Optional<PaymentInfo> ptinfo = totalPayableList.stream().filter(ptp -> tmpl.getCode().equals(ptp.getCode()))
-							.findFirst();
+
+					Optional<PaymentInfo> ptinfo = totalPayableList.stream()
+							.filter(ptp -> tmpl.getCode().equals(ptp.getCode())).findFirst();
 					if (ptinfo.isPresent()) {
 						PaymentInfo paymentTotalInfo = ptinfo.get();
 						tmpl.setBalance(tmpl.getAmount() - paymentTotalInfo.getPayment());
@@ -166,14 +160,14 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 					payableList.add(tmpl);
 				}
 			} else {
-				Optional<PaymentInfo> ptinfo = totalPayableList.stream().filter(ptp -> tmpl.getCode().equals(ptp.getCode()))
-						.findFirst();
+				Optional<PaymentInfo> ptinfo = totalPayableList.stream()
+						.filter(ptp -> tmpl.getCode().equals(ptp.getCode())).findFirst();
 				if (ptinfo.isPresent()) {
 					PaymentInfo paymentInfo = ptinfo.get();
 					tmpl.setBalance(tmpl.getAmount() - paymentInfo.getPayment());
 					tmpl.setPaid(paymentInfo.getPayment());
 
-				}else {
+				} else {
 					tmpl.setBalance(tmpl.getAmount());
 				}
 				payableList.add(tmpl);

@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.sara.data.document.School;
 import com.sara.data.document.User;
 
 public interface ServiceInterface<T, ID> {
@@ -21,5 +22,5 @@ public interface ServiceInterface<T, ID> {
 
 	public T findById(ID id);
 
-	public T save(T entity);
+	public T save(T entity, School school);
 }

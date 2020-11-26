@@ -9,14 +9,18 @@ import org.springframework.data.domain.Pageable;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.sara.data.document.School;
 import com.sara.data.document.User;
 import com.sara.data.repository.CustomRepository;
 
 public abstract class AbstractService<T, ID> implements ServiceInterface<T, ID> {
 	protected CustomRepository<T, ID> repo;
+	
+	protected SequenceGeneratorService sequenceGeneratorService;
 
-	public AbstractService(CustomRepository<T, ID> repo) {
+	public AbstractService(CustomRepository<T, ID> repo, SequenceGeneratorService sequenceGeneratorService) {
 		this.repo = repo;
+		this.sequenceGeneratorService = sequenceGeneratorService;
 	}
 
 	public Page<T> findAll(Pageable pageable) {
@@ -69,7 +73,7 @@ public abstract class AbstractService<T, ID> implements ServiceInterface<T, ID> 
 	}
 
 	@Override
-	public T save(T entity) {
+	public T save(T entity, School school) {
 		return repo.save(entity);
 	}
 
