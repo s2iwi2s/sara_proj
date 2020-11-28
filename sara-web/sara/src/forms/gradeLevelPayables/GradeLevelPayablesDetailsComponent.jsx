@@ -8,6 +8,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Alert from '@material-ui/lab/Alert';
+import WarningIcon from '@material-ui/icons/Warning';
 
 import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
 import GradeLevelPayablesService from '../../api/GradeLevelPayablesService';
@@ -81,7 +82,11 @@ export default function GradeLevelPayablesDetailsComponent(props) {
             });
             applyToAllList.map((row) => {
               if (temp.indexOf(row.id) === -1) {
-                tempList.push(row)
+                let rowTemp = {
+                  ...row,
+                  status: 'NEW'
+                }
+                tempList.push(rowTemp)
               }
             });
 
@@ -142,7 +147,11 @@ export default function GradeLevelPayablesDetailsComponent(props) {
       }
     });
     if (!exist) {
-      list.push(data);
+      let temp = {
+        ...data,
+        status: 'NEW'
+      }
+      list.push(temp);
       setStore({
         ...store,
         list: list
@@ -188,6 +197,12 @@ export default function GradeLevelPayablesDetailsComponent(props) {
     {
       field: 'description',
       headerName: 'Description',
+      render: function (row) {
+        return (<>
+          {row.status === 'NEW' && <>{row.description} <WarningIcon fontSize="small" /></>}
+          {row.status !== 'NEW' && row.description}
+        </>);
+      }
     },
     {
       headerName: 'Payment Period',

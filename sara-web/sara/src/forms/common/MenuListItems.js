@@ -17,6 +17,8 @@ import PersonIcon from '@material-ui/icons/Person';
 import CodeIcon from '@material-ui/icons/Code';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
@@ -75,7 +77,7 @@ export default function MenuListItems() {
 
           <ListItem button onClick={() => doHandleClick("accountPayablesSettings")}>
             <ListItemIcon>
-              <LocalLibraryIcon />
+              <AssignmentIcon />
             </ListItemIcon>
             <ListItemText primary="Account Payables Settings" />
             {store.accountPayablesSettings ? <ExpandLess /> : <ExpandMore />}
@@ -98,7 +100,7 @@ export default function MenuListItems() {
           </Collapse>
           <ListItem button onClick={() => doHandleClick("gradeLevelPayables")}>
             <ListItemIcon>
-              <LocalLibraryIcon />
+              <AssignmentIndIcon />
             </ListItemIcon>
             <ListItemText primary="Grade Level Payables" />
             {store.gradeLevelPayables ? <ExpandLess /> : <ExpandMore />}
