@@ -12,7 +12,7 @@ import { INIT_STATUS, StyledTableHeadCell, StyledTableHeadRow, StyledTableRow } 
 import PaginationComponent from './PaginationComponent';
 
 export default function CustomTableGrid(props) {
- const { showPaging = true, showSearch = true } = props;
+ const { showPaging = true, showSearch = true, showAction = true } = props;
 
  const { register, reset } = useForm();
  const [counter, setCounter] = useState(0);
@@ -36,9 +36,9 @@ export default function CustomTableGrid(props) {
 
  return (
   <>
-
    <Grid container spacing={3}>
-    {showSearch &&
+    {
+     showSearch &&
      <Grid item xs={12} sm={8}>
       <FormControl variant="filled">
        <Input name="searchValue"
@@ -49,15 +49,20 @@ export default function CustomTableGrid(props) {
         endAdornment={<SearchIcon onClick={() => props.doRetrieve()} />}
        />
       </FormControl>
-     </Grid>}
+     </Grid>
+    }
 
-    <Grid item xs={12} sm={4}>
-     {showPaging && <PaginationComponent
-      paging={props.store.paging}
-      onChangePage={props.onChangePage}
-      onChangeRowsPerPage={props.onChangeRowsPerPage}
-     />}
-    </Grid>
+    {
+     showPaging &&
+     <Grid item xs={12} sm={4}>
+      <PaginationComponent
+       paging={props.store.paging}
+       onChangePage={props.onChangePage}
+       onChangeRowsPerPage={props.onChangeRowsPerPage}
+      />
+     </Grid>
+    }
+
    </Grid>
 
    <TableContainer component={Paper} elevation={3} variant="elevation" >
@@ -69,12 +74,13 @@ export default function CustomTableGrid(props) {
          <StyledTableHeadCell key={params.field}>{params.headerName}</StyledTableHeadCell>
         </>
        ))}
-       <StyledTableHeadCell align="right">
+       {showAction && <StyledTableHeadCell align="right">
         Action
         <IconButton aria-label="add" onClick={() => props.doEdit(-1)}>
          <AddIcon fontSize="large" />
         </IconButton>
-       </StyledTableHeadCell>
+       </StyledTableHeadCell>}
+
       </StyledTableHeadRow>
      </TableHead>
      <TableBody>
@@ -85,15 +91,15 @@ export default function CustomTableGrid(props) {
           <TableCell>{params.render ? params.render(row) : row[params.field]}</TableCell>
          </>
         ))}
-
-        <TableCell align="right">
+        {showAction && <TableCell align="right">
          <IconButton aria-label="edit" onClick={() => props.doEdit(row.id)}>
           <EditIcon fontSize="large" />
          </IconButton>
          <IconButton aria-label="delete" onClick={() => props.doDelete(row.id)}>
           <DeleteIcon fontSize="large" />
          </IconButton>
-        </TableCell>
+        </TableCell>}
+
        </StyledTableRow>
       ))}
      </TableBody>

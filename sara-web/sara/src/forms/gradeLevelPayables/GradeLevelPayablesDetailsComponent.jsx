@@ -1,47 +1,42 @@
 import React, { useEffect, useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 
-import { Button, Checkbox, Grid, MenuItem, Select, TextField, Typography } from '@material-ui/core';
+import { Box, Button, Grid, IconButton, Typography } from '@material-ui/core';
 
 import CancelIcon from '@material-ui/icons/Cancel';
 import SaveIcon from '@material-ui/icons/Save';
 import AddIcon from '@material-ui/icons/Add';
+import DeleteIcon from '@material-ui/icons/Delete';
 import Alert from '@material-ui/lab/Alert';
 
 import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
-import { useAuth } from '../../security/AuthenticationProvider';
 import GradeLevelPayablesService from '../../api/GradeLevelPayablesService';
+import AccountPayablesSettingsList from './AccountPayablesSettingsList'
+import CustomTableGrid from '../common/CustomTableGrid';
+import SelectGrid from '../common/SelectGrid';
 
 let renderCount = 0;
 
 export default function GradeLevelPayablesDetailsComponent(props) {
 
   const history = useHistory();
-  const { control, register, handleSubmit, reset } = useForm({
-
-  });
-  const [userObj] = useAuth();
   const [message, setMessage] = useState('Loading. Please wait...');
 
   const [store, setStore] = useState({
     INIT_STATUS: ((props.match.params.id === -1) ? INIT_STATUS.INIT : INIT_STATUS.LOAD),
     'id': props.match.params.id,
-    'listService': {
-      'paymentPeriodList': []
+    level: { id: '' },
+    list: [],
+    listService: {
+      levelList: []
     }
   });
-
 
   useEffect(() => {
     console.log(`[GradeLevelPayablesDetailsComponent.useEffect] store==>`, store)
     // console.log(`[GradeLevelPayablesDetailsComponent.useEffect] userObj==>`, userObj)
     if (store.INIT_STATUS === INIT_STATUS.LOAD) {
       retrieve();
-    }
-    if (store.INIT_STATUS === INIT_STATUS.RESET) {
-      console.log(`[GradeLevelPayablesDetailsComponent.useEffect] from status = RESET store==>`, store)
-      reset(store)
     }
     store.INIT_STATUS = INIT_STATUS.DONE;
   }, [store]);
@@ -51,11 +46,21 @@ export default function GradeLevelPayablesDetailsComponent(props) {
     return {
       'message': '',
       'id': '',
-      'listService': {
-        'levelList': []
-      }
+      list: []
     }
   }
+
+  const changeSelectState = (e) => {
+    const { name, value } = e.target
+    console.log(`[GradeLevelPayablesDetailsComponent.changeSelectState] name=${name}, value=${value}`)
+
+    setStore({
+      ...store,
+      [name]: { id: value }
+    });
+    console.log(`[GradeLevelPayablesDetailsComponent.changeSelectState] store=>`, store)
+  }
+
   const retrieve = () => {
     console.log(`[GradeLevelPayablesDetailsComponent.retrieve] id==>${props.match.params.id}`)
     setMessage('Loading. Please wait...');
@@ -64,14 +69,42 @@ export default function GradeLevelPayablesDetailsComponent(props) {
         console.log(`[GradeLevelPayablesDetailsComponent.retrieve] response==>`, response)
         let thestate = getBlankDetails();
         if (props.match.params.id !== -1) {
+          let list = response.data.entity.accountPayablesSettings ? response.data.entity.accountPayablesSettings : []
+          let applyToAllList = response.data.listService.applyToAllList;
+          if (list.length === 0) {
+            list = [...applyToAllList]
+          } else {
+            let temp = [];
+            let tempList = [];
+            list.map(({ id }) => {
+              temp.push(id);
+            });
+            applyToAllList.map((row) => {
+              if (temp.indexOf(row.id) === -1) {
+                tempList.push(row)
+              }
+            });
+
+            let tempList2 = [
+              ...tempList,
+              ...list
+            ];
+            list = tempList2;
+          }
+          let level = response.data.entity.level
+          if (!level) {
+            level = { id: '' }
+          }
           thestate = {
             ...store,
             ...response.data.entity,
+            level: level,
+            list: list,
             listService: response.data.listService
           }
         }
         thestate.INIT_STATUS = INIT_STATUS.RESET;
-        initFormData(thestate);
+
         console.log(`[GradeLevelPayablesDetailsComponent.retrieve] initFormData thestate==>`, thestate)
         setMessage('');
         setStore(thestate)
@@ -83,7 +116,14 @@ export default function GradeLevelPayablesDetailsComponent(props) {
     setMessage(errMsg);
   }
 
-  const save = (data) => {
+  const save = (e) => {
+    e.preventDefault();
+
+    let data = {
+      id: store.id,
+      level: store.level,
+      accountPayablesSettings: store.list
+    }
     console.log(`[GradeLevelPayablesDetailsComponent.save] data==>`, data)
     GradeLevelPayablesService.save(data).then(response => {
       console.log(`[GradeLevelPayablesDetailsComponent.save] response==>`, response)
@@ -91,17 +131,87 @@ export default function GradeLevelPayablesDetailsComponent(props) {
     }).catch(error => setError(error, ERROR_CODE.SAVE_ERROR, 'GradeLevelPayablesDetailsComponent.save', 'GradeLevelPayablesService.save'));
   }
 
-  const initFormData = (data) => {
-    if (!data.listService.paymentPeriodList) {
-      data.listService.paymentPeriodList = [];
-    }
-    if (!data.paymentPeriod) {
-      data.paymentPeriod = {
-        id: ''
+  const setGradeLevelPayables = (data) => {
+    console.log(`[GradeLevelPayablesDetailsComponent.setGradeLevelPayables] row==>`, data)
+
+    let list = [...store.list]
+    let exist = false;
+    list.map(row => {
+      if (row.id == data.id) {
+        exist = true
       }
+    });
+    if (!exist) {
+      list.push(data);
+      setStore({
+        ...store,
+        list: list
+      });
     }
   }
 
+  const doDeleteItem = (id) => {
+    let list = [...store.list];
+    let i = -1;
+    list.map((row, index) => {
+      if (row.id === id) {
+        i = index;
+      }
+    });
+    if (i !== -1) {
+      list.splice(i, 1);
+    }
+    setStore({
+      ...store,
+      list: list
+    });
+  }
+  const GridActionButtons = () => {
+    return (
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={9}>
+        </Grid>
+        <Grid item xs={12} sm={1}>
+          <Button variant="contained" color="primary" type="submit" startIcon={<SaveIcon />}>Save</Button>
+        </Grid>
+        <Grid item xs={12} sm={1}>
+          <Button variant="contained" href={PAGE_URL.GRADE_LEVEL_PAYABLES_DETAIL_URL + '/-1'} startIcon={<AddIcon />}>New</Button>
+        </Grid>
+        <Grid item xs={12} sm={1}>
+          <Button variant="contained" onClick={() => history.push(PAGE_URL.GRADE_LEVEL_PAYABLES_LIST)} startIcon={<CancelIcon />}>Cancel</Button>
+        </Grid>
+      </Grid>
+    );
+  }
+
+  const cols = [
+    {
+      field: 'description',
+      headerName: 'Description',
+    },
+    {
+      headerName: 'Payment Period',
+      render: function (row) {
+        return row.paymentPeriod.description;
+      }
+    },
+    {
+      field: 'amount',
+      headerName: 'Amount',
+    },
+    {
+      field: 'priority',
+      headerName: 'Priority',
+    },
+    {
+      headerName: 'Action',
+      render: function (row) {
+        return (<IconButton aria-label="add" onClick={() => doDeleteItem(row.id)}>
+          <DeleteIcon fontSize="large" />
+        </IconButton>);
+      }
+    }
+  ];
   renderCount++;
   return (
     <>
@@ -110,43 +220,38 @@ export default function GradeLevelPayablesDetailsComponent(props) {
       {message && <Alert severity="info">{message}</Alert>}
 
 
-      <form onSubmit={handleSubmit(save)}>
-        <div>{renderCount}</div>
+      <form onSubmit={e => save(e)}>
+        <GridActionButtons />
 
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={9}>
+        <Box pb={3}>
+          <Grid container spacing={3}>
+            <SelectGrid sm={3} name="level" label="Level" value={store.level.id} options={store.listService.levelList}
+              onChange={e => changeSelectState(e)} />
           </Grid>
-          <Grid item xs={12} sm={1}>
-            <Button variant="contained" color="primary" type="submit" startIcon={<SaveIcon />}>Save</Button>
-          </Grid>
-          <Grid item xs={12} sm={1}>
-            <Button variant="contained" href={PAGE_URL.GRADE_LEVEL_PAYABLES_DETAIL_URL + '/-1'} startIcon={<AddIcon />}>New</Button>
-          </Grid>
-          <Grid item xs={12} sm={1}>
-            <Button variant="contained" onClick={() => history.push(PAGE_URL.GRADE_LEVEL_PAYABLES_LIST)} startIcon={<CancelIcon />}>Cancel</Button>
-          </Grid>
-        </Grid>
+        </Box>
+        <Box py={3}>
+          <Box pb={3}>
+            <CustomTableGrid
+              store={store}
+              cols={cols}
+              showAction={false}
+              showPaging={false}
+              showSearch={false}
+              // list={this.state.list}
+              // searchValue={this.state.searchValue}
+              // paging={this.state.paging}
+              // onChangePage={doHandleChangePage}
+              // onChangeRowsPerPage={doHandleChangeRowsPerPage}
+              doRetrieve={() => { }}
+              doEdit={() => { }}
+              doDelete={() => { }}
+              doSearch={() => { }}
+            />
+          </Box>
+          <GridActionButtons />
+        </Box>
 
-        <TextField type="hidden"
-          name="id"
-          inputRef={register}
-          defaultValue={store.id}
-        />
-
-
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={9}>
-          </Grid>
-          <Grid item xs={12} sm={1}>
-            <Button variant="contained" color="primary" type="submit" startIcon={<SaveIcon />}>Save</Button>
-          </Grid>
-          <Grid item xs={12} sm={1}>
-            <Button variant="contained" href={PAGE_URL.GRADE_LEVEL_PAYABLES_DETAIL_URL + '/-1'} startIcon={<AddIcon />}>New</Button>
-          </Grid>
-          <Grid item xs={12} sm={1}>
-            <Button variant="contained" onClick={() => history.push(PAGE_URL.GRADE_LEVEL_PAYABLES_LIST)} startIcon={<CancelIcon />}>Cancel</Button>
-          </Grid>
-        </Grid>
+        <AccountPayablesSettingsList setGradeLevelPayables={setGradeLevelPayables} />
 
       </form>
 
