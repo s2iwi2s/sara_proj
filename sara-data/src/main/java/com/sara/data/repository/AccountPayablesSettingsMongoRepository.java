@@ -6,6 +6,6 @@ import com.sara.data.document.AccountPayablesSettings;
 import com.sara.data.document.School;
 
 public interface AccountPayablesSettingsMongoRepository extends CustomRepository<AccountPayablesSettings, String> {
-	List<AccountPayablesSettings> findByActiveAndApplyToAllAndSchool(boolean active, boolean applyToAll, School school);
+	List<AccountPayablesSettings> findByActiveAndApplyToAllAndSchoolOrderByPriority(boolean active, boolean applyToAll, School school);
 	
 }
