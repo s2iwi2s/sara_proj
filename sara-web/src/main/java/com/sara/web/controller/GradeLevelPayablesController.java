@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sara.data.document.GradeLevelPayables;
 import com.sara.data.document.User;
+import com.sara.service.impl.AccountPayablesSettingsServiceImpl;
 import com.sara.service.impl.CodeGroupsServiceImpl;
 import com.sara.service.impl.GradeLevelPayablesServiceImpl;
 import com.sara.service.impl.UserServiceImpl;
@@ -23,11 +24,13 @@ public class GradeLevelPayablesController extends AbstractCrudController<GradeLe
 	public static final String URL_BASE = "/gradeLevelPayables";
 
 	private GradeLevelPayablesServiceImpl gradeLevelPayablesServiceImpl;
+	private AccountPayablesSettingsServiceImpl accountPayablesSettingsServiceImpl;
 
 	public GradeLevelPayablesController(UserServiceImpl userServiceImpl, CodeGroupsServiceImpl codeGroupsServiceImpl,
-			GradeLevelPayablesServiceImpl gradeLevelPayablesServiceImpl) {
+			GradeLevelPayablesServiceImpl gradeLevelPayablesServiceImpl, AccountPayablesSettingsServiceImpl accountPayablesSettingsServiceImpl) {
 		super(userServiceImpl, codeGroupsServiceImpl);
 		this.gradeLevelPayablesServiceImpl = gradeLevelPayablesServiceImpl;
+		this.accountPayablesSettingsServiceImpl = accountPayablesSettingsServiceImpl;
 	}
 
 	@Override
@@ -37,7 +40,7 @@ public class GradeLevelPayablesController extends AbstractCrudController<GradeLe
 
 	@Override
 	public GradeLevelPayablesResponse getResponse(User user) {
-		return new GradeLevelPayablesResponse(new GradeLevelPayablesListService(codeGroupsServiceImpl, user.getSchool()));
+		return new GradeLevelPayablesResponse(new GradeLevelPayablesListService(codeGroupsServiceImpl, accountPayablesSettingsServiceImpl, user.getSchool()));
 	}
 
 }

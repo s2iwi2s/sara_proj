@@ -6,7 +6,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,7 +43,7 @@ public abstract class AbstractCrudController<T, ID> {
 	}
 
 	@GetMapping(Constants.URL_LIST)
-	public Response<T> list(@RequestParam("searchValue") String searchValue, @PageableDefault(sort = {
+	public ResponseEntity<?> list(@RequestParam("searchValue") String searchValue, @PageableDefault(sort = {
 			"id" }, direction = Direction.ASC, page = Constants.DEFAULT_PAGE_NUMBER, size = Constants.DEFAULT_PAGE_SIZE) Pageable pageable) {
 
 		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
@@ -60,11 +62,11 @@ public abstract class AbstractCrudController<T, ID> {
 		}
 		res.setPagingList(pagingList);
 		res.setListService(null);
-		return res;
+		return new ResponseEntity<Response<T>>(res, HttpStatus.OK);
 	}
 
 	@DeleteMapping(Constants.URL_DELETE)
-	public Response<T> delete(@PathVariable("id") ID id) {
+	public ResponseEntity<?> delete(@PathVariable("id") ID id) {
 		ResponseStatus status = new ResponseStatus();
 		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
 		Response<T> res = getResponse(user);
@@ -76,11 +78,12 @@ public abstract class AbstractCrudController<T, ID> {
 			e.printStackTrace();
 			status.setException(e);
 		}
-		return res;
+
+		return new ResponseEntity<Response<T>>(res, HttpStatus.OK);
 	}
 
 	@GetMapping(Constants.URL_DETAILS)
-	public Response<T> details(@PathVariable("id") ID id) {
+	public ResponseEntity<?> details(@PathVariable("id") ID id) {
 		T entity = null;
 		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
 		ResponseStatus status = new ResponseStatus();
@@ -96,11 +99,12 @@ public abstract class AbstractCrudController<T, ID> {
 		}
 
 		res.setEntity(entity);
-		return res;
+		
+		return new ResponseEntity<Response<T>>(res, HttpStatus.OK);
 	}
 
 	@PostMapping(path = Constants.URL_SAVE, consumes = { MediaType.APPLICATION_JSON_VALUE })
-	public T save(@RequestBody T entity) {
+	public ResponseEntity<?> save(@RequestBody T entity) {
 		log.debug("save entity => {}", entity);
 		ResponseStatus status = new ResponseStatus();
 		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
@@ -114,6 +118,7 @@ public abstract class AbstractCrudController<T, ID> {
 			e.printStackTrace();
 		}
 		res.setEntity(entity);
-		return entity;
+		//return entity;
+		return new ResponseEntity<Response<T>>(res, HttpStatus.OK);
 	}
 }
