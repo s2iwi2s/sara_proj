@@ -52,7 +52,7 @@ public class AccountPayablesSettingsServiceImpl extends AbstractService<AccountP
 	}
 
 	public List<AccountPayablesSettings> findByApplyToAllList(School school) {
-		return ((AccountPayablesSettingsMongoRepository) repo).findByActiveAndApplyToAllAndSchool(true, true, school);
+		return ((AccountPayablesSettingsMongoRepository) repo).findByActiveAndApplyToAllAndSchoolOrderByPriority(true, true, school);
 		// return findAll(pageable);
 	}
 	
