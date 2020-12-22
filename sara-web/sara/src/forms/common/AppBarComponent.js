@@ -8,7 +8,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SchoolIcon from '@material-ui/icons/School';
 
 import { PAGE_URL, URL_BASE } from '../../api/Utils'
-import { useAuth } from '../../security/AuthenticationProvider';
+import { useAuth } from '../../providers/AuthenticationProvider';
 import MenuComponent from './MenuComponent';
 import MiniDrawer from './MiniDrawer';
 

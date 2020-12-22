@@ -8,7 +8,7 @@ import { Container, CssBaseline } from '@material-ui/core';
 
 import { PAGE_URL, INIT_STATUS, THEME } from './api/Utils';
 import { useStyles } from './forms/common/CSS'
-import { useAuth } from './security/AuthenticationProvider';
+import { useAuth } from './providers/AuthenticationProvider';
 
 import ErrorComponent from './api/ErrorComponent'
 import FooterComponent from './forms/common/FooterComponent'
@@ -38,6 +38,7 @@ import AccountPayablesSettingsDetailComponent from './forms/accountPayables/Acco
 
 import GradeLevelPayablesListComponent from './forms/gradeLevelPayables/GradeLevelPayablesListComponent';
 import GradeLevelPayablesDetailsComponent from './forms/gradeLevelPayables/GradeLevelPayablesDetailsComponent';
+import GlobalAlertMsgDialog from './forms/common/GlobalAlertMsgDialog';
 
 const useStylesRouting = makeStyles((theme) => ({
  root: {
@@ -123,6 +124,9 @@ const AppRouting = () => {
 
       <main className={classes.content}>
        <div className={classes.toolbar} />
+       
+       <GlobalAlertMsgDialog/>
+       
        {/* <Container component="main" className={classes.container}> */}
        <Switch>
         <Route path={PAGE_URL.ROOT} exact component={Dashboard} />

@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 
 import { formatter, INIT_STATUS, PAGE_URL } from '../../api/Utils'
+import {useGlobalVariable} from "../../providers/GlobalVariableProvider"
 
 import BillingService from '../../api/billing/BillingService'
 import BillingHtmlComponent from './BillingHtmlComponent';
@@ -11,6 +12,7 @@ import { Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 
 export default function BillingComponent(props) {
+  const [globalProps, setGlobalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert] = useGlobalVariable();
   const [snackbar, setSnackbar] = useState({
     open: false,
     message: '',
@@ -168,9 +170,13 @@ export default function BillingComponent(props) {
         }
         doInitFormData(formData);
         setStore(formData)
+      })
+      .catch(error => {
+        console.error(`[BillingComponent.doRetrieve ] error==>`, error);
+        showErrorAlert(error.message)
       });
   }
-
+  
   const onChangeRowsPerPage = (e) => {
     let paging = {
       ...store.paging
@@ -226,7 +232,12 @@ export default function BillingComponent(props) {
       }
       doInitFormData(formData);
       setStore(formData);
-    })
+    }).catch(error => {
+      console.error(`[BillingComponent.doPayables BillingService.getStudentPayables] error==>`, error);
+      console.error(`[BillingComponent.doPayables BillingService.getStudentPayables] error==>${JSON.stringify(error)}`);
+      //showErrorAlert, showInfoAlert, showWarningAlert
+      showErrorAlert(error.message);
+    });
   }
   const doShowSaveConfirmDialog = (data) => {
     console.log(`[BillingComponent.doShowSaveConfirmDialog] data==>`, data);

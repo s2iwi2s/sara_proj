@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 
 import SignInHtml from './SignInHtml.js';
-import { useAuth } from './AuthenticationProvider';
+import { useAuth } from '../providers/AuthenticationProvider';
 import AuthenticationService from './AuthenticationService.js'
 
 // import { useForm } from 'react-hook-form';

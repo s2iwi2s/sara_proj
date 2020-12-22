@@ -8,6 +8,22 @@ import GradeLevelPayablesService from '../../api/GradeLevelPayablesService';
 import CustomTableGrid from '../common/CustomTableGrid'
 
 export default function GradeLevelPayablesListComponent(props) {
+  const cols = [
+    {
+      headerName: 'Description',
+      render: function (row) {
+        return row.level.description;
+      }
+    },
+    {
+      field: 'active',
+      headerName: 'Active',
+      render: function (row) {
+        return row.active? 'Y' : 'N';
+      }
+    }
+  ];
+
   const [store, setStore] = useState({
     INIT_STATUS: INIT_STATUS.INIT,
     list: [],
@@ -85,15 +101,6 @@ export default function GradeLevelPayablesListComponent(props) {
     store.searchValue = searchValue
     doRetrieve();
   }
-
-  const cols = [
-    {
-      headerName: 'Description',
-      render: function (row) {
-        return row.level.description;
-      }
-    }
-  ];
 
   return (
     <>

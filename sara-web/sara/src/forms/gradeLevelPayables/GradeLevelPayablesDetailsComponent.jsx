@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { Box, Button, Grid, IconButton, Typography } from '@material-ui/core';
+import { Box, Button, Checkbox, FormControlLabel, FormGroup, Grid, IconButton, Typography } from '@material-ui/core';
 
 import CancelIcon from '@material-ui/icons/Cancel';
 import SaveIcon from '@material-ui/icons/Save';
@@ -27,6 +27,7 @@ export default function GradeLevelPayablesDetailsComponent(props) {
     INIT_STATUS: ((props.match.params.id === -1) ? INIT_STATUS.INIT : INIT_STATUS.LOAD),
     'id': props.match.params.id,
     level: { id: '' },
+    active: true,
     list: [],
     listService: {
       levelList: []
@@ -61,6 +62,13 @@ export default function GradeLevelPayablesDetailsComponent(props) {
     });
     console.log(`[GradeLevelPayablesDetailsComponent.changeSelectState] store=>`, store)
   }
+  const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target
+    setStore({ 
+      ...store, 
+      [name]: checked });
+  };
+
 
   const retrieve = () => {
     console.log(`[GradeLevelPayablesDetailsComponent.retrieve] id==>${props.match.params.id}`)
@@ -127,6 +135,7 @@ export default function GradeLevelPayablesDetailsComponent(props) {
     let data = {
       id: store.id,
       level: store.level,
+      active: store.active,
       accountPayablesSettings: store.list
     }
     console.log(`[GradeLevelPayablesDetailsComponent.save] data==>`, data)
@@ -142,7 +151,7 @@ export default function GradeLevelPayablesDetailsComponent(props) {
     let list = [...store.list]
     let exist = false;
     list.map(row => {
-      if (row.id == data.id) {
+      if (row.id === data.id) {
         exist = true
       }
     });
@@ -193,8 +202,7 @@ export default function GradeLevelPayablesDetailsComponent(props) {
     );
   }
 
-  const cols = [
-    {
+  const cols = [{
       field: 'description',
       headerName: 'Description',
       render: function (row) {
@@ -242,7 +250,18 @@ export default function GradeLevelPayablesDetailsComponent(props) {
           <Grid container spacing={3}>
             <SelectGrid sm={3} name="level" label="Level" value={store.level.id} options={store.listService.levelList}
               onChange={e => changeSelectState(e)} />
-          </Grid>
+            <Grid item xs={12} sm={12}>
+              <FormGroup aria-label="position" row>
+                <FormControlLabel
+                  value="true"
+                  control={<Checkbox checked={store.active} onChange={e => handleCheckboxChange(e)} name="active" />}
+                  label="Active"
+                  labelPlacement="end"
+                />
+              </FormGroup>
+            </Grid>
+        </Grid>
+          
         </Box>
         <Box py={3}>
           <Box pb={3}>
@@ -257,10 +276,10 @@ export default function GradeLevelPayablesDetailsComponent(props) {
               // paging={this.state.paging}
               // onChangePage={doHandleChangePage}
               // onChangeRowsPerPage={doHandleChangeRowsPerPage}
-              doRetrieve={() => { }}
-              doEdit={() => { }}
-              doDelete={() => { }}
-              doSearch={() => { }}
+              // doRetrieve={() => { }}
+              // doEdit={() => { }}
+              // doDelete={() => { }}
+              // doSearch={() => { }}
             />
           </Box>
           <GridActionButtons />

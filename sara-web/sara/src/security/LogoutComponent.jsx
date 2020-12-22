@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import AuthenticationService from './AuthenticationService.js'
-import { useAuth } from './AuthenticationProvider';
+import { useAuth } from '../providers/AuthenticationProvider';
 import { USER_TEMP } from '../api/Utils'
 
 

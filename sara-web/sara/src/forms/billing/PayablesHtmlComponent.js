@@ -200,7 +200,6 @@ const PayablesHtmlComponent = (props) => {
                             // disabled={row.balance === 0}
                             defaultValue={row.payment}
                             variant="filled"
-                            inputStyle={{ textAlign: 'center' }}
                             InputProps={{
                               startAdornment: <InputAdornment position="start">P</InputAdornment>,
                             }} />

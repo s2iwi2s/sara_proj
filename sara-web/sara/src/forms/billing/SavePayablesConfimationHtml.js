@@ -10,7 +10,7 @@ import { useForm } from 'react-hook-form';
 import { useReactToPrint } from "react-to-print";
 
 import { formatter, INIT_STATUS, StyledTableCell, StyledTableHeadCell, StyledTableHeadRow, StyledTableRow } from '../../api/Utils';
-import { useAuth } from '../../security/AuthenticationProvider';
+import { useAuth } from '../../providers/AuthenticationProvider';
 
 const printStyles = makeStyles(() => ({
   root: {

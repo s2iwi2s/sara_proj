@@ -10,7 +10,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Alert from '@material-ui/lab/Alert';
 
 import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
-import { useAuth } from '../../security/AuthenticationProvider';
+import { useAuth } from '../../providers/AuthenticationProvider';
 import AccountPayablesSettingsService from '../../api/AccountPayablesSettingsService';
 
 let renderCount = 0;

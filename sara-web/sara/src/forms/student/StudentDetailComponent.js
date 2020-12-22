@@ -4,7 +4,7 @@ import Utils, { INIT_STATUS, ERROR_CODE, PAGE_URL } from '../../api/Utils'
 import StudentDetailHtml from './StudentDetailHtml.js';
 import StudentService from '../../api/student/StudentService'
 import { useHistory } from 'react-router-dom';
-import { useAuth } from '../../security/AuthenticationProvider';
+import { useAuth } from '../../providers/AuthenticationProvider';
 
 export default function StudentDetailComponent(props) {
   const history = useHistory();
