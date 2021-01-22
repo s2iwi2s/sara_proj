@@ -49,4 +49,11 @@ public class CodeGroups {
 
 	@DBRef(lazy = true)
 	private School school;
+
+	@Override
+	public String toString() {
+		return String.format("CodeGroups [id=%s, priority=%s, code=%s, value=%s, description=%s]", id, priority, code,
+				value, description);
+	}
+	
 }

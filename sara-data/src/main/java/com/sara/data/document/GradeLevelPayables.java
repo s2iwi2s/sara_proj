@@ -30,14 +30,21 @@ public class GradeLevelPayables {
 	
 	@Id
 	private String id;
-
+	private boolean active;
+	
 	@DBRef(lazy = true)
 	private CodeGroups level;
 
 	@DBRef(lazy = true)
 	private List<AccountPayablesSettings> accountPayablesSettings;
 	
-
+	
 	@DBRef(lazy = true)
 	private School school;
+
+
+	@Override
+	public String toString() {
+		return String.format("GradeLevelPayables [id=%s, active=%s, level=%s]", id, active, level);
+	}
 }

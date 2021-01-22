@@ -1,105 +1,38 @@
-import React, { useState } from 'react';
-import moment from 'moment';
-import Utils, { INIT_STATUS, ERROR_CODE, PAGE_URL } from '../../api/Utils'
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import Utils, { ERROR_CODE, PAGE_URL } from '../../api/Utils'
 import StudentDetailHtml from './StudentDetailHtml.js';
-import StudentService from '../../api/student/StudentService'
-import { useHistory } from 'react-router-dom';
-import { useAuth } from '../../providers/AuthenticationProvider';
+import { save, getOptions } from '../../api/student/StudentService'
+import { selectSelectedItem, setOptionsList, setPageableEntity, resetSelectedItem } from '../../api/student/StudentSlice';
 
 export default function StudentDetailComponent(props) {
-  const history = useHistory();
+  const dispatch = useDispatch();
+  const selectedItem = useSelector(selectSelectedItem)
 
   const [message, setMessage] = useState("");
-  const [userObj] = useAuth();
-
-  const [store, setStore] = useState({
-    initStatus: ((props.match.params.id === -1) ? INIT_STATUS.INIT : INIT_STATUS.LOAD),
-    school: { 'id': userObj.schoolId },
-    id: '',
-    entityId: props.match.params.id,
-    firstName: '',
-    lastName: '',
-    birthDate: moment().format('YYYY-MM-DD'),
-    birthPlace: '',
-    gender: '',
-    contactNo: '',
-    level: { 'id': '' },
-    address1: '',
-    address2: '',
-    city: '',
-    zipCode: '',
-    country: 'Philippines',
-    fathersName: '',
-    fathersOccupation: '',
-    mothersName: '',
-    mothersOccupation: '',
-    parentCivilStatus: '',
-    guardianName: '',
-    optionsList: {
-      studentLevelList: []
-    }
-  });
-
-  const onInitFormData = (data) => {
-    if (data.birthDate) {
-      data.birthDate = moment(data.birthDate).format('YYYY-MM-DD');
-    }
-    if (!data.level) {
-      data.level = { 'id': '' };
-    }
-    if (!data.optionsList) {
-      data.optionsList = {
-        studentLevelList: []
-      }
-    }
-  }
 
   const onSubmitForm = (data) => {
     console.log('[StudentDetailComponent.onSubmitForm] data==>', data)
 
-    setMessage(``);
-    StudentService.save(data).then(response => onSubmitFormResponseAction(response))
+    setMessage(`Saving...`);
+    save(data)
+      .then(response => dispatch(setPageableEntity(response.data.entity)))
+      .then(setMessage(``))
+      .then(props.history.push(PAGE_URL.USER_LIST))
       .catch(error => setError(error, ERROR_CODE.SAVE_ERROR, 'StudentDetailComponent.onSubmitForm', 'StudentService.save'));
   }
 
-  const onSubmitFormResponseAction = response => {
-    console.log(`[StudentDetailComponent.onSubmitFormSaveAction] params.id=${props.match.params.id}, response==>`, response)
-    //let data = response.data;
-    history.push(PAGE_URL.STUDENT_LIST)
-    // onInitFormData(data);
-
-    // data.initStatus = INIT_STATUS.RESET;
-
-    // setEntity(data);
-    // console.log(`[StudentDetailComponent.onSubmitForm] entity=>`, entity)
-
-    // setMessage(`Student ${data.id} saved successfully!`);
-
-  }
-
-  const onRetrieve = (id) => {
-    console.log(`[StudentDetailComponent.onRetrieve] id=${id}, props.id=${props.match.params.id}`, store)
-
+  const onRetrieve = () => {
+    console.log(`[StudentDetailComponent.onRetrieve]  props.match.params.id==>${props.match.params.id}`)
     setMessage(`Loading. Please wait...`);
-    StudentService.get(id ? id : props.match.params.id).then(response => onRetrieveResponseAction(response, id))
-      .catch(error => setError(error, ERROR_CODE.RETRIEVE_ERROR, 'StudentDetailComponent.onRetrieve', 'StudentService.get'));
-  }
-
-  const onRetrieveResponseAction = (response, id) => {
-    console.log(`[StudentDetailComponent.onRetrieveResponseAction] id=${id}, response==>`, response)
-    let data = response.data.entity;
-    if (!data) {
-      data = {};
+    if (props.match.params.id == -1) {
+      dispatch(resetSelectedItem())
     }
-
-    console.log(`[StudentDetailComponent.onRetrieveResponseAction] data==>`, data)
-    data.optionsList = response.data.listService
-    data.school = { 'id': userObj.schoolId };
-    onInitFormData(data);
-
-    data.initStatus = INIT_STATUS.RESET;
-    setStore(data);
-    setMessage(``);
+    getOptions()
+      .then(response => dispatch(setOptionsList(response.data.listService)))
+      .then(setMessage(``))
+      .catch(error => setError(error, ERROR_CODE.RETRIEVE_ERROR, 'StudentDetailComponent.onRetrieve', 'StudentService.getOptions'));
   }
 
   const setError = (error, errorCode, formMethod, serviceName) => {
@@ -108,7 +41,7 @@ export default function StudentDetailComponent(props) {
   }
   return (
     <StudentDetailHtml
-      store={store}
+      store={selectedItem}
       message={message}
       onSubmitForm={onSubmitForm}
       onRetrieve={onRetrieve}

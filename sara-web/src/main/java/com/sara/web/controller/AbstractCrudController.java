@@ -103,6 +103,26 @@ public abstract class AbstractCrudController<T, ID> {
 		return new ResponseEntity<Response<T>>(res, HttpStatus.OK);
 	}
 
+	@GetMapping(Constants.URL_OPTIONS)
+	public ResponseEntity<?> options() {
+		T entity = null;
+		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
+		ResponseStatus status = new ResponseStatus();
+		Response<T> res = getResponse(user);
+		res.setResponseStatus(status);
+
+		try {
+			status.setMessage("SUCCESS!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			status.setException(e);
+		}
+
+		res.setEntity(entity);
+		
+		return new ResponseEntity<Response<T>>(res, HttpStatus.OK);
+	}
+
 	@PostMapping(path = Constants.URL_SAVE, consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<?> save(@RequestBody T entity) {
 		log.debug("save entity => {}", entity);

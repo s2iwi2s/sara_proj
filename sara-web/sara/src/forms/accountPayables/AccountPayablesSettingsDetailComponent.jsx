@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Button, Checkbox, Grid, MenuItem, Select, TextField, Typography } from '@material-ui/core';
 
@@ -11,12 +12,15 @@ import Alert from '@material-ui/lab/Alert';
 
 import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
 import { useAuth } from '../../providers/AuthenticationProvider';
-import AccountPayablesSettingsService from '../../api/AccountPayablesSettingsService';
+
+import { selectSelectedItem, resetSelectedItem, setPageableEntity, setOptionsList } from '../../api/accountPayablesSettings/AccountPayablesSettingsSlice';
+import { save, getOptions } from '../../api/accountPayablesSettings/AccountPayablesSettingsService';
 
 let renderCount = 0;
 
 export default function AccountPayablesSettingsDetailComponent(props) {
 
+  const dispatch = useDispatch();
   const history = useHistory();
   const { control, register, handleSubmit, reset } = useForm({
     'id': '',
@@ -30,85 +34,118 @@ export default function AccountPayablesSettingsDetailComponent(props) {
   const [userObj] = useAuth();
   const [message, setMessage] = useState('Loading. Please wait...');
 
-  const [store, setStore] = useState({
-    INIT_STATUS: ((props.match.params.id === -1) ? INIT_STATUS.INIT : INIT_STATUS.LOAD),
-    'id': props.match.params.id,
-    'description': '',
-    'paymentPeriod': { 'id': '' },
-    'amount': 0,
-    'priority': 1,
-    'applyToAll': false,
-    'active': true,
-    'listService': {
-      'paymentPeriodList': []
-    }
-  });
+  const selectedItem = useSelector(selectSelectedItem)
+  const [status, setStatus] = useState(INIT_STATUS.INIT);
 
+  // const [store, setStore] = useState({
+  //   INIT_STATUS: ((props.match.params.id === -1) ? INIT_STATUS.INIT : INIT_STATUS.LOAD),
+  //   'id': props.match.params.id,
+  //   'description': '',
+  //   'paymentPeriod': { 'id': '' },
+  //   'amount': 0,
+  //   'priority': 1,
+  //   'applyToAll': false,
+  //   'active': true,
+  //   'listService': {
+  //     'paymentPeriodList': []
+  //   }
+  // });
 
   useEffect(() => {
-    console.log(`[AccountPayablesSettingsDetailComponent.useEffect] store==>`, store)
-    // console.log(`[AccountPayablesSettingsDetailComponent.useEffect] userObj==>`, userObj)
-    if (store.INIT_STATUS === INIT_STATUS.LOAD) {
-      retrieve();
-    }
-    if (store.INIT_STATUS === INIT_STATUS.RESET) {
-      console.log(`[AccountPayablesSettingsDetailComponent.useEffect] from status = RESET store==>`, store)
-      reset(store)
-    }
-    store.INIT_STATUS = INIT_STATUS.DONE;
-  }, [store]);
-
-
-  const getBlankDetails = () => {
-    return {
-      'message': '',
-      'id': '',
-      'description': '',
-      'paymentPeriod': { 'id': '' },
-      'amount': 0,
-      'priority': 1,
-      'applyToAll': false,
-      'active': true,
-      'listService': {
-        'paymentPeriodList': []
+    if (status === INIT_STATUS.INIT) {
+      if (props.match.params.id == -1) {
+        dispatch(resetSelectedItem())
       }
+      setMessage('');
+      setStatus(INIT_STATUS.LOAD)
     }
+    if (status === INIT_STATUS.LOAD) {
+      onRetrieve()
+      setStatus(INIT_STATUS.DONE)
+    }
+  }, [selectedItem, status]);
+
+  const onRetrieve = () => {
+    console.log(`[AccountPayablesSettingsDetailComponent.onRetrieve]  props.match.params.id==>${props.match.params.id}`)
+    setMessage(`Loading. Please wait...`);
+    if (props.match.params.id == -1) {
+      dispatch(resetSelectedItem())
+    }
+    getOptions()
+      .then(response => dispatch(setOptionsList(response.data.listService)))
+      .then(setMessage(``))
+      .catch(error => setError(error, ERROR_CODE.RETRIEVE_ERROR, 'AccountPayablesSettingsDetailComponent.onRetrieve', 'AccountPayablesSettingsService.getOptions'));
   }
-  const retrieve = () => {
-    console.log(`[AccountPayablesSettingsDetailComponent.retrieve] 1 id==>${props.match.params.id}`)
-    setMessage('Loading. Please wait...');
-    AccountPayablesSettingsService.get(props.match.params.id)
-      .then(response => {
-        console.log(`[AccountPayablesSettingsDetailComponent.retrieve] 2 response==>`, response)
-        let thestate = getBlankDetails();
-        if (props.match.params.id !== -1) {
-          thestate = {
-            ...store,
-            ...response.data.entity,
-            listService: response.data.listService
-          }
-        }
-        thestate.INIT_STATUS = INIT_STATUS.RESET;
-        initFormData(thestate);
-        console.log(`[AccountPayablesSettingsDetailComponent.retrieve] 3 initFormData thestate==>`, thestate)
-        setMessage('');
-        setStore(thestate)
-        console.log(`[AccountPayablesSettingsDetailComponent.retrieve] 4 store==>`, store)
-      }).catch(error => setError(error, ERROR_CODE.RETRIEVE_ERROR, 'AccountPayablesSettingsDetailComponent.retrieve', 'AccountPayablesSettingsService.get'));
-  }
+
+  // useEffect(() => {
+  //   console.log(`[AccountPayablesSettingsDetailComponent.useEffect] store==>`, store)
+  //   // console.log(`[AccountPayablesSettingsDetailComponent.useEffect] userObj==>`, userObj)
+  //   if (store.INIT_STATUS === INIT_STATUS.LOAD) {
+  //     retrieve();
+  //   }
+  //   if (store.INIT_STATUS === INIT_STATUS.RESET) {
+  //     console.log(`[AccountPayablesSettingsDetailComponent.useEffect] from status = RESET store==>`, store)
+  //     reset(store)
+  //   }
+  //   store.INIT_STATUS = INIT_STATUS.DONE;
+  // }, [store]);
+
+
+  // const getBlankDetails = () => {
+  //   return {
+  //     'message': '',
+  //     'id': '',
+  //     'description': '',
+  //     'paymentPeriod': { 'id': '' },
+  //     'amount': 0,
+  //     'priority': 1,
+  //     'applyToAll': false,
+  //     'active': true,
+  //     'listService': {
+  //       'paymentPeriodList': []
+  //     }
+  //   }
+  // }
+  // const retrieve = () => {
+  //   console.log(`[AccountPayablesSettingsDetailComponent.retrieve] 1 id==>${props.match.params.id}`)
+  //   setMessage('Loading. Please wait...');
+  //   get(props.match.params.id)
+  //     .then(response => {
+  //       console.log(`[AccountPayablesSettingsDetailComponent.retrieve] 2 response==>`, response)
+  //       let thestate = getBlankDetails();
+  //       if (props.match.params.id !== -1) {
+  //         thestate = {
+  //           ...store,
+  //           ...response.data.entity,
+  //           optionsList: response.data.listService
+  //         }
+  //       }
+  //       thestate.INIT_STATUS = INIT_STATUS.RESET;
+  //       initFormData(thestate);
+  //       console.log(`[AccountPayablesSettingsDetailComponent.retrieve] 3 initFormData thestate==>`, thestate)
+  //       setMessage('');
+  //       setStore(thestate)
+  //       console.log(`[AccountPayablesSettingsDetailComponent.retrieve] 4 store==>`, store)
+  //     }).catch(error => setError(error, ERROR_CODE.RETRIEVE_ERROR, 'AccountPayablesSettingsDetailComponent.retrieve', 'AccountPayablesSettingsService.get'));
+  // }
   const setError = (error, errorCode, formMethod, serviceName) => {
     let errMsg = Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName);
     setMessage(errMsg);
   }
 
-  const save = (data) => {
-    console.log(`[AccountPayablesSettingsDetailComponent.save] data==>`, data)
-    AccountPayablesSettingsService.save(data).then(response => {
-      console.log(`[AccountPayablesSettingsDetailComponent.save] response==>`, response)
-      history.push(PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_LIST);
-    }).catch(error => setError(error, ERROR_CODE.SAVE_ERROR, 'AccountPayablesSettingsDetailComponent.save', 'AccountPayablesSettingsService.save'));
-  }
+  // const save = (data) => {
+  //   console.log(`[AccountPayablesSettingsDetailComponent.save] data==>`, data)
+  //   save(data).then(response => {
+  //     console.log(`[AccountPayablesSettingsDetailComponent.save] response==>`, response)
+  //     history.push(PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_LIST);
+  //   }).catch(error => setError(error, ERROR_CODE.SAVE_ERROR, 'AccountPayablesSettingsDetailComponent.save', 'AccountPayablesSettingsService.save'));
+  // }
 
+
+  const doSave = data => save(data)
+    .then(response => dispatch(setPageableEntity(response.data.entity)))
+    .then(history.push(PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_LIST))
+    .catch(error => setError(error, ERROR_CODE.SAVE_ERROR, 'CodeGroupsDetailComponent.save', 'CodeGroupsService.save'))
   const initFormData = (data) => {
     if (!data.listService.paymentPeriodList) {
       data.listService.paymentPeriodList = [];
@@ -123,14 +160,11 @@ export default function AccountPayablesSettingsDetailComponent(props) {
   renderCount++;
   return (
     <>
-      {console.log(`[AccountPayablesSettingsDetailComponent.render] renderCount=${renderCount} store==>`, store)}
+      {console.log(`[AccountPayablesSettingsDetailComponent.render] renderCount=${renderCount} selectedItem==>`, selectedItem)}
       <Typography variant="h4">Account Payables Settings Details</Typography>
       {message && <Alert severity="info">{message}</Alert>}
 
-
-      <form onSubmit={handleSubmit(save)}>
-        <div>{renderCount}</div>
-
+      <form onSubmit={handleSubmit(doSave)}>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={9}>
           </Grid>
@@ -148,7 +182,7 @@ export default function AccountPayablesSettingsDetailComponent(props) {
         <TextField type="hidden"
           name="id"
           inputRef={register}
-          defaultValue={store.id}
+          defaultValue={selectedItem.id}
         />
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
@@ -163,7 +197,7 @@ export default function AccountPayablesSettingsDetailComponent(props) {
               variant="filled"
               InputLabelProps={{ shrink: true }}
               inputRef={register}
-              defaultValue={store.description}
+              defaultValue={selectedItem.description}
             />
           </Grid>
           <Grid item xs={12} sm={3}>
@@ -180,15 +214,15 @@ export default function AccountPayablesSettingsDetailComponent(props) {
                   inputRef={register}
                 // error={!!errors.name}
                 >
-                  {store.listService.paymentPeriodList.map(row => (
+                  {selectedItem.optionsList.paymentPeriodList.map(row => (
                     <MenuItem key={row.id} value={row.id}>{row.description}</MenuItem>
                   ))}
                 </TextField>
               }
               name="paymentPeriod.id"
               control={control}
-              defaultValue={store.paymentPeriod.id}
-              options={store.listService.paymentPeriodList}
+              defaultValue={selectedItem.paymentPeriod.id}
+              options={selectedItem.optionsList.paymentPeriodList}
             />
           </Grid>
           <Grid item xs={12} sm={3}>
@@ -203,7 +237,7 @@ export default function AccountPayablesSettingsDetailComponent(props) {
               variant="filled"
               InputLabelProps={{ shrink: true }}
               inputRef={register}
-              defaultValue={store.priority}
+              defaultValue={selectedItem.priority}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -218,10 +252,10 @@ export default function AccountPayablesSettingsDetailComponent(props) {
               variant="filled"
               InputLabelProps={{ shrink: true }}
               inputRef={register}
-              defaultValue={store.amount}
+              defaultValue={selectedItem.amount}
             />
           </Grid>
-          <Grid item xs={12} sm={1}>
+          <Grid item xs={12} sm={2}>
             <Controller
               as={
                 <TextField id="applyToAll"
@@ -241,10 +275,10 @@ export default function AccountPayablesSettingsDetailComponent(props) {
               }
               name="applyToAll"
               control={control}
-              defaultValue={store.applyToAll}
+              defaultValue={selectedItem.applyToAll}
             />
           </Grid>
-          <Grid item xs={12} sm={1}>
+          <Grid item xs={12} sm={2}>
             <Controller
               as={
                 <TextField id="active"
@@ -264,7 +298,7 @@ export default function AccountPayablesSettingsDetailComponent(props) {
               }
               name="active"
               control={control}
-              defaultValue={store.active}
+              defaultValue={selectedItem.active}
             />
           </Grid>
         </Grid>

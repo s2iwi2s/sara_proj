@@ -19,11 +19,11 @@ export default function CustomTableGrid(props) {
 
  useEffect(() => {
   console.log(`[CustomTableGrid.useEffect] counter=${counter}`)
-  if (props.store.INIT_STATUS === INIT_STATUS.INIT) {
-   props.doRetrieve();
-  } else if (props.store.INIT_STATUS === INIT_STATUS.RESET) {
-   reset(props.store);
-  }
+  // if (props.store.INIT_STATUS === INIT_STATUS.INIT) {
+  //  props.doRetrieve();
+  // } else if (props.store.INIT_STATUS === INIT_STATUS.RESET) {
+  //  reset(props.store);
+  // }
  }, [props.store])
 
  const doHandleKeyDown = (e) => {
@@ -76,7 +76,7 @@ export default function CustomTableGrid(props) {
        ))}
        {showAction && <StyledTableHeadCell align="right">
         Action
-        <IconButton aria-label="add" onClick={() => props.doEdit(-1)}>
+        <IconButton aria-label="add" onClick={() => props.doNew()}>
          <AddIcon fontSize="large" />
         </IconButton>
        </StyledTableHeadCell>}
@@ -92,7 +92,7 @@ export default function CustomTableGrid(props) {
          </>
         ))}
         {showAction && <TableCell align="right">
-         <IconButton aria-label="edit" onClick={() => props.doEdit(row.id)}>
+         <IconButton aria-label="edit" onClick={() => props.doEdit(row)}>
           <EditIcon fontSize="large" />
          </IconButton>
          <IconButton aria-label="delete" onClick={() => props.doDelete(row.id)}>

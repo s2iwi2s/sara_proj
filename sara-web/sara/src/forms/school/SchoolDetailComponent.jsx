@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 
@@ -11,80 +12,51 @@ import Alert from '@material-ui/lab/Alert';
 
 
 import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
-import { useAuth } from '../../providers/AuthenticationProvider';
-import SchoolService from '../../api/school/SchoolService';
+import { save } from '../../api/school/SchoolService';
+
+
+import { selectSelectedItem, setSelectedItem, setPageableEntity } from '../../api/school/SchoolSlice';
 
 export default function SchoolDetailComponent(props) {
 
   const history = useHistory();
-  const { register, handleSubmit, reset } = useForm();
-  const [userObj] = useAuth();
+  const dispatch = useDispatch();
+  const { register, handleSubmit } = useForm();
+
   const [message, setMessage] = useState('Loading. Please wait...');
+  const [status, setStatus] = useState(INIT_STATUS.INIT);
 
-  const [store, setStore] = useState({
-    INIT_STATUS: ((props.match.params.id === -1) ? INIT_STATUS.INIT : INIT_STATUS.LOAD),
-    'message': '',
-    'id': props.match.params.id,
-    'name': '',
-    'schoolYear': '',
-    'logo': '',
-    'address': '',
-    'optionsList': {}
-  });
-
+  const selectedItem = useSelector(selectSelectedItem)
 
   useEffect(() => {
-    console.log(`[SchoolDetailComponent.useEffect] store==>`, store)
-    console.log(`[SchoolDetailComponent.useEffect] userObj==>`, userObj)
-    //retrieve();
-    if (store.INIT_STATUS === INIT_STATUS.LOAD) {
-      retrieve();
-    } if (store.INIT_STATUS === INIT_STATUS.RESET) {
-      reset(store)
+    console.log(`[SchoolDetailComponent.useEffect] status=${status}, selectedItem==>`, selectedItem)
+
+    if (status === INIT_STATUS.INIT) {
+      if (props.match.params.id == -1) {
+        dispatch(setSelectedItem({}))
+      }
+      setMessage('');
+      setStatus(INIT_STATUS.LOAD)
     }
-  }, [store]);
+  }, [selectedItem]);
 
-  const retrieve = () => {
-    console.log(`[SchoolDetailComponent.retrieve] id==>${props.match.params.id}`)
-    setMessage('Loading. Please wait...');
-    SchoolService.get(props.match.params.id)
-      .then(response => {
-        console.log(`[SchoolDetailComponent.retrieve] response==>`, response)
-        let thestate = {
-          ...store
-        }
-        if (props.match.params.id !== -1) {
-          thestate = response.data.entity;
-        }
-        thestate.INIT_STATUS = INIT_STATUS.RESET;
 
-        thestate.optionsList = response.data.optionsList
-        setStore(thestate)
-        setMessage('');
-        console.log(`[SchoolDetailComponent.retrieve] store==>`, store)
-      }).catch(error => setError(error, ERROR_CODE.RETRIEVE_ERROR, 'SchoolDetailComponent.retrieve', 'SchoolService.get'));
-  }
-  const setError = (error, errorCode, formMethod, serviceName) => {
-    let errMsg = Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName);
-    setMessage(errMsg);
-  }
+  const setError = (error, errorCode, formMethod, serviceName) => setMessage(Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName))
 
-  function save(data) {
-    console.log(`[SchoolDetailComponent.save] data==>`, data)
-    SchoolService.save(data).then(response => {
-      console.log(`[SchoolDetailComponent.save] response==>`, response)
-      history.push(PAGE_URL.SCHOOL_LIST);
-    }).catch(error => setError(error, ERROR_CODE.SAVE_ERROR, 'SchoolDetailComponent.save', 'SchoolService.save'));
-  }
+  const onSubmitForm = (data) => save(data)
+    .then(response => dispatch(setPageableEntity(response.data.entity)))
+    .then(history.push(PAGE_URL.SCHOOL_LIST))
+    .catch(error => setError(error, ERROR_CODE.SAVE_ERROR, 'SchoolDetailComponent.save', 'SchoolService.save'))
+
 
   return (
     <>
-      {console.log(`[SchoolDetailComponent.render] store==>`, store)}
+      {console.log(`[SchoolDetailComponent.render] selectedItem==>`, selectedItem)}
       <Typography variant="h4">School Detail</Typography>
       {message && <Alert severity="info">{message}</Alert>}
 
 
-      <form onSubmit={handleSubmit(save)}>
+      <form onSubmit={handleSubmit(onSubmitForm)}>
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={9}>
@@ -103,7 +75,7 @@ export default function SchoolDetailComponent(props) {
         <TextField type="hidden"
           name="id"
           inputRef={register}
-          defaultValue={store.id}
+          defaultValue={selectedItem.id}
         />
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
@@ -118,7 +90,7 @@ export default function SchoolDetailComponent(props) {
               variant="filled"
               InputLabelProps={{ shrink: true }}
               inputRef={register}
-              defaultValue={store.name}
+              defaultValue={selectedItem.name}
             />
           </Grid>
           <Grid item xs={12} sm={2}>
@@ -132,7 +104,7 @@ export default function SchoolDetailComponent(props) {
               variant="filled"
               InputLabelProps={{ shrink: true }}
               inputRef={register}
-              defaultValue={store.schoolYear}
+              defaultValue={selectedItem.schoolYear}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -145,7 +117,7 @@ export default function SchoolDetailComponent(props) {
               variant="filled"
               InputLabelProps={{ shrink: true }}
               inputRef={register}
-              defaultValue={store.logo}
+              defaultValue={selectedItem.logo}
             />
           </Grid>
           <Grid item xs={12} sm={12}>
@@ -159,7 +131,7 @@ export default function SchoolDetailComponent(props) {
               variant="filled"
               InputLabelProps={{ shrink: true }}
               inputRef={register}
-              defaultValue={store.description}
+              defaultValue={selectedItem.address}
             />
           </Grid>
         </Grid>

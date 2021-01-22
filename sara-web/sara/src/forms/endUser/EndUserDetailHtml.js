@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import CancelIcon from '@material-ui/icons/Cancel';
 import SaveIcon from '@material-ui/icons/Save';
 import AddIcon from '@material-ui/icons/Add';
@@ -11,17 +11,14 @@ import { useHistory } from 'react-router-dom';
 import { INIT_STATUS, PAGE_URL } from '../../api/Utils';
 
 const EndUserDetailHtml = props => {
-      const { control, register, handleSubmit, errors, reset } = useForm();
-
+      const { control, register, handleSubmit } = useForm();
+      const [status, setStatus] = useState(INIT_STATUS.LOAD);
       const history = useHistory();
 
       useEffect(() => {
-            // setCounter(counter + 1);
-            console.log(`[EndUserDetailHtml.useEffect] props.store=>`, props.store);
-            if (props.store.INIT_STATUS === INIT_STATUS.LOAD) {
+            if (status === INIT_STATUS.LOAD) {
                   props.doRetrieve(props.store.entityId);
-            } if (props.store.INIT_STATUS === INIT_STATUS.RESET) {
-                  reset(props.store)
+                  setStatus(INIT_STATUS.RESET)
             }
       }, [props.store])
 

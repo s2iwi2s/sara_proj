@@ -1,104 +1,57 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Button, Grid, TextField, Typography } from '@material-ui/core';
 
 import CancelIcon from '@material-ui/icons/Cancel';
 import SaveIcon from '@material-ui/icons/Save';
 import AddIcon from '@material-ui/icons/Add';
-
-
-import CodeGroupsService from '../../api/codeGroups/CodeGroupsService';
-import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
-import { useAuth } from '../../providers/AuthenticationProvider';
 import Alert from '@material-ui/lab/Alert';
+
+import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
+
+import { selectSelectedItem, resetSelectedItem, setPageableEntity } from '../../api/codeGroups/CodeGroupsSlice';
+import { save } from '../../api/codeGroups/CodeGroupsService';
 
 export default function CodeGroupsDetailComponent(props) {
 
+  const dispatch = useDispatch();
   const history = useHistory();
-  const { register, handleSubmit, reset } = useForm();
-  const [userObj] = useAuth();
+  const { register, handleSubmit } = useForm();
   const [message, setMessage] = useState('Loading. Please wait...');
 
-  const [store, setStore] = useState({
-    INIT_STATUS: ((props.match.params.id === -1) ? INIT_STATUS.INIT : INIT_STATUS.LOAD),
-    'school': { 'id': userObj.schoolId },
-    'id': props.match.params.id,
-    'priority': 1,
-    'code': '',
-    'value': '',
-    'description': '',
-    'json': '',
-    'listService': {}
-  });
+  const selectedItem = useSelector(selectSelectedItem)
+  const [status, setStatus] = useState(INIT_STATUS.INIT);
 
 
   useEffect(() => {
-    console.log(`[CodeGroupsDetailComponent.useEffect] store==>`, store)
-    console.log(`[CodeGroupsDetailComponent.useEffect] userObj==>`, userObj)
-    //retrieve();
-    if (store.INIT_STATUS === INIT_STATUS.LOAD) {
-      retrieve();
-    } if (store.INIT_STATUS === INIT_STATUS.RESET) {
-      reset(store)
+    if (status === INIT_STATUS.INIT) {
+      if (props.match.params.id == -1) {
+        dispatch(resetSelectedItem())
+      }
+      setMessage('');
+      setStatus(INIT_STATUS.LOAD)
     }
-  }, [store]);
+  }, [selectedItem]);
 
 
-  const getBlankDetails = () => {
-    return {
-      'message': '',
-      'school': { 'id': userObj.schoolId },
-      'id': '',
-      'priority': 1,
-      'code': '',
-      'value': '',
-      'description': '',
-      'json': '',
-      'optionsList': {}
-    }
-  }
-  const retrieve = () => {
-    console.log(`[CodeGroupsDetailComponent.retrieve] id==>${props.match.params.id}`)
-    setMessage('Loading. Please wait...');
-    CodeGroupsService.get(props.match.params.id)
-      .then(response => {
-        console.log(`[CodeGroupsDetailComponent.retrieve] response==>`, response)
-        let thestate = getBlankDetails();
-        if (props.match.params.id !== -1) {
-          thestate = response.data.entity;
-        }
-        thestate.school = { 'id': userObj.schoolId };
-        thestate.INIT_STATUS = INIT_STATUS.RESET;
+  const setError = (error, errorCode, formMethod, serviceName) => setMessage(Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName))
 
-        //thestate.optionsList = response.data.optionsList
-        setStore(thestate)
-        setMessage('');
-        console.log(`[CodeGroupsDetailComponent.retrieve] store==>`, store)
-      }).catch(error => setError(error, ERROR_CODE.RETRIEVE_ERROR, 'CodeGroupsDetailComponent.retrieve', 'CodeGroupsService.get'));
-  }
-  const setError = (error, errorCode, formMethod, serviceName) => {
-    let errMsg = Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName);
-    setMessage(errMsg);
-  }
-
-  function save(data) {
-    console.log(`[CodeGroupsDetailComponent.save] data==>`, data)
-    CodeGroupsService.save(data).then(response => {
-      console.log(`[CodeGroupsDetailComponent.save] response==>`, response)
-      history.push(PAGE_URL.CODE_GROUPS_LIST);
-    }).catch(error => setError(error, ERROR_CODE.SAVE_ERROR, 'CodeGroupsDetailComponent.save', 'CodeGroupsService.save'));
-  }
+  const doSave = data => save(data)
+    .then(response => dispatch(setPageableEntity(response.data.entity)))
+    .then(history.push(PAGE_URL.CODE_GROUPS_LIST))
+    .catch(error => setError(error, ERROR_CODE.SAVE_ERROR, 'CodeGroupsDetailComponent.save', 'CodeGroupsService.save'))
 
   return (
     <>
-      {console.log(`[CodeGroupsDetailComponent.render] store==>`, store)}
+      {console.log(`[CodeGroupsDetailComponent.render] selectedItem==>`, selectedItem)}
       <Typography variant="h4">Code Groups Detail</Typography>
       {message && <Alert severity="info">{message}</Alert>}
 
 
-      <form onSubmit={handleSubmit(save)}>
+      <form onSubmit={handleSubmit(doSave)}>
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={9}>
@@ -117,12 +70,7 @@ export default function CodeGroupsDetailComponent(props) {
         <TextField type="hidden"
           name="id"
           inputRef={register}
-          defaultValue={store.id}
-        />
-        <TextField type="hidden"
-          name="school.id"
-          inputRef={register}
-          defaultValue={store.school.id}
+          defaultValue={selectedItem.id}
         />
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
@@ -137,7 +85,7 @@ export default function CodeGroupsDetailComponent(props) {
               variant="filled"
               InputLabelProps={{ shrink: true }}
               inputRef={register}
-              defaultValue={store.code}
+              defaultValue={selectedItem.code}
             />
           </Grid>
           <Grid item xs={12} sm={5}>
@@ -151,7 +99,7 @@ export default function CodeGroupsDetailComponent(props) {
               variant="filled"
               InputLabelProps={{ shrink: true }}
               inputRef={register}
-              defaultValue={store.code}
+              defaultValue={selectedItem.value}
             />
           </Grid>
           <Grid item xs={12} sm={1}>
@@ -166,7 +114,7 @@ export default function CodeGroupsDetailComponent(props) {
               variant="filled"
               InputLabelProps={{ shrink: true }}
               inputRef={register}
-              defaultValue={store.priority}
+              defaultValue={selectedItem.priority}
             />
           </Grid>
           <Grid item xs={12} sm={12}>
@@ -180,7 +128,7 @@ export default function CodeGroupsDetailComponent(props) {
               variant="filled"
               InputLabelProps={{ shrink: true }}
               inputRef={register}
-              defaultValue={store.description}
+              defaultValue={selectedItem.description}
             />
             <Grid item xs={12} sm={12}>&nbsp;</Grid>
             <Grid item xs={12} sm={12}>
@@ -195,7 +143,7 @@ export default function CodeGroupsDetailComponent(props) {
                 variant="filled"
                 InputLabelProps={{ shrink: true }}
                 inputRef={register}
-                defaultValue={store.json}
+                defaultValue={selectedItem.json}
               />
             </Grid>
           </Grid>

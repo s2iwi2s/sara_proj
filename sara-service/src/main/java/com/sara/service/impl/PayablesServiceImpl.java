@@ -23,13 +23,10 @@ import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.CollectionType;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
-import com.sara.data.document.CodeGroups;
+import com.sara.data.document.AccountPayablesSettings;
+import com.sara.data.document.GradeLevelPayables;
 import com.sara.data.document.Payables;
 import com.sara.data.document.QPayables;
 import com.sara.data.document.School;
@@ -40,27 +37,25 @@ import com.sara.service.AbstractService;
 import com.sara.service.SequenceGeneratorService;
 import com.sara.service.bean.PaymentInfo;
 import com.sara.service.bean.StudentPayables;
+import com.sara.service.exception.GradeLevelPayablesResponseException;
 
 @Service
 public class PayablesServiceImpl extends AbstractService<Payables, String> {
 
 	private static final Logger log = LoggerFactory.getLogger(PayablesServiceImpl.class);
 
-//	private PayablesMongoRepository repository;
-
-	private CodeGroupsServiceImpl codeGroupsServiceImpl;
-
 	private StudentServiceImpl studentServiceImpl;
+	private GradeLevelPayablesServiceImpl gradeLevelPayablesServiceImpl;
 
 	private MongoTemplate mongoTemplate;
 
 	public PayablesServiceImpl(PayablesMongoRepository repo, SequenceGeneratorService sequenceGeneratorService,
 			MongoTemplate mongoTemplate, CodeGroupsServiceImpl codeGroupsServiceImpl,
-			StudentServiceImpl studentServiceImpl) {
+			StudentServiceImpl studentServiceImpl, GradeLevelPayablesServiceImpl gradeLevelPayablesServiceImpl) {
 		super(repo, sequenceGeneratorService);
-		this.codeGroupsServiceImpl = codeGroupsServiceImpl;
 		this.studentServiceImpl = studentServiceImpl;
 		this.mongoTemplate = mongoTemplate;
+		this.gradeLevelPayablesServiceImpl = gradeLevelPayablesServiceImpl;
 	}
 
 	@Override
@@ -122,19 +117,18 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 		return new StudentPayables(payables, payablesByInvoiceNo, invoiceNo, invoiceDate);
 	}
 
-	public List<Payables> getStudentPayables(String id, String schoolYear)
-			throws JsonMappingException, JsonProcessingException, IllegalArgumentException {
+	public List<Payables> getStudentPayables(String id, String schoolYear) throws GradeLevelPayablesResponseException {
 		Student student = studentServiceImpl.findById(id);
 		return getStudentPayables(student, schoolYear);
 	}
 
 	public List<Payables> getStudentPayables(Student student, String schoolYear)
-			throws JsonMappingException, JsonProcessingException {
+			throws GradeLevelPayablesResponseException {
 		return getStudentPayables(student, schoolYear, null);
 	}
 
 	public List<Payables> getStudentPayables(Student student, String schoolYear, String invoiceNo)
-			throws JsonMappingException, JsonProcessingException {
+			throws GradeLevelPayablesResponseException {
 		List<Payables> payablesTmpl = getStudentPayablesTemplate(student);
 		List<PaymentInfo> totalPayableList = findPaymentSumByStudent(student, schoolYear);
 //		log.debug("payablesTmpl={}", payablesTmpl);
@@ -187,26 +181,27 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 		return payableList;
 	}
 
-	public List<Payables> getStudentPayablesTemplate(String id)
-			throws JsonMappingException, JsonProcessingException, IllegalArgumentException {
+	public List<Payables> getStudentPayablesTemplate(String id) throws GradeLevelPayablesResponseException {
 		Student student = studentServiceImpl.findById(id);
 		return getStudentPayablesTemplate(student);
 	}
 
-	public List<Payables> getStudentPayablesTemplate(Student student)
-			throws JsonMappingException, JsonProcessingException {
+	public List<Payables> getStudentPayablesTemplate(Student student) throws GradeLevelPayablesResponseException {
+		GradeLevelPayables gradeLevelPayables = gradeLevelPayablesServiceImpl.findByLevel(student.getLevel());
 
-		CodeGroups payables = codeGroupsServiceImpl.findByCode("PAYABLES_" + student.getLevel().getValue(),
-				student.getSchool());
-
-		ObjectMapper mapper = new ObjectMapper();
-		CollectionType javaType = mapper.getTypeFactory().constructCollectionType(List.class, Payables.class);
-
-		List<Payables> payableList;
-		if (payables != null && payables.getJson().length() > 0) {
-			payableList = mapper.readValue(payables.getJson(), javaType);
-		} else {
-			payableList = new ArrayList<Payables>();
+//		CodeGroups payables = codeGroupsServiceImpl.findByCode("PAYABLES_" + student.getLevel().getValue(),
+//				student.getSchool());
+//		ObjectMapper mapper = new ObjectMapper();
+//		CollectionType javaType = mapper.getTypeFactory().constructCollectionType(List.class, Payables.class);
+		List<Payables> payableList = new ArrayList<Payables>();
+//		if (payables != null && payables.getJson().length() > 0) {
+//			payableList = mapper.readValue(payables.getJson(), javaType);
+//		} else {
+//			payableList = new ArrayList<Payables>();
+//		}
+		for (AccountPayablesSettings aps : gradeLevelPayables.getAccountPayablesSettings()) {
+			//TODO set payables list here
+//			payableList.add(new )
 		}
 		return payableList;
 	}
