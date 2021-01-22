@@ -4,7 +4,7 @@ import { IconButton } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 
 import { INIT_STATUS } from '../../api/Utils'
-import AccountPayablesService from '../../api/AccountPayablesSettingsService';
+import AccountPayablesService from '../../api/accountPayablesSettings/AccountPayablesSettingsService';
 import CustomTableGrid from '../common/CustomTableGrid'
 
 export default function AccountPayablesSettingsList(props) {

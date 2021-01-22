@@ -22,6 +22,7 @@ public class Constants {
 	public static final String URL_LIST = "/l";
 	public static final String URL_DELETE = "/d/{id}";
 	public static final String URL_DETAILS = "/g/{id}";
+	public static final String URL_OPTIONS = "/o";
 	public static final String URL_SAVE = "/s";
 
 	public static final String URL_BILLING_USER_SEARCH = "/search/{by}";

@@ -2,6 +2,29 @@
 import { TableCell, TableRow } from '@material-ui/core';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 
+
+export const INIT_STATUS = {
+    INIT: 'INIT',
+    DONE: 'DONE',
+    LOAD: 'LOAD',
+    RESET: 'RESET',
+    PAYABLES: 'PAYABLES',
+    PAYABLES_RESET: 'PAYABLES_RESET'
+}
+
+export const defaultPageable = {
+    INIT_STATUS: INIT_STATUS.INIT,
+    list: [],
+    searchValue: '',
+    paging: {
+        rowsPerPage: 25,
+        totalElements: 0,
+        currentPage: 0,
+        totalPage: 0
+    }
+}
+
+
 export const formatter = new Intl.NumberFormat('en-US', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
@@ -24,6 +47,7 @@ export const API_URL_BASE = URL_BASE + '/api/';
 export const URL_LIST = "/l";
 export const URL_DELETE = "/d";
 export const URL_DETAILS = "/g";
+export const URL_OPTIONS = "/o";
 export const URL_SAVE = "/s";
 
 export const AUTH_USER = 'auth/setUser';
@@ -71,16 +95,6 @@ export const PAGE_URL = {
     ADDRESS_DETAIL: '/ui/address-detail/:id',
     USER_ADDRESS_DETAIL: '/ui/address-detail/:id/:refId/:typeId'
 }
-
-export const INIT_STATUS = {
-    INIT: 'INIT',
-    DONE: 'DONE',
-    LOAD: 'LOAD',
-    RESET: 'RESET',
-    PAYABLES: 'PAYABLES',
-    PAYABLES_RESET: 'PAYABLES_RESET'
-}
-
 export const ERROR_CODE = {
     RETRIEVE_ERROR: '100001',
     SAVE_ERROR: '100002',
@@ -157,18 +171,12 @@ class Utils {
 
         return errMsg;
     }
-    urlListPattern = (entity) => {
-        return API_URL_BASE + entity + URL_LIST;
-    }
-    urlDeletePattern = (entity) => {
-        return API_URL_BASE + entity + URL_DELETE;
-    }
-    urlDetailsPattern = (entity) => {
-        return API_URL_BASE + entity + URL_DETAILS;
-    }
-    urlSavePattern = (entity) => {
-        return API_URL_BASE + entity + URL_SAVE;
-    }
+    urlListPattern = (entity) => API_URL_BASE + entity + URL_LIST
+    urlDeletePattern = (entity) => API_URL_BASE + entity + URL_DELETE
+    urlDetailsPattern = (entity) => API_URL_BASE + entity + URL_DETAILS
+    urlOptionsPattern = (entity) => API_URL_BASE + entity + URL_OPTIONS
+    urlSavePattern = (entity) => API_URL_BASE + entity + URL_SAVE
+
     handleErrorResponse = (error, comp) => {
         const errStr = JSON.stringify(error);
         console.error(`Utils[][${comp}][ERROR] ${errStr}`)

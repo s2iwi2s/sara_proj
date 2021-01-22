@@ -58,7 +58,7 @@ public class Student {
 	
 	
 	
-	@DBRef(lazy = true)
+	@DBRef
 	private CodeGroups level;
 
 	@DBRef(lazy = true)

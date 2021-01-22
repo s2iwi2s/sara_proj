@@ -1,27 +1,24 @@
 import axios from "axios";
 import Utils from "../Utils";
 
-export const ENTITY = "user";
-class EndUserService {
+const ENTITY = "user";
 
- getList = (searchValue, page, pageSize) => {
-  const theurl = `${Utils.urlListPattern(ENTITY)}?searchValue=${searchValue}&page=${page}&size=${pageSize}`
-  return axios.get(theurl);
+const sort = "lastName, firstName"
+
+export const getList = (searchValue, page, pageSize) => axios.get(`${Utils.urlListPattern(ENTITY)}?searchValue=${searchValue}&page=${page}&size=${pageSize}&sort=${sort}`)
+export const get = (id) => axios.get(`${Utils.urlListPattern(ENTITY)}/${id}`)
+export const getOptions = () => axios.get(`${Utils.urlOptionsPattern(ENTITY)}`)
+export const deleteItem = (id) => axios.delete(`${Utils.urlDeletePattern(ENTITY)}/${id}`)
+export const save = (data) => axios.post(`${Utils.urlSavePattern(ENTITY)}`, data)
+
+
+const  EndUserService = () => {
+ const test = () => {
+
  }
- get = (id) => {
-  const theurl = `${Utils.urlDetailsPattern(ENTITY)}/${id}`
-  return axios.get(theurl);
- }
- delete = (id) => {
-  const theurl = `${Utils.urlDeletePattern(ENTITY)}/${id}`
-  return axios.delete(theurl);
- }
- save = (data) => {
-  const theurl = `${Utils.urlSavePattern(ENTITY)}`
-  return axios.post(theurl, data);
- }
+ return [test]
 }
 
-export default new EndUserService();
+export default EndUserService
 
 

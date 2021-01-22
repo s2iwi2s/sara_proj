@@ -12,6 +12,12 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.sara.data.document.School;
 import com.sara.data.document.User;
 import com.sara.data.repository.CustomRepository;
+/**
+ * 
+ * @author WPidor
+ *
+ * @since 10/05/2020
+ */
 
 public abstract class AbstractService<T, ID> implements ServiceInterface<T, ID> {
 	protected CustomRepository<T, ID> repo;

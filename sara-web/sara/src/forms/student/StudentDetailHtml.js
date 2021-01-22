@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Divider, FormControlLabel, FormLabel, Grid, MenuItem, Radio, RadioGroup, TextField, Typography } from '@material-ui/core';
 import CancelIcon from '@material-ui/icons/Cancel';
 import SaveIcon from '@material-ui/icons/Save';
@@ -10,20 +10,21 @@ import Alert from '@material-ui/lab/Alert';
 import { INIT_STATUS, PAGE_URL } from '../../api/Utils'
 
 const StudentDetailHtml = props => {
-  // const { register, handleSubmit, errors, reset, setValue } = useForm();
+
   const { control, register, handleSubmit, reset } = useForm();
-  // const [counter, setCounter] = useState(0);
+  const [status, setStatus] = useState(INIT_STATUS.LOAD);
+  const [counter, setCounter] = useState(0);
 
   const history = useHistory();
 
   useEffect(() => {
-    // setCounter(counter + 1);
-    // console.log(`[StudentDetailHtml.useEffect] props.store.initStatus=>${props.store.initStatus}, counter=${counter}`);
-    if (props.store.initStatus === INIT_STATUS.LOAD) {
-      props.onRetrieve(props.store.storeId);
-    } if (props.store.initStatus === INIT_STATUS.RESET) {
-      reset(props.store)
+    setCounter(counter + 1);
+    console.log(`[StudentDetailHtml.useEffect] status=>${status}, counter=${counter}`);
+    if (status === INIT_STATUS.LOAD) {
+      props.onRetrieve();
+      setStatus(INIT_STATUS.RESET)
     }
+    reset(props.store)
   }, [props.store])
 
   const BUTTONS = () => {
@@ -62,10 +63,6 @@ const StudentDetailHtml = props => {
           defaultValue={props.store.id}
         />
 
-        <TextField type="hidden"
-          name="school.id"
-          inputRef={register}
-          defaultValue={props.store.school.id} />
         <Grid container spacing={3}>
           <Grid item xs={12} sm={3}>
             <TextField
@@ -123,23 +120,8 @@ const StudentDetailHtml = props => {
             />
           </Grid>
           <Grid item xs={12} sm={2}>
-            {/* <InputLabel
-              variant="filled" shrink htmlFor="level">Level</InputLabel> */}
-            {/* <FormLabel component="level">Level</FormLabel> */}
             <Controller
               as={
-                // <Select
-                //   // aria-label="level"
-                //   InputLabelProps={{ shrink: true }}
-                //   label="Level"
-                //   fullWidth
-                //   variant="filled">
-                //   {props.store.optionsList.studentLevelList.map(m => (
-                //     <MenuItem key={m.id} value={m.id}>
-                //       {m.description}
-                //     </MenuItem>
-                //   ))}
-                // </Select>
                 <TextField id="level"
                   required
                   select
@@ -149,8 +131,6 @@ const StudentDetailHtml = props => {
                   autoComplete="student level"
                   variant="filled"
                   inputRef={register}
-                  defaultValue={props.store.level.id}
-                // error={!!errors.name}
                 >
                   {props.store.optionsList.studentLevelList.map(row => (
                     <MenuItem key={row.id} value={row.id}>{row.description}</MenuItem>
@@ -159,7 +139,7 @@ const StudentDetailHtml = props => {
               }
               name="level.id"
               control={control}
-              defaultValue={props.store.level}
+              defaultValue={props.store.level.id}
               options={props.store.optionsList.studentLevelList}
             />
           </Grid>
@@ -195,29 +175,6 @@ const StudentDetailHtml = props => {
           </Grid>
 
           <Grid item xs={12} sm={3}>
-            {/* <label >Gender</label> */}
-            {/* <FormLabel component="legend">Gender</FormLabel>
-            <RadioGroup row
-              label="Gender"
-              name="gender"
-              variant="filled"
-              defaultValue={props.store.gender} >
-              <FormControlLabel
-                value="Male"
-                control={<Radio color="primary" variant="filled" />}
-                label="Male" variant="filled"
-                labelPlacement="end"
-                inputRef={register}
-              />
-              <FormControlLabel
-                value="Female"
-                control={<Radio />}
-                label="Female"
-                variant="filled"
-                labelPlacement="end"
-                inputRef={register}
-              />
-            </RadioGroup> */}
             <FormLabel component="gender"
               variant="filled">Gender</FormLabel>
             <Controller
@@ -232,13 +189,14 @@ const StudentDetailHtml = props => {
                       variant="filled" />}
                     label="Male"
                     labelPlacement="end"
+                    defaultValue={props.store.gender}
                   />
                   <FormControlLabel
                     value="Female"
                     control={<Radio />}
                     label="Female"
                     labelPlacement="end"
-                    variant="filled"
+                    variant="filled" defaultValue={props.store.gender}
                   />
                 </RadioGroup>
               }

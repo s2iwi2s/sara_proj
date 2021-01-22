@@ -44,6 +44,13 @@ public class Payables {
 		this.paid = paid;
 		this.schoolYear = student.getSchool().getSchoolYear();
 	}
+	public Payables(AccountPayablesSettings aps, Student student) {
+		this.aps = aps;
+		this.student = student;
+		this.amount = aps.getAmount();
+		this.order = aps.getPriority();
+		this.code = aps.getId();
+	}
 
 	@Id
 	private String id;
@@ -57,6 +64,9 @@ public class Payables {
 	private double payment;
 	private int order;
 
+	@DBRef(lazy = true)
+	private AccountPayablesSettings aps;
+	
 	@DBRef(lazy = true)
 	private Student student;// Student.id
 

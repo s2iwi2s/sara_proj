@@ -124,9 +124,9 @@ const AppRouting = () => {
 
       <main className={classes.content}>
        <div className={classes.toolbar} />
-       
-       <GlobalAlertMsgDialog/>
-       
+
+       <GlobalAlertMsgDialog />
+
        {/* <Container component="main" className={classes.container}> */}
        <Switch>
         <Route path={PAGE_URL.ROOT} exact component={Dashboard} />
@@ -135,14 +135,16 @@ const AppRouting = () => {
         <Route path={PAGE_URL.LOGOUT} component={LogoutComponent} />
         <Route path={PAGE_URL.LOGIN} component={SignInComponent} />
 
-        <Route path={PAGE_URL.STUDENT_LIST} component={StudentListComponent} />
-        <Route path={PAGE_URL.STUDENT_DETAIL} component={StudentDetailComponent} />
+        <AuthenticatedRoute path={PAGE_URL.STUDENT_LIST} component={StudentListComponent} />
+        <AuthenticatedRoute path={PAGE_URL.STUDENT_DETAIL} component={StudentDetailComponent} />
+        <AuthenticatedRoute path={PAGE_URL.STUDENT_DETAIL_URL} component={StudentDetailComponent} />
 
         <AuthenticatedRoute path={PAGE_URL.BILLING_PAYABLES} exact component={BillingComponent} />
         <AuthenticatedRoute path={PAGE_URL.BILLING} exact component={BillingComponent} />
 
         <AuthenticatedRoute path={PAGE_URL.USER_LIST} exact component={EndUserListComponent} />
         <AuthenticatedRoute path={PAGE_URL.USER_DETAIL} exact component={EndUserDetailComponent} />
+        <AuthenticatedRoute path={PAGE_URL.USER_DETAIL_URL} exact component={EndUserDetailComponent} />
 
         <AuthenticatedRoute path={PAGE_URL.ADDRESS_LIST} exact component={AddressListComponent} />
         <AuthenticatedRoute path={PAGE_URL.ADDRESS_DETAIL} exact component={AddressDetailComponent} />
@@ -150,15 +152,19 @@ const AppRouting = () => {
 
         <AuthenticatedRoute path={PAGE_URL.CODE_GROUPS_LIST} exact component={CodeGroupsListComponent} />
         <AuthenticatedRoute path={PAGE_URL.CODE_GROUPS_DETAIL} exact component={CodeGroupsDetailComponent} />
+        <AuthenticatedRoute path={PAGE_URL.CODE_GROUPS_DETAIL_URL} exact component={CodeGroupsDetailComponent} />
 
         <AuthenticatedRoute path={PAGE_URL.SCHOOL_LIST} exact component={SchoolListComponent} />
         <AuthenticatedRoute path={PAGE_URL.SCHOOL_DETAIL} exact component={SchoolDetailComponent} />
+        <AuthenticatedRoute path={PAGE_URL.SCHOOL_DETAIL_URL} exact component={SchoolDetailComponent} />
 
         <AuthenticatedRoute path={PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_LIST} exact component={AccountPayablesSettingsListComponent} />
         <AuthenticatedRoute path={PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_DETAIL} exact component={AccountPayablesSettingsDetailComponent} />
+        <AuthenticatedRoute path={PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_DETAIL_URL} exact component={AccountPayablesSettingsDetailComponent} />
 
         <AuthenticatedRoute path={PAGE_URL.GRADE_LEVEL_PAYABLES_LIST} exact component={GradeLevelPayablesListComponent} />
         <AuthenticatedRoute path={PAGE_URL.GRADE_LEVEL_PAYABLES_DETAIL} exact component={GradeLevelPayablesDetailsComponent} />
+        <AuthenticatedRoute path={PAGE_URL.GRADE_LEVEL_PAYABLES_DETAIL_URL} exact component={GradeLevelPayablesDetailsComponent} />
 
         <Route component={ErrorComponent} />
        </Switch>

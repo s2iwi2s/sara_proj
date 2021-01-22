@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.sara.data.document.CodeGroups;
 import com.sara.data.document.QStudent;
 import com.sara.data.document.School;
 import com.sara.data.document.Student;
@@ -23,11 +24,13 @@ import com.sara.service.SequenceGeneratorService;
 public class StudentServiceImpl extends AbstractService<Student, String> {
 	Logger log = LoggerFactory.getLogger(this.getClass());
 
-	@Autowired
+	
 	private SequenceGeneratorService sequenceGeneratorService;
-
-	public StudentServiceImpl(StudentMongoRepository repo, SequenceGeneratorService sequenceGeneratorService) {
+	private CodeGroupsServiceImpl codeGroupsServiceImpl;
+	public StudentServiceImpl(StudentMongoRepository repo, SequenceGeneratorService sequenceGeneratorService, CodeGroupsServiceImpl codeGroupsServiceImpl) {
 		super(repo, sequenceGeneratorService);
+		
+		this.codeGroupsServiceImpl = codeGroupsServiceImpl;
 	}
 
 	@Override
@@ -61,8 +64,12 @@ public class StudentServiceImpl extends AbstractService<Student, String> {
 					Student.SEQUENCE_STUDENT_ID);
 			entity.setStudentId(studentId);
 		}
-
-		return super.save(entity, school);
+		entity = super.save(entity, school);
+//		if(!StringUtils.isBlank(entity.getLevel().getId())) {
+//			CodeGroups level = codeGroupsServiceImpl.findById(entity.getLevel().getId());
+//			entity.setLevel(level);
+//		}
+		return entity;
 	}
 
 	public Page<Student> findAllBy(String by, String searchValue, Pageable pageable, School school) {

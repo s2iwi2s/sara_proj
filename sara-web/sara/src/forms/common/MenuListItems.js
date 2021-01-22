@@ -75,149 +75,45 @@ export default function MenuListItems() {
             <ListItemText primary="Billing" onClick={() => history.push(PAGE_URL.BILLING)} />
           </ListItem>
 
-          <ListItem button onClick={() => doHandleClick("accountPayablesSettings")}>
+          <ListItem button onClick={() => history.push(PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_LIST)}>
             <ListItemIcon>
               <AssignmentIcon />
             </ListItemIcon>
-            <ListItemText primary="Account Payables Settings" />
-            {store.accountPayablesSettings ? <ExpandLess /> : <ExpandMore />}
+            <ListItemText primary="Payables Settings" />
           </ListItem>
-          <Collapse in={store.accountPayablesSettings} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItem button className={classes.nested} onClick={() => history.push(PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_DETAIL_URL + '/-1')} >
-                <ListItemIcon>
-                  <AddIcon />
-                </ListItemIcon>
-                <ListItemText primary="New" />
-              </ListItem>
-              <ListItem button className={classes.nested} onClick={() => history.push(PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_LIST)}>
-                <ListItemIcon>
-                  <FormatListNumberedIcon />
-                </ListItemIcon>
-                <ListItemText primary="List" />
-              </ListItem>
-            </List>
-          </Collapse>
-          <ListItem button onClick={() => doHandleClick("gradeLevelPayables")}>
+          <ListItem button onClick={() => history.push(PAGE_URL.GRADE_LEVEL_PAYABLES_LIST)}>
             <ListItemIcon>
               <AssignmentIndIcon />
             </ListItemIcon>
-            <ListItemText primary="Grade Level Payables" />
-            {store.gradeLevelPayables ? <ExpandLess /> : <ExpandMore />}
+            <ListItemText primary="Level Payables" />
           </ListItem>
-          <Collapse in={store.gradeLevelPayables} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItem button className={classes.nested} onClick={() => history.push(PAGE_URL.GRADE_LEVEL_PAYABLES_DETAIL_URL + '/-1')} >
-
-                <ListItemIcon>
-                  <AddIcon />
-                </ListItemIcon>
-                <ListItemText primary="New" />
-              </ListItem>
-              <ListItem button className={classes.nested} onClick={() => history.push(PAGE_URL.GRADE_LEVEL_PAYABLES_LIST)}>
-                <ListItemIcon>
-                  <FormatListNumberedIcon />
-                </ListItemIcon>
-                <ListItemText primary="List" />
-              </ListItem>
-            </List>
-          </Collapse>
-
-          <ListItem button onClick={() => doHandleClick("students")}>
+          <ListItem button onClick={() => history.push(PAGE_URL.STUDENT_LIST)}>
             <ListItemIcon>
               <LocalLibraryIcon />
             </ListItemIcon>
             <ListItemText primary="Student" />
-            {store.students ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
-          <Collapse in={store.students} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItem button className={classes.nested} onClick={() => history.push(PAGE_URL.STUDENT_DETAIL_URL + '/-1')} >
-                <ListItemIcon>
-                  <AddIcon />
-                </ListItemIcon>
-                <ListItemText primary="New" />
-              </ListItem>
-              <ListItem button className={classes.nested} onClick={() => history.push(PAGE_URL.STUDENT_LIST)}>
-                <ListItemIcon>
-                  <FormatListNumberedIcon />
-                </ListItemIcon>
-                <ListItemText primary="List" />
-              </ListItem>
-            </List>
-          </Collapse>
 
-          <ListItem button onClick={() => doHandleClick("school")} >
+          <ListItem button onClick={() => history.push(PAGE_URL.SCHOOL_LIST)} >
             <ListItemIcon>
               <SchoolIcon />
             </ListItemIcon>
             <ListItemText primary="School" />
-            {store.school ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
-          <Collapse in={store.school} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItem button className={classes.nested} onClick={() => history.push(PAGE_URL.SCHOOL_DETAIL_URL + '/-1')} >
-                <ListItemIcon>
-                  <AddIcon />
-                </ListItemIcon>
-                <ListItemText primary="New" />
-              </ListItem>
-              <ListItem button className={classes.nested} onClick={() => history.push(PAGE_URL.SCHOOL_LIST)}>
-                <ListItemIcon>
-                  <FormatListNumberedIcon />
-                </ListItemIcon>
-                <ListItemText primary="List" />
-              </ListItem>
-            </List>
-          </Collapse>
 
-          <ListItem button onClick={() => doHandleClick("users")} >
+          <ListItem button onClick={() => history.push(PAGE_URL.USER_LIST)} >
             <ListItemIcon>
               <PersonIcon />
             </ListItemIcon>
             <ListItemText primary="Users" />
-            {store.users ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
-          <Collapse in={store.users} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItem button className={classes.nested} onClick={() => history.push(PAGE_URL.USER_DETAIL_URL + '/-1')} >
-                <ListItemIcon>
-                  <AddIcon />
-                </ListItemIcon>
-                <ListItemText primary="New" />
-              </ListItem>
-              <ListItem button className={classes.nested} onClick={() => history.push(PAGE_URL.USER_LIST)} >
-                <ListItemIcon>
-                  <FormatListNumberedIcon />
-                </ListItemIcon>
-                <ListItemText primary="List" />
-              </ListItem>
-            </List>
-          </Collapse>
 
-          <ListItem button onClick={() => doHandleClick("codeGroups")}>
+          <ListItem button onClick={() => history.push(PAGE_URL.CODE_GROUPS_LIST)}>
             <ListItemIcon>
               <CodeIcon />
             </ListItemIcon>
             <ListItemText primary="Code Groups" />
-            {store.codeGroups ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
-          <Collapse in={store.codeGroups} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItem button className={classes.nested} onClick={() => history.push(PAGE_URL.CODE_GROUPS_DETAIL_URL + '/-1')}>
-                <ListItemIcon>
-                  <AddIcon />
-                </ListItemIcon>
-                <ListItemText primary="New" />
-              </ListItem>
-              <ListItem button className={classes.nested} onClick={() => history.push(PAGE_URL.CODE_GROUPS_LIST)}>
-                <ListItemIcon>
-                  <FormatListNumberedIcon />
-                </ListItemIcon>
-                <ListItemText primary="List" />
-              </ListItem>
-            </List>
-          </Collapse>
 
         </>
       }
