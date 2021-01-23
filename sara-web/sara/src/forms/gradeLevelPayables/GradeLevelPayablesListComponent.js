@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Typography from '@material-ui/core/Typography';
 import { Box } from '@material-ui/core';
 
-import { INIT_STATUS, PAGE_URL } from '../../api/Utils'
+import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils'
 import CustomTableGrid from '../common/CustomTableGrid'
 import { deleteItem, getList } from '../../api/gradeLevelPayables/GradeLevelPayablesService';
 import { selectPageable, setPageable, setSelectedItem, resetSelectedItem } from '../../api/gradeLevelPayables/GradeLevelSlice';
+import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
 
 export default function GradeLevelPayablesListComponent(props) {
+  const [globalProps, setGlobalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert] = useGlobalVariable();
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
 
@@ -33,7 +35,7 @@ export default function GradeLevelPayablesListComponent(props) {
     dispatch(resetSelectedItem())
   }, []);
 
-  const retrieve = ({ searchValue, paging }) => {
+  const retrieve = ({ searchValue, paging }) =>
     getList(searchValue, paging.currentPage, paging.rowsPerPage)
       .then(({ data }) => {
         console.log(`[GradeLevelPayablesListComponent.retrieve] data=`, data)
@@ -48,8 +50,14 @@ export default function GradeLevelPayablesListComponent(props) {
             totalPage: data.pagingList.totalPage
           }
         }))
-      })
+      }).catch(error => setError(error, ERROR_CODE.LIST_ERROR, 'GradeLevelPayablesListComponent.retrieve', 'GradeLevelPayablesService.getList'))
+
+  const setError = (error, errorCode, formMethod, serviceName) => {
+    console.error(`[GradeLevelPayablesListComponent.setError]  error=`, error)
+    let errMsg = Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName)
+    showErrorAlert(errMsg)
   }
+
 
   const doRetrieve = () => {
     retrieve({
@@ -70,6 +78,7 @@ export default function GradeLevelPayablesListComponent(props) {
   const doDelete = (id) => {
     deleteItem(id)
       .then(doRetrieve)
+      .catch(error => setError(error, ERROR_CODE.LIST_ERROR, 'GradeLevelPayablesListComponent.doDelete', 'GradeLevelPayablesService.deleteItem'))
   }
 
   const doHandleChangePage = (e, newPage) => {

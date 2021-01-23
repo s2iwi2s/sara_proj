@@ -130,13 +130,10 @@ public abstract class AbstractCrudController<T, ID> {
 		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
 		Response<T> res = getResponse(user);
 		res.setResponseStatus(status);
-		try {
+//		try {
 			entity = getService().save(entity, user.getSchool());
 			status.setMessage("SUCCESS!");
-		} catch (Exception e) {
-			status.setException(e);
-			e.printStackTrace();
-		}
+//		} catch (Exception e) {
 		res.setEntity(entity);
 		//return entity;
 		return new ResponseEntity<Response<T>>(res, HttpStatus.OK);

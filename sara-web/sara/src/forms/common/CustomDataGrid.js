@@ -51,6 +51,7 @@ export default function CustomDataGrid(props) {
       if (cols) {
          cols.map(row => {
             colsNew.push(row);
+            return row;
          });
       }
 

@@ -17,7 +17,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@JsonIgnoreProperties(ignoreUnknown = true, value = {"roles", "password"})
+@JsonIgnoreProperties(ignoreUnknown = true, value = {"roles"})
 @Getter
 @Setter
 @AllArgsConstructor

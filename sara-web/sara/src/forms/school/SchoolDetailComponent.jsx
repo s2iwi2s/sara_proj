@@ -16,8 +16,10 @@ import { save } from '../../api/school/SchoolService';
 
 
 import { selectSelectedItem, setSelectedItem, setPageableEntity } from '../../api/school/SchoolSlice';
+import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
 
 export default function SchoolDetailComponent(props) {
+  const [globalProps, setGlobalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert] = useGlobalVariable();
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -41,7 +43,11 @@ export default function SchoolDetailComponent(props) {
   }, [selectedItem]);
 
 
-  const setError = (error, errorCode, formMethod, serviceName) => setMessage(Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName))
+  const setError = (error, errorCode, formMethod, serviceName) => {
+    console.error(`[SchoolDetailComponent.setError]  error=`, error)
+    let errMsg = Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName)
+    showErrorAlert(errMsg)
+  }
 
   const onSubmitForm = (data) => save(data)
     .then(response => dispatch(setPageableEntity(response.data.entity)))

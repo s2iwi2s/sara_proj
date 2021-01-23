@@ -25,29 +25,29 @@ export default function AddressListComponent(props) {
       AddressService.getListByUser(props.userId, store.searchValue)
         .then(response => {
           console.log(`[AddressListComponent AddressService.getListByUser] response=>`, response)
-          let data = {
-            ...store,
-            INIT_STATUS: INIT_STATUS.RESET,
-            searchValue: response.data.searchValue,
-            list: response.data.list
-          }
+          // let data = {
+          //   ...store,
+          //   INIT_STATUS: INIT_STATUS.RESET,
+          //   searchValue: response.data.searchValue,
+          //   list: response.data.list
+          // }
           // setStore(data);
         })
     } else {
       AddressService.getList(store.searchValue, store.paging.currentPage, store.paging.rowsPerPage)
         .then(response => {
           console.log(`[AddressListComponent AddressService.getList] response=>`, response)
-          let data = {
-            ...store,
-            INIT_STATUS: INIT_STATUS.RESET,
-            list: response.data.pagingList.content,
-            searchValue: response.data.searchValue,
-            paging: {
-              rowsPerPage: response.data.pagingList.size,
-              totalElements: response.data.pagingList.totalElements,
-              currentPage: response.data.pagingList.pageable.pageNumber
-            }
-          }
+          // let data = {
+          //   ...store,
+          //   INIT_STATUS: INIT_STATUS.RESET,
+          //   list: response.data.pagingList.content,
+          //   searchValue: response.data.searchValue,
+          //   paging: {
+          //     rowsPerPage: response.data.pagingList.size,
+          //     totalElements: response.data.pagingList.totalElements,
+          //     currentPage: response.data.pagingList.pageable.pageNumber
+          //   }
+          // }
           // setStore(data);
         })
     }

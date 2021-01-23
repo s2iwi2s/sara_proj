@@ -2,6 +2,7 @@ package com.sara.service.impl;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -21,9 +22,10 @@ import com.sara.service.exception.GradeLevelPayablesResponseException;
 @Service
 public class GradeLevelPayablesServiceImpl extends AbstractService<GradeLevelPayables, String> {
 	Logger log = LoggerFactory.getLogger(this.getClass());
-
-	public GradeLevelPayablesServiceImpl(GradeLevelPayablesMongoRepository repo, SequenceGeneratorService sequenceGeneratorService) {
+	private CodeGroupsServiceImpl codeGroupsServiceImpl;
+	public GradeLevelPayablesServiceImpl(GradeLevelPayablesMongoRepository repo, SequenceGeneratorService sequenceGeneratorService, CodeGroupsServiceImpl codeGroupsServiceImpl) {
 		super(repo, sequenceGeneratorService);
+		this.codeGroupsServiceImpl = codeGroupsServiceImpl;
 	}
 
 	@Override
@@ -46,7 +48,13 @@ public class GradeLevelPayablesServiceImpl extends AbstractService<GradeLevelPay
 	@Override
 	public GradeLevelPayables save(GradeLevelPayables entity, School school) {
 		entity.setSchool(school);
-		return super.save(entity, school);
+		entity = super.save(entity, school);
+		if(!StringUtils.isBlank(entity.getLevel().getId())) {
+			CodeGroups level = codeGroupsServiceImpl.findById(entity.getLevel().getId());
+			entity.setLevel(level);
+		}
+
+		return entity;
 	}
 	
 	public GradeLevelPayables findByLevel(CodeGroups level) throws GradeLevelPayablesResponseException{

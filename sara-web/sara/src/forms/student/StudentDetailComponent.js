@@ -5,8 +5,10 @@ import Utils, { ERROR_CODE, PAGE_URL } from '../../api/Utils'
 import StudentDetailHtml from './StudentDetailHtml.js';
 import { save, getOptions } from '../../api/student/StudentService'
 import { selectSelectedItem, setOptionsList, setPageableEntity, resetSelectedItem } from '../../api/student/StudentSlice';
+import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
 
 export default function StudentDetailComponent(props) {
+  const [globalProps, setGlobalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert] = useGlobalVariable();
   const dispatch = useDispatch();
   const selectedItem = useSelector(selectSelectedItem)
 
@@ -17,9 +19,11 @@ export default function StudentDetailComponent(props) {
 
     setMessage(`Saving...`);
     save(data)
-      .then(response => dispatch(setPageableEntity(response.data.entity)))
-      .then(setMessage(``))
-      .then(props.history.push(PAGE_URL.USER_LIST))
+      .then(response => {
+        dispatch(setPageableEntity(response.data.entity))
+        setMessage(``)
+        props.history.push(PAGE_URL.STUDENT_LIST)
+      })
       .catch(error => setError(error, ERROR_CODE.SAVE_ERROR, 'StudentDetailComponent.onSubmitForm', 'StudentService.save'));
   }
 
@@ -30,15 +34,20 @@ export default function StudentDetailComponent(props) {
       dispatch(resetSelectedItem())
     }
     getOptions()
-      .then(response => dispatch(setOptionsList(response.data.listService)))
-      .then(setMessage(``))
+      .then(response => {
+        dispatch(setOptionsList(response.data.listService))
+        setMessage(``)
+      })
       .catch(error => setError(error, ERROR_CODE.RETRIEVE_ERROR, 'StudentDetailComponent.onRetrieve', 'StudentService.getOptions'));
   }
 
   const setError = (error, errorCode, formMethod, serviceName) => {
+    console.log(`[StudentDetailComponent.setError]  error=`, error)
     let errMsg = Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName);
     setMessage(errMsg);
+    showErrorAlert(errMsg)
   }
+
   return (
     <StudentDetailHtml
       store={selectedItem}

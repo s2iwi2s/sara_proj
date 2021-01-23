@@ -1,19 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 
 
 export default function SaveBillingDialog(props) {
-    const [open, setOpen] = useState(false);
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
     return (
         <>
             <Dialog fullWidth="true" maxWidth="md"
@@ -35,4 +25,5 @@ export default function SaveBillingDialog(props) {
             </Dialog>
         </>
     );
+
 }

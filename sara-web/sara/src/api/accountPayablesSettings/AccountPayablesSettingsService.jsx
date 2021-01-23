@@ -1,5 +1,5 @@
 import axios from "axios";
-import Utils, { API_URL_BASE, URL_LIST } from "../Utils";
+import Utils, { API_URL_BASE } from "../Utils";
 
 
 export const ENTITY = "accountPayablesSettings";
@@ -11,14 +11,8 @@ export const getOptions = () => axios.get(`${Utils.urlOptionsPattern(ENTITY)}`)
 export const deleteItem = (id) => axios.delete(`${Utils.urlDeletePattern(ENTITY)}/${id}`)
 export const save = (data) => axios.post(`${Utils.urlSavePattern(ENTITY)}`, data)
 
-export const getActiveList = (searchValue, page, pageSize) => {
- const theurl = `${API_URL_BASE + ENTITY + "/active"}?searchValue=${searchValue}&page=${page}&size=${pageSize}&sort=priority,description,amount`
- return axios.get(theurl);
-}
-export const getApplyToAllList = () => {
- const theurl = `${API_URL_BASE + ENTITY + "/applyToAllList"}`
- return axios.get(theurl);
-}
+export const getActiveList = (searchValue, page, pageSize) => axios.get(`${API_URL_BASE + ENTITY + "/active"}?searchValue=${searchValue}&page=${page}&size=${pageSize}&sort=priority,description,amount`)
+export const getApplyToAllList = () => axios.get(`${API_URL_BASE + ENTITY + "/applyToAllList"}`)
 
 export default function AccountPayablesSettingsService() {
 }

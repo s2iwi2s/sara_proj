@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import moment from 'moment';
 import { resetSelectedItemCommon, setPageableCommon, setPageableEntityCommon, setSelectedItemCommon, updateSelectedItemCommon } from '../CommonSlice';
 import { defaultPageable } from '../Utils'
 
@@ -41,10 +40,9 @@ export const GradeLevelSlice = createSlice({
 			} else {
 				let temp = [];
 				let tempList = [];
-				list.map(({ id }) => {
-					temp.push(id);
-				});
-				applyToAllList.map((row) => {
+
+				list.map(({ id }) => temp.push(id));
+				applyToAllList.map(row => {
 					if (temp.indexOf(row.id) === -1) {
 						let rowTemp = {
 							...row,
@@ -52,6 +50,7 @@ export const GradeLevelSlice = createSlice({
 						}
 						tempList.push(rowTemp)
 					}
+					return row
 				});
 
 				let tempList2 = [

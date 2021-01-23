@@ -24,12 +24,11 @@ import com.sara.service.SequenceGeneratorService;
 public class StudentServiceImpl extends AbstractService<Student, String> {
 	Logger log = LoggerFactory.getLogger(this.getClass());
 
-	
-	private SequenceGeneratorService sequenceGeneratorService;
 	private CodeGroupsServiceImpl codeGroupsServiceImpl;
-	public StudentServiceImpl(StudentMongoRepository repo, SequenceGeneratorService sequenceGeneratorService, CodeGroupsServiceImpl codeGroupsServiceImpl) {
+
+	public StudentServiceImpl(StudentMongoRepository repo, SequenceGeneratorService sequenceGeneratorService,
+			CodeGroupsServiceImpl codeGroupsServiceImpl) {
 		super(repo, sequenceGeneratorService);
-		
 		this.codeGroupsServiceImpl = codeGroupsServiceImpl;
 	}
 
@@ -53,6 +52,7 @@ public class StudentServiceImpl extends AbstractService<Student, String> {
 
 	@Override
 	public Student save(Student entity, School school) {
+		log.debug("sequenceGeneratorService={}", sequenceGeneratorService);
 		if (StringUtils.isBlank(entity.getId())) {
 			String id = sequenceGeneratorService.nextSeq(Student.SEQUENCE_NAME);
 			entity.setId(id);
@@ -65,10 +65,10 @@ public class StudentServiceImpl extends AbstractService<Student, String> {
 			entity.setStudentId(studentId);
 		}
 		entity = super.save(entity, school);
-//		if(!StringUtils.isBlank(entity.getLevel().getId())) {
-//			CodeGroups level = codeGroupsServiceImpl.findById(entity.getLevel().getId());
-//			entity.setLevel(level);
-//		}
+		if (!StringUtils.isBlank(entity.getLevel().getId())) {
+			CodeGroups level = codeGroupsServiceImpl.findById(entity.getLevel().getId());
+			entity.setLevel(level);
+		}
 		return entity;
 	}
 

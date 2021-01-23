@@ -11,16 +11,36 @@ import com.sara.service.exception.GradeLevelPayablesResponseException;
 
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
+	
+	@ExceptionHandler(value = DuplicateException.class)
+	public ResponseEntity<Object> handleDuplicateException(DuplicateException ex, WebRequest request) {
+		return handleExceptionInternal(ex, ex.getMessage(), null, HttpStatus.CONFLICT, request);
+	}
 
-//	@ExceptionHandler(value = DuplicateQuizException.class)
-//	public ResponseEntity<Object> handleDuplicateQuizException(DuplicateQuizException ex, WebRequest request) {
-//		return handleExceptionInternal(ex, ex.getMessage(), null, HttpStatus.CONFLICT, request);
-//	}
+	@ExceptionHandler(value = { InvalidRequestException.class })
+	public ResponseEntity<Object> handleInvalidRequestException(Exception ex, WebRequest request) {
+		return handleExceptionInternal(ex, ex.getMessage(), null, HttpStatus.BAD_REQUEST, request);
+	}
+
+	@ExceptionHandler(value = { NotFoundException.class })
+	public ResponseEntity<Object> handleNotFoundException(Exception ex, WebRequest request) {
+		return handleExceptionInternal(ex, ex.getMessage(), null, HttpStatus.NOT_FOUND, request);
+	}
+
+	@ExceptionHandler(value = { InvalidCredentialsException.class })
+	public ResponseEntity<Object> handleInvalidCredentialsException(Exception ex, WebRequest request) {
+		return handleExceptionInternal(ex, ex.getMessage(), null, HttpStatus.UNAUTHORIZED, request);
+	}
 
 	@ExceptionHandler(value = { GradeLevelPayablesResponseException.class })
-	public ResponseEntity<Object> handleInvalidRequestException(Exception ex,
+	public ResponseEntity<Object> handleGradeLevelPayablesResponseException(Exception ex,
 			WebRequest request) {
 		return handleExceptionInternal(ex, ex.getMessage(), null, HttpStatus.INTERNAL_SERVER_ERROR, request);
 	}
-	
+
+
+	@ExceptionHandler(value = IllegalArgumentException.class)
+	public ResponseEntity<Object> handleIllegalArgumentException(Exception ex, WebRequest request) {
+		return handleExceptionInternal(ex, ex.getMessage(), null, HttpStatus.BAD_REQUEST, request);
+	}
 }

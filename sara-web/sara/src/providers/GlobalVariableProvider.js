@@ -11,54 +11,54 @@ function useGlobalVariable() {
 }
 
 function GlobalVariableProvider(props) {
-const [globalProps, setGlobalProps] = useState({
-    alert: {
-        open: false,
-        severity: 'info',
-        msg: ''
+    const [globalProps, setGlobalProps] = useState({
+        alert: {
+            open: false,
+            severity: 'info',
+            msg: ''
+        }
+    });
+
+    const showErrorAlert = (msg) => {
+        showMsgAlert(true, msg, 'error')
     }
-});
 
-const showErrorAlert = (msg) => {
-    showMsgAlert(true, msg, 'error')
-}
+    const showInfoAlert = (msg) => {
+        showMsgAlert(true, msg, 'info')
+    }
 
-const showInfoAlert = (msg) => {
-    showMsgAlert(true, msg, 'info')
-}
+    const showWarningAlert = (msg) => {
+        showMsgAlert(true, msg, 'warning')
+    }
 
-const showWarningAlert = (msg) => {
-    showMsgAlert(true, msg, 'warning')
-}
+    const showSuccessAlert = (msg) => {
+        showMsgAlert(true, msg, 'success')
+    }
 
-const showSuccessAlert = (msg) => {
-    showMsgAlert(true, msg, 'success')
-}
+    const showMsgAlert = (open, msg, severity) => {
+        setGlobalProps({
+            ...globalProps,
+            alert: {
+                open: open,
+                msg: msg,
+                severity: severity
+            }
+        })
+    }
 
-const showMsgAlert = (open, msg, severity) => {
-    setGlobalProps({
-        ...globalProps,
-        alert: {
-            open: open,
-            msg: msg,
-            severity: severity
-        }
-    })
-}
+    const closeMsgAlert = () => {
+        setGlobalProps({
+            ...globalProps,
+            alert: {
+                ...globalProps.alert,
+                open: false
+            }
+        })
+    }
 
-const closeMsgAlert = () => {
-    setGlobalProps({
-        ...globalProps,
-        alert: {
-            ...globalProps.alert,
-            open: false
-        }
-    })
-}
-
- const value = useMemo(() => [globalProps, setGlobalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert, closeMsgAlert], 
-    [globalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert, closeMsgAlert])
- return <GlobalVariableContext.Provider value={value} {...props} />
+    const value = useMemo(() => [globalProps, setGlobalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert, closeMsgAlert],
+        [globalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert, closeMsgAlert])
+    return <GlobalVariableContext.Provider value={value} {...props} />
 }
 
 export { GlobalVariableProvider, useGlobalVariable }

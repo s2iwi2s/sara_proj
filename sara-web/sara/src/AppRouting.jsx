@@ -4,10 +4,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 
-import { Container, CssBaseline } from '@material-ui/core';
+import { CssBaseline } from '@material-ui/core';
 
-import { PAGE_URL, INIT_STATUS, THEME } from './api/Utils';
-import { useStyles } from './forms/common/CSS'
+import { PAGE_URL, THEME } from './api/Utils';
 import { useAuth } from './providers/AuthenticationProvider';
 
 import ErrorComponent from './api/ErrorComponent'
@@ -73,28 +72,18 @@ const useStylesRouting = makeStyles((theme) => ({
 
 const AppRouting = () => {
 
- const [store, setStore] = useState({ 'INIT_STATUS': INIT_STATUS.INIT_STATUS });
  const [userObj, setUserObj] = useAuth();
 
  useEffect(() => {
   console.log(`[AuthenticationService.useEffect] userObj=>`, userObj)
-  if (store.INIT_STATUS === INIT_STATUS.INIT_STATUS) {
-   //initialize theme
-   initTheme();
+  initTheme();
 
-   //initialize user
-   setUserObj(AuthenticationService.getLoggedUserObj());
+  //initialize user
+  setUserObj(AuthenticationService.getLoggedUserObj());
+ }, []);
 
-   // update INIT_STATUS to DONE to prevent inifinite loop
-   setStore({
-    INIT_STATUS: INIT_STATUS.DONE
-   });
-  }
- });
  const initTheme = () => {
   const themeDarkMode = localStorage.getItem(THEME.THEME_STORAGE_NAME);
-  console.log(`[AuthenticationService.useEffect] themeDarkMode=${themeDarkMode}, userObj=>`, userObj)
-
   setDarkMode(themeDarkMode === 'Y' ? true : false);
  }
 

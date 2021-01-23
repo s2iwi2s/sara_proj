@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef } from 'react';
 
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, Typography } from '@material-ui/core';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, Typography } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import PrintIcon from '@material-ui/icons/Print';
 import CancelIcon from '@material-ui/icons/Cancel';
@@ -12,19 +12,6 @@ import { useReactToPrint } from "react-to-print";
 import { formatter, INIT_STATUS, StyledTableCell, StyledTableHeadCell, StyledTableHeadRow, StyledTableRow } from '../../api/Utils';
 import { useAuth } from '../../providers/AuthenticationProvider';
 
-const printStyles = makeStyles(() => ({
-  root: {
-    color: 'black',
-    backgroundColor: 'white',
-    // color: theme.palette.common.black,
-  },
-  table: {
-    border: "1px solid black",
-    // borderWidth: 1,
-    // borderColor: 'black',
-    // borderStyle: 'solid'
-  },
-}));
 export default function SavePayablesConfimationHtml(props) {
   const [userObj] = useAuth();
   const { reset } = useForm(props.confirmStore);

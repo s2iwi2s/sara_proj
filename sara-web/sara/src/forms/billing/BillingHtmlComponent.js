@@ -10,7 +10,7 @@ import SearchResultsHtmlComponent from './SearchResultsHtmlComponent';
 import PayablesHtmlComponent from './PayablesHtmlComponent';
 
 export default function BillingHtmlComponent(props) {
-        const { control, register, handleSubmit, error, reset } = useForm();
+        const { control, register, handleSubmit, reset } = useForm();
         const [counter, setCounter] = useState(0);
 
         useEffect(() => {
@@ -26,7 +26,7 @@ export default function BillingHtmlComponent(props) {
         return (
                 <>
                         {console.log(`[BillingHtmlComponent.return] counter=${counter}, INIT_STATUS=${props.store.INIT_STATUS}, props.store=>`, props.store)}
-                        <Box ><Typography variant="h4">Payables</Typography></Box>
+                        <Box ><Typography variant="h4">Payment</Typography></Box>
 
                         <form onSubmit={handleSubmit(props.doRetrieve)}>
                                 <Paper elevation={3} variant="elevation" >

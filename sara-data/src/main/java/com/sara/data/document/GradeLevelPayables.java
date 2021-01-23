@@ -32,7 +32,7 @@ public class GradeLevelPayables {
 	private String id;
 	private boolean active;
 	
-	@DBRef(lazy = true)
+	@DBRef
 	private CodeGroups level;
 
 	@DBRef(lazy = true)
