@@ -1,17 +1,19 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Typography from '@material-ui/core/Typography';
 import { Box } from '@material-ui/core';
 
-import { INIT_STATUS, PAGE_URL} from '../../api/Utils';
+import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
 import CustomTableGrid from '../common/CustomTableGrid';
 
 import { deleteItem, getList } from '../../api/student/StudentService'
 import { resetSelectedItem, selectPageable, setPageable, setSelectedItem } from '../../api/student/StudentSlice';
+import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
 
-export default function StudentListComponent (props) {
-  
+export default function StudentListComponent(props) {
+  const [globalProps, setGlobalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert] = useGlobalVariable();
+
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
 
@@ -19,7 +21,7 @@ export default function StudentListComponent (props) {
     dispatch(resetSelectedItem())
   }, [currPageable]);
 
-  const retrieve = ({ searchValue, paging }) => {
+  const retrieve = ({ searchValue, paging }) =>
     getList(searchValue, paging.currentPage, paging.rowsPerPage)
       .then(({ data }) => {
         dispatch(setPageable({
@@ -33,9 +35,16 @@ export default function StudentListComponent (props) {
             totalPage: data.pagingList.totalPage
           }
         }))
-      })
+      }).catch(error => setError(error, ERROR_CODE.LIST_ERROR, 'StudentListComponent.retrieve', 'StudentService.getList'))
+
+
+  const setError = (error, errorCode, formMethod, serviceName) => {
+    console.error(`[StudentListComponent.setError]  error=`, error)
+    let errMsg = Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName)
+    showErrorAlert(errMsg)
   }
-  
+
+
   const doRetrieve = () => {
     retrieve({
       searchValue: currPageable.searchValue,
@@ -54,6 +63,7 @@ export default function StudentListComponent (props) {
   const doDelete = (id) => {
     deleteItem(id)
       .then(doRetrieve)
+      .catch(error => setError(error, ERROR_CODE.LIST_ERROR, 'StudentListComponent.doDelete', 'StudentService.deleteItem'))
   }
 
 
@@ -131,10 +141,10 @@ export default function StudentListComponent (props) {
         doNew={doNew}
         doDelete={doDelete}
         doSearch={doSearch}
-    />
+      />
     </ >
   )
-  
+
 }
 
 

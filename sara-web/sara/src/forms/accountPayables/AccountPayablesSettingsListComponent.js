@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Typography from '@material-ui/core/Typography';
@@ -8,13 +8,11 @@ import { INIT_STATUS, PAGE_URL } from '../../api/Utils'
 import CustomTableGrid from '../common/CustomTableGrid'
 
 import { deleteItem, getList } from '../../api/accountPayablesSettings/AccountPayablesSettingsService';
-import { selectPageable, resetSelectedItem, setPageable, setSelectedItem } from '../../api/accountPayablesSettings/AccountPayablesSettingsSlice';
+import { selectPageable, setPageable, setSelectedItem } from '../../api/accountPayablesSettings/AccountPayablesSettingsSlice';
 
 export default function AccountPayablesSettingsListComponent(props) {
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
-
-
 
   const retrieve = ({ searchValue, paging }) => getList(searchValue, paging.currentPage, paging.rowsPerPage)
     .then(({ data }) => dispatch(setPageable({
@@ -37,6 +35,10 @@ export default function AccountPayablesSettingsListComponent(props) {
   const doEdit = (selected) => {
     dispatch(setSelectedItem(selected))
     props.history.push(`${PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_DETAIL_URL}`);
+  }
+
+  const doNew = () => {
+    props.history.push(`${PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_DETAIL_URL}/-1`);
   }
 
   const doDelete = (id) => deleteItem(id)
@@ -112,6 +114,7 @@ export default function AccountPayablesSettingsListComponent(props) {
         onChangeRowsPerPage={doHandleChangeRowsPerPage}
         doRetrieve={doRetrieve}
         doEdit={doEdit}
+        doNew={doNew}
         doDelete={doDelete}
         doSearch={doSearch}
       />

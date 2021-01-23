@@ -1,5 +1,5 @@
 import axios from "axios";
-import Utils, { API_URL_BASE, ADDRESS_TYPE } from '../Utils'
+import Utils, { API_URL_BASE } from '../Utils'
 
 export const ENTITY = "address";
 class AddressService {

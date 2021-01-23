@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import moment from 'moment';
 import { defaultPageable } from '../Utils'
 
-import { resetSelectedItemCommon, updateSelectedItemCommon, setPageableCommon, setPageableEntityCommon, setSearchValueCommon, setOptionsListCommon } from '../CommonSlice'
+import { resetSelectedItemCommon, updateSelectedItemCommon, setPageableCommon, setPageableEntityCommon, setOptionsListCommon } from '../CommonSlice'
 
 const blankPageable = {
 	...defaultPageable

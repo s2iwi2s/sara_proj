@@ -3,12 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Box, Paper, Grid, TextField, Table, TableContainer, TableHead, TableCell, Divider, Typography, TableBody, Button, InputAdornment } from "@material-ui/core"
 import SaveIcon from '@material-ui/icons/Save';
-import PrintIcon from '@material-ui/icons/Print';
 
 const { StyledTableRow, StyledTableHeadRow, StyledTableHeadCell, INIT_STATUS } = require("../../api/Utils")
 
 const PayablesHtmlComponent = (props) => {
-  const { control, register, handleSubmit, error, reset } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const [total, setTotal] = useState(0);
   const [payables, setPayables] = useState({});

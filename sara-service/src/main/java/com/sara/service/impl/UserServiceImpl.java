@@ -21,8 +21,10 @@ public class UserServiceImpl extends AbstractService<User, String> {
 	Logger log = LoggerFactory.getLogger(this.getClass());
 	private PasswordEncoder passwordEncoder;
 
-	public UserServiceImpl(UserMongoRepository repo, SequenceGeneratorService sequenceGeneratorService) {
+	public UserServiceImpl(UserMongoRepository repo, SequenceGeneratorService sequenceGeneratorService,
+			PasswordEncoder passwordEncoder) {
 		super(repo, sequenceGeneratorService);
+		this.passwordEncoder = passwordEncoder;
 	}
 
 	@Override
@@ -55,7 +57,12 @@ public class UserServiceImpl extends AbstractService<User, String> {
 		} else {
 			entity.setPassword(passwordEncoder.encode(entity.getPassword()));
 		}
+		if (StringUtils.isBlank(entity.getId())) {
+			String id = sequenceGeneratorService.nextSeq(User.SEQUENCE_NAME);
+			entity.setId(id);
+		}
 		entity = super.save(entity, school);
+		entity.setPassword("");
 		return entity;
 	}
 

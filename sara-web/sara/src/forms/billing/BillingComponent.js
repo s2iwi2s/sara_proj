@@ -3,16 +3,18 @@ import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 
 import { formatter, INIT_STATUS, PAGE_URL } from '../../api/Utils'
-import {useGlobalVariable} from "../../providers/GlobalVariableProvider"
 
-import BillingService from '../../api/billing/BillingService'
+import { getListBy, getStudentPayables, save } from '../../api/billing/BillingService'
 import BillingHtmlComponent from './BillingHtmlComponent';
 import SavePayablesConfimationHtml from './SavePayablesConfimationHtml';
 import { Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
+import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
 
 export default function BillingComponent(props) {
+
   const [globalProps, setGlobalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert] = useGlobalVariable();
+
   const [snackbar, setSnackbar] = useState({
     open: false,
     message: '',
@@ -150,7 +152,7 @@ export default function BillingComponent(props) {
 
   const doRetrieve = (data) => {
     console.log(`[BillingComponent.doRetrieve] data==>`, data)
-    BillingService.getListBy(data.searchBy, data.searchValue, store.paging.currentPage, store.paging.rowsPerPage)
+    getListBy(data.searchBy, data.searchValue, store.paging.currentPage, store.paging.rowsPerPage)
       .then(response => {
         console.log(`[BillingComponent.doRetrieve BillingService.getListBy] response==>`, response)
         let formData = {
@@ -176,7 +178,7 @@ export default function BillingComponent(props) {
         showErrorAlert(error.message)
       });
   }
-  
+
   const onChangeRowsPerPage = (e) => {
     let paging = {
       ...store.paging
@@ -212,7 +214,7 @@ export default function BillingComponent(props) {
   }
 
   const doPayables = () => {
-    BillingService.getStudentPayables(props.match.params.id).then(response => {
+    getStudentPayables(props.match.params.id).then(response => {
       console.log(`[BillingComponent.doPayables BillingService.getStudentPayables] response==>`, response)
       let payables = response.data.studentPayables.payables;
       payables.map((row, i) => {
@@ -292,7 +294,7 @@ export default function BillingComponent(props) {
   const doSavePayables = (data) => {
     console.log(`[BillingComponent.doSavePayables] data==>`, data);
 
-    BillingService.save(data.payables, props.match.params.id).then(response => {
+    save(data.payables, props.match.params.id).then(response => {
       console.log(`[BillingComponent.doSavePayables BillingService.save] response==>`, response)
       let formData = {
         ...store,

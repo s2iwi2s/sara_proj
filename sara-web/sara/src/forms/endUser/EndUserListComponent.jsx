@@ -5,12 +5,16 @@ import Typography from '@material-ui/core/Typography';
 import { Box } from '@material-ui/core';
 
 
-import { PAGE_URL, INIT_STATUS } from '../../api/Utils'
+import Utils, { PAGE_URL, INIT_STATUS, ERROR_CODE } from '../../api/Utils'
 import CustomTableGrid from '../common/CustomTableGrid';
 
 import { deleteItem, getList } from '../../api/endUser/EndUserService';
 import { resetSelectedItem, selectPageable, setPageable, setSelectedItem } from '../../api/endUser/UsersSlice';
+import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
+
 export default function EndUserListComponent(props) {
+
+  const [globalProps, setGlobalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert] = useGlobalVariable();
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
 
@@ -31,7 +35,14 @@ export default function EndUserListComponent(props) {
           totalPage: data.pagingList.totalPage
         }
       }))
-    })
+    }).catch(error => setError(error, ERROR_CODE.LIST_ERROR, 'EndUserListComponent.retrieve', 'EndUserService.getList'))
+
+  const setError = (error, errorCode, formMethod, serviceName) => {
+    console.error(`[EndUserDetailComponent.setError]  error=`, error)
+    let errMsg = Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName)
+    showErrorAlert(errMsg)
+  }
+
 
   const doRetrieve = () => retrieve({
     searchValue: currPageable.searchValue,
@@ -49,6 +60,7 @@ export default function EndUserListComponent(props) {
 
   const doDelete = (id) => deleteItem(id)
     .then(doRetrieve)
+    .catch(error => setError(error, ERROR_CODE.LIST_ERROR, 'EndUserListComponent.retrieve', 'EndUserService.deleteItem'))
 
   const doHandleChangePage = (e, newPage) => retrieve({
     searchValue: currPageable.searchValue,

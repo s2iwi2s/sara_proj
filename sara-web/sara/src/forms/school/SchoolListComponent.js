@@ -3,14 +3,16 @@ import React, { useEffect } from 'react'
 import Typography from '@material-ui/core/Typography'
 import { Box } from '@material-ui/core'
 
-import { INIT_STATUS, PAGE_URL } from '../../api/Utils'
+import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils'
 import { deleteItem, getList } from '../../api/school/SchoolService'
 import CustomTableGrid from '../common/CustomTableGrid'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { resetSelectedItem, selectPageable, setPageable, setSelectedItem, } from '../../api/school/SchoolSlice'
+import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
 
 export default function SchoolListComponent(props) {
+  const [globalProps, setGlobalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert] = useGlobalVariable();
   const dispatch = useDispatch()
   const currPageableSchools = useSelector(selectPageable)
 
@@ -33,8 +35,13 @@ export default function SchoolListComponent(props) {
               totalPage: data.pagingList.totalPage,
             },
           })
-        )
-    )
+        )).catch(error => setError(error, ERROR_CODE.LIST_ERROR, 'SchoolListComponent.retrieve', 'SchoolService.getList'))
+
+  const setError = (error, errorCode, formMethod, serviceName) => {
+    console.error(`[SchoolListComponent.setError]  error=`, error)
+    let errMsg = Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName)
+    showErrorAlert(errMsg)
+  }
 
   const doRetrieve = () =>
     retrieve({
@@ -53,7 +60,9 @@ export default function SchoolListComponent(props) {
   }
 
   const doDelete = (id) =>
-    deleteItem(id).then(doRetrieve())
+    deleteItem(id)
+      .then(doRetrieve())
+      .catch(error => setError(error, ERROR_CODE.LIST_ERROR, 'SchoolListComponent.retrieve', 'SchoolService.getList'))
 
   const doHandleChangePage = (e, newPage) =>
     retrieve({

@@ -12,15 +12,17 @@ import Alert from '@material-ui/lab/Alert';
 import WarningIcon from '@material-ui/icons/Warning';
 
 import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
-import AccountPayablesSettingsList from './AccountPayablesSettingsList'
+import GradeLevelAccountPayablesSettingsListComponent from './GradeLevelAccountPayablesSettingsListComponent'
 import CustomTableGrid from '../common/CustomTableGrid';
 import SelectGrid from '../common/SelectGrid';
 import { save, getOptions } from '../../api/gradeLevelPayables/GradeLevelPayablesService';
 import { selectSelectedItem, setOptionsList, updateSelectedItem, resetSelectedItem, setPageableEntity } from '../../api/gradeLevelPayables/GradeLevelSlice';
+import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
 
 let renderCount = 0;
 
 export default function GradeLevelPayablesDetailsComponent(props) {
+  const [globalProps, setGlobalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert] = useGlobalVariable();
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -32,7 +34,7 @@ export default function GradeLevelPayablesDetailsComponent(props) {
   useEffect(() => {
     if (status === INIT_STATUS.INIT) {
       setMessage('Loading. Please wait...');
-      if (props.match.params.id == -1) {
+      if (props.match.params.id === -1) {
         dispatch(resetSelectedItem())
       }
       setStatus(INIT_STATUS.LOAD)
@@ -43,11 +45,6 @@ export default function GradeLevelPayablesDetailsComponent(props) {
     }
   }, [selectedItem, status]);
 
-
-  const setError = (error, errorCode, formMethod, serviceName) => {
-    let errMsg = Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName);
-    setMessage(errMsg);
-  }
 
   const changeSelectState = (e) => {
     const { name, value } = e.target
@@ -69,12 +66,19 @@ export default function GradeLevelPayablesDetailsComponent(props) {
   const onRetrieve = () => {
     console.log(`[GradeLevelPayablesDetailsComponent.onRetrieve]  props.match.params.id==>${props.match.params.id}`)
     setMessage(`Loading. Please wait...`);
-    if (props.match.params.id == -1) {
+    if (props.match.params.id === -1) {
       dispatch(resetSelectedItem())
     }
     getOptions().then(response => onRetrieveResponseAction(response))
-      .catch(error => setError(error, ERROR_CODE.RETRIEVE_ERROR, 'GradeLevelPayablesDetailsComponent.onRetrieve', 'GradeLevelPayablesService.get'));
+      .catch(error => setError(error, ERROR_CODE.RETRIEVE_ERROR, 'GradeLevelPayablesDetailsComponent.onRetrieve', 'GradeLevelPayablesService.getOptions'));
   }
+
+  const setError = (error, errorCode, formMethod, serviceName) => {
+    console.error(`[EndUserDetailComponent.setError]  error=`, error)
+    let errMsg = Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName)
+    showErrorAlert(errMsg)
+  }
+
 
   const onRetrieveResponseAction = (response) => {
     console.log(`[GradeLevelPayablesDetailsComponent.onRetrieveResponseAction]  response==>`, response)
@@ -92,8 +96,10 @@ export default function GradeLevelPayablesDetailsComponent(props) {
       active: selectedItem.active,
       accountPayablesSettings: selectedItem.list
     })
-      .then(response => dispatch(setPageableEntity(response.data.entity)))
-      .then(history.push(PAGE_URL.GRADE_LEVEL_PAYABLES_LIST))
+      .then(response => {
+        dispatch(setPageableEntity(response.data.entity))
+        history.push(PAGE_URL.GRADE_LEVEL_PAYABLES_LIST)
+      })
       .catch(error => setError(error, ERROR_CODE.SAVE_ERROR, 'GradeLevelPayablesDetailsComponent.onSubmitForm', 'GradeLevelPayablesService.save'));
   }
 
@@ -101,7 +107,7 @@ export default function GradeLevelPayablesDetailsComponent(props) {
     console.log(`[GradeLevelPayablesDetailsComponent.setGradeLevelPayables] data==>`, data)
 
     let list = [...selectedItem.list]
-    if (list.filter(row => row.id === data.id).length == 0) {
+    if (list.filter(row => row.id === data.id).length === 0) {
       let temp = {
         ...data,
         status: 'NEW'
@@ -209,7 +215,7 @@ export default function GradeLevelPayablesDetailsComponent(props) {
           <GridActionButtons />
         </Box>
 
-        <AccountPayablesSettingsList setGradeLevelPayables={setGradeLevelPayables} />
+        <GradeLevelAccountPayablesSettingsListComponent setGradeLevelPayables={setGradeLevelPayables} />
 
       </form>
 

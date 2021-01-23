@@ -9,10 +9,13 @@ export const getList = (searchValue, page, pageSize) => axios.get(`${Utils.urlLi
 export const get = (id) => axios.get(`${Utils.urlListPattern(ENTITY)}/${id}`)
 export const getOptions = () => axios.get(`${Utils.urlOptionsPattern(ENTITY)}`)
 export const deleteItem = (id) => axios.delete(`${Utils.urlDeletePattern(ENTITY)}/${id}`)
-export const save = (data) => axios.post(`${Utils.urlSavePattern(ENTITY)}`, data)
+export const save = (data) => {
+ console.log(`[EndUserService.save] data=`, data)
+ return axios.post(`${Utils.urlSavePattern(ENTITY)}`, data)
+}
 
 
-const  EndUserService = () => {
+const EndUserService = () => {
  const test = () => {
 
  }

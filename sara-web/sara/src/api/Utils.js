@@ -1,6 +1,6 @@
 
 import { TableCell, TableRow } from '@material-ui/core';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 
 export const INIT_STATUS = {
@@ -163,9 +163,10 @@ export const StyledTableCell = withStyles((theme) => ({
 
 
 class Utils {
+
     getFormatedErrorMessage = (error, errorCode, formMethod, serviceName) => {
         let errMsg = `Error (${errorCode}): ${error.message} `;
-        console.log(`[${formMethod}] ${serviceName} error msg: ${errMsg}`);
+        console.log(`[${formMethod}] ${serviceName} error msg: ${errMsg}`, error);
 
         // const errStr = JSON.stringify(error);
 
@@ -177,21 +178,22 @@ class Utils {
     urlOptionsPattern = (entity) => API_URL_BASE + entity + URL_OPTIONS
     urlSavePattern = (entity) => API_URL_BASE + entity + URL_SAVE
 
-    handleErrorResponse = (error, comp) => {
-        const errStr = JSON.stringify(error);
-        console.error(`Utils[][${comp}][ERROR] ${errStr}`)
-        if (error.status) {
-            //{"timestamp":"2020-08-24T23:57:30.853+00:00","status":401,"error":"Unauthorized","message":"Unauthorized","path":"/users/test/todos"}
-            console.error(`[Utils][${comp}][ERROR] ${error.status}: ${error.message}`)
-        } else {
-            console.error(`[Utils][${comp}][ERROR] ${error.name}: ${error.message}`)
-            console.error(`[Utils][${comp}][ERROR] stack ${error.stack}`)
-        }
+    //     handleErrorResponse = (error, comp) => {
+    //         const [globalProps, setGlobalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert] = useGlobalVariable();
+    //         const errStr = JSON.stringify(error);
+    //         console.error(`Utils[][${comp}][ERROR] ${errStr}`)
+    //         if (error.status) {
+    //             //{"timestamp":"2020-08-24T23:57:30.853+00:00","status":401,"error":"Unauthorized","message":"Unauthorized","path":"/users/test/todos"}
+    //             console.error(`[Utils][${comp}][ERROR] ${error.status}: ${error.message}`)
+    //         } else {
+    //             console.error(`[Utils][${comp}][ERROR] ${error.name}: ${error.message}`)
+    //             console.error(`[Utils][${comp}][ERROR] stack ${error.stack}`)
+    //         }
 
-        //const errorMessage = `${error.name}: ${error.message}`;
-        //this.handleState('', errorMessage);
-        //console.error(error);
-    }
+    //         //const errorMessage = `${error.name}: ${error.message}`;
+    //         //this.handleState('', errorMessage);
+    //         //console.error(error);
+    //     }
 }
 
 export default new Utils();

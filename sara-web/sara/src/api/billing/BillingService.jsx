@@ -1,23 +1,12 @@
 import axios from "axios";
 import Utils, { API_URL_BASE } from "../Utils";
 
+export const getListBy = (by, searchValue, page, pageSize) => axios.get(`${API_URL_BASE}billing/search/${by}?searchValue=${searchValue}&page=${page}&size=${pageSize}`)
 
-class BillingService {
+export const getStudentPayables = (id) => axios.get(`${API_URL_BASE}billing/payables/${id}`)
 
- getListBy = (by, searchValue, page, pageSize) => {
-  const theurl = `${API_URL_BASE}billing/search/${by}?searchValue=${searchValue}&page=${page}&size=${pageSize}`
-  return axios.get(theurl);
- }
- getStudentPayables = (id) => {
-  const theurl = `${API_URL_BASE}billing/payables/${id}`
-  return axios.get(theurl);
- }
- save = (data, id) => {
-  const theurl = `${Utils.urlSavePattern('billing')}/${id}`
-  return axios.post(theurl, data);
- }
+export const save = (data, id) => axios.post(`${Utils.urlSavePattern('billing')}/${id}`, data)
+
+export default function BillingService() {
 }
-
-export default new BillingService();
-
 

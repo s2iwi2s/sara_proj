@@ -4,13 +4,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import { Box } from '@material-ui/core';
 
-import { INIT_STATUS, PAGE_URL } from '../../api/Utils'
+import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils'
 import CustomTableGrid from '../common/CustomTableGrid'
 
 import { deleteItem, getList } from '../../api/codeGroups/CodeGroupsService';
 import { selectPageable, resetSelectedItem, setPageable, setSelectedItem } from '../../api/codeGroups/CodeGroupsSlice';
+import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
 
 export default function CodeGroupsListComponent(props) {
+
+  const [globalProps, setGlobalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert] = useGlobalVariable();
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
 
@@ -19,17 +22,25 @@ export default function CodeGroupsListComponent(props) {
   }, []);
 
   const retrieve = ({ searchValue, paging }) => getList(searchValue, paging.currentPage, paging.rowsPerPage)
-    .then(({ data }) => dispatch(setPageable({
-      INIT_STATUS: INIT_STATUS.LOAD,
-      list: data.pagingList.content,
-      searchValue: searchValue,
-      paging: {
-        rowsPerPage: data.pagingList.size,
-        currentPage: data.pagingList.pageable.pageNumber,
-        totalElements: data.pagingList.totalElements,
-        totalPage: data.pagingList.totalPage
-      }
-    })))
+    .then(({ data }) => {
+      dispatch(setPageable({
+        INIT_STATUS: INIT_STATUS.LOAD,
+        list: data.pagingList.content,
+        searchValue: searchValue,
+        paging: {
+          rowsPerPage: data.pagingList.size,
+          currentPage: data.pagingList.pageable.pageNumber,
+          totalElements: data.pagingList.totalElements,
+          totalPage: data.pagingList.totalPage
+        }
+      }))
+    }).catch(error => setError(error, ERROR_CODE.LIST_ERROR, 'CodeGroupsListComponent.retrieve', 'CodeGroupsService.getList'))
+
+  const setError = (error, errorCode, formMethod, serviceName) => {
+    console.error(`[CodeGroupsListComponent.setError]  error=`, error)
+    let errMsg = Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName)
+    showErrorAlert(errMsg)
+  }
 
   const doRetrieve = () => retrieve({
     searchValue: currPageable.searchValue,
@@ -46,6 +57,7 @@ export default function CodeGroupsListComponent(props) {
 
   const doDelete = (id) => deleteItem(id)
     .then(doRetrieve)
+    .catch(error => setError(error, ERROR_CODE.DELETE_ERROR, 'CodeGroupsListComponent.doDelete', 'CodeGroupsService.deleteItem'))
 
   const doHandleChangePage = (e, newPage) => retrieve({
     searchValue: currPageable.searchValue,

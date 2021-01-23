@@ -4,12 +4,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Collapse from '@material-ui/core/Collapse';
 
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import AddIcon from '@material-ui/icons/Add';
-import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered';
 import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import SchoolIcon from '@material-ui/icons/School';
@@ -41,20 +36,9 @@ export default function MenuListItems() {
   const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
 
   const history = useHistory();
-  const classes = useStyles();
 
   const [store, setStore] = React.useState({});
 
-  const doHandleClick = (sourceName) => {
-    console.log(`[NestedMenuComponent.doHandleClick] sourceName=${sourceName}, store=>`, store)
-
-    let isopen = store[sourceName] ? false : true;
-    setStore({
-      ...store,
-      [sourceName]: isopen
-    })
-    //setOpen(!open);
-  };
 
   return (
     <List

@@ -14,9 +14,11 @@ import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
 
 import { selectSelectedItem, resetSelectedItem, setPageableEntity } from '../../api/codeGroups/CodeGroupsSlice';
 import { save } from '../../api/codeGroups/CodeGroupsService';
+import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
 
 export default function CodeGroupsDetailComponent(props) {
 
+  const [globalProps, setGlobalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert] = useGlobalVariable();
   const dispatch = useDispatch();
   const history = useHistory();
   const { register, handleSubmit } = useForm();
@@ -28,20 +30,25 @@ export default function CodeGroupsDetailComponent(props) {
 
   useEffect(() => {
     if (status === INIT_STATUS.INIT) {
-      if (props.match.params.id == -1) {
+      if (props.match.params.id === -1) {
         dispatch(resetSelectedItem())
       }
       setMessage('');
       setStatus(INIT_STATUS.LOAD)
     }
-  }, [selectedItem]);
+  }, [selectedItem, status]);
 
-
-  const setError = (error, errorCode, formMethod, serviceName) => setMessage(Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName))
+  const setError = (error, errorCode, formMethod, serviceName) => {
+    console.error(`[EndUserDetailComponent.setError]  error=`, error)
+    let errMsg = Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName)
+    showErrorAlert(errMsg)
+  }
 
   const doSave = data => save(data)
-    .then(response => dispatch(setPageableEntity(response.data.entity)))
-    .then(history.push(PAGE_URL.CODE_GROUPS_LIST))
+    .then(response => {
+      dispatch(setPageableEntity(response.data.entity))
+      history.push(PAGE_URL.CODE_GROUPS_LIST)
+    })
     .catch(error => setError(error, ERROR_CODE.SAVE_ERROR, 'CodeGroupsDetailComponent.save', 'CodeGroupsService.save'))
 
   return (

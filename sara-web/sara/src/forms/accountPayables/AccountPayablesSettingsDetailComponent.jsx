@@ -3,7 +3,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Button, Checkbox, Grid, MenuItem, Select, TextField, Typography } from '@material-ui/core';
+import { Button, Grid, MenuItem, TextField, Typography } from '@material-ui/core';
 
 import CancelIcon from '@material-ui/icons/Cancel';
 import SaveIcon from '@material-ui/icons/Save';
@@ -11,7 +11,6 @@ import AddIcon from '@material-ui/icons/Add';
 import Alert from '@material-ui/lab/Alert';
 
 import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
-import { useAuth } from '../../providers/AuthenticationProvider';
 
 import { selectSelectedItem, resetSelectedItem, setPageableEntity, setOptionsList } from '../../api/accountPayablesSettings/AccountPayablesSettingsSlice';
 import { save, getOptions } from '../../api/accountPayablesSettings/AccountPayablesSettingsService';
@@ -22,7 +21,7 @@ export default function AccountPayablesSettingsDetailComponent(props) {
 
   const dispatch = useDispatch();
   const history = useHistory();
-  const { control, register, handleSubmit, reset } = useForm({
+  const { control, register, handleSubmit } = useForm({
     'id': '',
     'description': 'test',
     'paymentPeriod': { 'id': '' },
@@ -31,25 +30,11 @@ export default function AccountPayablesSettingsDetailComponent(props) {
     'applyToAll': true,
     'active': false
   });
-  const [userObj] = useAuth();
+
   const [message, setMessage] = useState('Loading. Please wait...');
 
   const selectedItem = useSelector(selectSelectedItem)
   const [status, setStatus] = useState(INIT_STATUS.INIT);
-
-  // const [store, setStore] = useState({
-  //   INIT_STATUS: ((props.match.params.id === -1) ? INIT_STATUS.INIT : INIT_STATUS.LOAD),
-  //   'id': props.match.params.id,
-  //   'description': '',
-  //   'paymentPeriod': { 'id': '' },
-  //   'amount': 0,
-  //   'priority': 1,
-  //   'applyToAll': false,
-  //   'active': true,
-  //   'listService': {
-  //     'paymentPeriodList': []
-  //   }
-  // });
 
   useEffect(() => {
     if (status === INIT_STATUS.INIT) {
@@ -77,85 +62,12 @@ export default function AccountPayablesSettingsDetailComponent(props) {
       .catch(error => setError(error, ERROR_CODE.RETRIEVE_ERROR, 'AccountPayablesSettingsDetailComponent.onRetrieve', 'AccountPayablesSettingsService.getOptions'));
   }
 
-  // useEffect(() => {
-  //   console.log(`[AccountPayablesSettingsDetailComponent.useEffect] store==>`, store)
-  //   // console.log(`[AccountPayablesSettingsDetailComponent.useEffect] userObj==>`, userObj)
-  //   if (store.INIT_STATUS === INIT_STATUS.LOAD) {
-  //     retrieve();
-  //   }
-  //   if (store.INIT_STATUS === INIT_STATUS.RESET) {
-  //     console.log(`[AccountPayablesSettingsDetailComponent.useEffect] from status = RESET store==>`, store)
-  //     reset(store)
-  //   }
-  //   store.INIT_STATUS = INIT_STATUS.DONE;
-  // }, [store]);
-
-
-  // const getBlankDetails = () => {
-  //   return {
-  //     'message': '',
-  //     'id': '',
-  //     'description': '',
-  //     'paymentPeriod': { 'id': '' },
-  //     'amount': 0,
-  //     'priority': 1,
-  //     'applyToAll': false,
-  //     'active': true,
-  //     'listService': {
-  //       'paymentPeriodList': []
-  //     }
-  //   }
-  // }
-  // const retrieve = () => {
-  //   console.log(`[AccountPayablesSettingsDetailComponent.retrieve] 1 id==>${props.match.params.id}`)
-  //   setMessage('Loading. Please wait...');
-  //   get(props.match.params.id)
-  //     .then(response => {
-  //       console.log(`[AccountPayablesSettingsDetailComponent.retrieve] 2 response==>`, response)
-  //       let thestate = getBlankDetails();
-  //       if (props.match.params.id !== -1) {
-  //         thestate = {
-  //           ...store,
-  //           ...response.data.entity,
-  //           optionsList: response.data.listService
-  //         }
-  //       }
-  //       thestate.INIT_STATUS = INIT_STATUS.RESET;
-  //       initFormData(thestate);
-  //       console.log(`[AccountPayablesSettingsDetailComponent.retrieve] 3 initFormData thestate==>`, thestate)
-  //       setMessage('');
-  //       setStore(thestate)
-  //       console.log(`[AccountPayablesSettingsDetailComponent.retrieve] 4 store==>`, store)
-  //     }).catch(error => setError(error, ERROR_CODE.RETRIEVE_ERROR, 'AccountPayablesSettingsDetailComponent.retrieve', 'AccountPayablesSettingsService.get'));
-  // }
-  const setError = (error, errorCode, formMethod, serviceName) => {
-    let errMsg = Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName);
-    setMessage(errMsg);
-  }
-
-  // const save = (data) => {
-  //   console.log(`[AccountPayablesSettingsDetailComponent.save] data==>`, data)
-  //   save(data).then(response => {
-  //     console.log(`[AccountPayablesSettingsDetailComponent.save] response==>`, response)
-  //     history.push(PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_LIST);
-  //   }).catch(error => setError(error, ERROR_CODE.SAVE_ERROR, 'AccountPayablesSettingsDetailComponent.save', 'AccountPayablesSettingsService.save'));
-  // }
-
+  const setError = (error, errorCode, formMethod, serviceName) => setMessage(Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName))
 
   const doSave = data => save(data)
     .then(response => dispatch(setPageableEntity(response.data.entity)))
     .then(history.push(PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_LIST))
     .catch(error => setError(error, ERROR_CODE.SAVE_ERROR, 'CodeGroupsDetailComponent.save', 'CodeGroupsService.save'))
-  const initFormData = (data) => {
-    if (!data.listService.paymentPeriodList) {
-      data.listService.paymentPeriodList = [];
-    }
-    if (!data.paymentPeriod) {
-      data.paymentPeriod = {
-        id: ''
-      }
-    }
-  }
 
   renderCount++;
   return (
