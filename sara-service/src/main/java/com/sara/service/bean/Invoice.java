@@ -12,8 +12,6 @@ import lombok.Getter;
 public class Invoice {
 	private String invoiceNo;
 	private Date invoiceDate;
-	private Double totalPayment;
-	private Double totalBalance;
 	
 	private Map<String, Payables> payablesMap;
 }
