@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Table, TableHead, TableCell, TableBody, FormControl, Input, Grid, IconButton, TableContainer, Paper } from '@material-ui/core';
 
@@ -8,23 +8,14 @@ import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import SearchIcon from '@material-ui/icons/Search';
 
-import { INIT_STATUS, StyledTableHeadCell, StyledTableHeadRow, StyledTableRow } from '../../api/Utils'
+import { StyledTableHeadCell, StyledTableHeadRow, StyledTableRow } from '../../api/Utils'
 import PaginationComponent from './PaginationComponent';
 
 export default function CustomTableGrid(props) {
  const { showPaging = true, showSearch = true, showAction = true } = props;
 
- const { register, reset } = useForm();
+ const { register } = useForm();
  const [counter, setCounter] = useState(0);
-
- useEffect(() => {
-  console.log(`[CustomTableGrid.useEffect] counter=${counter}`)
-  // if (props.store.INIT_STATUS === INIT_STATUS.INIT) {
-  //  props.doRetrieve();
-  // } else if (props.store.INIT_STATUS === INIT_STATUS.RESET) {
-  //  reset(props.store);
-  // }
- }, [props.store])
 
  const doHandleKeyDown = (e) => {
   if (e.key === 'Enter') {
@@ -48,6 +39,7 @@ export default function CustomTableGrid(props) {
         inputRef={register}
         endAdornment={<SearchIcon onClick={() => props.doRetrieve()} />}
        />
+       {props.children}
       </FormControl>
      </Grid>
     }

@@ -9,5 +9,6 @@ public interface PayablesMongoRepository
 		extends CustomRepository<Payables, String> {
 
 	List<Payables> findByStudent(Student student);
+	List<Payables> findByStudentAndSchoolYear(Student student, String schoolYear);
 	
 }

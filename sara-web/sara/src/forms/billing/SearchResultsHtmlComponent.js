@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Box, Divider, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, Typography } from '@material-ui/core';
+import { IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead } from '@material-ui/core';
 
 
 import AddIcon from '@material-ui/icons/Add';
@@ -9,15 +9,17 @@ import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 
 import { PAGE_URL, StyledTableHeadCell, StyledTableHeadRow, StyledTableRow } from '../../api/Utils';
 import PaginationComponent from '../common/PaginationComponent';
+import SubTitleComponent from '../common/SubTitleComponent';
 
 const SearchResultsHtmlComponent = (props) => {
  const { list, paging } = props.store;
  const history = useHistory();
 
 
- const doEditUser = (id) => {
-  history.push(PAGE_URL.STUDENT_DETAIL_URL + '/' + id)
- }
+ const doEditUser = id => history.push(PAGE_URL.STUDENT_DETAIL_URL + '/' + id)
+
+ const doShowPayables = row => props.doPayables(row)
+
  const CustomTableHead = () => {
   return (<>
    <TableHead>
@@ -37,16 +39,16 @@ const SearchResultsHtmlComponent = (props) => {
  const CustomTableBody = () => {
   return (<>
    <TableBody>
-    {list.map(({ id, studentId, lastName, firstName, level }) => (
-     <StyledTableRow key={id}>
-      <TableCell variant="head">{studentId}</TableCell>
-      <TableCell>{firstName} {lastName}</TableCell>
-      <TableCell>{level.description}</TableCell>
+    {list.map(row => (
+     <StyledTableRow key={row.id}>
+      <TableCell variant="head">{row.studentId}</TableCell>
+      <TableCell>{row.firstName} {row.lastName}</TableCell>
+      <TableCell>{row.level.description}</TableCell>
       <TableCell align="right">
-       <IconButton aria-label="payment" href={PAGE_URL.BILLING_PAYABLES_URL + '/' + id}>
+       <IconButton aria-label="payment" onClick={() => doShowPayables(row)}>
         <AccountBalanceWalletIcon fontSize="large" />
        </IconButton>
-       <IconButton aria-label="edit" onClick={() => doEditUser(id)}>
+       <IconButton aria-label="edit" onClick={() => doEditUser(row.id)}>
         <EditIcon fontSize="large" />
        </IconButton>
       </TableCell>
@@ -58,14 +60,12 @@ const SearchResultsHtmlComponent = (props) => {
 
  return (
   <>
-   <Box py={3}><Divider /></Box>
-   <Box ><Typography variant="h5">Search Results</Typography></Box>
-
-   <PaginationComponent
+   <SubTitleComponent>Search Results</SubTitleComponent>
+   {/* <PaginationComponent
     paging={paging}
     onChangePage={props.onChangePage}
     onChangeRowsPerPage={props.onChangeRowsPerPage}
-   />
+   /> */}
 
    <TableContainer component={Paper}>
     <Table>

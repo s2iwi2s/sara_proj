@@ -8,7 +8,7 @@ import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
 import Utils, { ERROR_CODE } from '../../api/Utils';
 
 export default function GradeLevelAccountPayablesSettingsListComponent(props) {
-  const [globalProps, setGlobalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert] = useGlobalVariable();
+  const [, , showErrorAlert, ,] = useGlobalVariable();
   const [store, setStore] = useState({
     list: [],
     searchValue: '',

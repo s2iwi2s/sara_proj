@@ -8,6 +8,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import Alert from '@material-ui/lab/Alert';
 import { INIT_STATUS, PAGE_URL } from '../../api/Utils'
+import TitleComponent from '../common/TitleComponent';
 
 const StudentDetailHtml = props => {
 
@@ -48,7 +49,7 @@ const StudentDetailHtml = props => {
   }
   return (
     <>
-      <Typography variant="h4" gutterBottom>Student Detail</Typography>
+      <TitleComponent>Student Detail</TitleComponent>
       {/* {counter > 0 && <Alert severity="error">Counter={counter}, Init Status: {props.store.initStatus}</Alert>} */}
       {props.message && <Alert severity="error">{props.message}</Alert>}
 

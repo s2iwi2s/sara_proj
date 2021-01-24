@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getOptions, save } from '../../api/endUser/EndUserService';
@@ -8,11 +8,10 @@ import { resetSelectedItem, selectSelectedItem, setOptionsList, setPageableEntit
 import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
 
 export default function EndUserDetailComponent(props) {
-  const [globalProps, setGlobalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert] = useGlobalVariable();
+  const [, , showErrorAlert, ,] = useGlobalVariable();
 
   const dispatch = useDispatch();
   const selectedItem = useSelector(selectSelectedItem)
-  const [message, setMessage] = useState("");
 
   const doRetrieve = () => {
     if (props.match.params.id == -1) {

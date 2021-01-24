@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Utils, { ERROR_CODE, PAGE_URL } from '../../api/Utils'
@@ -8,7 +8,7 @@ import { selectSelectedItem, setOptionsList, setPageableEntity, resetSelectedIte
 import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
 
 export default function StudentDetailComponent(props) {
-  const [globalProps, setGlobalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert] = useGlobalVariable();
+  const [, , showErrorAlert, ,] = useGlobalVariable();
   const dispatch = useDispatch();
   const selectedItem = useSelector(selectSelectedItem)
 

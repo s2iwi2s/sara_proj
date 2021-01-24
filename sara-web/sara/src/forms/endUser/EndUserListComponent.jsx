@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Typography from '@material-ui/core/Typography';
-import { Box } from '@material-ui/core';
 
 
 import Utils, { PAGE_URL, INIT_STATUS, ERROR_CODE } from '../../api/Utils'
@@ -11,10 +9,11 @@ import CustomTableGrid from '../common/CustomTableGrid';
 import { deleteItem, getList } from '../../api/endUser/EndUserService';
 import { resetSelectedItem, selectPageable, setPageable, setSelectedItem } from '../../api/endUser/UsersSlice';
 import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
+import TitleComponent from '../common/TitleComponent';
 
 export default function EndUserListComponent(props) {
 
-  const [globalProps, setGlobalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert] = useGlobalVariable();
+  const [, , showErrorAlert, ,] = useGlobalVariable();
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
 
@@ -102,7 +101,7 @@ export default function EndUserListComponent(props) {
 
   return (
     <>
-      <Box pb={3}><Typography variant="h4">Users</Typography></Box>
+      <TitleComponent>Users</TitleComponent>
       <CustomTableGrid
         store={currPageable}
         cols={cols}

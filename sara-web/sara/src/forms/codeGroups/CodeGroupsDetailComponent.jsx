@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Button, Grid, TextField, Typography } from '@material-ui/core';
+import { Button, Grid, TextField } from '@material-ui/core';
 
 import CancelIcon from '@material-ui/icons/Cancel';
 import SaveIcon from '@material-ui/icons/Save';
@@ -15,10 +15,11 @@ import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
 import { selectSelectedItem, resetSelectedItem, setPageableEntity } from '../../api/codeGroups/CodeGroupsSlice';
 import { save } from '../../api/codeGroups/CodeGroupsService';
 import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
+import TitleComponent from '../common/TitleComponent';
 
 export default function CodeGroupsDetailComponent(props) {
 
-  const [globalProps, setGlobalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert] = useGlobalVariable();
+  const [, , showErrorAlert, ,] = useGlobalVariable();
   const dispatch = useDispatch();
   const history = useHistory();
   const { register, handleSubmit } = useForm();
@@ -54,7 +55,7 @@ export default function CodeGroupsDetailComponent(props) {
   return (
     <>
       {console.log(`[CodeGroupsDetailComponent.render] selectedItem==>`, selectedItem)}
-      <Typography variant="h4">Code Groups Detail</Typography>
+      <TitleComponent>Code Groups Detail</TitleComponent>
       {message && <Alert severity="info">{message}</Alert>}
 
 

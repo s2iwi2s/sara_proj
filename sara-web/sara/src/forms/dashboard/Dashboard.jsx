@@ -4,12 +4,12 @@ import { URL_BASE } from '../../api/Utils'
 import { useStyles } from '../common/CSS'
 
 import AuthenticationService from '../../security/AuthenticationService'
-import { Avatar, Box, Button, Divider, Grid, Paper, Typography } from '@material-ui/core';
+import { Avatar, Box, Button, Grid, Paper, Typography } from '@material-ui/core';
 import Chart from './Chart';
 import StackedBarChart from './StackedBarChart';
 import CustomContentOfTooltip from './CustomContentOfTooltip';
 
-export default function Dashboard(props) {
+export default function Dashboard() {
   const classes = useStyles();
   console.log(`process.env.NODE_ENV= ${process.env.NODE_ENV}`)
   console.log(`URL_BASE= ${URL_BASE}`)

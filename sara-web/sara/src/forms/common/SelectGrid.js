@@ -8,10 +8,8 @@ export default function SelectGrid({ sm, name, label, options, ...rest }) {
     select
     name={name}
     label={label}
-    autoComplete={name}
     variant="filled"
     fullWidth
-    InputLabelProps={{ shrink: true }}
     InputLabelProps={{ shrink: true }}
     autoComplete={label + "-" + name}
     {...rest}

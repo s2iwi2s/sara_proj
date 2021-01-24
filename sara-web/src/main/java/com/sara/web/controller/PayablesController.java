@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sara.data.document.Payables;
 import com.sara.data.document.Student;
 import com.sara.data.document.User;
+import com.sara.service.bean.BillingByInvoice;
 import com.sara.service.bean.StudentPayables;
 import com.sara.service.impl.PayablesServiceImpl;
 import com.sara.service.impl.StudentServiceImpl;
@@ -57,7 +58,7 @@ public class PayablesController {
 		log.debug("by={}, searchValue={}", by, searchValue);
 
 		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
-		
+
 		Page<Student> list = studentServiceImpl.findAllBy(by, searchValue, pageable, user.getSchool());
 		ResponseEntity<Page<Student>> responseEntity = new ResponseEntity<Page<Student>>(list, HttpStatus.OK);
 		return responseEntity;
@@ -70,9 +71,12 @@ public class PayablesController {
 		Student student = studentServiceImpl.findById(id);
 		map.put("student", student);
 
-		List<Payables> payables = payablesServiceImpl.getStudentPayables(student, student.getSchool().getSchoolYear());
+		List<Payables> payables = payablesServiceImpl.getStudentPayables(student);
 		StudentPayables studentPayables = new StudentPayables(payables, new ArrayList<Payables>(), null, null);
 		map.put("studentPayables", studentPayables);
+
+		BillingByInvoice billingByInvoice = payablesServiceImpl.getBillingByInvoiceList(student);
+		map.put("billingByInvoice", billingByInvoice);
 
 		ResponseEntity<Map<String, ?>> responseEntity = new ResponseEntity<>(map, HttpStatus.OK);
 		return responseEntity;
@@ -82,14 +86,19 @@ public class PayablesController {
 	public ResponseEntity<Map<String, ?>> savePayables(@RequestBody List<Payables> payableList,
 			@PathVariable("id") String id) throws Exception {
 		log.debug("payableList=>{}", payableList);
-		
+
 		Map<String, Object> map = new HashMap<>();
-		
+		log.debug("savePayables id={}", id);
 		Student student = studentServiceImpl.findById(id);
+		log.debug("savePayables student={}", student);
+
 		map.put("student", student);
 
 		StudentPayables studentPayables = payablesServiceImpl.savePayables(payableList, student);
 		map.put("studentPayables", studentPayables);
+
+		BillingByInvoice billingByInvoice = payablesServiceImpl.getBillingByInvoiceList(student);
+		map.put("billingByInvoice", billingByInvoice);
 
 		ResponseEntity<Map<String, ?>> responseEntity = new ResponseEntity<>(map, HttpStatus.OK);
 		return responseEntity;

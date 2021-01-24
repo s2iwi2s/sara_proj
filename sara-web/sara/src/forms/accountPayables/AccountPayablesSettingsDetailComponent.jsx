@@ -14,6 +14,7 @@ import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
 
 import { selectSelectedItem, resetSelectedItem, setPageableEntity, setOptionsList } from '../../api/accountPayablesSettings/AccountPayablesSettingsSlice';
 import { save, getOptions } from '../../api/accountPayablesSettings/AccountPayablesSettingsService';
+import TitleComponent from '../common/TitleComponent';
 
 let renderCount = 0;
 
@@ -73,7 +74,7 @@ export default function AccountPayablesSettingsDetailComponent(props) {
   return (
     <>
       {console.log(`[AccountPayablesSettingsDetailComponent.render] renderCount=${renderCount} selectedItem==>`, selectedItem)}
-      <Typography variant="h4">Account Payables Settings Details</Typography>
+      <TitleComponent>Account Payables Settings Details</TitleComponent>
       {message && <Alert severity="info">{message}</Alert>}
 
       <form onSubmit={handleSubmit(doSave)}>

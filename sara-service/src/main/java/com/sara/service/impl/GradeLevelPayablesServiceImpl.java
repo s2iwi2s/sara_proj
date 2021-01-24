@@ -57,15 +57,15 @@ public class GradeLevelPayablesServiceImpl extends AbstractService<GradeLevelPay
 		return entity;
 	}
 	
-	public GradeLevelPayables findByLevel(CodeGroups level) throws GradeLevelPayablesResponseException{
+	public GradeLevelPayables findByLevel(CodeGroups level, CodeGroups period) throws GradeLevelPayablesResponseException{
 		log.debug("level=" + level);
-		List<GradeLevelPayables> list = ((GradeLevelPayablesMongoRepository)repo).findByLevelAndActive(level, true);
+		List<GradeLevelPayables> list = ((GradeLevelPayablesMongoRepository)repo).findByLevelAndPeriodAndActive(level, period, true);
 		log.debug("list=" + list);
 		if(list.size() == 0) {
 			throw new GradeLevelPayablesResponseException("Grade Level Payables has no active settings");
 		}
 		if(list.size() > 1) {
-			throw new GradeLevelPayablesResponseException("Grade Level Payables has duplicate active values.");
+			throw new GradeLevelPayablesResponseException("Grade Level Payables has duplicate active settings.");
 		}
 		
 		return list.get(0);

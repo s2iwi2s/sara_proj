@@ -9,11 +9,10 @@ import SchoolIcon from '@material-ui/icons/School';
 
 import { PAGE_URL, URL_BASE } from '../../api/Utils'
 import { useAuth } from '../../providers/AuthenticationProvider';
-import MenuComponent from './MenuComponent';
 import MiniDrawer from './MiniDrawer';
 
 export default function AppBarComponent(props) {
- const [userObj, setUserObj] = useAuth();
+ const [userObj] = useAuth();
 
  const drawerWidth = 240;
  const useStylesAppBar = makeStyles((theme) => ({

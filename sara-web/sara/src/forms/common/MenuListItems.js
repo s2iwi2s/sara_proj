@@ -15,31 +15,16 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 
-import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
 import AuthenticationService from '../../security/AuthenticationService';
 import { PAGE_URL } from '../../api/Utils'
 import { Divider } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
-  nested: {
-    paddingLeft: theme.spacing(4),
-  },
-}));
 
 export default function MenuListItems() {
   const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
 
   const history = useHistory();
-
-  const [store, setStore] = React.useState({});
-
-
   return (
     <List
       component="nav"

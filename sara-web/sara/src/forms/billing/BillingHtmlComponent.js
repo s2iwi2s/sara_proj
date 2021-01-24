@@ -8,6 +8,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { INIT_STATUS } from '../../api/Utils'
 import SearchResultsHtmlComponent from './SearchResultsHtmlComponent';
 import PayablesHtmlComponent from './PayablesHtmlComponent';
+import TitleComponent from '../common/TitleComponent';
 
 export default function BillingHtmlComponent(props) {
         const { control, register, handleSubmit, reset } = useForm();
@@ -16,9 +17,10 @@ export default function BillingHtmlComponent(props) {
         useEffect(() => {
                 setCounter(counter + 1);
                 console.log(`[BillingHtmlComponent.useEffect] counter=${counter}, INIT_STATUS=${props.store.INIT_STATUS}, props.store=>`, props.store)
-                if (props.store.INIT_STATUS === INIT_STATUS.PAYABLES) {
-                        props.doPayables();
-                } else if (props.store.INIT_STATUS === INIT_STATUS.RESET) {
+                // if (props.store.INIT_STATUS === INIT_STATUS.PAYABLES) {
+                //         props.doPayables();
+                // } else 
+                if (props.store.INIT_STATUS === INIT_STATUS.RESET) {
                         reset(props.store)
                 }
         }, [props.store])
@@ -26,7 +28,7 @@ export default function BillingHtmlComponent(props) {
         return (
                 <>
                         {console.log(`[BillingHtmlComponent.return] counter=${counter}, INIT_STATUS=${props.store.INIT_STATUS}, props.store=>`, props.store)}
-                        <Box ><Typography variant="h4">Payment</Typography></Box>
+                        <TitleComponent>Payment</TitleComponent>
 
                         <form onSubmit={handleSubmit(props.doRetrieve)}>
                                 <Paper elevation={3} variant="elevation" >
@@ -61,8 +63,8 @@ export default function BillingHtmlComponent(props) {
                                                                 />
                                                         </Grid>
 
-                                                        <Grid item xs={12} sm={1}>
-                                                                <Button variant="contained" color="primary" type="submit" startIcon={<SearchIcon />}>Search</Button>
+                                                        <Grid item xs={12} sm={2}>
+                                                                <Button fullWidth variant="contained" color="primary" type="submit" startIcon={<SearchIcon />}>Search</Button>
                                                         </Grid>
                                                 </Grid>
                                         </Box>
@@ -73,6 +75,7 @@ export default function BillingHtmlComponent(props) {
                                         store={props.store}
                                         onChangePage={props.onChangePage}
                                         onChangeRowsPerPage={props.onChangeRowsPerPage}
+                                        doPayables={props.doPayables}
                                 />}
                         {props.store.payablesFlag &&
                                 <PayablesHtmlComponent
@@ -80,7 +83,8 @@ export default function BillingHtmlComponent(props) {
                                         handleSubmit={handleSubmit}
                                         doShowSaveBillingDialog={props.doShowSaveConfirmDialog}
                                         // doSavePayables={props.doSavePayables}
-                                        store={props.store} />}
+                                        store={props.store}
+                                        doUpdateCurPageable={props.doUpdateCurPageable} />}
                 </>
         )
 }

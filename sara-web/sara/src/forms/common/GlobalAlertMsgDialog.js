@@ -1,10 +1,10 @@
 import React from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
-import {useGlobalVariable} from "../../providers/GlobalVariableProvider"
+import { useGlobalVariable } from "../../providers/GlobalVariableProvider"
 
 export default function GlobalAlertMsgDialog(props) {
-    const [globalProps, setGlobalProps, closeMsgAlert] = useGlobalVariable();
+    const [globalProps, setGlobalProps] = useGlobalVariable();
 
     const handleClose = () => {
         setGlobalProps({

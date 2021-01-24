@@ -34,6 +34,9 @@ public class GradeLevelPayables {
 	
 	@DBRef
 	private CodeGroups level;
+	
+	@DBRef
+	private CodeGroups period;
 
 	@DBRef(lazy = true)
 	private List<AccountPayablesSettings> accountPayablesSettings;
