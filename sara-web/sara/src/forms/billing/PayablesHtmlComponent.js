@@ -1,8 +1,10 @@
 
 import React, { useEffect, useState } from 'react';
+import moment from 'moment';
 import { useForm } from 'react-hook-form';
-import { Box, Paper, Grid, TextField, Table, TableContainer, TableHead, TableCell, Divider, Typography, TableBody, Button, InputAdornment } from "@material-ui/core"
+import { Box, Paper, Grid, TextField, Table, TableContainer, TableHead, TableCell, TableBody, Button, InputAdornment } from "@material-ui/core"
 import SaveIcon from '@material-ui/icons/Save';
+import SubTitleComponent from '../common/SubTitleComponent';
 
 const { StyledTableRow, StyledTableHeadRow, StyledTableHeadCell, INIT_STATUS } = require("../../api/Utils")
 
@@ -12,11 +14,14 @@ const PayablesHtmlComponent = (props) => {
   const [total, setTotal] = useState(0);
   const [payables, setPayables] = useState({});
 
+
   useEffect(() => {
     console.log(`[PayablesHtmlComponent.useEffect] INIT_STATUS=${props.store.INIT_STATUS}, props.store=>`, props.store)
     if (props.store.INIT_STATUS === INIT_STATUS.PAYABLES_RESET) {
       resetPayables();
-      props.store.INIT_STATUS = INIT_STATUS.DONE;
+      props.doUpdateCurPageable({
+        INIT_STATUS: INIT_STATUS.DONE
+      })
 
       reset(props.store);
     }
@@ -83,8 +88,7 @@ const PayablesHtmlComponent = (props) => {
 
   return (
     <>
-      <Box py={3}><Divider /></Box>
-      <Box pb={3}><Typography variant="h5">Student Information</Typography></Box>
+      <SubTitleComponent>Student Information</SubTitleComponent>
       <Paper elevation={3} variant="elevation" >
         <Box py={3} px={3}>
           <Grid container spacing={3}>
@@ -97,8 +101,6 @@ const PayablesHtmlComponent = (props) => {
           </Grid>
         </Box>
       </Paper>
-      <Box py={3}><Divider /></Box>
-      <Box ><Typography variant="h5">Payables</Typography></Box>
       <form onSubmit={handleSubmit(props.doShowSaveBillingDialog)}>
         <TextField
           type="hidden"
@@ -106,6 +108,7 @@ const PayablesHtmlComponent = (props) => {
           value={props.store.entity.id}
           inputRef={register}
         />
+        <SubTitleComponent>Payables</SubTitleComponent>
         <TableContainer component={Paper} elevation={3} variant="elevation" >
           <Table>
             <TableHead>
@@ -114,7 +117,7 @@ const PayablesHtmlComponent = (props) => {
                 <StyledTableHeadCell variant="head" style={{ width: "20%" }} align="right">Total</StyledTableHeadCell>
                 <StyledTableHeadCell variant="head" style={{ width: "20%" }} align="right">Paid</StyledTableHeadCell>
                 <StyledTableHeadCell variant="head" style={{ width: "20%" }} align="right">Balance</StyledTableHeadCell>
-                <StyledTableHeadCell variant="head" style={{ width: "20%" }} align="right">Amount to Pay</StyledTableHeadCell>
+                <StyledTableHeadCell variant="head" style={{ width: "20%" }}>Amount to Pay</StyledTableHeadCell>
               </StyledTableHeadRow>
             </TableHead>
             <TableBody>
@@ -220,7 +223,7 @@ const PayablesHtmlComponent = (props) => {
             <Grid item xs={12} sm={10}>
             </Grid>
             <Grid item xs={12} sm={2}>
-              <Button variant="contained" color="primary" type="submit" startIcon={<SaveIcon />}>Save Payment</Button>
+              <Button fullWidth variant="contained" color="primary" type="submit" startIcon={<SaveIcon />}>Save Payment</Button>
             </Grid>
             {/* <Grid item xs={12} sm={2}>
               <Button variant="contained" color="primary" type="submit" startIcon={<PrintIcon />}>Print Reciept</Button>
@@ -230,6 +233,56 @@ const PayablesHtmlComponent = (props) => {
             </Grid> */}
           </Grid>
         </Box>
+        <SubTitleComponent>Invoice</SubTitleComponent>
+        <TableContainer component={Paper} elevation={3} variant="elevation" >
+          <Table>
+            <TableHead>
+              <StyledTableHeadRow>
+                <StyledTableHeadCell variant="head" style={{ width: "10%" }} >Date</StyledTableHeadCell>
+                <StyledTableHeadCell variant="head" style={{ width: "10%" }} >Invoice #</StyledTableHeadCell>
+                {
+                  props.store.billingByInvoice.gradeLevelPayables.accountPayablesSettings.map(({ id, description }) => (
+                    <StyledTableHeadCell key={id} variant="head" align="right">{description}</StyledTableHeadCell>
+                  ))
+                }
+                <StyledTableHeadCell variant="head" align="right" style={{ width: "10%" }} >Total Payment</StyledTableHeadCell>
+                <StyledTableHeadCell variant="head" align="right" style={{ width: "10%" }} >Total Balance</StyledTableHeadCell>
+              </StyledTableHeadRow>
+            </TableHead>
+            <TableBody>
+              {
+                props.store.billingByInvoice.list.map(({ invoiceNo, invoiceDate, payablesMap }) => (
+                  < StyledTableRow >
+                    <TableCell>{moment(invoiceDate).format('YYYY-MM-DD')}</TableCell>
+                    <TableCell>{invoiceNo}</TableCell>
+                    {
+                      props.store.billingByInvoice.gradeLevelPayables.accountPayablesSettings.map(({ id, description }) => (
+                        <TableCell key={id} align="right">{(payablesMap[id] ? payablesMap[id].payment : 0).toLocaleString(undefined, {
+                          maximumFractionDigits: 2,
+                          minimumFractionDigits: 2
+                        }
+                        )}</TableCell>
+                      ))
+                    }
+                    <TableCell align="right">
+                      {(0).toLocaleString(undefined, {
+                        maximumFractionDigits: 2,
+                        minimumFractionDigits: 2
+                      })}
+                    </TableCell>
+                    <TableCell align="right">
+                      {(0).toLocaleString(undefined, {
+                        maximumFractionDigits: 2,
+                        minimumFractionDigits: 2
+                      })}
+                    </TableCell>
+                  </ StyledTableRow>
+                ))
+              }
+
+            </TableBody>
+          </Table>
+        </TableContainer>
       </form>
     </>
   )

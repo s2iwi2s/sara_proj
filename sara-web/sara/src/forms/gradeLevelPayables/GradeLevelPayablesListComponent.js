@@ -1,32 +1,38 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Typography from '@material-ui/core/Typography';
-import { Box } from '@material-ui/core';
 
 import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils'
 import CustomTableGrid from '../common/CustomTableGrid'
 import { deleteItem, getList } from '../../api/gradeLevelPayables/GradeLevelPayablesService';
 import { selectPageable, setPageable, setSelectedItem, resetSelectedItem } from '../../api/gradeLevelPayables/GradeLevelSlice';
 import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
+import TitleComponent from '../common/TitleComponent';
 
 export default function GradeLevelPayablesListComponent(props) {
-  const [globalProps, setGlobalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert] = useGlobalVariable();
+  const [, , showErrorAlert, ,] = useGlobalVariable();
+
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
 
   const cols = [
     {
-      headerName: 'Description',
+      headerName: 'Level',
       render: function (row) {
-        return row.level.description;
+        return row.level.description
+      }
+    },
+    {
+      headerName: 'Period',
+      render: function (row) {
+        return row.period ? row.period.description : ''
       }
     },
     {
       field: 'active',
       headerName: 'Active',
       render: function (row) {
-        return row.active ? 'Y' : 'N';
+        return row.active ? 'Y' : 'N'
       }
     }
   ];
@@ -113,7 +119,7 @@ export default function GradeLevelPayablesListComponent(props) {
 
   return (
     <>
-      <Box pb={3}><Typography variant="h4">Grade Level Payables List</Typography></Box>
+      <TitleComponent>Grade Level Payables List</TitleComponent>
 
       <CustomTableGrid
         store={currPageable}

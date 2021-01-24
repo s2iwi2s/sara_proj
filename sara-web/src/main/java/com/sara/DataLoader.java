@@ -20,6 +20,7 @@ import com.github.javafaker.Faker;
 import com.sara.data.document.Role;
 import com.sara.data.document.School;
 import com.sara.data.document.User;
+import com.sara.data.repository.CodeGroupsMongoRepository;
 import com.sara.data.repository.RoleMongoRepository;
 import com.sara.data.repository.SchoolMongoRepository;
 import com.sara.data.repository.UserMongoRepository;

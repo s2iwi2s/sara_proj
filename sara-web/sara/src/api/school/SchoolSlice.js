@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { resetSelectedItemCommon, setSelectedItemCommon, updateSelectedItemCommon, setPageableCommon, setPageableEntityCommon } from '../CommonSlice'
+import { resetSelectedItemCommon, updateSelectedItemCommon, setPageableCommon, setPageableEntityCommon, setOptionsListCommon } from '../CommonSlice'
 import { INIT_STATUS } from '../Utils'
 
 const blankPageable = {
@@ -13,9 +13,21 @@ const blankPageable = {
 		totalPage: 0
 	}
 }
-const blankSelectedItem = {
+export const blankSelectedItem = {
+	currentPeriod: { 'id': '' },
 	optionsList: {
+		periodList: []
 	}
+}
+
+const initForm = (values) => {
+	let data = {
+		...values
+	}
+	if (data.currentPeriod == null) {
+		data.currentPeriod = { 'id': '' }
+	}
+	return data
 }
 
 export const SchoolSlice = createSlice({
@@ -31,14 +43,21 @@ export const SchoolSlice = createSlice({
 	},
 	reducers: {
 		resetSelectedItem: (state, action) => resetSelectedItemCommon(state, action, blankSelectedItem),
-		setSelectedItem: (state, action) => setSelectedItemCommon(state, action),
+		setSelectedItem: (state, action) => {
+			const data = initForm(action.payload)
+			state.selectedItem = {
+				...blankSelectedItem,
+				...data
+			}
+		},
 		updateSelectedItem: (state, action) => updateSelectedItemCommon(state, action),
 		setPageable: (state, action) => setPageableCommon(state, action),
 		setPageableEntity: (state, action) => setPageableEntityCommon(state, action, blankPageable),
+		setOptionsList: (state, action) => setOptionsListCommon(state, action),
 	}
 })
 
-export const { resetSelectedItem, setSelectedItem, setPageable, setPageableEntity, updateSelectedItem } = SchoolSlice.actions
+export const { resetSelectedItem, setSelectedItem, setPageable, setPageableEntity, updateSelectedItem, setOptionsList } = SchoolSlice.actions
 
 export const selectPageable = state => state.school.pageable
 export const selectSelectedItem = state => state.school.selectedItem

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 
-import { formatter, INIT_STATUS, PAGE_URL } from '../../api/Utils'
+import Utils, { ERROR_CODE, formatter, INIT_STATUS } from '../../api/Utils'
 
 import { getListBy, getStudentPayables, save } from '../../api/billing/BillingService'
 import BillingHtmlComponent from './BillingHtmlComponent';
@@ -10,10 +10,16 @@ import SavePayablesConfimationHtml from './SavePayablesConfimationHtml';
 import { Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
+import { selectPageable, setPageable, optionsList, selectConfirmPayables, setConfirmPayables } from '../../api/billing/BillingSlice';
 
-export default function BillingComponent(props) {
+export default function BillingComponent() {
 
-  const [globalProps, setGlobalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert] = useGlobalVariable();
+  const [, , showErrorAlert, ,] = useGlobalVariable();
+
+  const dispatch = useDispatch();
+  const currPageable = useSelector(selectPageable)
+  const currConfirmPayables = useSelector(selectConfirmPayables)
+
 
   const [snackbar, setSnackbar] = useState({
     open: false,
@@ -23,93 +29,93 @@ export default function BillingComponent(props) {
   })
   const { message, open, vertical, horizontal } = snackbar
 
-  const optionsList = {
-    billingSearchBy: [{
-      id: '1',
-      value: 'STUDENT_ID',
-      label: 'Student ID'
-    }, {
-      id: '2',
-      value: 'STUDENT_NAME',
-      label: 'Student Name'
-    }]
-  }
-  const [confirmStore, setConfirmStore] = useState({
-    INIT_STATUS: INIT_STATUS.INIT,
-    entity: {
-      studentId: '',
-      firstName: '',
-      lastName: '',
-      level: {
-        id: '',
-        value: '',
-        description: ''
-      }
-    },
-    payables: [],
-    payablesByInvoiceNo: [],
-    open: false
-  })
+  // const optionsList = {
+  //   billingSearchBy: [{
+  //     id: '1',
+  //     value: 'STUDENT_ID',
+  //     label: 'Student ID'
+  //   }, {
+  //     id: '2',
+  //     value: 'STUDENT_NAME',
+  //     label: 'Student Name'
+  //   }]
+  // }
+  // const [confirmStore, setConfirmStore] = useState({
+  //   INIT_STATUS: INIT_STATUS.INIT,
+  //   entity: {
+  //     studentId: '',
+  //     firstName: '',
+  //     lastName: '',
+  //     level: {
+  //       id: '',
+  //       value: '',
+  //       description: ''
+  //     }
+  //   },
+  //   payables: [],
+  //   payablesByInvoiceNo: [],
+  //   open: false
+  // })
 
-  const [store, setStore] = useState({
-    INIT_STATUS: (props.match.params.id ? INIT_STATUS.PAYABLES : INIT_STATUS.INIT),
-    searchFlag: (props.match.params.id ? false : true),
-    payablesFlag: (props.match.params.id ? true : false),
-    list: [],
-    searchValue: '',
-    searchBy: 'STUDENT_ID',
-    entity: {
-      studentId: '',
-      firstName: '',
-      lastName: '',
-      level: {
-        id: '',
-        value: '',
-        description: ''
-      }
-    },
-    studentPayables: {
-      invoiceNo: '',
-      payables: [
-        {
-          "id": null,
-          "invoiceNo": null,
-          "code": "no_data",
-          "name": "NO DATA",
-          "amount": 0,
-          "payment": 0.0,
-          "order": 0,
-          "student": null,
-          "createdDate": null,
-          "lastModifiedDate": null,
-          "user": null,
-          "balance": 0.0,
-          "paid": 0
-        }],
-      payablesByInvoiceNo: [
-        {
-          "id": null,
-          "invoiceNo": null,
-          "code": "no_data",
-          "name": "NO DATA",
-          "amount": 0,
-          "payment": 0.0,
-          "order": 0,
-          "student": null,
-          "createdDate": null,
-          "lastModifiedDate": null,
-          "user": null,
-          "balance": 0.0,
-          "paid": 0
-        }]
-    },
-    optionsList: optionsList,
-    paging: {
-      rowsPerPage: 25,
-      totalElements: 0,
-      currentPage: 0
-    }
-  });
+  // const [store, setStore] = useState({
+  //   INIT_STATUS: (props.match.params.id ? INIT_STATUS.PAYABLES : INIT_STATUS.INIT),
+  //   searchFlag: (props.match.params.id ? false : true),
+  //   payablesFlag: (props.match.params.id ? true : false),
+  //   list: [],
+  //   searchValue: '',
+  //   searchBy: 'STUDENT_ID',
+  //   entity: {
+  //     studentId: '',
+  //     firstName: '',
+  //     lastName: '',
+  //     level: {
+  //       id: '',
+  //       value: '',
+  //       description: ''
+  //     }
+  //   },
+  //   studentPayables: {
+  //     invoiceNo: '',
+  //     payables: [
+  //       {
+  //         "id": null,
+  //         "invoiceNo": null,
+  //         "code": "no_data",
+  //         "name": "NO DATA",
+  //         "amount": 0,
+  //         "payment": 0.0,
+  //         "order": 0,
+  //         "student": null,
+  //         "createdDate": null,
+  //         "lastModifiedDate": null,
+  //         "user": null,
+  //         "balance": 0.0,
+  //         "paid": 0
+  //       }],
+  //     payablesByInvoiceNo: [
+  //       {
+  //         "id": null,
+  //         "invoiceNo": null,
+  //         "code": "no_data",
+  //         "name": "NO DATA",
+  //         "amount": 0,
+  //         "payment": 0.0,
+  //         "order": 0,
+  //         "student": null,
+  //         "createdDate": null,
+  //         "lastModifiedDate": null,
+  //         "user": null,
+  //         "balance": 0.0,
+  //         "paid": 0
+  //       }]
+  //   },
+  //   optionsList: optionsList,
+  //   paging: {
+  //     rowsPerPage: 25,
+  //     totalElements: 0,
+  //     currentPage: 0
+  //   }
+  // });
 
   const doInitFormData = data => {
     data.optionsList = optionsList;
@@ -150,13 +156,20 @@ export default function BillingComponent(props) {
     }
   }
 
+  const setError = (error, errorCode, formMethod, serviceName) => {
+    console.error(`[BillingComponent.setError]  error=`, error)
+    let errMsg = Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName)
+    showErrorAlert(errMsg)
+  }
+
+
   const doRetrieve = (data) => {
     console.log(`[BillingComponent.doRetrieve] data==>`, data)
-    getListBy(data.searchBy, data.searchValue, store.paging.currentPage, store.paging.rowsPerPage)
+    getListBy(data.searchBy, data.searchValue, currPageable.paging.currentPage, currPageable.paging.rowsPerPage)
       .then(response => {
         console.log(`[BillingComponent.doRetrieve BillingService.getListBy] response==>`, response)
         let formData = {
-          ...store,
+          ...currPageable,
           INIT_STATUS: INIT_STATUS.RESET,
           searchValue: data.searchValue,
           searchBy: data.searchBy,
@@ -171,39 +184,36 @@ export default function BillingComponent(props) {
           }
         }
         doInitFormData(formData);
-        setStore(formData)
+        dispatch(setPageable(formData))
       })
-      .catch(error => {
-        console.error(`[BillingComponent.doRetrieve ] error==>`, error);
-        showErrorAlert(error.message)
-      });
+      .catch(error => setError(error, ERROR_CODE.LIST_ERROR, 'BillingComponent.doRetrieve', 'BillingService.getListBy'));
   }
 
   const onChangeRowsPerPage = (e) => {
     let paging = {
-      ...store.paging
+      ...currPageable.paging
     }
     paging.rowsPerPage = e.target.value
     paging.currentPage = 0;
 
     let data = {
-      ...store,
+      ...currPageable,
       paging: paging
     }
-    setStore(data)
+    dispatch(setPageable(data))
     doRetrieve();
   }
   const onChangePage = (e, newPage) => {
     let paging = {
-      ...store.paging
+      ...currPageable.paging
     }
     paging.currentPage = newPage
 
     let data = {
-      ...store,
+      ...currPageable,
       paging: paging
     }
-    setStore(data);
+    dispatch(setPageable(data))
 
     doRetrieve({
       searchBy: data.searchBy,
@@ -213,27 +223,33 @@ export default function BillingComponent(props) {
     });
   }
 
-  const doPayables = () => {
-    getStudentPayables(props.match.params.id).then(response => {
+  const doPayables = row => {
+    console.log(`[BillingComponent.doPayables] id==>`, row)
+    getStudentPayables(row.id).then(response => {
       console.log(`[BillingComponent.doPayables BillingService.getStudentPayables] response==>`, response)
-      let payables = response.data.studentPayables.payables;
-      payables.map((row, i) => {
+      let payables = response.data.studentPayables.payables
+      payables.map((row) => {
         // let value = row.payment ? row.payment.replaceAll(',', '') : 0;
-        row.payment = formatter.format(row.payment);
+        row.payment = formatter.format(row.payment)
+        return row
       });
       let formData = {
-        ...store,
+        ...currPageable,
         INIT_STATUS: INIT_STATUS.RESET,
         entity: response.data.student,
         studentPayables: {
           ...response.data.studentPayables,
           payables: payables
         },
+        billingByInvoice: {
+          ...response.data.billingByInvoice
+        },
         searchFlag: false,
         payablesFlag: true
       }
       doInitFormData(formData);
-      setStore(formData);
+      //setStore(formData);
+      dispatch(setPageable(formData))
     }).catch(error => {
       console.error(`[BillingComponent.doPayables BillingService.getStudentPayables] error==>`, error);
       console.error(`[BillingComponent.doPayables BillingService.getStudentPayables] error==>${JSON.stringify(error)}`);
@@ -241,19 +257,22 @@ export default function BillingComponent(props) {
       showErrorAlert(error.message);
     });
   }
+
   const doShowSaveConfirmDialog = (data) => {
     console.log(`[BillingComponent.doShowSaveConfirmDialog] data==>`, data);
     let paymentTotal = 0;
     let balanceTotal = 0;
-    data.payables.map((row, i) => {
-      let balance = row.balance ? row.balance.replaceAll(',', '') : 0;
-      let payment = row.payment ? row.payment.replaceAll(',', '') : 0;
+    data.payables.map((row) => {
+      let balance = row.balance ? row.balance.replaceAll(',', '') : 0
+      let payment = row.payment ? row.payment.replaceAll(',', '') : 0
 
-      row.balance = Number(balance);
-      row.payment = Number(payment);
+      row.balance = Number(balance)
+      row.payment = Number(payment)
 
-      balanceTotal += row.balance;
-      paymentTotal += row.payment;
+      balanceTotal += row.balance
+      paymentTotal += row.payment
+
+      return row
     });
 
     // doOpenSnackBar({
@@ -269,10 +288,10 @@ export default function BillingComponent(props) {
     } else {
       console.log(`[BillingComponent.doShowSaveConfirmDialog] 2 totalBalance=${balanceTotal}, paymentTotal=${paymentTotal}`);
       let confirmStoreTemp = {
-        ...confirmStore,
+        ...currConfirmPayables,
         INIT_STATUS: INIT_STATUS.RESET,
         open: true,
-        entity: store.entity,
+        entity: currPageable.entity,
         payables: data.payables,
         payablesByInvoiceNo: [],
         paymentTotal: paymentTotal,
@@ -282,22 +301,22 @@ export default function BillingComponent(props) {
       doInitConfirmStore(confirmStoreTemp);
 
       console.log(`[BillingComponent.doSavePayables] confirmStoreTemp==>`, confirmStoreTemp);
-      setConfirmStore(confirmStoreTemp);
+      dispatch(setConfirmPayables(confirmStoreTemp));
     }
 
   }
   const doConfirmSavePayables = () => {
-    console.log(`[BillingComponent.doConfirmSavePayables] confirmStore==>`, confirmStore);
-    doSavePayables(confirmStore);
+    console.log(`[BillingComponent.doConfirmSavePayables] confirmStore==>`, currConfirmPayables);
+    doSavePayables(currConfirmPayables);
   }
 
   const doSavePayables = (data) => {
     console.log(`[BillingComponent.doSavePayables] data==>`, data);
 
-    save(data.payables, props.match.params.id).then(response => {
+    save(data.payables, data.entity.id).then(response => {
       console.log(`[BillingComponent.doSavePayables BillingService.save] response==>`, response)
       let formData = {
-        ...store,
+        ...currPageable,
         INIT_STATUS: INIT_STATUS.PAYABLES_RESET,
         entity: response.data.student,
         studentPayables: response.data.studentPayables,
@@ -306,22 +325,30 @@ export default function BillingComponent(props) {
       }
 
       doInitFormData(formData);
-      setStore(formData);
+      dispatch(setPageable(formData));
 
       let payablesByInvoiceNo = [
-        ...response.data.studentPayables.payablesByInvoiceNo
+        //...response.data.studentPayables.payablesByInvoiceNo
       ]
+      for (const row of response.data.studentPayables.payablesByInvoiceNo) {
+        let temp = {
+          ...row
+        }
+        payablesByInvoiceNo.push(temp)
+      }
+
       console.log(`[BillingComponent.doSavePayables BillingService.save] payablesByInvoiceNo==>`, payablesByInvoiceNo)
 
       let paymentTotal = 0;
-      payablesByInvoiceNo.map((row, i) => {
-        row.paid = Number(row.paid);
-        paymentTotal += row.paid;
-      });
+      payablesByInvoiceNo.map((row) => {
+        row.paid = Number(row.paid)
+        paymentTotal += row.paid
+        return row
+      })
       console.log(`[BillingComponent.doSavePayables BillingService.save] payablesByInvoiceNo==>`, payablesByInvoiceNo)
 
-      setConfirmStore({
-        ...confirmStore,
+      dispatch(setConfirmPayables({
+        ...currConfirmPayables,
         INIT_STATUS: INIT_STATUS.RESET,
         payables: [],
         invoiceDate: moment(response.data.studentPayables.invoiceDate).format('lll'),
@@ -329,7 +356,7 @@ export default function BillingComponent(props) {
         payablesByInvoiceNo: payablesByInvoiceNo,
         paymentTotal: paymentTotal,
         balanceTotal: 0
-      });
+      }));
       // close dialog
       // setConfirmStore({
       //   ...confirmStore,
@@ -346,10 +373,10 @@ export default function BillingComponent(props) {
   }
   const doCloseSaveBillingDialog = () => {
     let confirmStoreTemp = {
-      ...confirmStore,
+      ...currConfirmPayables,
       open: false
     }
-    setConfirmStore(confirmStoreTemp);
+    dispatch(setConfirmPayables(confirmStoreTemp));
   }
 
   const doInitConfirmStore = data => {
@@ -385,21 +412,30 @@ export default function BillingComponent(props) {
     })
   }
 
+  const doUpdateCurPageable = (data) => {
+    dispatch(setPageable({
+      ...currPageable,
+      data
+    }));
+  }
+
   return (
     <>
       <BillingHtmlComponent
-        store={store}
+        store={currPageable}
         doRetrieve={doRetrieve}
         doPayables={doPayables}
         onChangePage={onChangePage}
         onChangeRowsPerPage={onChangeRowsPerPage}
         doShowSaveConfirmDialog={doShowSaveConfirmDialog}
         doSavePayables={doSavePayables}
+        doUpdateCurPageable={doUpdateCurPageable}
+
       />
       <SavePayablesConfimationHtml
-        confirmStore={confirmStore}
+        confirmStore={currConfirmPayables}
         title="Please click save button to confirm."
-        open={confirmStore.open}
+        open={currConfirmPayables.open}
         closeDialog={doCloseSaveBillingDialog}
         saveDialog={doConfirmSavePayables} />
       {/* <SaveBillingDialog title="Please click save button to confirm."

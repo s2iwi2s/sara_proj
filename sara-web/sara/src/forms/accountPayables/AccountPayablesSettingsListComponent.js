@@ -9,10 +9,12 @@ import CustomTableGrid from '../common/CustomTableGrid'
 
 import { deleteItem, getList } from '../../api/accountPayablesSettings/AccountPayablesSettingsService';
 import { selectPageable, setPageable, setSelectedItem } from '../../api/accountPayablesSettings/AccountPayablesSettingsSlice';
+import TitleComponent from '../common/TitleComponent';
 
 export default function AccountPayablesSettingsListComponent(props) {
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
+
 
   const retrieve = ({ searchValue, paging }) => getList(searchValue, paging.currentPage, paging.rowsPerPage)
     .then(({ data }) => dispatch(setPageable({
@@ -105,7 +107,7 @@ export default function AccountPayablesSettingsListComponent(props) {
 
   return (
     <>
-      <Box pb={3}><Typography variant="h4">Accounts Payables Settings List</Typography></Box>
+      <TitleComponent>Accounts Payables Settings List</TitleComponent>
 
       <CustomTableGrid
         store={currPageable}
@@ -117,7 +119,11 @@ export default function AccountPayablesSettingsListComponent(props) {
         doNew={doNew}
         doDelete={doDelete}
         doSearch={doSearch}
-      />
+      >
+
+        {/* <Box pb={1}> Filter by: </Box> */}
+
+      </CustomTableGrid>
     </ >
   );
 }

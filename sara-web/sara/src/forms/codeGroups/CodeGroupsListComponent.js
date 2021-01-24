@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Typography from '@material-ui/core/Typography';
-import { Box } from '@material-ui/core';
 
 import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils'
 import CustomTableGrid from '../common/CustomTableGrid'
@@ -10,10 +8,11 @@ import CustomTableGrid from '../common/CustomTableGrid'
 import { deleteItem, getList } from '../../api/codeGroups/CodeGroupsService';
 import { selectPageable, resetSelectedItem, setPageable, setSelectedItem } from '../../api/codeGroups/CodeGroupsSlice';
 import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
+import TitleComponent from '../common/TitleComponent';
 
 export default function CodeGroupsListComponent(props) {
 
-  const [globalProps, setGlobalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert] = useGlobalVariable();
+  const [, , showErrorAlert, ,] = useGlobalVariable();
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
 
@@ -104,8 +103,8 @@ export default function CodeGroupsListComponent(props) {
 
   return (
     <>
-      <Box pb={3}><Typography variant="h4">Code Groups List</Typography></Box>
 
+      <TitleComponent>Code Groups List</TitleComponent>
       <CustomTableGrid
         store={currPageable}
         cols={cols}

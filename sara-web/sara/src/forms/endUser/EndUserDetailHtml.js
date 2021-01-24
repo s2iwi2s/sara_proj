@@ -4,11 +4,11 @@ import SaveIcon from '@material-ui/icons/Save';
 import AddIcon from '@material-ui/icons/Add';
 
 import { Controller, useForm } from 'react-hook-form';
-import Typography from '@material-ui/core/Typography';
 import { Box, Button, Grid, MenuItem, TextField } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
 import { INIT_STATUS, PAGE_URL } from '../../api/Utils';
+import TitleComponent from '../common/TitleComponent';
 
 const EndUserDetailHtml = props => {
       const { control, register, handleSubmit } = useForm();
@@ -25,7 +25,7 @@ const EndUserDetailHtml = props => {
       return (
             <>
                   {console.log(`[EndUserDetailHtml.return] props.store==>`, props.store)}
-                  <Typography variant="h4">User Detail</Typography>
+                  <TitleComponent>User Detail</TitleComponent>
 
                   <form onSubmit={handleSubmit(props.onSubmitForm)}>
 

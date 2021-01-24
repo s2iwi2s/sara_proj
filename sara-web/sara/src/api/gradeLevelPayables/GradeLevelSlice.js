@@ -7,11 +7,24 @@ const blankPageable = {
 }
 const blankSelectedItem = {
 	level: { 'id': '' },
+	period: { 'id': '' },
 	active: true,
 	list: [],
 	optionsList: {
-		levelList: []
+		levelList: [],
+		periodList: [],
+		applyToAllList: []
 	}
+}
+
+const initForm = (values) => {
+	let data = {
+		...values
+	}
+	if (data.period == null) {
+		data.period = { 'id': '' }
+	}
+	return data
 }
 
 export const GradeLevelSlice = createSlice({
@@ -25,9 +38,16 @@ export const GradeLevelSlice = createSlice({
 			...blankSelectedItem
 		}
 	},
+
 	reducers: {
 		resetSelectedItem: (state, action) => resetSelectedItemCommon(state, action, blankSelectedItem),
-		setSelectedItem: (state, action) => setSelectedItemCommon(state, action, blankSelectedItem),
+		setSelectedItem: (state, action) => {
+			const data = initForm(action.payload)
+			state.selectedItem = {
+				...blankSelectedItem,
+				...data
+			}
+		},
 
 		setOptionsList: (state, action) => {
 			console.log(`[GradeLevelSlice.setOptionsList] action=`, action)

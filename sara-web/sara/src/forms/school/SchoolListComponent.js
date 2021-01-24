@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react'
 
-import Typography from '@material-ui/core/Typography'
-import { Box } from '@material-ui/core'
 
 import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils'
 import { deleteItem, getList } from '../../api/school/SchoolService'
@@ -10,9 +8,10 @@ import CustomTableGrid from '../common/CustomTableGrid'
 import { useSelector, useDispatch } from 'react-redux'
 import { resetSelectedItem, selectPageable, setPageable, setSelectedItem, } from '../../api/school/SchoolSlice'
 import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
+import TitleComponent from '../common/TitleComponent'
 
 export default function SchoolListComponent(props) {
-  const [globalProps, setGlobalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert] = useGlobalVariable();
+  const [, , showErrorAlert, ,] = useGlobalVariable();
   const dispatch = useDispatch()
   const currPageableSchools = useSelector(selectPageable)
 
@@ -108,9 +107,7 @@ export default function SchoolListComponent(props) {
 
   return (
     <>
-      <Box pb={3}>
-        <Typography variant='h4'>Schools</Typography>
-      </Box>
+      <TitleComponent>Schools</TitleComponent>
 
       <CustomTableGrid
         store={currPageableSchools}

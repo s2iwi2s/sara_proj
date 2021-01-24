@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Box, Button, Checkbox, FormControlLabel, FormGroup, Grid, IconButton, Typography } from '@material-ui/core';
+import { Box, Button, Checkbox, FormControlLabel, FormGroup, Grid, IconButton } from '@material-ui/core';
 
 import CancelIcon from '@material-ui/icons/Cancel';
 import SaveIcon from '@material-ui/icons/Save';
@@ -18,11 +18,12 @@ import SelectGrid from '../common/SelectGrid';
 import { save, getOptions } from '../../api/gradeLevelPayables/GradeLevelPayablesService';
 import { selectSelectedItem, setOptionsList, updateSelectedItem, resetSelectedItem, setPageableEntity } from '../../api/gradeLevelPayables/GradeLevelSlice';
 import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
+import TitleComponent from '../common/TitleComponent';
 
 let renderCount = 0;
 
 export default function GradeLevelPayablesDetailsComponent(props) {
-  const [globalProps, setGlobalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert] = useGlobalVariable();
+  const [, , showErrorAlert, ,] = useGlobalVariable();
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -43,17 +44,9 @@ export default function GradeLevelPayablesDetailsComponent(props) {
       setStatus(INIT_STATUS.RESET)
       setMessage('');
     }
+
   }, [selectedItem, status]);
 
-
-  const changeSelectState = (e) => {
-    const { name, value } = e.target
-    console.log(`[GradeLevelPayablesDetailsComponent.changeSelectState] name=${name}, value=${value}`)
-    dispatch(updateSelectedItem({
-      [name]: { id: value }
-    }))
-
-  }
   const handleCheckboxChange = (e) => {
     const { name, checked } = e.target
 
@@ -93,6 +86,7 @@ export default function GradeLevelPayablesDetailsComponent(props) {
     save({
       id: selectedItem.id,
       level: selectedItem.level,
+      period: selectedItem.period,
       active: selectedItem.active,
       accountPayablesSettings: selectedItem.list
     })
@@ -122,6 +116,14 @@ export default function GradeLevelPayablesDetailsComponent(props) {
   const doDeleteItem = (id) => dispatch(updateSelectedItem({
     list: [...selectedItem.list.filter(item => item.id !== id)]
   }))
+
+  const changeSelectState = (e) => {
+    const { name, value } = e.target
+    console.log(`[GradeLevelPayablesDetailsComponent.changeSelectState] name=${name}, value=${value}`)
+    dispatch(updateSelectedItem({
+      [name]: { id: value }
+    }))
+  }
 
   const GridActionButtons = () => {
     return (
@@ -178,7 +180,7 @@ export default function GradeLevelPayablesDetailsComponent(props) {
   return (
     <>
       {console.log(`[GradeLevelPayablesDetailsComponent.render] renderCount=${renderCount} selectedItem==>`, selectedItem)}
-      <Typography variant="h4">Grade Level Payables</Typography>
+      <TitleComponent>Grade Level Payables</TitleComponent>
       {message && <Alert severity="info">{message}</Alert>}
 
 
@@ -187,9 +189,13 @@ export default function GradeLevelPayablesDetailsComponent(props) {
 
         <Box pb={3}>
           <Grid container spacing={3}>
-            <SelectGrid sm={3} name="level" label="Level" value={selectedItem.level.id} options={selectedItem.optionsList.levelList}
+            <SelectGrid sm={2} name="level" label="Level" value={selectedItem.level.id} options={selectedItem.optionsList.levelList}
               onChange={e => changeSelectState(e)} />
-            <Grid item xs={12} sm={12}>
+
+            <SelectGrid sm={3} name="period" label="Period" value={selectedItem.period.id} options={selectedItem.optionsList.periodList}
+              onChange={e => changeSelectState(e)} />
+
+            <Grid item xs={12} sm={2}>
               <FormGroup aria-label="position" row>
                 <FormControlLabel
                   value="true"
@@ -200,7 +206,6 @@ export default function GradeLevelPayablesDetailsComponent(props) {
               </FormGroup>
             </Grid>
           </Grid>
-
         </Box>
         <Box py={3}>
           <Box pb={3}>

@@ -57,7 +57,7 @@ function GlobalVariableProvider(props) {
     }
 
     const value = useMemo(() => [globalProps, setGlobalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert, closeMsgAlert],
-        [globalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert, closeMsgAlert])
+        [globalProps])
     return <GlobalVariableContext.Provider value={value} {...props} />
 }
 

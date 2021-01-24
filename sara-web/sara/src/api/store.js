@@ -5,6 +5,7 @@ import UsersReducer from './endUser/UsersSlice';
 import StudentReducer from './student/StudentSlice';
 import GradeLevelReducer from './gradeLevelPayables/GradeLevelSlice';
 import AccountPayablesSettingsReducer from './accountPayablesSettings/AccountPayablesSettingsSlice';
+import BillingReducer from './billing/BillingSlice';
 
 export default configureStore({
     reducer: {
@@ -13,6 +14,7 @@ export default configureStore({
         users: UsersReducer,
         students: StudentReducer,
         gradeLevels: GradeLevelReducer,
-        accountPayablesSettings: AccountPayablesSettingsReducer
+        accountPayablesSettings: AccountPayablesSettingsReducer,
+        billing: BillingReducer
     },
 });

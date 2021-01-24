@@ -50,8 +50,15 @@ public class Payables {
 		this.amount = aps.getAmount();
 		this.order = aps.getPriority();
 		this.code = aps.getId();
+		this.name = aps.getDescription();
 	}
 
+	public Payables(AccountPayablesSettings aps) {
+		this.aps = aps;
+		this.amount = aps.getAmount();
+		this.order = aps.getPriority();
+		this.code = aps.getId();
+	}
 	@Id
 	private String id;
 
@@ -60,6 +67,10 @@ public class Payables {
 	private String code;
 	private String name;
 	private String schoolYear;
+	
+	@DBRef(lazy = true)
+	private CodeGroups period;
+	
 	private double amount;
 	private double payment;
 	private int order;

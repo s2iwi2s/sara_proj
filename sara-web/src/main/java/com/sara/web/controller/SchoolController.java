@@ -25,7 +25,7 @@ public class SchoolController extends AbstractCrudController<School, String> {
 		super(userServiceImpl, codeGroupsServiceImpl);
 		this.schoolServiceImpl = schoolServiceImpl;
 	}
-	
+
 	@Override
 	public SchoolServiceImpl getService() {
 		return schoolServiceImpl;
@@ -33,7 +33,7 @@ public class SchoolController extends AbstractCrudController<School, String> {
 
 	@Override
 	public SchoolResponse getResponse(User user) {
-		return new SchoolResponse(new SchoolListService(schoolServiceImpl));
+		return new SchoolResponse(new SchoolListService(codeGroupsServiceImpl, user.getSchool()));
 	}
 
 }

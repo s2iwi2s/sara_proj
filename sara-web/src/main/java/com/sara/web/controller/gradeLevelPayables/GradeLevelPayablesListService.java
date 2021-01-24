@@ -19,9 +19,11 @@ public class GradeLevelPayablesListService implements ListService<GradeLevelPaya
 
 	private List<CodeGroups> levelList = null;
 	private List<AccountPayablesSettings> applyToAllList = null;
+	private List<CodeGroups> periodList = null;
 
 	public GradeLevelPayablesListService(CodeGroupsServiceImpl codeGroupsServiceImpl, AccountPayablesSettingsServiceImpl accountPayablesSettingsServiceImpl, School school) {
 		levelList = codeGroupsServiceImpl.findByCodeList("STUDENT_LEVEL", school);
 		applyToAllList = accountPayablesSettingsServiceImpl.findByApplyToAllList(school);
+		periodList = codeGroupsServiceImpl.findByCodeList("PERIOD", school);
 	}
 }

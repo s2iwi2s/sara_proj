@@ -2,8 +2,9 @@ package com.sara.web.controller.school;
 
 import java.util.List;
 
+import com.sara.data.document.CodeGroups;
 import com.sara.data.document.School;
-import com.sara.service.impl.SchoolServiceImpl;
+import com.sara.service.impl.CodeGroupsServiceImpl;
 import com.sara.web.common.ListService;
 
 import lombok.Getter;
@@ -13,9 +14,9 @@ import lombok.Setter;
 @Setter
 public class SchoolListService implements ListService<School> {
 
-	private List<School> statusList = null;
+	private List<CodeGroups> periodList = null;
 
-	public SchoolListService(SchoolServiceImpl codeGroupsListService) {
-		// statusList = codeGroupsService.findByCode("STATUS");
+	public SchoolListService(CodeGroupsServiceImpl codeGroupsServiceImpl, School school) {
+		periodList = codeGroupsServiceImpl.findByCodeList("PERIOD", school);
 	}
 }
