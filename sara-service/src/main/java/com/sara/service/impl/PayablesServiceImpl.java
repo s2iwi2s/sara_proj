@@ -6,6 +6,7 @@ import static org.springframework.data.mongodb.core.aggregation.Aggregation.newA
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.project;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
@@ -273,7 +274,7 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 		accountPayablesSettings.sort(Comparator.comparing(AccountPayablesSettings::getPriority));
 		
 		List<Payables> payments = findPaymentByStudent(student);
-		payments.sort(Comparator.comparing(Payables::getInvoiceDate));
+		payments.sort(Comparator.comparing(Payables::getInvoiceDate,Collections.reverseOrder()));
 		
 		Map<String, Invoice> mapper = new HashMap<>();
 		List<Invoice> list = new ArrayList<>();
