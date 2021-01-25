@@ -93,12 +93,7 @@
 
 		<profile>
 			<id>prod</id>
-			<activation>
-				<property>
-					<name>env</name>
-					<value>prod</value>
-				</property>
-			</activation>
+			<activation> <activeByDefault>true</activeByDefault> </activation>
 			<properties>
 				<profiles.active>prod</profiles.active>
 				<db.mongodb.url>mongodb+srv://learn:g389BDSRANliLC1f@cluster0.5qocd.mongodb.net/learn?retryWrites=true&amp;w=majority</db.mongodb.url>
