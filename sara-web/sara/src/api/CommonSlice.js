@@ -24,6 +24,13 @@ export const setPageableCommon = (state, action) => {
  state.pageable = action.payload
 }
 
+export const updatePageableCommon = (state, action) => {
+ state.pageable = {
+  ...state.pageable,
+  ...action.payload
+ }
+}
+
 export const setPageableEntityCommon = (state, action, blankPageable) => {
  let temp = {
   ...blankPageable

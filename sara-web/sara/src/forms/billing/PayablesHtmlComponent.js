@@ -1,12 +1,14 @@
 
 import React, { useEffect, useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import moment from 'moment';
 import { useForm } from 'react-hook-form';
-import { Box, Paper, Grid, TextField, Table, TableContainer, TableHead, TableCell, TableBody, Button, InputAdornment } from "@material-ui/core"
+import { Box, Paper, Grid, TextField, Table, TableContainer, TableHead, TableCell, Divider, Typography, TableBody, Button, InputAdornment } from "@material-ui/core"
 import SaveIcon from '@material-ui/icons/Save';
 import SubTitleComponent from '../common/SubTitleComponent';
 
 const { StyledTableRow, StyledTableHeadRow, StyledTableHeadCell, INIT_STATUS } = require("../../api/Utils")
+
 
 const PayablesHtmlComponent = (props) => {
   const { register, handleSubmit, reset } = useForm();
@@ -14,15 +16,13 @@ const PayablesHtmlComponent = (props) => {
   const [total, setTotal] = useState(0);
   const [payables, setPayables] = useState({});
 
-
   useEffect(() => {
     console.log(`[PayablesHtmlComponent.useEffect] INIT_STATUS=${props.store.INIT_STATUS}, props.store=>`, props.store)
     if (props.store.INIT_STATUS === INIT_STATUS.PAYABLES_RESET) {
       resetPayables();
-      props.doUpdateCurPageable({
+      props.doUpdateCurrPageable({
         INIT_STATUS: INIT_STATUS.DONE
       })
-
       reset(props.store);
     }
   }, [props.store])
@@ -245,8 +245,6 @@ const PayablesHtmlComponent = (props) => {
                     <StyledTableHeadCell key={id} variant="head" align="right">{description}</StyledTableHeadCell>
                   ))
                 }
-                <StyledTableHeadCell variant="head" align="right" style={{ width: "10%" }} >Total Payment</StyledTableHeadCell>
-                <StyledTableHeadCell variant="head" align="right" style={{ width: "10%" }} >Total Balance</StyledTableHeadCell>
               </StyledTableHeadRow>
             </TableHead>
             <TableBody>
@@ -264,18 +262,6 @@ const PayablesHtmlComponent = (props) => {
                         )}</TableCell>
                       ))
                     }
-                    <TableCell align="right">
-                      {(0).toLocaleString(undefined, {
-                        maximumFractionDigits: 2,
-                        minimumFractionDigits: 2
-                      })}
-                    </TableCell>
-                    <TableCell align="right">
-                      {(0).toLocaleString(undefined, {
-                        maximumFractionDigits: 2,
-                        minimumFractionDigits: 2
-                      })}
-                    </TableCell>
                   </ StyledTableRow>
                 ))
               }

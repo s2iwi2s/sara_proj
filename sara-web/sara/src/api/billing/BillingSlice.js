@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { INIT_STATUS } from '../Utils'
-import { resetSelectedItemCommon, setSelectedItemCommon, updateSelectedItemCommon, setPageableCommon, setPageableEntityCommon, setOptionsListCommon } from '../CommonSlice'
+import { resetSelectedItemCommon, setSelectedItemCommon, updateSelectedItemCommon, setPageableCommon, setPageableEntityCommon, setOptionsListCommon, updatePageableCommon } from '../CommonSlice'
 
 
 export const optionsList = {
@@ -14,7 +14,7 @@ export const optionsList = {
 		label: 'Student Name'
 	}]
 }
-const blankPageable = {
+export const blankPageable = {
 	INIT_STATUS: INIT_STATUS.INIT,
 	list: [],
 	searchValue: '',
@@ -78,18 +78,31 @@ export const BillingSlice = createSlice({
 		setSelectedItem: (state, action) => setSelectedItemCommon(state, action, blankSelectedItem),
 		updateSelectedItem: (state, action) => updateSelectedItemCommon(state, action),
 		setPageable: (state, action) => setPageableCommon(state, action),
+		updatePageable: (state, action) => updatePageableCommon(state, action),
 		setPageableEntity: (state, action) => setPageableEntityCommon(state, action, blankPageable),
 		setOptionsList: (state, action) => setOptionsListCommon(state, action),
 
 		setConfirmPayables: (state, action) => {
+			console.log(`[BillingSlice.setConfirmPayables] action.payload==>`, action.payload)
+			console.log(`[BillingSlice.setConfirmPayables] 1 state.confirmPayables==>`, state.confirmPayables)
 			state.confirmPayables = {
 				...action.payload
 			}
+			console.log(`[BillingSlice.setConfirmPayables] 2 state.confirmPayables==>`, state.confirmPayables)
+		},
+		updateConfirmPayables: (state, action) => {
+			console.log(`[BillingSlice.updateConfirmPayables] action.payload==>`, action.payload)
+			console.log(`[BillingSlice.updateConfirmPayables] 1 state.confirmPayables==>`, state.confirmPayables)
+			state.confirmPayables = {
+				...state.confirmPayables,
+				...action.payload
+			}
+			console.log(`[BillingSlice.updateConfirmPayables] 2 state.confirmPayables==>`, state.confirmPayables)
 		},
 	}
 })
 
-export const { setSelectedItem, updateSelectedItem, setPageable, setPageableEntity, setSearchValue, setOptionsList, resetSelectedItem, setConfirmPayables } = BillingSlice.actions
+export const { setSelectedItem, updateSelectedItem, setPageable, updatePageable, setPageableEntity, setSearchValue, setOptionsList, resetSelectedItem, setConfirmPayables, updateConfirmPayables } = BillingSlice.actions
 
 export const selectPageable = state => state.billing.pageable
 export const selectSelectedItem = state => state.billing.selectedItem

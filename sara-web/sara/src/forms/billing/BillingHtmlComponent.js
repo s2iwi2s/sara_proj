@@ -19,7 +19,9 @@ export default function BillingHtmlComponent(props) {
                 console.log(`[BillingHtmlComponent.useEffect] counter=${counter}, INIT_STATUS=${props.store.INIT_STATUS}, props.store=>`, props.store)
                 // if (props.store.INIT_STATUS === INIT_STATUS.PAYABLES) {
                 //         props.doPayables();
-                // } else 
+                // } else if (props.store.INIT_STATUS === INIT_STATUS.RESET) {
+                //         reset(props.store)
+                // }
                 if (props.store.INIT_STATUS === INIT_STATUS.RESET) {
                         reset(props.store)
                 }
@@ -83,8 +85,8 @@ export default function BillingHtmlComponent(props) {
                                         handleSubmit={handleSubmit}
                                         doShowSaveBillingDialog={props.doShowSaveConfirmDialog}
                                         // doSavePayables={props.doSavePayables}
-                                        store={props.store}
-                                        doUpdateCurPageable={props.doUpdateCurPageable} />}
+                                        store={props.store} 
+                                        doUpdateCurrPageable={props.doUpdateCurrPageable}/>}
                 </>
         )
 }
