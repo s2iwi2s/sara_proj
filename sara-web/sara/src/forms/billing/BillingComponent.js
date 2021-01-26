@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 import { Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 
-import Utils, { ERROR_CODE, formatter, INIT_STATUS, PAGE_URL } from '../../api/Utils'
+import Utils, { ERROR_CODE, formatter, INIT_STATUS } from '../../api/Utils'
 
 import BillingHtmlComponent from './BillingHtmlComponent';
 import SavePayablesConfimationHtml from './SavePayablesConfimationHtml';
 import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
 
 import { getListBy, getStudentPayables, save } from '../../api/billing/BillingService'
-import { optionsList, selectPageable, blankPageable, setPageable, updatePageable } from '../../api/billing/BillingSlice';
+import { optionsList, selectPageable, setPageable, updatePageable } from '../../api/billing/BillingSlice';
 
-export default function BillingComponent(props) {
+export default function BillingComponent() {
+  const [, , showErrorAlert, ,] = useGlobalVariable();
 
-  const [showErrorAlert] = useGlobalVariable();
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
 
@@ -28,17 +27,7 @@ export default function BillingComponent(props) {
   })
   const { message, open, vertical, horizontal } = snackbar
 
-  // const optionsList = {
-  //   billingSearchBy: [{
-  //     id: '1',
-  //     value: 'STUDENT_ID',
-  //     label: 'Student ID'
-  //   }, {
-  //     id: '2',
-  //     value: 'STUDENT_NAME',
-  //     label: 'Student Name'
-  //   }]
-  // }
+
   const [confirmStore, setConfirmStore] = useState({
     INIT_STATUS: INIT_STATUS.INIT,
     entity: {
@@ -56,65 +45,6 @@ export default function BillingComponent(props) {
     open: false
   })
 
-  // const [store, setStore] = useState({
-  //   INIT_STATUS: (props.match.params.id ? INIT_STATUS.PAYABLES : INIT_STATUS.INIT),
-  //   searchFlag: (props.match.params.id ? false : true),
-  //   payablesFlag: (props.match.params.id ? true : false),
-  //   list: [],
-  //   searchValue: '',
-  //   searchBy: 'STUDENT_ID',
-  //   entity: {
-  //     studentId: '',
-  //     firstName: '',
-  //     lastName: '',
-  //     level: {
-  //       id: '',
-  //       value: '',
-  //       description: ''
-  //     }
-  //   },
-  //   studentPayables: {
-  //     invoiceNo: '',
-  //     payables: [
-  //       {
-  //         "id": null,
-  //         "invoiceNo": null,
-  //         "code": "no_data",
-  //         "name": "NO DATA",
-  //         "amount": 0,
-  //         "payment": 0.0,
-  //         "order": 0,
-  //         "student": null,
-  //         "createdDate": null,
-  //         "lastModifiedDate": null,
-  //         "user": null,
-  //         "balance": 0.0,
-  //         "paid": 0
-  //       }],
-  //     payablesByInvoiceNo: [
-  //       {
-  //         "id": null,
-  //         "invoiceNo": null,
-  //         "code": "no_data",
-  //         "name": "NO DATA",
-  //         "amount": 0,
-  //         "payment": 0.0,
-  //         "order": 0,
-  //         "student": null,
-  //         "createdDate": null,
-  //         "lastModifiedDate": null,
-  //         "user": null,
-  //         "balance": 0.0,
-  //         "paid": 0
-  //       }]
-  //   },
-  //   optionsList: optionsList,
-  //   paging: {
-  //     rowsPerPage: 25,
-  //     totalElements: 0,
-  //     currentPage: 0
-  //   }
-  // });
 
   const doInitFormData = data => {
     data.optionsList = optionsList;
@@ -225,7 +155,7 @@ export default function BillingComponent(props) {
     getStudentPayables(row.id).then(response => {
       console.log(`[BillingComponent.doPayables BillingService.getStudentPayables] response==>`, response)
       let payables = response.data.studentPayables.payables;
-      payables.map((row, i) => {
+      payables.map((row) => {
         // let value = row.payment ? row.payment.replaceAll(',', '') : 0;
         row.payment = formatter.format(row.payment);
         return row
@@ -245,18 +175,14 @@ export default function BillingComponent(props) {
       }
       doInitFormData(formData);
       doUpdateCurrPageable(formData)
-    }).catch(error => {
-      console.error(`[BillingComponent.doPayables BillingService.getStudentPayables] error==>`, error);
-      console.error(`[BillingComponent.doPayables BillingService.getStudentPayables] error==>${JSON.stringify(error)}`);
-      //showErrorAlert, showInfoAlert, showWarningAlert
-      showErrorAlert(error.message);
-    });
+    })
+      .catch(error => setError(error, ERROR_CODE.LIST_ERROR, 'BillingComponent.doRetrieve', 'BillingService.getListBy'));
   }
   const doShowSaveConfirmDialog = (data) => {
     console.log(`[BillingComponent.doShowSaveConfirmDialog] data==>`, data);
     let paymentTotal = 0;
     let balanceTotal = 0;
-    data.payables.map((row, i) => {
+    data.payables.map((row) => {
       let balance = row.balance ? row.balance.replaceAll(',', '') : 0;
       let payment = row.payment ? row.payment.replaceAll(',', '') : 0;
 
@@ -332,7 +258,7 @@ export default function BillingComponent(props) {
       console.log(`[BillingComponent.doSavePayables BillingService.save] payablesByInvoiceNo==>`, payablesByInvoiceNo)
 
       let paymentTotal = 0;
-      payablesByInvoiceNo.map((row, i) => {
+      payablesByInvoiceNo.map((row) => {
         row.paid = Number(row.paid);
         paymentTotal += row.paid;
         return row
@@ -360,7 +286,9 @@ export default function BillingComponent(props) {
         message: 'Payables saved successfully!'
       })
     })
+      .catch(error => setError(error, ERROR_CODE.LIST_ERROR, 'BillingComponent.doSavePayables', 'BillingService.save'));
   }
+
   const doCloseSaveBillingDialog = () => {
     let confirmStoreTemp = {
       ...confirmStore,
