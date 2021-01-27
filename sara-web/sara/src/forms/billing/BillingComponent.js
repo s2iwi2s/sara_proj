@@ -8,13 +8,19 @@ import Utils, { ERROR_CODE, formatter, INIT_STATUS } from '../../api/Utils'
 
 import BillingHtmlComponent from './BillingHtmlComponent';
 import SavePayablesConfimationHtml from './SavePayablesConfimationHtml';
-import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
 
 import { getListBy, getStudentPayables, save } from '../../api/billing/BillingService'
 import { optionsList, selectPageable, setPageable, updatePageable } from '../../api/billing/BillingSlice';
+import { useMessageAlert } from "../../api/useMessageAlert"
 
 export default function BillingComponent() {
-  const [, , showErrorAlert, ,] = useGlobalVariable();
+  const [,
+    ,
+    showErrorMsgAlert,
+    ,
+    ,
+    ,
+  ] = useMessageAlert();
 
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
@@ -84,11 +90,7 @@ export default function BillingComponent() {
       data.studentPayables.payablesByInvoiceNo = [];
     }
   }
-  const setError = (error, errorCode, formMethod, serviceName) => {
-    console.error(`[BillingComponent.setError]  error=`, error)
-    let errMsg = Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName)
-    showErrorAlert(errMsg)
-  }
+
   const doRetrieve = (data) => {
     console.log(`[BillingComponent.doRetrieve] data==>`, data)
     getListBy(data.searchBy, data.searchValue, currPageable.paging.currentPage, currPageable.paging.rowsPerPage)
@@ -112,7 +114,7 @@ export default function BillingComponent() {
         doInitFormData(formData);
         dispatch(setPageable(formData))
       })
-      .catch(error => setError(error, ERROR_CODE.LIST_ERROR, 'BillingComponent.doRetrieve', 'BillingService.getListBy'));
+      .catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'BillingComponent.doRetrieve', 'BillingService.getListBy'));
   }
 
   const onChangeRowsPerPage = (e) => {
@@ -154,12 +156,19 @@ export default function BillingComponent() {
   const doPayables = row => {
     getStudentPayables(row.id).then(response => {
       console.log(`[BillingComponent.doPayables BillingService.getStudentPayables] response==>`, response)
+      console.log(`[BillingComponent.doPayables BillingService.getStudentPayables] response.data.optionsList==>`, response.data.optionsList)
       let payables = response.data.studentPayables.payables;
       payables.map((row) => {
         // let value = row.payment ? row.payment.replaceAll(',', '') : 0;
         row.payment = formatter.format(row.payment);
         return row
       });
+
+      let optionsListTemp = {
+        ...response.data.optionsList,
+        ...optionsList
+      }
+      console.log(`[BillingComponent.doPayables BillingService.getStudentPayables] optionsListTemp==>`, optionsListTemp)
       let formData = {
         INIT_STATUS: INIT_STATUS.RESET,
         entity: response.data.student,
@@ -173,10 +182,14 @@ export default function BillingComponent() {
         searchFlag: false,
         payablesFlag: true
       }
+
       doInitFormData(formData);
+      formData.optionsList = optionsListTemp
+
+      console.log(`[BillingComponent.doPayables BillingService.getStudentPayables] formData==>`, formData)
       doUpdateCurrPageable(formData)
     })
-      .catch(error => setError(error, ERROR_CODE.LIST_ERROR, 'BillingComponent.doRetrieve', 'BillingService.getListBy'));
+      .catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'BillingComponent.doRetrieve', 'BillingService.getListBy'));
   }
   const doShowSaveConfirmDialog = (data) => {
     console.log(`[BillingComponent.doShowSaveConfirmDialog] data==>`, data);
@@ -286,7 +299,7 @@ export default function BillingComponent() {
         message: 'Payables saved successfully!'
       })
     })
-      .catch(error => setError(error, ERROR_CODE.LIST_ERROR, 'BillingComponent.doSavePayables', 'BillingService.save'));
+      .catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'BillingComponent.doSavePayables', 'BillingService.save'));
   }
 
   const doCloseSaveBillingDialog = () => {

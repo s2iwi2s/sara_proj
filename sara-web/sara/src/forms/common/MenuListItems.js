@@ -16,13 +16,18 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 
 import { useHistory } from 'react-router-dom';
-import AuthenticationService from '../../security/AuthenticationService';
 import { PAGE_URL } from '../../api/Utils'
 import { Divider } from '@material-ui/core';
 
+import { useAuthServices } from '../../security/useAuthServices'
 
 export default function MenuListItems() {
-  const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
+  const [,
+    ,
+    ,
+    isUserLoggedIn,
+  ] = useAuthServices()
+  const isLoggedIn = isUserLoggedIn();
 
   const history = useHistory();
   return (
@@ -36,7 +41,7 @@ export default function MenuListItems() {
     // }
     >
       {
-        isUserLoggedIn && <>
+        isLoggedIn && <>
           <ListItem button>
             <ListItemIcon>
               <AccountBalanceWalletIcon onClick={() => history.push(PAGE_URL.BILLING)} />
@@ -87,7 +92,7 @@ export default function MenuListItems() {
         </>
       }
 
-      {isUserLoggedIn &&
+      {isLoggedIn &&
         <>
           <Divider />
           <ListItem button onClick={() => history.push(PAGE_URL.LOGOUT)} >
@@ -99,7 +104,7 @@ export default function MenuListItems() {
         </>
       }
 
-      {!isUserLoggedIn &&
+      {!isLoggedIn &&
         <ListItem button onClick={() => history.push(PAGE_URL.LOGIN)} >
           <ListItemIcon>
             <VpnKeyIcon />

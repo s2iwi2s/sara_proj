@@ -5,10 +5,16 @@ import Utils, { ERROR_CODE, PAGE_URL } from '../../api/Utils'
 import StudentDetailHtml from './StudentDetailHtml.js';
 import { save, getOptions } from '../../api/student/StudentService'
 import { selectSelectedItem, setOptionsList, setPageableEntity, resetSelectedItem } from '../../api/student/StudentSlice';
-import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
+import { useMessageAlert } from "../../api/useMessageAlert"
 
 export default function StudentDetailComponent(props) {
-  const [, , showErrorAlert, ,] = useGlobalVariable();
+  const [,
+    ,
+    showErrorMsgAlert,
+    ,
+    ,
+    ,
+  ] = useMessageAlert();
   const dispatch = useDispatch();
   const selectedItem = useSelector(selectSelectedItem)
 
@@ -21,10 +27,10 @@ export default function StudentDetailComponent(props) {
     save(data)
       .then(response => {
         dispatch(setPageableEntity(response.data.entity))
-        setMessage(``)
+        setMessage('')
         props.history.push(PAGE_URL.STUDENT_LIST)
       })
-      .catch(error => setError(error, ERROR_CODE.SAVE_ERROR, 'StudentDetailComponent.onSubmitForm', 'StudentService.save'));
+      .catch(error => showErrorMsgAlert(error, ERROR_CODE.SAVE_ERROR, 'StudentDetailComponent.onSubmitForm', 'StudentService.save'));
   }
 
   const onRetrieve = () => {
@@ -38,14 +44,7 @@ export default function StudentDetailComponent(props) {
         dispatch(setOptionsList(response.data.listService))
         setMessage(``)
       })
-      .catch(error => setError(error, ERROR_CODE.RETRIEVE_ERROR, 'StudentDetailComponent.onRetrieve', 'StudentService.getOptions'));
-  }
-
-  const setError = (error, errorCode, formMethod, serviceName) => {
-    console.log(`[StudentDetailComponent.setError]  error=`, error)
-    let errMsg = Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName);
-    setMessage(errMsg);
-    showErrorAlert(errMsg)
+      .catch(error => showErrorMsgAlert(error, ERROR_CODE.RETRIEVE_ERROR, 'StudentDetailComponent.onRetrieve', 'StudentService.getOptions'));
   }
 
   return (

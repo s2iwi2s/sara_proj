@@ -8,12 +8,19 @@ import CustomTableGrid from '../common/CustomTableGrid';
 
 import { deleteItem, getList } from '../../api/endUser/EndUserService';
 import { resetSelectedItem, selectPageable, setPageable, setSelectedItem } from '../../api/endUser/UsersSlice';
-import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
 import TitleComponent from '../common/TitleComponent';
+import { useMessageAlert } from "../../api/useMessageAlert"
 
 export default function EndUserListComponent(props) {
 
-  const [, , showErrorAlert, ,] = useGlobalVariable();
+  const [,
+    ,
+    showErrorMsgAlert,
+    ,
+    ,
+    ,
+  ] = useMessageAlert();
+
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
 
@@ -34,13 +41,9 @@ export default function EndUserListComponent(props) {
           totalPage: data.pagingList.totalPage
         }
       }))
-    }).catch(error => setError(error, ERROR_CODE.LIST_ERROR, 'EndUserListComponent.retrieve', 'EndUserService.getList'))
+    }).catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'EndUserListComponent.retrieve', 'EndUserService.getList'))
 
-  const setError = (error, errorCode, formMethod, serviceName) => {
-    console.error(`[EndUserDetailComponent.setError]  error=`, error)
-    let errMsg = Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName)
-    showErrorAlert(errMsg)
-  }
+
 
 
   const doRetrieve = () => retrieve({
@@ -59,7 +62,7 @@ export default function EndUserListComponent(props) {
 
   const doDelete = (id) => deleteItem(id)
     .then(doRetrieve)
-    .catch(error => setError(error, ERROR_CODE.LIST_ERROR, 'EndUserListComponent.retrieve', 'EndUserService.deleteItem'))
+    .catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'EndUserListComponent.retrieve', 'EndUserService.deleteItem'))
 
   const doHandleChangePage = (e, newPage) => retrieve({
     searchValue: currPageable.searchValue,

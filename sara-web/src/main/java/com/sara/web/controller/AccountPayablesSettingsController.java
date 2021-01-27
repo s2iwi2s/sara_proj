@@ -9,12 +9,14 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sara.data.document.AccountPayablesSettings;
 import com.sara.data.document.User;
+import com.sara.service.exception.NotFoundException;
 import com.sara.service.impl.AccountPayablesSettingsServiceImpl;
 import com.sara.service.impl.CodeGroupsServiceImpl;
 import com.sara.service.impl.UserServiceImpl;
@@ -53,9 +55,10 @@ public class AccountPayablesSettingsController extends AbstractCrudController<Ac
 
 	}
 
-	@GetMapping("/active")
-	public ResponseEntity<?> getExceptApplyToAllList(@RequestParam("searchValue") String searchValue, @PageableDefault(sort = {
-			"id" }, direction = Direction.ASC, page = Constants.DEFAULT_PAGE_NUMBER, size = Constants.DEFAULT_PAGE_SIZE) Pageable pageable) {
+	@GetMapping("/active/{period}")
+	public ResponseEntity<?> getExceptApplyToAllList(@PathVariable("period") String period,
+			@RequestParam("searchValue") String searchValue, @PageableDefault(sort = {
+					"id" }, direction = Direction.ASC, page = Constants.DEFAULT_PAGE_NUMBER, size = Constants.DEFAULT_PAGE_SIZE) Pageable pageable) throws NotFoundException {
 		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
 		Response<AccountPayablesSettings> res = getResponse(user);
 		ResponseStatus status = new ResponseStatus();
@@ -63,13 +66,10 @@ public class AccountPayablesSettingsController extends AbstractCrudController<Ac
 		res.setSearchValue(searchValue);
 
 		Page<AccountPayablesSettings> pagingList = null;
-		try {
-			pagingList = getService().findAllActiveList(searchValue, pageable, user);
-			status.setMessage("SUCCESS!");
-		} catch (Exception e) {
-			status.setException(e);
-			e.printStackTrace();
-		}
+
+		pagingList = getService().findAllActiveList(period, searchValue, pageable, user);
+		status.setMessage("SUCCESS!");
+
 		res.setPagingList(pagingList);
 		res.setListService(null);
 		return new ResponseEntity<Response<AccountPayablesSettings>>(res, HttpStatus.OK);

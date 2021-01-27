@@ -16,8 +16,10 @@ import lombok.Setter;
 public class AccountPayablesSettingsListService implements ListService<AccountPayablesSettings> {
 
 	private List<CodeGroups> paymentPeriodList = null;
+	private List<CodeGroups> periodList = null;
 
 	public AccountPayablesSettingsListService(CodeGroupsServiceImpl codeGroupsServiceImpl, School school) {
 		paymentPeriodList = codeGroupsServiceImpl.findByCodeList("PAYMENT_PERIOD", school);
+		periodList = codeGroupsServiceImpl.findByCodeList("PERIOD", school);
 	}
 }

@@ -36,7 +36,7 @@ export const USER_TEMP = {
     schoolName: 'SARA PROJECT',
     schoolAddress: '',
     schoolLogo: '',
-    schoolId: ''
+    schoolId: '',
 }
 // export const URL_BASE = 'http://localhost:8081';
 export const URL_BASE_DEV = 'http://localhost:5000';
@@ -96,6 +96,7 @@ export const PAGE_URL = {
     USER_ADDRESS_DETAIL: '/ui/address-detail/:id/:refId/:typeId'
 }
 export const ERROR_CODE = {
+    LOGIN_ERROR: '100000',
     RETRIEVE_ERROR: '100001',
     SAVE_ERROR: '100002',
     DELETE_ERROR: '100003',
@@ -166,16 +167,19 @@ class Utils {
 
     getFormatedErrorMessage = (error, errorCode, formMethod, serviceName) => {
         let errMsg = `Error (${errorCode}): ${error.message} `;
-        console.log(`[${formMethod}] ${serviceName} error msg: ${errMsg}`, error);
+        console.error(`[${formMethod}] ${serviceName} error msg: ${errMsg}`, error);
+        console.error(`[${formMethod}] ${serviceName} error `, JSON.stringify(error));
 
-        // const errStr = JSON.stringify(error);
+        if (error.message) {
+            errMsg = error.message
+        }
 
         if (error.response) {
             // Request made and server responded
             console.log(error.response.data);
             console.log(error.response.status);
             console.log(error.response.headers);
-            errMsg = `Error: ${error.response.data}`
+            errMsg = `${error.response.data}`
         }
 
         return errMsg;
@@ -185,23 +189,6 @@ class Utils {
     urlDetailsPattern = (entity) => API_URL_BASE + entity + URL_DETAILS
     urlOptionsPattern = (entity) => API_URL_BASE + entity + URL_OPTIONS
     urlSavePattern = (entity) => API_URL_BASE + entity + URL_SAVE
-
-    //     handleErrorResponse = (error, comp) => {
-    //         const [globalProps, setGlobalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert] = useGlobalVariable();
-    //         const errStr = JSON.stringify(error);
-    //         console.error(`Utils[][${comp}][ERROR] ${errStr}`)
-    //         if (error.status) {
-    //             //{"timestamp":"2020-08-24T23:57:30.853+00:00","status":401,"error":"Unauthorized","message":"Unauthorized","path":"/users/test/todos"}
-    //             console.error(`[Utils][${comp}][ERROR] ${error.status}: ${error.message}`)
-    //         } else {
-    //             console.error(`[Utils][${comp}][ERROR] ${error.name}: ${error.message}`)
-    //             console.error(`[Utils][${comp}][ERROR] stack ${error.stack}`)
-    //         }
-
-    //         //const errorMessage = `${error.name}: ${error.message}`;
-    //         //this.handleState('', errorMessage);
-    //         //console.error(error);
-    //     }
 }
 
 export default new Utils();

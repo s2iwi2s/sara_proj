@@ -50,8 +50,7 @@ const StudentDetailHtml = props => {
   return (
     <>
       <TitleComponent>Student Detail</TitleComponent>
-      {/* {counter > 0 && <Alert severity="error">Counter={counter}, Init Status: {props.store.initStatus}</Alert>} */}
-      {props.message && <Alert severity="error">{props.message}</Alert>}
+      {props.message && <Alert severity="info">{props.message}</Alert>}
 
 
       <form onSubmit={handleSubmit(props.onSubmitForm)}>

@@ -87,7 +87,7 @@ public class JwtAuthenticationRestController {
 		} catch (DisabledException e) {
 			throw new AuthenticationException("USER_DISABLED", e);
 		} catch (BadCredentialsException e) {
-			throw new AuthenticationException("INVALID_CREDENTIALS", e);
+			throw new AuthenticationException("Login in failed. Your User Name and Password do not match.", e);
 		}
 	}
 }

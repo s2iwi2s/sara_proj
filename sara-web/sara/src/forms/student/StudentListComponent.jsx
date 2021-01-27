@@ -2,16 +2,22 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 
-import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
+import { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
 import CustomTableGrid from '../common/CustomTableGrid';
 
 import { deleteItem, getList } from '../../api/student/StudentService'
 import { resetSelectedItem, selectPageable, setPageable, setSelectedItem } from '../../api/student/StudentSlice';
-import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
 import TitleComponent from '../common/TitleComponent';
+import { useMessageAlert } from "../../api/useMessageAlert"
 
 export default function StudentListComponent(props) {
-  const [, , showErrorAlert, ,] = useGlobalVariable();
+  const [,
+    ,
+    showErrorMsgAlert,
+    ,
+    ,
+    ,
+  ] = useMessageAlert();
 
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
@@ -34,14 +40,8 @@ export default function StudentListComponent(props) {
             totalPage: data.pagingList.totalPage
           }
         }))
-      }).catch(error => setError(error, ERROR_CODE.LIST_ERROR, 'StudentListComponent.retrieve', 'StudentService.getList'))
+      }).catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'StudentListComponent.retrieve', 'StudentService.getList'))
 
-
-  const setError = (error, errorCode, formMethod, serviceName) => {
-    console.error(`[StudentListComponent.setError]  error=`, error)
-    let errMsg = Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName)
-    showErrorAlert(errMsg)
-  }
 
 
   const doRetrieve = () => {
@@ -62,7 +62,7 @@ export default function StudentListComponent(props) {
   const doDelete = (id) => {
     deleteItem(id)
       .then(doRetrieve)
-      .catch(error => setError(error, ERROR_CODE.LIST_ERROR, 'StudentListComponent.doDelete', 'StudentService.deleteItem'))
+      .catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'StudentListComponent.doDelete', 'StudentService.deleteItem'))
   }
 
 

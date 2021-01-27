@@ -1,4 +1,7 @@
 
+
+
+
 export const resetSelectedItemCommon = (state, action, blankSelectedItem) => {
  state.selectedItem = {
   ...blankSelectedItem

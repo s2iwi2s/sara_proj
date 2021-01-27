@@ -26,7 +26,10 @@ import lombok.Setter;
 public class CodeGroups {
 	@Transient
     public static final String SEQUENCE_NAME = "code_groups_sequence";
-	
+	public CodeGroups(String id) {
+		super();
+		this.id = id;
+	}
 	public CodeGroups(Faker faker) {
 		super();
 		this.code = faker.lorem().word();

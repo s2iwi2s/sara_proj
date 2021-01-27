@@ -14,9 +14,11 @@ const blankPageable = {
 	}
 }
 const blankSelectedItem = {
+	period: { 'id': '' },
 	paymentPeriod: { 'id': '' },
 	optionsList: {
-		paymentPeriodList: []
+		paymentPeriodList: [],
+		periodList: []
 	}
 }
 export const AccountPayablesSettingsSlice = createSlice({
