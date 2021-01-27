@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import moment from 'moment'
 import { useForm } from 'react-hook-form'
-import { Box, Paper, Grid, TextField, Table, TableContainer, TableHead, TableCell, Divider, Typography, TableBody, Button, InputAdornment, MenuItem } from "@material-ui/core"
+import { Box, Paper, Grid, TextField, Table, TableContainer, TableHead, TableCell, TableBody, Button, InputAdornment } from "@material-ui/core"
 import SaveIcon from '@material-ui/icons/Save'
 import SubTitleComponent from '../common/SubTitleComponent'
 import SelectGrid from '../common/SelectGrid'
@@ -16,29 +16,49 @@ const PayablesHtmlComponent = (props) => {
   const [total, setTotal] = useState(0)
   const [payables, setPayables] = useState({})
   const [currentState, setCurrentState] = useState({
-    period: props.store.entity.school.currentPeriod
+    period: {
+      id: props.store.periodId
+    }
   })
 
   const changeSelectState = (e) => {
     const { name, value } = e.target
     console.log(`[PayablesHtmlComponent.changeSelectState] name=${name}, value=${value}`)
     setCurrentState({
-      ...currentState,
       [name]: { id: value }
     })
+    console.log(`[PayablesHtmlComponent.changeSelectState] currentState=>`, currentState)
   }
+
+
+  const changeSelectStateByPeriod = (e) => {
+    changeSelectState(e)
+    const { value } = e.target
+    // props.doUpdateCurrPageable({
+    //   ...props.store.studentPayables,
+    //   studentPayables: {
+    //     payables: []
+    //   },
+    //   searchFlag: true,
+    //   payablesFlag: false,
+    // })
+    props.doPayables(props.store.entity.id, value)
+  }
+
 
   useEffect(() => {
     console.log(`[PayablesHtmlComponent.useEffect] INIT_STATUS=${props.store.INIT_STATUS}, props.store=>`, props.store)
     console.log(`[PayablesHtmlComponent.useEffect] currentState => `, currentState)
+    console.log(`[PayablesHtmlComponent.useEffect] props.store.periodId => `, props.store.periodId)
     if (props.store.INIT_STATUS === INIT_STATUS.PAYABLES_RESET) {
       resetPayables();
       props.doUpdateCurrPageable({
         INIT_STATUS: INIT_STATUS.DONE
       })
       // setCurrentState({
-      //   ...currentState
+      //   period: { id: props.store.periodId }
       // })
+
       reset(props.store);
     }
   }, [props.store])
@@ -75,7 +95,7 @@ const PayablesHtmlComponent = (props) => {
     value = value ? value.replaceAll(',', '') : 0;
     el.value = formatter.format(value);
 
-    console.log(`[PayablesHtmlComponent.onPaymentChange] value = ${value}, payables => `, payables)
+    console.log(`[PayablesHtmlComponent.onPaymentBlur] value = ${value}, payables => `, payables)
     value = el.value;
     value = value ? value.replaceAll(',', '') : 0;
     let numValue = Number(value);
@@ -99,11 +119,12 @@ const PayablesHtmlComponent = (props) => {
       i++;
     }
     setTotal(formatter.format(total));
-    console.log(`[onPaymentBlur.onPaymentChange] total = ${total}, payables => `, payables)
+    console.log(`[PayablesHtmlComponent.onPaymentBlur] total = ${total}, payables => `, payables)
   }
 
   return (
     <>
+      {console.log(`[PayablesHtmlComponent.return] props.store => `, props.store)}
       <SubTitleComponent>Student Information</SubTitleComponent>
       <Paper elevation={3} variant="elevation" >
         <Box py={3} px={3}>
@@ -130,7 +151,7 @@ const PayablesHtmlComponent = (props) => {
             <SelectGrid sm={3} required name="period" label="Period"
               value={currentState.period.id}
               options={props.store.optionsList.periodList}
-              onChange={e => changeSelectState(e)} />
+              onChange={e => changeSelectStateByPeriod(e)} />
           </Grid>
         </Box>
         <TableContainer component={Paper} elevation={3} variant="elevation" >
@@ -147,8 +168,8 @@ const PayablesHtmlComponent = (props) => {
             <TableBody>
               {
                 props.store.studentPayables.payables.map((row, i) => (
-                  < StyledTableRow >
-                    <TableCell>{row.name}</TableCell>
+                  < StyledTableRow key={row.id}>
+                    <TableCell>{row.aps.label}</TableCell>
 
                     {row.code === 'balance' &&
                       <>
@@ -265,8 +286,8 @@ const PayablesHtmlComponent = (props) => {
                 <StyledTableHeadCell variant="head" style={{ width: "10%" }} >Date</StyledTableHeadCell>
                 <StyledTableHeadCell variant="head" style={{ width: "10%" }} >Invoice #</StyledTableHeadCell>
                 {
-                  props.store.billingByInvoice.gradeLevelPayables.accountPayablesSettings.map(({ id, description }) => (
-                    <StyledTableHeadCell key={id} variant="head" align="right">{description}</StyledTableHeadCell>
+                  props.store.billingByInvoice.accountPayablesSettings.map(({ id, label }) => (
+                    <StyledTableHeadCell key={id} variant="head" align="right">{label}</StyledTableHeadCell>
                   ))
                 }
               </StyledTableHeadRow>
@@ -275,10 +296,10 @@ const PayablesHtmlComponent = (props) => {
               {
                 props.store.billingByInvoice.list.map(({ invoiceNo, invoiceDate, payablesMap }) => (
                   < StyledTableRow >
-                    <TableCell>{moment(invoiceDate).format('YYYY-MM-DD')}</TableCell>
+                    <TableCell>{moment(invoiceDate).format('lll')}</TableCell>
                     <TableCell>{invoiceNo}</TableCell>
                     {
-                      props.store.billingByInvoice.gradeLevelPayables.accountPayablesSettings.map(({ id, description }) => (
+                      props.store.billingByInvoice.accountPayablesSettings.map(({ id }) => (
                         <TableCell key={id} align="right">{(payablesMap[id] ? payablesMap[id].payment : 0).toLocaleString(undefined, {
                           maximumFractionDigits: 2,
                           minimumFractionDigits: 2

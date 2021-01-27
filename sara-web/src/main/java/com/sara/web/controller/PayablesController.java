@@ -73,18 +73,44 @@ public class PayablesController {
 		return responseEntity;
 	}
 
-	@GetMapping(path = Constants.URL_BILLING_USER_PAYABLES, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Map<String, ?>> payables(@PathVariable("id") String id) throws Exception {
+//	@GetMapping(path = Constants.URL_BILLING_USER_PAYABLES, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public ResponseEntity<Map<String, ?>> payables(@PathVariable("id") String id) throws Exception {
+//		Map<String, Object> map = new HashMap<>();
+//
+//		Student student = studentServiceImpl.findById(id);
+//		map.put("student", student);
+//
+//		List<Payables> payables = payablesServiceImpl.getStudentPayables(student);
+//		StudentPayables studentPayables = new StudentPayables(payables, new ArrayList<Payables>(), null, null);
+//		map.put("studentPayables", studentPayables);
+//
+//		BillingByInvoice billingByInvoice = payablesServiceImpl.getBillingByInvoiceList(student);
+//		map.put("billingByInvoice", billingByInvoice);
+//
+//		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
+//		
+//		Map<String, Object> optionsList = new HashMap<>();
+//		List<CodeGroups> periodList = codeGroupsServiceImpl.findByCodeList("PERIOD", user.getSchool());
+//		optionsList.put("periodList", periodList);
+//		map.put("optionsList", optionsList);
+//		
+//
+//		ResponseEntity<Map<String, ?>> responseEntity = new ResponseEntity<>(map, HttpStatus.OK);
+//		return responseEntity;
+//	}
+	
+	@GetMapping(path = Constants.URL_BILLING_USER_PAYABLES_BY_PERIOD, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Map<String, ?>> payablesByPeriod(@PathVariable("id") String id, @PathVariable("periodId") String periodId) throws Exception {
 		Map<String, Object> map = new HashMap<>();
 
 		Student student = studentServiceImpl.findById(id);
 		map.put("student", student);
 
-		List<Payables> payables = payablesServiceImpl.getStudentPayables(student);
+		List<Payables> payables = payablesServiceImpl.getStudentPayables(student, periodId);
 		StudentPayables studentPayables = new StudentPayables(payables, new ArrayList<Payables>(), null, null);
 		map.put("studentPayables", studentPayables);
 
-		BillingByInvoice billingByInvoice = payablesServiceImpl.getBillingByInvoiceList(student);
+		BillingByInvoice billingByInvoice = payablesServiceImpl.getBillingByInvoiceList(student, periodId);
 		map.put("billingByInvoice", billingByInvoice);
 
 		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
@@ -99,9 +125,9 @@ public class PayablesController {
 		return responseEntity;
 	}
 
-	@PostMapping(path = Constants.URL_SAVE + "/{id}")
+	@PostMapping(path = Constants.URL_SAVE + "/{id}/period/{periodId}")
 	public ResponseEntity<Map<String, ?>> savePayables(@RequestBody List<Payables> payableList,
-			@PathVariable("id") String id) throws Exception {
+			@PathVariable("id") String id, @PathVariable("periodId") String periodId) throws Exception {
 		log.debug("payableList=>{}", payableList);
 
 		Map<String, Object> map = new HashMap<>();
@@ -111,14 +137,21 @@ public class PayablesController {
 
 		map.put("student", student);
 
-		StudentPayables studentPayables = payablesServiceImpl.savePayables(payableList, student);
+		StudentPayables studentPayables = payablesServiceImpl.savePayables(payableList, student, periodId);
 		map.put("studentPayables", studentPayables);
 
-		BillingByInvoice billingByInvoice = payablesServiceImpl.getBillingByInvoiceList(student);
+		BillingByInvoice billingByInvoice = payablesServiceImpl.getBillingByInvoiceList(student, periodId);
 		map.put("billingByInvoice", billingByInvoice);
+		
+		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
+		Map<String, Object> optionsList = new HashMap<>();
+		List<CodeGroups> periodList = codeGroupsServiceImpl.findByCodeList("PERIOD", user.getSchool());
+		optionsList.put("periodList", periodList);
+		map.put("optionsList", optionsList);
 
 		ResponseEntity<Map<String, ?>> responseEntity = new ResponseEntity<>(map, HttpStatus.OK);
 		return responseEntity;
 	}
+	
 
 }

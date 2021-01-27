@@ -10,7 +10,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import AddIcon from '@material-ui/icons/Add';
 import Alert from '@material-ui/lab/Alert';
 
-import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
+import { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
 
 import { selectSelectedItem, resetSelectedItem, setPageableEntity } from '../../api/codeGroups/CodeGroupsSlice';
 import { save } from '../../api/codeGroups/CodeGroupsService';
@@ -47,12 +47,12 @@ export default function CodeGroupsDetailComponent(props) {
   const doSave = data => {
     setMessage(`Saving...`);
     save(data)
-    .then(response => {
-      dispatch(setPageableEntity(response.data.entity))
-      setMessage('')
-      history.push(PAGE_URL.CODE_GROUPS_LIST)
-    })
-    .catch(error => showErrorMsgAlert(error, ERROR_CODE.SAVE_ERROR, 'CodeGroupsDetailComponent.save', 'CodeGroupsService.save'))
+      .then(response => {
+        dispatch(setPageableEntity(response.data.entity))
+        setMessage('')
+        history.push(PAGE_URL.CODE_GROUPS_LIST)
+      })
+      .catch(error => showErrorMsgAlert(error, ERROR_CODE.SAVE_ERROR, 'CodeGroupsDetailComponent.save', 'CodeGroupsService.save'))
   }
 
   return (

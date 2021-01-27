@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 
 
-import Utils, { PAGE_URL, INIT_STATUS, ERROR_CODE } from '../../api/Utils'
+import { PAGE_URL, INIT_STATUS, ERROR_CODE } from '../../api/Utils'
 import CustomTableGrid from '../common/CustomTableGrid';
 
 import { deleteItem, getList } from '../../api/endUser/EndUserService';

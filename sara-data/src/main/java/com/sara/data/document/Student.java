@@ -24,15 +24,15 @@ import lombok.Setter;
 @TypeAlias("Student")
 public class Student {
 	@Transient
-    public static final String SEQUENCE_NAME = "student_sequence";
-    public static final String SEQUENCE_STUDENT_ID = "student_id_sequence";
+	public static final String SEQUENCE_NAME = "student_sequence";
+	public static final String SEQUENCE_STUDENT_ID = "student_id_sequence";
 
 	@Id
 	private String id;
 
 	private String lrn;
 	private String studentId;
-	
+
 	private String firstName;
 	private String gender;
 	private String contactNo;
@@ -54,15 +54,21 @@ public class Student {
 	private String mothersOccupation;
 	private String parentCivilStatus;
 	private String guardianName;
-	
-	
-	
-	
+
 	@DBRef
 	private CodeGroups level;
 
 	@DBRef(lazy = true)
 	private School school;
+
+	@Transient
+	public String getSchoolYear() {
+		if (school != null && school.getCurrentPeriod() != null && school.getCurrentPeriod().getValue() != null) {
+			return school.getCurrentPeriod().getValue();
+		}
+		
+		return "";
+	}
 
 	@Override
 	public String toString() {

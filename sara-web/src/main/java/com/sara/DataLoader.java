@@ -61,7 +61,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 	
 	private School initSchool() {
 		School school = new School(null, "ST. LORENZO RUIZ ACADEMY OF TAGUM, INC."
-				, "2020-2021", "stlorenzoruiz", "Tagum City, Davao del Norte");
+				, "stlorenzoruiz", "Tagum City, Davao del Norte");
 		
 		school = schoolMongoRepository.save(school);
 		

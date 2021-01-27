@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Utils, { ERROR_CODE, PAGE_URL } from '../../api/Utils'
+import { ERROR_CODE, PAGE_URL } from '../../api/Utils'
 import StudentDetailHtml from './StudentDetailHtml.js';
 import { save, getOptions } from '../../api/student/StudentService'
 import { selectSelectedItem, setOptionsList, setPageableEntity, resetSelectedItem } from '../../api/student/StudentSlice';

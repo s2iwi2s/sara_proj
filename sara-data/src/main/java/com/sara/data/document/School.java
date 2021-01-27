@@ -29,7 +29,6 @@ public class School {
 	private String id;
 
 	private String name;
-	private String schoolYear;
 
 	@DBRef
 	private CodeGroups currentPeriod;
@@ -49,15 +48,14 @@ public class School {
 
 	@Override
 	public String toString() {
-		return String.format("School [id=%s, name=%s, currentPeriod=%s, schoolYear=%s, logo=%s, address=%s]", id, name, getCurrentPeriodDesc(), schoolYear, logo,
+		return String.format("School [id=%s, name=%s, currentPeriod=%s, logo=%s, address=%s]", id, name, getCurrentPeriodDesc(), logo,
 				address);
 	}
 
-	public School(String id, String name, String schoolYear, String logo, String address) {
+	public School(String id, String name, String logo, String address) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.schoolYear = schoolYear;
 		this.logo = logo;
 		this.address = address;
 	}

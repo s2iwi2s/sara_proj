@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { resetSelectedItemCommon, setPageableCommon, setPageableEntityCommon, setSelectedItemCommon, updateSelectedItemCommon } from '../CommonSlice';
+import { resetSelectedItemCommon, setPageableCommon, setPageableEntityCommon, updateSelectedItemCommon } from '../CommonSlice';
 import { defaultPageable } from '../Utils'
 
 const blankPageable = {

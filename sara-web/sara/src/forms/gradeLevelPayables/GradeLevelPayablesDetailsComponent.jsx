@@ -11,7 +11,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Alert from '@material-ui/lab/Alert';
 import WarningIcon from '@material-ui/icons/Warning';
 
-import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
+import { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
 import GradeLevelAccountPayablesSettingsListComponent from './GradeLevelAccountPayablesSettingsListComponent'
 import CustomTableGrid from '../common/CustomTableGrid';
 import SelectGrid from '../common/SelectGrid';
@@ -149,6 +149,16 @@ export default function GradeLevelPayablesDetailsComponent(props) {
       return (<>
         {row.status === 'NEW' && <>{row.description} <WarningIcon fontSize="small" /></>}
         {row.status !== 'NEW' && row.description}
+      </>);
+    }
+  },
+  {
+    headerName: 'Period',
+    render: function (row) {
+      // return row.period.description;
+      return (<>
+        {row.period.id !== selectedItem.period.id && <>{row.period.description} <WarningIcon fontSize="small" /></>}
+        {row.period.id === selectedItem.period.id && row.period.description}
       </>);
     }
   },

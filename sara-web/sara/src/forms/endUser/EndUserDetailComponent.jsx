@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { getOptions, save } from '../../api/endUser/EndUserService';
 import EndUserDetailHtml from './EndUserDetailHtml';
-import Utils, { ERROR_CODE, PAGE_URL } from '../../api/Utils'
+import { ERROR_CODE, PAGE_URL } from '../../api/Utils'
 import { resetSelectedItem, selectSelectedItem, setOptionsList, setPageableEntity } from '../../api/endUser/UsersSlice';
 import { useMessageAlert } from "../../api/useMessageAlert"
 

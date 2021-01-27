@@ -34,6 +34,7 @@ public class AccountPayablesSettings {
 	@Id
 	private String id;
 	
+	private String label;
 	private String description;
 	private Double amount;
 	private Short priority;

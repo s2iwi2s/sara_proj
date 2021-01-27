@@ -10,7 +10,7 @@ import SaveIcon from '@material-ui/icons/Save'
 import AddIcon from '@material-ui/icons/Add'
 import Alert from '@material-ui/lab/Alert'
 
-import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils'
+import { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils'
 import TitleComponent from '../common/TitleComponent'
 
 import { save, getOptions } from '../../api/school/SchoolService'

@@ -42,7 +42,6 @@ public class Payables {
 		this.student = student;
 		this.balance = balance;
 		this.paid = paid;
-		this.schoolYear = student.getSchool().getSchoolYear();
 	}
 	public Payables(AccountPayablesSettings aps, Student student) {
 		this.aps = aps;
@@ -66,7 +65,6 @@ public class Payables {
 	private Date invoiceDate;
 	private String code;
 	private String name;
-	private String schoolYear;
 	
 	@DBRef(lazy = true)
 	private CodeGroups period;
@@ -98,8 +96,8 @@ public class Payables {
 
 	@Override
 	public String toString() {
-		return String.format("Payables [id=%s, code=%s, name=%s, schoolYear=%s, amount=%s, payment=%s, balance=%s, paid=%s]",
-				id, code, name, schoolYear, amount, payment, balance, paid);
+		return String.format("Payables [id=%s, code=%s, name=%s, amount=%s, payment=%s, balance=%s, paid=%s]",
+				id, code, name, amount, payment, balance, paid);
 	}
 
 }
