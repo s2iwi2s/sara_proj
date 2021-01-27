@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead } from '@material-ui/core';
 
@@ -19,7 +18,7 @@ const SearchResultsHtmlComponent = (props) => {
 
  const doEditUser = id => history.push(PAGE_URL.STUDENT_DETAIL_URL + '/' + id)
 
- const doShowPayables = row => props.doPayables(row)
+ const doShowPayables = (row) => props.doPayables(row.id, row.school.currentPeriod.id)
 
  const CustomTableHead = () => {
   return (<>

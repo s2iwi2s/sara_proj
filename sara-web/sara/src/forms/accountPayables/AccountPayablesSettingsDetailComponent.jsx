@@ -3,16 +3,16 @@ import { Controller, useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Button, Grid, MenuItem, TextField, Typography } from '@material-ui/core';
+import { Button, Grid, MenuItem, TextField } from '@material-ui/core';
 
 import CancelIcon from '@material-ui/icons/Cancel';
 import SaveIcon from '@material-ui/icons/Save';
 import AddIcon from '@material-ui/icons/Add';
 import Alert from '@material-ui/lab/Alert';
 
-import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
+import { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
 
-import { selectSelectedItem, updateSelectedItem, resetSelectedItem, setPageableEntity, setOptionsList } from '../../api/accountPayablesSettings/AccountPayablesSettingsSlice';
+import { selectSelectedItem, resetSelectedItem, setPageableEntity, setOptionsList } from '../../api/accountPayablesSettings/AccountPayablesSettingsSlice';
 import { save, getOptions } from '../../api/accountPayablesSettings/AccountPayablesSettingsService';
 import TitleComponent from '../common/TitleComponent';
 import { useMessageAlert } from "../../api/useMessageAlert"
@@ -32,6 +32,7 @@ export default function AccountPayablesSettingsDetailComponent(props) {
   const history = useHistory();
   const { control, register, handleSubmit } = useForm({
     'id': '',
+    'label': '',
     'description': 'test',
     'paymentPeriod': { 'id': '' },
     'amount': 0,
@@ -112,7 +113,7 @@ export default function AccountPayablesSettingsDetailComponent(props) {
           defaultValue={selectedItem.id}
         />
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             <TextField
               required
               id="description"
@@ -125,6 +126,22 @@ export default function AccountPayablesSettingsDetailComponent(props) {
               InputLabelProps={{ shrink: true }}
               inputRef={register}
               defaultValue={selectedItem.description}
+            />
+          </Grid>
+
+          <Grid item xs={12} sm={2}>
+            <TextField
+              required
+              id="label"
+              name="label"
+              label="Label"
+              fullWidth
+              autoComplete="account-payables-settings-label"
+              autoFocus
+              variant="filled"
+              InputLabelProps={{ shrink: true }}
+              inputRef={register}
+              defaultValue={selectedItem.label}
             />
           </Grid>
 

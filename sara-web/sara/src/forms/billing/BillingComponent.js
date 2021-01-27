@@ -4,12 +4,12 @@ import moment from 'moment';
 import { Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 
-import Utils, { ERROR_CODE, formatter, INIT_STATUS } from '../../api/Utils'
+import { ERROR_CODE, formatter, INIT_STATUS } from '../../api/Utils'
 
 import BillingHtmlComponent from './BillingHtmlComponent';
 import SavePayablesConfimationHtml from './SavePayablesConfimationHtml';
 
-import { getListBy, getStudentPayables, save } from '../../api/billing/BillingService'
+import { getListBy, getStudentPayablesByPeriod, save } from '../../api/billing/BillingService'
 import { optionsList, selectPageable, setPageable, updatePageable } from '../../api/billing/BillingSlice';
 import { useMessageAlert } from "../../api/useMessageAlert"
 
@@ -53,7 +53,7 @@ export default function BillingComponent() {
 
 
   const doInitFormData = data => {
-    data.optionsList = optionsList;
+    //data.optionsList = optionsList;
 
     if (!data.currentPage) {
       data.paging = {
@@ -153,10 +153,11 @@ export default function BillingComponent() {
   const doUpdateCurrPageable = (formData) => {
     dispatch(updatePageable(formData))
   }
-  const doPayables = row => {
-    getStudentPayables(row.id).then(response => {
-      console.log(`[BillingComponent.doPayables BillingService.getStudentPayables] response==>`, response)
-      console.log(`[BillingComponent.doPayables BillingService.getStudentPayables] response.data.optionsList==>`, response.data.optionsList)
+  const doPayables = (id, periodId) => {
+    console.log(`[BillingComponent.doPayables BillingService.getStudentPayablesByPeriod] id=${id}, periodId=${periodId}`)
+    getStudentPayablesByPeriod(id, periodId).then(response => {
+      console.log(`[BillingComponent.doPayables BillingService.getStudentPayablesByPeriod] response==>`, response)
+      console.log(`[BillingComponent.doPayables BillingService.getStudentPayablesByPeriod] response.data.optionsList==>`, response.data.optionsList)
       let payables = response.data.studentPayables.payables;
       payables.map((row) => {
         // let value = row.payment ? row.payment.replaceAll(',', '') : 0;
@@ -172,6 +173,7 @@ export default function BillingComponent() {
       let formData = {
         INIT_STATUS: INIT_STATUS.RESET,
         entity: response.data.student,
+        periodId: periodId,
         studentPayables: {
           ...response.data.studentPayables,
           payables: payables
@@ -188,8 +190,10 @@ export default function BillingComponent() {
 
       console.log(`[BillingComponent.doPayables BillingService.getStudentPayables] formData==>`, formData)
       doUpdateCurrPageable(formData)
+
+
     })
-      .catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'BillingComponent.doRetrieve', 'BillingService.getListBy'));
+      .catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'BillingComponent.doPayables', 'BillingService.getStudentPayables'));
   }
   const doShowSaveConfirmDialog = (data) => {
     console.log(`[BillingComponent.doShowSaveConfirmDialog] data==>`, data);
@@ -228,11 +232,12 @@ export default function BillingComponent() {
         payablesByInvoiceNo: [],
         paymentTotal: paymentTotal,
         balanceTotal: balanceTotal - paymentTotal,
-        invoiceNo: ''
+        invoiceNo: '',
+        periodId: currPageable.periodId
       }
       doInitConfirmStore(confirmStoreTemp);
 
-      console.log(`[BillingComponent.doSavePayables] confirmStoreTemp==>`, confirmStoreTemp);
+      console.log(`[BillingComponent.doShowSaveConfirmDialog] confirmStoreTemp==>`, confirmStoreTemp);
       setConfirmStore(confirmStoreTemp);
     }
 
@@ -245,7 +250,7 @@ export default function BillingComponent() {
   const doSavePayables = (data) => {
     console.log(`[BillingComponent.doSavePayables] data==>`, data);
 
-    save(data.payables, data.entity.id).then(response => {
+    save(data.payables, data.entity.id, data.periodId).then(response => {
       console.log(`[BillingComponent.doSavePayables BillingService.save] response==>`, response)
       let formData = {
         INIT_STATUS: INIT_STATUS.PAYABLES_RESET,
@@ -255,12 +260,15 @@ export default function BillingComponent() {
         payablesFlag: true,
       }
 
+      console.log(`[BillingComponent.doSavePayables BillingService.save] 1 formData==>`, formData)
       doInitFormData(formData);
+      console.log(`[BillingComponent.doSavePayables BillingService.save] 2 formData==>`, formData)
       dispatch(updatePageable(formData));
-
+      console.log(`[BillingComponent.doSavePayables BillingService.save] 3 formData==>`, formData)
       let payablesByInvoiceNo = [
         //...response.data.studentPayables.payablesByInvoiceNo
       ]
+      console.log(`[BillingComponent.doSavePayables BillingService.save] 0 payablesByInvoiceNo==>`, payablesByInvoiceNo)
       for (const row of response.data.studentPayables.payablesByInvoiceNo) {
         let temp = {
           ...row
@@ -268,7 +276,7 @@ export default function BillingComponent() {
         payablesByInvoiceNo.push(temp)
       }
 
-      console.log(`[BillingComponent.doSavePayables BillingService.save] payablesByInvoiceNo==>`, payablesByInvoiceNo)
+      console.log(`[BillingComponent.doSavePayables BillingService.save] 1 payablesByInvoiceNo==>`, payablesByInvoiceNo)
 
       let paymentTotal = 0;
       payablesByInvoiceNo.map((row) => {
@@ -276,7 +284,7 @@ export default function BillingComponent() {
         paymentTotal += row.paid;
         return row
       });
-      console.log(`[BillingComponent.doSavePayables BillingService.save] payablesByInvoiceNo==>`, payablesByInvoiceNo)
+      console.log(`[BillingComponent.doSavePayables BillingService.save] 2 payablesByInvoiceNo==>`, payablesByInvoiceNo)
 
       setConfirmStore({
         ...confirmStore,

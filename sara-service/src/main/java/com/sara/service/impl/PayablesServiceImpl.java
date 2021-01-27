@@ -55,18 +55,21 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 	private StudentServiceImpl studentServiceImpl;
 	private GradeLevelPayablesServiceImpl gradeLevelPayablesServiceImpl;
 	private AccountPayablesSettingsMongoRepository accountPayablesSettingsMongoRepository;
+	private CodeGroupsServiceImpl codeGroupsServiceImpl;
 
 	private MongoTemplate mongoTemplate;
 
 	public PayablesServiceImpl(PayablesMongoRepository repo, SequenceGeneratorService sequenceGeneratorService,
-			MongoTemplate mongoTemplate, CodeGroupsServiceImpl codeGroupsServiceImpl,
-			StudentServiceImpl studentServiceImpl, GradeLevelPayablesServiceImpl gradeLevelPayablesServiceImpl,
-			AccountPayablesSettingsMongoRepository accountPayablesSettingsMongoRepository) {
+			MongoTemplate mongoTemplate, StudentServiceImpl studentServiceImpl,
+			GradeLevelPayablesServiceImpl gradeLevelPayablesServiceImpl,
+			AccountPayablesSettingsMongoRepository accountPayablesSettingsMongoRepository,
+			CodeGroupsServiceImpl codeGroupsServiceImpl) {
 		super(repo, sequenceGeneratorService);
 		this.studentServiceImpl = studentServiceImpl;
 		this.mongoTemplate = mongoTemplate;
 		this.gradeLevelPayablesServiceImpl = gradeLevelPayablesServiceImpl;
 		this.accountPayablesSettingsMongoRepository = accountPayablesSettingsMongoRepository;
+		this.codeGroupsServiceImpl = codeGroupsServiceImpl;
 	}
 
 	@Override
@@ -99,10 +102,11 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 		return super.save(entity, school);
 	}
 
-	public StudentPayables savePayables(List<Payables> list, Student student) throws Exception {
+	public StudentPayables savePayables(List<Payables> list, Student student, String periodId) throws Exception {
+		CodeGroups period = codeGroupsServiceImpl.findById(periodId);
+
 		double remainingAmt = 0;
 		student = studentServiceImpl.findById(student.getId());
-		String schoolYear = student.getSchool().getSchoolYear();
 		for (Payables p : list) {
 			double payment = p.getPayment() + remainingAmt;
 			double balance = p.getAmount() - p.getPaid();
@@ -115,15 +119,13 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 				remainingAmt = 0;
 			}
 			p.setStudent(student);
-			p.setSchoolYear(schoolYear);
 		}
 
 		Date invoiceDate = new Date();
-		String invoiceNo = this.save(list, invoiceDate, student.getSchool().getCurrentPeriod());
+		String invoiceNo = this.save(list, invoiceDate, period);
 
 		List<Payables> payables = getStudentPayables(student);
-		List<Payables> payablesByInvoiceNo = getStudentPayables(student, student.getSchool().getCurrentPeriod(),
-				invoiceNo);
+		List<Payables> payablesByInvoiceNo = getStudentPayables(student, period, invoiceNo);
 
 		return new StudentPayables(payables, payablesByInvoiceNo, invoiceNo, invoiceDate);
 	}
@@ -137,9 +139,15 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 		return getStudentPayables(student, student.getSchool().getCurrentPeriod(), null);
 	}
 
+	public List<Payables> getStudentPayables(Student student, String periodId)
+			throws GradeLevelPayablesResponseException {
+		CodeGroups period = codeGroupsServiceImpl.findById(periodId);
+		return getStudentPayables(student, period, null);
+	}
+
 	public List<Payables> getStudentPayables(Student student, CodeGroups period, String invoiceNo)
 			throws GradeLevelPayablesResponseException {
-		List<Payables> payablesTmpl = getStudentPayablesTemplate(student);
+		List<Payables> payablesTmpl = getStudentPayablesTemplate(student, period);
 		List<PaymentInfo> totalPayableList = findPaymentSumByStudent(student, period);
 
 		List<Payables> payableList = new ArrayList<Payables>();
@@ -175,26 +183,12 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 			}
 		}
 
-//		Optional<PaymentInfo> balPayable = sumPayableList.stream().filter(p -> {
-//			return p.getCode().equals("balance");
-//		}).findFirst();
-//
-//		if (balPayable.isPresent()) {
-//			PaymentInfo payInfo = balPayable.get();
-//			payableList.add(new Payables(payInfo.getCode(), payInfo.getName(), 0, payInfo.getPayment(),
-//					payableList.size(), student, 0, 0));
-//		}
-
 		return payableList;
 	}
 
-	public List<Payables> getStudentPayablesTemplate(String id) throws GradeLevelPayablesResponseException {
-		Student student = studentServiceImpl.findById(id);
-		return getStudentPayablesTemplate(student);
-	}
-
-	public List<Payables> getStudentPayablesTemplate(Student student) throws GradeLevelPayablesResponseException {
-		GradeLevelPayables gradeLevelPayables = gradeLevelPayablesServiceImpl.findByLevel(student.getLevel(), student.getSchool().getCurrentPeriod());
+	public List<Payables> getStudentPayablesTemplate(Student student, CodeGroups period) throws GradeLevelPayablesResponseException {
+		GradeLevelPayables gradeLevelPayables = gradeLevelPayablesServiceImpl.findByLevel(student.getLevel(),
+				period);
 
 		List<Payables> payableList = new ArrayList<Payables>();
 		for (AccountPayablesSettings aps : gradeLevelPayables.getAccountPayablesSettings()) {
@@ -234,9 +228,8 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 //		Student student = studentServiceImpl.findById(id);
 //		return findPaymentSumByStudent(student, student.getSchool().getSchoolYear(), null);
 //	}
-	public List<Payables> findPaymentByStudent(Student student) {
-		return ((PayablesMongoRepository) repo).findByStudentAndSchoolYear(student,
-				student.getSchool().getSchoolYear());
+	public List<Payables> findPaymentByStudent(Student student, CodeGroups period) {
+		return ((PayablesMongoRepository) repo).findByStudentAndPeriod(student, period);
 	}
 
 	public List<PaymentInfo> findPaymentSumByStudent(Student student, CodeGroups period) {
@@ -267,27 +260,29 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 		return list;
 	}
 
-	public BillingByInvoice getBillingByInvoiceList(Student student) throws GradeLevelPayablesResponseException {
-		GradeLevelPayables gradeLevelPayables = gradeLevelPayablesServiceImpl.findByLevel(student.getLevel(),
-				student.getSchool().getCurrentPeriod());
+	public BillingByInvoice getBillingByInvoiceList(Student student, String periodId)
+			throws GradeLevelPayablesResponseException {
+		CodeGroups period = codeGroupsServiceImpl.findById(periodId);
+
+		GradeLevelPayables gradeLevelPayables = gradeLevelPayablesServiceImpl.findByLevel(student.getLevel(), period);
 		List<AccountPayablesSettings> accountPayablesSettings = gradeLevelPayables.getAccountPayablesSettings();
 		accountPayablesSettings.sort(Comparator.comparing(AccountPayablesSettings::getPriority));
-		
-		List<Payables> payments = findPaymentByStudent(student);
-		payments.sort(Comparator.comparing(Payables::getInvoiceDate,Collections.reverseOrder()));
-		
+
+		List<Payables> payments = findPaymentByStudent(student, period);
+		payments.sort(Comparator.comparing(Payables::getInvoiceDate, Collections.reverseOrder()));
+
 		Map<String, Invoice> mapper = new HashMap<>();
 		List<Invoice> list = new ArrayList<>();
 		for (Payables payables : payments) {
 			String invoiceNo = payables.getInvoiceNo();
 			Invoice invoice = mapper.get(invoiceNo);
 			if (invoice == null) {
-				invoice = new Invoice(invoiceNo,payables.getInvoiceDate(), new HashMap<String, Payables>());
+				invoice = new Invoice(invoiceNo, payables.getInvoiceDate(), new HashMap<String, Payables>());
 				mapper.put(invoiceNo, invoice);
 				list.add(invoice);
 			}
 			invoice.getPayablesMap().put(payables.getCode(), payables);
 		}
-		return new BillingByInvoice(gradeLevelPayables, list);
+		return new BillingByInvoice(gradeLevelPayables.getAccountPayablesSettings(), list);
 	}
 }

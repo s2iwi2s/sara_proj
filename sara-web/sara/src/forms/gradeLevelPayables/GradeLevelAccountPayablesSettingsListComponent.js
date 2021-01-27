@@ -4,7 +4,7 @@ import { IconButton } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import { getActiveList } from '../../api/accountPayablesSettings/AccountPayablesSettingsService';
 import CustomTableGrid from '../common/CustomTableGrid'
-import Utils, { ERROR_CODE } from '../../api/Utils';
+import { ERROR_CODE } from '../../api/Utils';
 import { useMessageAlert } from "../../api/useMessageAlert"
 
 export default function GradeLevelAccountPayablesSettingsListComponent(props) {

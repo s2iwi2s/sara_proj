@@ -9,6 +9,7 @@ export default function LogoutComponent() {
         ,
         ,
         ,
+        ,
         logout] = useAuthServices()
 
     useEffect(() => {

@@ -27,6 +27,7 @@ public class Constants {
 
 	public static final String URL_BILLING_USER_SEARCH = "/search/{by}";
 	public static final String URL_BILLING_USER_PAYABLES = "/payables/{id}";
+	public static final String URL_BILLING_USER_PAYABLES_BY_PERIOD = "/payables/{id}/period/{periodId}";
 
 	public static final String URL_LOGO = "/r/logo/{logo}";
 

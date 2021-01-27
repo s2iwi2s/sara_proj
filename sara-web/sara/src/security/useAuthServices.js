@@ -8,6 +8,13 @@ let myInterceptor
 export const useAuthServices = () => {
  const [userObj, setUserObj] = useAuth();
 
+ const initialize = () => {
+  if (isUserLoggedIn()) {
+   let jwtTokenHeader = getJwtTokenHeader()
+   setupAxiosInterceptors(jwtTokenHeader);
+  }
+ }
+
  const executeJwtAuthenticationService = (username, password) => {
   console.log('[useAuthServices.executeJwtAuthenticationService]');
 
@@ -57,11 +64,11 @@ export const useAuthServices = () => {
 
  const getLoggedUserObj = () => {
   let user = JSON.parse(sessionStorage.getItem(AUTH_USER_OBJ));
-  console.log('[useAuthServices.getLoggedUserObj] 1 user=>', user);
+  console.error('[useAuthServices.getLoggedUserObj] 1 user=>', user);
   if (!user) {
    user = USER_TEMP;
   }
-  console.log('[useAuthServices.getLoggedUserObj] 2 user=>', user);
+  console.error('[useAuthServices.getLoggedUserObj] 2 user=>', user);
   return user;
   // return {}
  }
@@ -77,6 +84,7 @@ export const useAuthServices = () => {
  }
 
  return [
+  initialize,
   executeJwtAuthenticationService,
   registerJwtSucessfulLogin,
   getLoggedUserObj,

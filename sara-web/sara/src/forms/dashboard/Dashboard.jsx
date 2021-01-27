@@ -15,11 +15,12 @@ export default function Dashboard() {
   console.log(`[Dashboard] process.env.NODE_ENV= ${process.env.NODE_ENV}`)
   console.log(`[Dashboard] URL_BASE= ${URL_BASE}`)
 
-  const [
+  const [,
     ,
     ,
     ,
     isUserLoggedIn,
+
   ] = useAuthServices()
   const isLogin = isUserLoggedIn()
 

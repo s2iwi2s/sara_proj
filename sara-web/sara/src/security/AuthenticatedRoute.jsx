@@ -6,7 +6,9 @@ const AuthenticatedRoute = (props) => {
     const [,
         ,
         ,
+        ,
         isUserLoggedIn,
+
     ] = useAuthServices()
 
     const isLoggedin = isUserLoggedIn()

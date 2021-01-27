@@ -59,16 +59,16 @@ public class StudentServiceImpl extends AbstractService<Student, String> {
 		}
 		entity.setSchool(school);
 
-		if (StringUtils.isBlank(entity.getStudentId())) {
-			String studentId = sequenceGeneratorService.nextSeq(school.getSchoolYear().replaceAll("-", ""),
-					Student.SEQUENCE_STUDENT_ID);
-			entity.setStudentId(studentId);
-		}
-		entity = super.save(entity, school);
 		if (!StringUtils.isBlank(entity.getLevel().getId())) {
 			CodeGroups level = codeGroupsServiceImpl.findById(entity.getLevel().getId());
 			entity.setLevel(level);
 		}
+		if (StringUtils.isBlank(entity.getStudentId())) {
+			String studentId = sequenceGeneratorService.nextSeq(entity.getSchoolYear().replaceAll("-", ""),
+					Student.SEQUENCE_STUDENT_ID);
+			entity.setStudentId(studentId);
+		}
+		entity = super.save(entity, school);
 		return entity;
 	}
 

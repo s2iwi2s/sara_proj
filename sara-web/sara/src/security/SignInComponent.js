@@ -17,7 +17,7 @@ export default function SignInComponent() {
     ,
   ] = useMessageAlert();
 
-  const [
+  const [,
     executeJwtAuthenticationService,
     registerJwtSucessfulLogin,
     ,

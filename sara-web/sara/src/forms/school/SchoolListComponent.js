@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
 
-import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils'
+import { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils'
 import { deleteItem, getList } from '../../api/school/SchoolService'
 import CustomTableGrid from '../common/CustomTableGrid'
 

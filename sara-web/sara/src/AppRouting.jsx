@@ -72,21 +72,27 @@ const useStylesRouting = makeStyles((theme) => ({
 }));
 
 const AppRouting = () => {
- const [,
+
+
+ const [initialize,
+  ,
   ,
   getLoggedUserObj,
-  ,
  ] = useAuthServices()
 
 
  const [userObj, setUserObj] = useAuth();
 
  useEffect(() => {
-  console.log(`[AppRouting.useEffect] userObj=>`, userObj)
+  console.log(`[AppRouting.useEffect] 1 userObj=>`, userObj)
   initTheme();
 
   //initialize user
-  setUserObj(getLoggedUserObj());
+  initialize()
+  let lu = getLoggedUserObj()
+  // console.log(`[AppRouting.useEffect] 2 lu=>`, lu)
+  setUserObj(lu);
+  // console.log(`[AppRouting.useEffect] 3 userObj=>`, userObj)
  }, []);
 
  const initTheme = () => {
@@ -96,15 +102,16 @@ const AppRouting = () => {
 
  const [darkMode, setDarkMode] = useState(false);
 
+ const toggleDarkMode = () => {
+  setDarkMode(!darkMode);
+  localStorage.setItem(THEME.THEME_STORAGE_NAME, !darkMode ? 'Y' : 'N');
+ }
+
  const theme = createMuiTheme({
   palette: {
    type: darkMode ? THEME.DARK_MODE : THEME.LIGHT_MODE,
   },
  });
- const toggleDarkMode = () => {
-  setDarkMode(!darkMode);
-  localStorage.setItem(THEME.THEME_STORAGE_NAME, !darkMode ? 'Y' : 'N');
- }
 
  // render = () => {
  const classes = useStylesRouting();

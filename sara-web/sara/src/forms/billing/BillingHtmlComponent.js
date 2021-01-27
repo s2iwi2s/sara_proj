@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { Box, Button, Grid, MenuItem, Paper, TextField, Typography, Select } from '@material-ui/core';
@@ -12,11 +12,9 @@ import TitleComponent from '../common/TitleComponent';
 
 export default function BillingHtmlComponent(props) {
         const { control, register, handleSubmit, reset } = useForm();
-        const [counter, setCounter] = useState(0);
 
         useEffect(() => {
-                setCounter(counter + 1);
-                console.log(`[BillingHtmlComponent.useEffect] counter=${counter}, INIT_STATUS=${props.store.INIT_STATUS}, props.store=>`, props.store)
+                console.log(`[BillingHtmlComponent.useEffect] INIT_STATUS=${props.store.INIT_STATUS}, props.store=>`, props.store)
                 // if (props.store.INIT_STATUS === INIT_STATUS.PAYABLES) {
                 //         props.doPayables();
                 // } else if (props.store.INIT_STATUS === INIT_STATUS.RESET) {
@@ -29,7 +27,7 @@ export default function BillingHtmlComponent(props) {
 
         return (
                 <>
-                        {console.log(`[BillingHtmlComponent.return] counter=${counter}, INIT_STATUS=${props.store.INIT_STATUS}, props.store=>`, props.store)}
+                        {console.log(`[BillingHtmlComponent.return], INIT_STATUS=${props.store.INIT_STATUS}, props.store=>`, props.store)}
                         <TitleComponent>Payment</TitleComponent>
 
                         <form onSubmit={handleSubmit(props.doRetrieve)}>
@@ -78,6 +76,7 @@ export default function BillingHtmlComponent(props) {
                                         onChangePage={props.onChangePage}
                                         onChangeRowsPerPage={props.onChangeRowsPerPage}
                                         doPayables={props.doPayables}
+                                        doUpdateCurrPageable={props.doUpdateCurrPageable}
                                 />}
                         {props.store.payablesFlag &&
                                 <PayablesHtmlComponent
@@ -85,8 +84,9 @@ export default function BillingHtmlComponent(props) {
                                         handleSubmit={handleSubmit}
                                         doShowSaveBillingDialog={props.doShowSaveConfirmDialog}
                                         // doSavePayables={props.doSavePayables}
-                                        store={props.store} 
-                                        doUpdateCurrPageable={props.doUpdateCurrPageable}/>}
+                                        store={props.store}
+                                        doUpdateCurrPageable={props.doUpdateCurrPageable}
+                                        doPayables={props.doPayables} />}
                 </>
         )
 }

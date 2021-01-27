@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 
-import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils'
+import { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils'
 import CustomTableGrid from '../common/CustomTableGrid'
 import { deleteItem, getList } from '../../api/gradeLevelPayables/GradeLevelPayablesService';
 import { selectPageable, setPageable, setSelectedItem, resetSelectedItem } from '../../api/gradeLevelPayables/GradeLevelSlice';
@@ -75,7 +75,14 @@ export default function GradeLevelPayablesListComponent(props) {
   }
 
   const doEdit = (selected) => {
-    dispatch(setSelectedItem(selected))
+    let aps = [...selected.accountPayablesSettings]
+    aps.sort((a, b) => {
+      return a.priority - b.priority;
+    })
+    dispatch(setSelectedItem({
+      ...selected,
+      accountPayablesSettings: [...aps]
+    }))
     props.history.push(`${PAGE_URL.GRADE_LEVEL_PAYABLES_DETAIL_URL}`);
   }
 
