@@ -48,11 +48,16 @@ public class GradeLevelPayablesServiceImpl extends AbstractService<GradeLevelPay
 	@Override
 	public GradeLevelPayables save(GradeLevelPayables entity, School school) {
 		entity.setSchool(school);
-		entity = super.save(entity, school);
 		if(!StringUtils.isBlank(entity.getLevel().getId())) {
 			CodeGroups level = codeGroupsServiceImpl.findById(entity.getLevel().getId());
 			entity.setLevel(level);
 		}
+		if(!StringUtils.isBlank(entity.getPeriod().getId())) {
+			CodeGroups period = codeGroupsServiceImpl.findById(entity.getPeriod().getId());
+			entity.setPeriod(period);
+		}
+		log.debug("Period={}", entity.getPeriod());
+		entity = super.save(entity, school);
 
 		return entity;
 	}

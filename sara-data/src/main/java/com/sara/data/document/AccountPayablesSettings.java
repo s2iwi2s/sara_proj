@@ -40,7 +40,10 @@ public class AccountPayablesSettings {
 	private boolean applyToAll;
 	private boolean active = true;
 
-	@DBRef(lazy = true)
+	@DBRef
+	private CodeGroups period;
+	
+	@DBRef
 	private CodeGroups paymentPeriod;
 
 	@DBRef(lazy = true)

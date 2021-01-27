@@ -6,11 +6,17 @@ import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils'
 import CustomTableGrid from '../common/CustomTableGrid'
 import { deleteItem, getList } from '../../api/gradeLevelPayables/GradeLevelPayablesService';
 import { selectPageable, setPageable, setSelectedItem, resetSelectedItem } from '../../api/gradeLevelPayables/GradeLevelSlice';
-import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
 import TitleComponent from '../common/TitleComponent';
+import { useMessageAlert } from "../../api/useMessageAlert"
 
 export default function GradeLevelPayablesListComponent(props) {
-  const [, , showErrorAlert, ,] = useGlobalVariable();
+  const [,
+    ,
+    showErrorMsgAlert,
+    ,
+    ,
+    ,
+  ] = useMessageAlert();
 
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
@@ -56,13 +62,9 @@ export default function GradeLevelPayablesListComponent(props) {
             totalPage: data.pagingList.totalPage
           }
         }))
-      }).catch(error => setError(error, ERROR_CODE.LIST_ERROR, 'GradeLevelPayablesListComponent.retrieve', 'GradeLevelPayablesService.getList'))
+      }).catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'GradeLevelPayablesListComponent.retrieve', 'GradeLevelPayablesService.getList'))
 
-  const setError = (error, errorCode, formMethod, serviceName) => {
-    console.error(`[GradeLevelPayablesListComponent.setError]  error=`, error)
-    let errMsg = Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName)
-    showErrorAlert(errMsg)
-  }
+
 
 
   const doRetrieve = () => {
@@ -84,7 +86,7 @@ export default function GradeLevelPayablesListComponent(props) {
   const doDelete = (id) => {
     deleteItem(id)
       .then(doRetrieve)
-      .catch(error => setError(error, ERROR_CODE.LIST_ERROR, 'GradeLevelPayablesListComponent.doDelete', 'GradeLevelPayablesService.deleteItem'))
+      .catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'GradeLevelPayablesListComponent.doDelete', 'GradeLevelPayablesService.deleteItem'))
   }
 
   const doHandleChangePage = (e, newPage) => {

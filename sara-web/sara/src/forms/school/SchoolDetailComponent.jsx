@@ -11,7 +11,6 @@ import AddIcon from '@material-ui/icons/Add'
 import Alert from '@material-ui/lab/Alert'
 
 import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils'
-import { useGlobalVariable } from '../../providers/GlobalVariableProvider'
 import TitleComponent from '../common/TitleComponent'
 
 import { save, getOptions } from '../../api/school/SchoolService'
@@ -24,15 +23,9 @@ import {
   setOptionsList,
   resetSelectedItem,
 } from '../../api/school/SchoolSlice'
+import { useMessageAlert } from "../../api/useMessageAlert"
 
 export default function SchoolDetailComponent(props) {
-  const [
-    ,
-    ,
-    showErrorAlert,
-    ,
-    ,
-  ] = useGlobalVariable()
 
   const history = useHistory()
   const dispatch = useDispatch()
@@ -42,6 +35,13 @@ export default function SchoolDetailComponent(props) {
   const [status, setStatus] = useState(INIT_STATUS.INIT)
 
   const selectedItem = useSelector(selectSelectedItem)
+  const [,
+    ,
+    showErrorMsgAlert,
+    ,
+    ,
+    ,
+  ] = useMessageAlert();
 
   useEffect(() => {
     console.log(
@@ -61,7 +61,6 @@ export default function SchoolDetailComponent(props) {
         dispatch(setSelectedItem(blankSelectedItem))
       }
       doRetrieve()
-      setMessage('')
       setStatus(INIT_STATUS.LOAD)
     }
   }, [selectedItem])
@@ -70,34 +69,39 @@ export default function SchoolDetailComponent(props) {
     if (props.match.params.id == -1) {
       dispatch(resetSelectedItem())
     }
-    getOptions().then((response) =>
-      dispatch(setOptionsList(response.data.listService))
-    )
-    //.catch(error => setError(error, ERROR_CODE.RETRIEVE_ERROR, 'EndUserDetailComponent.doRetrieve', 'EndUserService.getOptions'))
-  }
 
-  const setError = (error, errorCode, formMethod, serviceName) => {
-    console.error(`[SchoolDetailComponent.setError]  error=`, error)
-    let errMsg = Utils.getFormatedErrorMessage(
-      error,
-      errorCode,
-      formMethod,
-      serviceName
-    )
-    showErrorAlert(errMsg)
+    setMessage('Loading. Please wait...')
+
+    getOptions().then((response) => {
+      dispatch(setOptionsList(response.data.listService))
+      setMessage('')
+    })
+      .catch((error) =>
+        showErrorMsgAlert(
+          error,
+          ERROR_CODE.RETRIEVE_ERROR,
+          'SchoolDetailComponent.doRetrieve',
+          'SchoolService.getOptions'
+        )
+      )
   }
 
   const onSubmitForm = (data) => {
     console.log(
-      `[SchoolDetailComponent.onSubmitForm] data=`, data
+      `[SchoolDetailComponent.onSubmitForm] data = `, data
+    )
+    setMessage('Saving...')
+    console.log(
+      `[SchoolDetailComponent.onSubmitForm] message = `, message
     )
     save(data)
       .then((response) => {
         dispatch(setPageableEntity(response.data.entity))
+        setMessage('')
         history.push(PAGE_URL.SCHOOL_LIST)
       })
       .catch((error) =>
-        setError(
+        showErrorMsgAlert(
           error,
           ERROR_CODE.SAVE_ERROR,
           'SchoolDetailComponent.save',
@@ -106,12 +110,10 @@ export default function SchoolDetailComponent(props) {
       )
   }
 
-
-
   return (
     <>
       {console.log(
-        `[SchoolDetailComponent.render] selectedItem==>`,
+        `[SchoolDetailComponent.render] selectedItem ==> `,
         selectedItem
       )}
       <TitleComponent>School Detail</TitleComponent>
@@ -186,17 +188,7 @@ export default function SchoolDetailComponent(props) {
               defaultValue={selectedItem.schoolYear}
             />
           </Grid>
-          {/* <SelectGrid
-            sm={3}
-            id='currentPeriod'
-            name='currentPeriod'
-            label='Current Period'
-            // value={selectedItem.currentPeriod.id}
-            options={selectedItem.optionsList.periodList}
-            inputRef={register}
-            defaultValue={selectedItem.currentPeriod.id}
-            onChange={(e) => changeSelectState(e)}
-          /> */}
+
           <Grid item xs={12} sm={3}>
             <Controller
               as={

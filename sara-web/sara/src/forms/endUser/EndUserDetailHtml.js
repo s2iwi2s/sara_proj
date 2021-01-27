@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CancelIcon from '@material-ui/icons/Cancel';
 import SaveIcon from '@material-ui/icons/Save';
 import AddIcon from '@material-ui/icons/Add';
+import Alert from '@material-ui/lab/Alert';
 
 import { Controller, useForm } from 'react-hook-form';
 import { Box, Button, Grid, MenuItem, TextField } from '@material-ui/core';
@@ -26,7 +27,7 @@ const EndUserDetailHtml = props => {
             <>
                   {console.log(`[EndUserDetailHtml.return] props.store==>`, props.store)}
                   <TitleComponent>User Detail</TitleComponent>
-
+                  {props.message && <Alert severity="info">{props.message}</Alert>}
                   <form onSubmit={handleSubmit(props.onSubmitForm)}>
 
                         <Grid container spacing={3}>

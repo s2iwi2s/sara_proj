@@ -1,28 +1,44 @@
 
-import React, { useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import moment from 'moment';
-import { useForm } from 'react-hook-form';
-import { Box, Paper, Grid, TextField, Table, TableContainer, TableHead, TableCell, Divider, Typography, TableBody, Button, InputAdornment } from "@material-ui/core"
-import SaveIcon from '@material-ui/icons/Save';
-import SubTitleComponent from '../common/SubTitleComponent';
+import React, { useEffect, useState } from 'react'
+import moment from 'moment'
+import { useForm } from 'react-hook-form'
+import { Box, Paper, Grid, TextField, Table, TableContainer, TableHead, TableCell, Divider, Typography, TableBody, Button, InputAdornment, MenuItem } from "@material-ui/core"
+import SaveIcon from '@material-ui/icons/Save'
+import SubTitleComponent from '../common/SubTitleComponent'
+import SelectGrid from '../common/SelectGrid'
 
 const { StyledTableRow, StyledTableHeadRow, StyledTableHeadCell, INIT_STATUS } = require("../../api/Utils")
 
 
 const PayablesHtmlComponent = (props) => {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset } = useForm()
 
-  const [total, setTotal] = useState(0);
-  const [payables, setPayables] = useState({});
+  const [total, setTotal] = useState(0)
+  const [payables, setPayables] = useState({})
+  const [currentState, setCurrentState] = useState({
+    period: props.store.entity.school.currentPeriod
+  })
+
+  const changeSelectState = (e) => {
+    const { name, value } = e.target
+    console.log(`[PayablesHtmlComponent.changeSelectState] name=${name}, value=${value}`)
+    setCurrentState({
+      ...currentState,
+      [name]: { id: value }
+    })
+  }
 
   useEffect(() => {
     console.log(`[PayablesHtmlComponent.useEffect] INIT_STATUS=${props.store.INIT_STATUS}, props.store=>`, props.store)
+    console.log(`[PayablesHtmlComponent.useEffect] currentState => `, currentState)
     if (props.store.INIT_STATUS === INIT_STATUS.PAYABLES_RESET) {
       resetPayables();
       props.doUpdateCurrPageable({
         INIT_STATUS: INIT_STATUS.DONE
       })
+      // setCurrentState({
+      //   ...currentState
+      // })
       reset(props.store);
     }
   }, [props.store])
@@ -33,7 +49,7 @@ const PayablesHtmlComponent = (props) => {
   });
 
   const resetPayables = () => {
-    console.log(`[PayablesHtmlComponent.resetPayables] payables=>`, payables);
+    console.log(`[PayablesHtmlComponent.resetPayables] payables => `, payables);
     setTotal(0);
 
     let hasNext = true;
@@ -59,7 +75,7 @@ const PayablesHtmlComponent = (props) => {
     value = value ? value.replaceAll(',', '') : 0;
     el.value = formatter.format(value);
 
-    console.log(`[PayablesHtmlComponent.onPaymentChange] value=${value}, payables=>`, payables)
+    console.log(`[PayablesHtmlComponent.onPaymentChange] value = ${value}, payables => `, payables)
     value = el.value;
     value = value ? value.replaceAll(',', '') : 0;
     let numValue = Number(value);
@@ -83,7 +99,7 @@ const PayablesHtmlComponent = (props) => {
       i++;
     }
     setTotal(formatter.format(total));
-    console.log(`[onPaymentBlur.onPaymentChange] total=${total}, payables=>`, payables)
+    console.log(`[onPaymentBlur.onPaymentChange] total = ${total}, payables => `, payables)
   }
 
   return (
@@ -109,6 +125,14 @@ const PayablesHtmlComponent = (props) => {
           inputRef={register}
         />
         <SubTitleComponent>Payables</SubTitleComponent>
+        <Box py={3} px={3}>
+          <Grid container spacing={3}>
+            <SelectGrid sm={3} required name="period" label="Period"
+              value={currentState.period.id}
+              options={props.store.optionsList.periodList}
+              onChange={e => changeSelectState(e)} />
+          </Grid>
+        </Box>
         <TableContainer component={Paper} elevation={3} variant="elevation" >
           <Table>
             <TableHead>

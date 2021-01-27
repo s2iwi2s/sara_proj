@@ -1,26 +1,19 @@
 import React from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
-import { useGlobalVariable } from "../../providers/GlobalVariableProvider"
+import { useMessageAlert } from "../../api/useMessageAlert"
 
 export default function GlobalAlertMsgDialog(props) {
-    const [globalProps, setGlobalProps] = useGlobalVariable();
+    const [
+        globalProps, , , , , , closeMsgAlert] = useMessageAlert();
 
-    const handleClose = () => {
-        setGlobalProps({
-            ...globalProps,
-            alert: {
-                ...globalProps.alert,
-                open: false
-            }
-        })
-    };
 
+    console.log(`[GlobalAlertMsgDialog] globalProps=>`, globalProps)
     return (
         <>
-            <Dialog fullWidth="true" maxWidth="md"
+            <Dialog fullWidth={true} maxWidth="md"
                 open={globalProps.alert.open}
-                onClose={handleClose}
+                onClose={closeMsgAlert}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
@@ -38,7 +31,7 @@ export default function GlobalAlertMsgDialog(props) {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Ok</Button>
+                    <Button onClick={closeMsgAlert}>Ok</Button>
                 </DialogActions>
             </Dialog>
         </>

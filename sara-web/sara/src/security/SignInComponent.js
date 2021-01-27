@@ -2,40 +2,60 @@ import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 
 import SignInHtml from './SignInHtml.js';
+import { useMessageAlert } from "../api/useMessageAlert"
 import { useAuth } from '../providers/AuthenticationProvider';
-import AuthenticationService from './AuthenticationService.js'
-
-// import { useForm } from 'react-hook-form';
+import { useAuthServices } from './useAuthServices'
+import { ERROR_CODE } from '../api/Utils.js';
 
 export default function SignInComponent() {
+
+  const [,
+    ,
+    showErrorMsgAlert,
+    ,
+    ,
+    ,
+  ] = useMessageAlert();
+
+  const [
+    executeJwtAuthenticationService,
+    registerJwtSucessfulLogin,
+    ,
+    ,
+  ] = useAuthServices()
+
+
   const [message, setMessage] = useState("");
   const [userObj, setUserObj] = useAuth();
 
   const history = useHistory();
 
+  // const setError = (error, errorCode, formMethod, serviceName) => {
+  //   console.error(`[SignInComponent.setError]  error=`, error)
+  //   showErrorMsgAlert(error, errorCode, formMethod, serviceName)
+  // }
 
   const onSignon = (userName, password) => {
+    console.error(`[SignInComponent.onSignon] userName=${userName}`)
     setMessage('');
-    console.log(`onSubmitPage userName=${userName}, password=${password}`);
 
-    AuthenticationService.executeJwtAuthenticationService(userName, password)
-      //executeBasicAuthenticationService(this.state.username, this.state.password)
+    executeJwtAuthenticationService(userName, password)
       .then(response => {
-        console.log('[SignInComponent.onSubmitPage]: response', response);
-        AuthenticationService.registerJwtSucessfulLogin(response.data.userDetails, response.data.token)
+        const userDetails = {
+          ...response.data.userDetails,
+          isLoggedIn: true
+        }
+        registerJwtSucessfulLogin(userDetails, response.data.token)
+        setUserObj(userDetails)
 
-        setUserObj(response.data.userDetails);
-        console.log('[SignInComponent.onSubmitPage]: userObj', userObj);
+        console.error(`[SignInComponent.onSignon useAuthServices.xecuteJwtAuthenticationService] userDetails=`, userDetails)
+        console.error(`[SignInComponent.onSignon useAuthServices.xecuteJwtAuthenticationService] userObj=`, userObj)
 
-        //registerBasicAuthSucessfulLogin(this.state.username, this.state.password);
         setMessage('Login Successful!');
         history.push(`/`);
-
       })
-      .catch(error => {
-        console.log(`[SignInComponent.onSubmitPage]: error=>`, error);
-        setMessage('Login in failed. Your User Name and Password do not match.');
-      });
+      .catch(error => showErrorMsgAlert(error, ERROR_CODE.LOGIN_ERROR, 'SignInComponent.onSignon', 'useAuthServices.executeJwtAuthenticationService'))
+
   }
   return (
     <SignInHtml message={message} onSignon={onSignon} />

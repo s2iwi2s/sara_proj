@@ -1,17 +1,19 @@
 import React, { useEffect } from 'react';
 
-import AuthenticationService from './AuthenticationService.js'
+import { useAuthServices } from './useAuthServices'
 import { useAuth } from '../providers/AuthenticationProvider';
-import { USER_TEMP } from '../api/Utils'
-
 
 export default function LogoutComponent() {
-    const [userObj, setUserObj] = useAuth();
+    const [userObj] = useAuth();
+    const [,
+        ,
+        ,
+        ,
+        logout] = useAuthServices()
 
     useEffect(() => {
-        console.log('[SignInComponent.onSubmitPage]: userObj', userObj);
-        AuthenticationService.logout();
-        setUserObj(USER_TEMP);
+        console.log('[LogoutComponent.useEffect]: userObj', userObj);
+        logout();
     });
 
     return (

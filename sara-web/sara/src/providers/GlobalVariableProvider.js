@@ -19,44 +19,18 @@ function GlobalVariableProvider(props) {
         }
     });
 
-    const showErrorAlert = (msg) => {
-        showMsgAlert(true, msg, 'error')
-    }
-
-    const showInfoAlert = (msg) => {
-        showMsgAlert(true, msg, 'info')
-    }
-
-    const showWarningAlert = (msg) => {
-        showMsgAlert(true, msg, 'warning')
-    }
-
-    const showSuccessAlert = (msg) => {
-        showMsgAlert(true, msg, 'success')
-    }
-
-    const showMsgAlert = (open, msg, severity) => {
-        setGlobalProps({
-            ...globalProps,
-            alert: {
-                open: open,
-                msg: msg,
-                severity: severity
-            }
-        })
-    }
-
-    const closeMsgAlert = () => {
+    const setAlertProps = (prop) => {
+        console.log(`[useGlobalVariable.setAlertProps] 1 prop=>`, prop)
         setGlobalProps({
             ...globalProps,
             alert: {
                 ...globalProps.alert,
-                open: false
+                ...prop
             }
         })
     }
 
-    const value = useMemo(() => [globalProps, setGlobalProps, showErrorAlert, showInfoAlert, showWarningAlert, showSuccessAlert, closeMsgAlert],
+    const value = useMemo(() => [globalProps, setGlobalProps, setAlertProps],
         [globalProps])
     return <GlobalVariableContext.Provider value={value} {...props} />
 }

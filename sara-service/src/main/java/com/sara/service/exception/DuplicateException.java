@@ -1,4 +1,4 @@
-package com.sara.web.exception;
+package com.sara.service.exception;
 
 public class DuplicateException extends Exception {
 	/**

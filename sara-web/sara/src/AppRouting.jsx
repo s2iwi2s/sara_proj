@@ -14,8 +14,6 @@ import FooterComponent from './forms/common/FooterComponent'
 
 import EndUserListComponent from './forms/endUser/EndUserListComponent';
 import EndUserDetailComponent from './forms/endUser/EndUserDetailComponent';
-import AddressListComponent from './forms/address/AddressListComponent';
-import AddressDetailComponent from './forms/address/AddressDetailComponent';
 
 import AuthenticatedRoute from './security/AuthenticatedRoute'
 import SignInComponent from './security/SignInComponent';
@@ -29,7 +27,7 @@ import StudentListComponent from './forms/student/StudentListComponent';
 import SchoolDetailComponent from './forms/school/SchoolDetailComponent';
 import SchoolListComponent from './forms/school/SchoolListComponent';
 
-import AuthenticationService from './security/AuthenticationService';
+// import AuthenticationService from './security/AuthenticationService';
 import BillingComponent from './forms/billing/BillingComponent';
 
 import AccountPayablesSettingsListComponent from './forms/accountPayables/AccountPayablesSettingsListComponent';
@@ -38,6 +36,9 @@ import AccountPayablesSettingsDetailComponent from './forms/accountPayables/Acco
 import GradeLevelPayablesListComponent from './forms/gradeLevelPayables/GradeLevelPayablesListComponent';
 import GradeLevelPayablesDetailsComponent from './forms/gradeLevelPayables/GradeLevelPayablesDetailsComponent';
 import GlobalAlertMsgDialog from './forms/common/GlobalAlertMsgDialog';
+
+
+import { useAuthServices } from './security/useAuthServices'
 
 const useStylesRouting = makeStyles((theme) => ({
  root: {
@@ -71,15 +72,21 @@ const useStylesRouting = makeStyles((theme) => ({
 }));
 
 const AppRouting = () => {
+ const [,
+  ,
+  getLoggedUserObj,
+  ,
+ ] = useAuthServices()
+
 
  const [userObj, setUserObj] = useAuth();
 
  useEffect(() => {
-  console.log(`[AuthenticationService.useEffect] userObj=>`, userObj)
+  console.log(`[AppRouting.useEffect] userObj=>`, userObj)
   initTheme();
 
   //initialize user
-  setUserObj(AuthenticationService.getLoggedUserObj());
+  setUserObj(getLoggedUserObj());
  }, []);
 
  const initTheme = () => {
@@ -134,10 +141,6 @@ const AppRouting = () => {
         <AuthenticatedRoute path={PAGE_URL.USER_LIST} exact component={EndUserListComponent} />
         <AuthenticatedRoute path={PAGE_URL.USER_DETAIL} exact component={EndUserDetailComponent} />
         <AuthenticatedRoute path={PAGE_URL.USER_DETAIL_URL} exact component={EndUserDetailComponent} />
-
-        <AuthenticatedRoute path={PAGE_URL.ADDRESS_LIST} exact component={AddressListComponent} />
-        <AuthenticatedRoute path={PAGE_URL.ADDRESS_DETAIL} exact component={AddressDetailComponent} />
-        <AuthenticatedRoute path={PAGE_URL.USER_ADDRESS_DETAIL} exact component={AddressDetailComponent} />
 
         <AuthenticatedRoute path={PAGE_URL.CODE_GROUPS_LIST} exact component={CodeGroupsListComponent} />
         <AuthenticatedRoute path={PAGE_URL.CODE_GROUPS_DETAIL} exact component={CodeGroupsDetailComponent} />

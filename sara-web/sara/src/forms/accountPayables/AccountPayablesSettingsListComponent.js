@@ -4,16 +4,24 @@ import { useSelector, useDispatch } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import { Box } from '@material-ui/core';
 
-import { INIT_STATUS, PAGE_URL } from '../../api/Utils'
+import { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils'
 import CustomTableGrid from '../common/CustomTableGrid'
 
 import { deleteItem, getList } from '../../api/accountPayablesSettings/AccountPayablesSettingsService';
 import { selectPageable, setPageable, setSelectedItem } from '../../api/accountPayablesSettings/AccountPayablesSettingsSlice';
 import TitleComponent from '../common/TitleComponent';
+import { useMessageAlert } from "../../api/useMessageAlert"
 
 export default function AccountPayablesSettingsListComponent(props) {
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
+  const [,
+    ,
+    showErrorMsgAlert,
+    ,
+    ,
+    ,
+  ] = useMessageAlert();
 
 
   const retrieve = ({ searchValue, paging }) => getList(searchValue, paging.currentPage, paging.rowsPerPage)
@@ -28,6 +36,7 @@ export default function AccountPayablesSettingsListComponent(props) {
         totalPage: data.pagingList.totalPage
       }
     })))
+    .catch(error => showErrorMsgAlert(error, ERROR_CODE.RETRIEVE_ERROR, 'AccountPayablesSettingsListComponent.retrieve', 'AccountPayablesSettingsService.getList'));
 
   const doRetrieve = () => retrieve({
     searchValue: currPageable.searchValue,
@@ -35,7 +44,14 @@ export default function AccountPayablesSettingsListComponent(props) {
   })
 
   const doEdit = (selected) => {
-    dispatch(setSelectedItem(selected))
+    let data = {
+      ...selected
+    }
+    if (!data.period) {
+      data.period = { 'id': '' }
+    }
+    console.log(`[AccountPayablesSettingsListComponent.doEdit]  data=`, data)
+    dispatch(setSelectedItem(data))
     props.history.push(`${PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_DETAIL_URL}`);
   }
 
@@ -45,6 +61,7 @@ export default function AccountPayablesSettingsListComponent(props) {
 
   const doDelete = (id) => deleteItem(id)
     .then(doRetrieve)
+    .catch(error => showErrorMsgAlert(error, ERROR_CODE.RETRIEVE_ERROR, 'AccountPayablesSettingsListComponent.doDelete', 'AccountPayablesSettingsService.deleteItem'));
 
   const doHandleChangePage = (e, newPage) => retrieve({
     searchValue: currPageable.searchValue,
@@ -74,6 +91,12 @@ export default function AccountPayablesSettingsListComponent(props) {
     {
       field: 'description',
       headerName: 'Description',
+    },
+    {
+      headerName: 'Period',
+      render: function (row) {
+        return row.period ? row.period.description : ''
+      }
     },
     {
       headerName: 'Payment Period',

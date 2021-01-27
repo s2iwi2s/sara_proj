@@ -10,9 +10,11 @@ import { useForm } from 'react-hook-form';
 import { useReactToPrint } from "react-to-print";
 
 import { formatter, INIT_STATUS, StyledTableCell, StyledTableHeadCell, StyledTableHeadRow, StyledTableRow } from '../../api/Utils';
+
 import { useAuth } from '../../providers/AuthenticationProvider';
 
 export default function SavePayablesConfimationHtml(props) {
+
   const [userObj] = useAuth();
   const { reset } = useForm(props.confirmStore);
   const componentRef = useRef();

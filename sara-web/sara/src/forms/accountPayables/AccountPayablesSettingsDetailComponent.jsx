@@ -12,13 +12,21 @@ import Alert from '@material-ui/lab/Alert';
 
 import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
 
-import { selectSelectedItem, resetSelectedItem, setPageableEntity, setOptionsList } from '../../api/accountPayablesSettings/AccountPayablesSettingsSlice';
+import { selectSelectedItem, updateSelectedItem, resetSelectedItem, setPageableEntity, setOptionsList } from '../../api/accountPayablesSettings/AccountPayablesSettingsSlice';
 import { save, getOptions } from '../../api/accountPayablesSettings/AccountPayablesSettingsService';
 import TitleComponent from '../common/TitleComponent';
+import { useMessageAlert } from "../../api/useMessageAlert"
 
 let renderCount = 0;
 
 export default function AccountPayablesSettingsDetailComponent(props) {
+  const [,
+    ,
+    showErrorMsgAlert,
+    ,
+    ,
+    ,
+  ] = useMessageAlert();
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -42,7 +50,6 @@ export default function AccountPayablesSettingsDetailComponent(props) {
       if (props.match.params.id == -1) {
         dispatch(resetSelectedItem())
       }
-      setMessage('');
       setStatus(INIT_STATUS.LOAD)
     }
     if (status === INIT_STATUS.LOAD) {
@@ -53,22 +60,29 @@ export default function AccountPayablesSettingsDetailComponent(props) {
 
   const onRetrieve = () => {
     console.log(`[AccountPayablesSettingsDetailComponent.onRetrieve]  props.match.params.id==>${props.match.params.id}`)
-    setMessage(`Loading. Please wait...`);
     if (props.match.params.id == -1) {
       dispatch(resetSelectedItem())
     }
+    setMessage(`Loading. Please wait...`);
     getOptions()
-      .then(response => dispatch(setOptionsList(response.data.listService)))
-      .then(setMessage(``))
-      .catch(error => setError(error, ERROR_CODE.RETRIEVE_ERROR, 'AccountPayablesSettingsDetailComponent.onRetrieve', 'AccountPayablesSettingsService.getOptions'));
+      .then(response => {
+        dispatch(setOptionsList(response.data.listService))
+        setMessage('')
+      })
+      .catch(error => showErrorMsgAlert(error, ERROR_CODE.RETRIEVE_ERROR, 'AccountPayablesSettingsDetailComponent.onRetrieve', 'AccountPayablesSettingsService.getOptions'));
   }
 
-  const setError = (error, errorCode, formMethod, serviceName) => setMessage(Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName))
 
-  const doSave = data => save(data)
-    .then(response => dispatch(setPageableEntity(response.data.entity)))
-    .then(history.push(PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_LIST))
-    .catch(error => setError(error, ERROR_CODE.SAVE_ERROR, 'CodeGroupsDetailComponent.save', 'CodeGroupsService.save'))
+  const doSave = data => {
+    setMessage(`Saving...`);
+    save(data)
+      .then(response => {
+        dispatch(setPageableEntity(response.data.entity))
+        setMessage('')
+        history.push(PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_LIST)
+      })
+      .catch(error => showErrorMsgAlert(error, ERROR_CODE.SAVE_ERROR, 'CodeGroupsDetailComponent.save', 'CodeGroupsService.save'))
+  }
 
   renderCount++;
   return (
@@ -113,6 +127,33 @@ export default function AccountPayablesSettingsDetailComponent(props) {
               defaultValue={selectedItem.description}
             />
           </Grid>
+
+          <Grid item xs={12} sm={3}>
+            <Controller
+              as={
+                <TextField id="period"
+                  required
+                  select
+                  label="Period"
+                  fullWidth
+                  autoComplete="period"
+                  variant="filled"
+                  InputLabelProps={{ shrink: true }}
+                  inputRef={register}
+                // error={!!errors.name}
+                >
+                  {selectedItem.optionsList.periodList.map(row => (
+                    <MenuItem key={row.id} value={row.id}>{row.description}</MenuItem>
+                  ))}
+                </TextField>
+              }
+              required
+              name="period.id"
+              control={control}
+              defaultValue={selectedItem.period.id}
+              options={selectedItem.optionsList.periodList}
+            />
+          </Grid>
           <Grid item xs={12} sm={3}>
             <Controller
               as={
@@ -132,6 +173,7 @@ export default function AccountPayablesSettingsDetailComponent(props) {
                   ))}
                 </TextField>
               }
+              required
               name="paymentPeriod.id"
               control={control}
               defaultValue={selectedItem.paymentPeriod.id}

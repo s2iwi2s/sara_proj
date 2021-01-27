@@ -14,12 +14,17 @@ import Utils, { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
 
 import { selectSelectedItem, resetSelectedItem, setPageableEntity } from '../../api/codeGroups/CodeGroupsSlice';
 import { save } from '../../api/codeGroups/CodeGroupsService';
-import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
 import TitleComponent from '../common/TitleComponent';
+import { useMessageAlert } from "../../api/useMessageAlert"
 
 export default function CodeGroupsDetailComponent(props) {
-
-  const [, , showErrorAlert, ,] = useGlobalVariable();
+  const [,
+    ,
+    showErrorMsgAlert,
+    ,
+    ,
+    ,
+  ] = useMessageAlert();
   const dispatch = useDispatch();
   const history = useHistory();
   const { register, handleSubmit } = useForm();
@@ -34,23 +39,21 @@ export default function CodeGroupsDetailComponent(props) {
       if (props.match.params.id === -1) {
         dispatch(resetSelectedItem())
       }
-      setMessage('');
       setStatus(INIT_STATUS.LOAD)
     }
   }, [selectedItem, status]);
 
-  const setError = (error, errorCode, formMethod, serviceName) => {
-    console.error(`[EndUserDetailComponent.setError]  error=`, error)
-    let errMsg = Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName)
-    showErrorAlert(errMsg)
-  }
 
-  const doSave = data => save(data)
+  const doSave = data => {
+    setMessage(`Saving...`);
+    save(data)
     .then(response => {
       dispatch(setPageableEntity(response.data.entity))
+      setMessage('')
       history.push(PAGE_URL.CODE_GROUPS_LIST)
     })
-    .catch(error => setError(error, ERROR_CODE.SAVE_ERROR, 'CodeGroupsDetailComponent.save', 'CodeGroupsService.save'))
+    .catch(error => showErrorMsgAlert(error, ERROR_CODE.SAVE_ERROR, 'CodeGroupsDetailComponent.save', 'CodeGroupsService.save'))
+  }
 
   return (
     <>

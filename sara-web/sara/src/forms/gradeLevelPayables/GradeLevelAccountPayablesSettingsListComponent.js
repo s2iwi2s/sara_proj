@@ -4,11 +4,18 @@ import { IconButton } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import { getActiveList } from '../../api/accountPayablesSettings/AccountPayablesSettingsService';
 import CustomTableGrid from '../common/CustomTableGrid'
-import { useGlobalVariable } from '../../providers/GlobalVariableProvider';
 import Utils, { ERROR_CODE } from '../../api/Utils';
+import { useMessageAlert } from "../../api/useMessageAlert"
 
 export default function GradeLevelAccountPayablesSettingsListComponent(props) {
-  const [, , showErrorAlert, ,] = useGlobalVariable();
+
+  const [,
+    ,
+    showErrorMsgAlert,
+    ,
+    ,
+    ,
+  ] = useMessageAlert();
   const [store, setStore] = useState({
     list: [],
     searchValue: '',
@@ -19,26 +26,28 @@ export default function GradeLevelAccountPayablesSettingsListComponent(props) {
     }
   });
 
-  const doRetrieve = () => getActiveList(store.searchValue, store.paging.currentPage, store.paging.rowsPerPage)
-    .then(response => {
-      let data = {
-        list: response.data.pagingList.content,
-        searchValue: store.searchValue,
-        paging: {
-          rowsPerPage: response.data.pagingList.size,
-          currentPage: response.data.pagingList.pageable.pageNumber,
-          totalElements: response.data.pagingList.totalElements,
-          totalPage: response.data.pagingList.totalPage
+  const doRetrieve = () => {
+    if (!props.selectedItem.period || !props.selectedItem.period.id) {
+      showErrorMsgAlert('Please select period')
+      return
+    }
+    getActiveList(props.selectedItem.period.id, store.searchValue, store.paging.currentPage, store.paging.rowsPerPage)
+      .then(response => {
+        let data = {
+          list: response.data.pagingList.content,
+          searchValue: store.searchValue,
+          paging: {
+            rowsPerPage: response.data.pagingList.size,
+            currentPage: response.data.pagingList.pageable.pageNumber,
+            totalElements: response.data.pagingList.totalElements,
+            totalPage: response.data.pagingList.totalPage
+          }
         }
-      }
-      setStore(data);
-    }).catch(error => setError(error, ERROR_CODE.LIST_ERROR, 'GradeLevelAccountPayablesSettingsListComponent.retrieve', 'AccountPayablesSettingsService.getActiveList'))
-
-  const setError = (error, errorCode, formMethod, serviceName) => {
-    console.error(`[GradeLevelAccountPayablesSettingsListComponent.setError]  error=`, error)
-    let errMsg = Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName)
-    showErrorAlert(errMsg)
+        setStore(data);
+      }).catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'GradeLevelAccountPayablesSettingsListComponent.retrieve', 'AccountPayablesSettingsService.getActiveList'))
   }
+
+
 
   const doHandleChangePage = (e, newPage) => {
     let data = {
@@ -83,6 +92,12 @@ export default function GradeLevelAccountPayablesSettingsListComponent(props) {
     {
       field: 'description',
       headerName: 'Description',
+    },
+    {
+      headerName: 'Period',
+      render: function (row) {
+        return row.period ? row.period.description : ''
+      }
     },
     {
       headerName: 'Payment Period',

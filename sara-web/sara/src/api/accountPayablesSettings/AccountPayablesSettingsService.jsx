@@ -11,7 +11,7 @@ export const getOptions = () => axios.get(`${Utils.urlOptionsPattern(ENTITY)}`)
 export const deleteItem = (id) => axios.delete(`${Utils.urlDeletePattern(ENTITY)}/${id}`)
 export const save = (data) => axios.post(`${Utils.urlSavePattern(ENTITY)}`, data)
 
-export const getActiveList = (searchValue, page, pageSize) => axios.get(`${API_URL_BASE + ENTITY + "/active"}?searchValue=${searchValue}&page=${page}&size=${pageSize}&sort=priority,description,amount`)
+export const getActiveList = (period, searchValue, page, pageSize) => axios.get(`${API_URL_BASE + ENTITY + "/active/"}${period}?searchValue=${searchValue}&page=${page}&size=${pageSize}&sort=priority,description,amount`)
 export const getApplyToAllList = () => axios.get(`${API_URL_BASE + ENTITY + "/applyToAllList"}`)
 
 export default function AccountPayablesSettingsService() {

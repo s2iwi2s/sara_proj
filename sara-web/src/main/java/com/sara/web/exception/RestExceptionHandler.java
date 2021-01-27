@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.sara.service.exception.DuplicateException;
 import com.sara.service.exception.GradeLevelPayablesResponseException;
+import com.sara.service.exception.InvalidCredentialsException;
+import com.sara.service.exception.InvalidRequestException;
+import com.sara.service.exception.NotFoundException;
 
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {

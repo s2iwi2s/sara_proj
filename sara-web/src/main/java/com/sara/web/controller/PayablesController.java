@@ -23,11 +23,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sara.data.document.CodeGroups;
 import com.sara.data.document.Payables;
 import com.sara.data.document.Student;
 import com.sara.data.document.User;
 import com.sara.service.bean.BillingByInvoice;
 import com.sara.service.bean.StudentPayables;
+import com.sara.service.impl.CodeGroupsServiceImpl;
 import com.sara.service.impl.PayablesServiceImpl;
 import com.sara.service.impl.StudentServiceImpl;
 import com.sara.service.impl.UserServiceImpl;
@@ -42,14 +44,21 @@ public class PayablesController {
 
 	public static final String URL_BASE = "/billing";
 
-	@Autowired
 	private PayablesServiceImpl payablesServiceImpl;
 
-	@Autowired
 	private UserServiceImpl userServiceImpl;
 
-	@Autowired
 	private StudentServiceImpl studentServiceImpl;
+
+	private CodeGroupsServiceImpl codeGroupsServiceImpl;
+
+	public PayablesController(PayablesServiceImpl payablesServiceImpl, UserServiceImpl userServiceImpl,
+			StudentServiceImpl studentServiceImpl, CodeGroupsServiceImpl codeGroupsServiceImpl) {
+		this.payablesServiceImpl = payablesServiceImpl;
+		this.userServiceImpl = userServiceImpl;
+		this.studentServiceImpl = studentServiceImpl;
+		this.codeGroupsServiceImpl = codeGroupsServiceImpl;
+	}
 
 	@GetMapping(Constants.URL_BILLING_USER_SEARCH)
 	public ResponseEntity<Page<Student>> search(@PathVariable("by") String by,
@@ -77,6 +86,14 @@ public class PayablesController {
 
 		BillingByInvoice billingByInvoice = payablesServiceImpl.getBillingByInvoiceList(student);
 		map.put("billingByInvoice", billingByInvoice);
+
+		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
+		
+		Map<String, Object> optionsList = new HashMap<>();
+		List<CodeGroups> periodList = codeGroupsServiceImpl.findByCodeList("PERIOD", user.getSchool());
+		optionsList.put("periodList", periodList);
+		map.put("optionsList", optionsList);
+		
 
 		ResponseEntity<Map<String, ?>> responseEntity = new ResponseEntity<>(map, HttpStatus.OK);
 		return responseEntity;
