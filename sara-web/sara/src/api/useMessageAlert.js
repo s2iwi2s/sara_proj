@@ -4,7 +4,8 @@ import Utils from './Utils';
 
 export const useMessageAlert = () => {
 
- const [globalProps, , setAlertProps, , , , ,] = useGlobalVariable();
+ // const [globalProps, , setAlertProps, , , , ,] = useGlobalVariable();
+ const [globalProps, setGlobalProps, setAlertProps] = useGlobalVariable();
  const showErrorMsgAlert = (error, errorCode, formMethod, serviceName) => {
   let errMsg = Utils.getFormatedErrorMessage(error, errorCode, formMethod, serviceName)
   showMsgAlert(true, errMsg, 'error')
@@ -39,7 +40,7 @@ export const useMessageAlert = () => {
   setAlertProps({
    open: false
   })
-  
+
   console.log(`[useMessageAlert.closeMsgAlert] 2 globalProps=>`, globalProps)
  }
 

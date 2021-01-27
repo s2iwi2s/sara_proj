@@ -17,7 +17,7 @@ function GlobalVariableProvider(props) {
             severity: 'info',
             msg: ''
         }
-    });
+    })
 
     const setAlertProps = (prop) => {
         console.log(`[useGlobalVariable.setAlertProps] 1 prop=>`, prop)
