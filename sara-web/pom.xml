@@ -76,7 +76,7 @@
 						</goals>
 						<configuration>
 							<overwrite>true</overwrite>
-							<outputDirectory>${project.build.directory}/classes/resources/</outputDirectory>
+							<outputDirectory>${project.build.directory}/classes/static/</outputDirectory>
 							<resources>
 								<resource>
 									<directory>${frontend-bundle-dir}</directory>
@@ -102,4 +102,78 @@
 
 		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>prod</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.github.eirslett</groupId>
+						<artifactId>frontend-maven-plugin</artifactId>
+						<version>1.6</version>
+						<configuration>
+							<workingDirectory>${frontend.dir}</workingDirectory>
+							<installDirectory>${vendor.installDirectory.dir}</installDirectory>
+						</configuration>
+						<executions>
+							<execution>
+								<id>install node and npm</id>
+								<goals>
+									<goal>install-node-and-npm</goal>
+								</goals>
+								<configuration>
+									<nodeVersion>v14.2.0</nodeVersion>
+									<npmVersion>6.14.8</npmVersion>
+								</configuration>
+							</execution>
+							<execution>
+								<id>npm install</id>
+								<goals>
+									<goal>npm</goal>
+								</goals>
+								<configuration>
+									<arguments>install</arguments>
+								</configuration>
+							</execution>
+							<execution>
+								<id>npm run build</id>
+								<goals>
+									<goal>npm</goal>
+								</goals>
+								<configuration>
+									<arguments>run build</arguments>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>maven-resources-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>copy-resources</id>
+								<phase>validate</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<configuration>
+									<overwrite>true</overwrite>
+									<outputDirectory>${project.build.directory}/classes/static/</outputDirectory>
+									<resources>
+										<resource>
+											<directory>${frontend.build.dir}</directory>
+											<filtering>true</filtering>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>

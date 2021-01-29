@@ -221,4 +221,6 @@ sketch
 !.vscode/extensions.json
 *.code-workspace
 
+.vendor
+
 # End of https://www.toptal.com/developers/gitignore/api/vscode,eclipse,maven,netbeans,intellij,react
