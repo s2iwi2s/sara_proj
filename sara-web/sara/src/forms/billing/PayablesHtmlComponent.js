@@ -129,8 +129,8 @@ const PayablesHtmlComponent = (props) => {
       <Paper elevation={3} variant="elevation" >
         <Box py={3} px={3}>
           <Grid container spacing={3}>
-            <Grid item xs={12} sm={2}>Student Id</Grid>
-            <Grid item xs={12} sm={10}>{props.store.entity.studentId}</Grid>
+            <Grid item xs={12} sm={2}>LRN</Grid>
+            <Grid item xs={12} sm={10}>{props.store.entity.lrn}</Grid>
             <Grid item xs={12} sm={2}>Student Name</Grid>
             <Grid item xs={12} sm={10}>{props.store.entity.firstName + ' ' + props.store.entity.lastName}</Grid>
             <Grid item xs={12} sm={2}>Level</Grid>

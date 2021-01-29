@@ -57,8 +57,8 @@ export default function SavePayablesConfimationHtml(props) {
             <Grid item xs={12} sm={2}></Grid>
             <Grid item xs={12} sm={4}></Grid>
 
-            <Grid item xs={12} sm={2}>Student Id</Grid>
-            <Grid item xs={12} sm={4}>{props.confirmStore.entity.studentId}</Grid>
+            <Grid item xs={12} sm={2}>LRN</Grid>
+            <Grid item xs={12} sm={4}>{props.confirmStore.entity.lrn}</Grid>
             <Grid item xs={12} sm={2}>Level</Grid>
             <Grid item xs={12} sm={4}>{props.confirmStore.entity.level.description}</Grid>
           </Grid>

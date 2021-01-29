@@ -24,7 +24,7 @@ const SearchResultsHtmlComponent = (props) => {
   return (<>
    <TableHead>
     <StyledTableHeadRow>
-     <StyledTableHeadCell>Student ID</StyledTableHeadCell>
+     <StyledTableHeadCell>LRN</StyledTableHeadCell>
      <StyledTableHeadCell>Name</StyledTableHeadCell>
      <StyledTableHeadCell>Grade Level</StyledTableHeadCell>
      <StyledTableHeadCell align="right">
@@ -41,7 +41,7 @@ const SearchResultsHtmlComponent = (props) => {
    <TableBody>
     {list.map(row => (
      <StyledTableRow key={row.id}>
-      <TableCell variant="head">{row.studentId}</TableCell>
+      <TableCell variant="head">{row.lrn}</TableCell>
       <TableCell>{row.firstName} {row.lastName}</TableCell>
       <TableCell>{row.level.description}</TableCell>
       <TableCell align="right">
