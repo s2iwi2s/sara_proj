@@ -35,13 +35,7 @@ export default function SchoolDetailComponent(props) {
   const [status, setStatus] = useState(INIT_STATUS.INIT)
 
   const selectedItem = useSelector(selectSelectedItem)
-  const [,
-    ,
-    showErrorMsgAlert,
-    ,
-    ,
-    ,
-  ] = useMessageAlert();
+  const alert = useMessageAlert();
 
   useEffect(() => {
     console.log(
@@ -64,6 +58,18 @@ export default function SchoolDetailComponent(props) {
       setStatus(INIT_STATUS.LOAD)
     }
   }, [selectedItem])
+
+  const showErrorMsgAlert = (error, errorCode, formMethod, serviceName) => {
+    alert({
+      type: 'form-error',
+      payload: {
+        error: error,
+        errorCode: errorCode,
+        formMethod: formMethod,
+        serviceName: serviceName
+      }
+    })
+  }
 
   const doRetrieve = () => {
     if (props.match.params.id == -1) {
