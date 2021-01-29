@@ -4,47 +4,34 @@ import { Alert } from '@material-ui/lab';
 import { useMessageAlert } from "../../api/useMessageAlert"
 
 export default function GlobalAlertMsgDialog() {
-    const [
-        globalProps,
-        ,
-        ,
-        ,
-        ,
-        ,
-        closeMsgAlert,
-        ,
-        callback] = useMessageAlert();
+    const alert = useMessageAlert();
 
-    const setReturnValue = value => {
-        console.log(`[GlobalAlertMsgDialog.setReturnValue] callback=${typeof callback}`);
-        callback(value)
-        closeMsgAlert()
+    const closeDialog = () => {
+        alert({
+            type: 'close'
+        })
     }
     return (
         <>
             <Dialog fullWidth={true} maxWidth="md"
-                open={globalProps.alert.open}
-                onClose={closeMsgAlert}
+                open={alert().open}
+                onClose={closeDialog}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
-                <DialogTitle id="alert-dialog-title"><Alert severity={globalProps.alert.severity} align="right">
+                <DialogTitle id="alert-dialog-title"><Alert severity={alert().severity} align="right">
                     <Typography variant="h6">
-                        {globalProps.alert.title}
+                        {alert().title}
                     </Typography>
                 </Alert></DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        {globalProps.alert.msg}
+                        {alert().msg}
                     </DialogContentText>
                 </DialogContent>
-                {globalProps.alert.type === 'OK' && <DialogActions>
-                    <Button onClick={closeMsgAlert}>Ok</Button>
-                </DialogActions>}
-                {globalProps.alert.type === 'YESNO' && <DialogActions>
-                    <Button onClick={() => setReturnValue('YES')}>YES</Button>
-                    <Button onClick={() => setReturnValue('NO')}>NO</Button>
-                </DialogActions>}
+                <DialogActions>
+                    <Button onClick={closeDialog}>{alert().label}</Button>
+                </DialogActions>
 
             </Dialog>
         </>

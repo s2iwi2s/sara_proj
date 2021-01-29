@@ -3,8 +3,25 @@ import { useGlobalVariable } from '../providers/GlobalVariableProvider'
 
 export const useMessageAlert = () => {
 
-    // const [globalProps, , setAlertProps, , , , ,] = useGlobalVariable();
-    const [globalProps, , setAlertProps] = useGlobalVariable();
+    const [globalProps, setGlobalProps, setAlertProps, setUIProps, alertProp] = useGlobalVariable();
+
+    // const alert = (action = {}) => {
+    //     if (action.type === 'close') {
+    //         closeMsgAlert()
+    //     } else if (action.type === 'form-error') {
+    //         showErrorMsgAlert(action.payload.error, action.payload.errorCode, action.payload.formMethod, action.payload.serviceName)
+    //     } else if (action.type === 'error') {
+    //         showErrorAlert(action.payload.message)
+    //     } else if (action.type === 'info') {
+    //         showInfoAlert(action.payload.message)
+    //     } else if (action.type === 'warning') {
+    //         showWarningAlert(action.payload.message)
+    //     } else if (action.type === 'success') {
+    //         showSuccessAlert(action.payload.message)
+    //     }
+
+    //     return alertProp
+    // }
 
     const showErrorMsgAlert = (error, errorCode, formMethod, serviceName) => {
         let errMsg = getFormatedErrorMessage(error, errorCode, formMethod, serviceName)
@@ -20,17 +37,16 @@ export const useMessageAlert = () => {
     }
 
     const showWarningAlert = (msg) => {
-        showMsgAlert('Warning', 'warning')
+        showMsgAlert('Warning', msg, 'warning')
     }
 
     const showSuccessAlert = (msg) => {
-        showMsgAlert('Alert', 'success')
+        showMsgAlert('Alert', msg, 'success')
     }
 
     const showMsgAlert = (title, msg, severity) => {
         setAlertProps({
             title: title,
-            type: 'OK',
             open: true,
             severity: severity,
             msg: msg
@@ -72,13 +88,22 @@ export const useMessageAlert = () => {
         return errMsg;
     }
 
-    return [
-        globalProps,
-        showErrorAlert,
-        showErrorMsgAlert,
-        showInfoAlert,
-        showWarningAlert,
-        showSuccessAlert,
-        closeMsgAlert
-    ]
+    return (action = {}) => {
+        if (action.type === 'close') {
+            closeMsgAlert()
+        } else if (action.type === 'form-error') {
+            showErrorMsgAlert(action.payload.error, action.payload.errorCode, action.payload.formMethod, action.payload.serviceName)
+        } else if (action.type === 'error') {
+            showErrorAlert(action.payload)
+        } else if (action.type === 'info') {
+            showInfoAlert(action.payload)
+        } else if (action.type === 'warning') {
+            showWarningAlert(action.payload)
+        } else if (action.type === 'success') {
+            showSuccessAlert(action.payload)
+        }
+
+        return alertProp
+    }
+
 }

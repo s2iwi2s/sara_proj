@@ -23,13 +23,7 @@ import { useMessageAlert } from "../../api/useMessageAlert"
 let renderCount = 0;
 
 export default function GradeLevelPayablesDetailsComponent(props) {
-  const [,
-    showErrorAlert,
-    showErrorMsgAlert,
-    ,
-    ,
-    ,
-  ] = useMessageAlert();
+  const alert = useMessageAlert();
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -51,6 +45,18 @@ export default function GradeLevelPayablesDetailsComponent(props) {
     }
 
   }, [selectedItem, status]);
+
+  const showErrorMsgAlert = (error, errorCode, formMethod, serviceName) => {
+    alert({
+      type: 'form-error',
+      payload: {
+        error: error,
+        errorCode: errorCode,
+        formMethod: formMethod,
+        serviceName: serviceName
+      }
+    })
+  }
 
   const handleCheckboxChange = (e) => {
     const { name, checked } = e.target

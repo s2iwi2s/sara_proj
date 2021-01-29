@@ -20,13 +20,7 @@ import { useMessageAlert } from "../../api/useMessageAlert"
 let renderCount = 0;
 
 export default function AccountPayablesSettingsDetailComponent(props) {
-  const [,
-    ,
-    showErrorMsgAlert,
-    ,
-    ,
-    ,
-  ] = useMessageAlert();
+  const alert = useMessageAlert();
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -58,6 +52,18 @@ export default function AccountPayablesSettingsDetailComponent(props) {
       setStatus(INIT_STATUS.DONE)
     }
   }, [selectedItem, status]);
+
+  const showErrorMsgAlert = (error, errorCode, formMethod, serviceName) => {
+    alert({
+      type: 'form-error',
+      payload: {
+        error: error,
+        errorCode: errorCode,
+        formMethod: formMethod,
+        serviceName: serviceName
+      }
+    })
+  }
 
   const onRetrieve = () => {
     console.log(`[AccountPayablesSettingsDetailComponent.onRetrieve]  props.match.params.id==>${props.match.params.id}`)

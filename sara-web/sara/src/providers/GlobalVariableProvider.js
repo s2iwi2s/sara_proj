@@ -12,28 +12,24 @@ function useGlobalVariable() {
 
 function GlobalVariableProvider(props) {
     const [globalProps, setGlobalProps] = useState({
-
         ui: {
             darkMode: false
-        },
-        alert: {
-            title: '',
-            type: 'OK',
-            open: false,
-            severity: 'info',
-            msg: '',
-            value: {}
         }
     })
 
+    const [alertProp, setAlertProp] = useState({
+        title: '',
+        label: 'Ok',
+        open: false,
+        severity: 'info',
+        msg: '',
+        value: {}
+    })
+    
     const setAlertProps = (prop) => {
-        console.log(`[useGlobalVariable.setAlertProps] 1 prop=>`, prop)
-        setGlobalProps({
-            ...globalProps,
-            alert: {
-                ...globalProps.alert,
-                ...prop
-            }
+        setAlertProp({
+            ...alertProp,
+            ...prop
         })
     }
 
@@ -47,8 +43,8 @@ function GlobalVariableProvider(props) {
         })
     }
 
-    const value = useMemo(() => [globalProps, setGlobalProps, setAlertProps, setUIProps],
-        [globalProps])
+    const value = useMemo(() => [globalProps, setGlobalProps, setAlertProps, setUIProps, alertProp],
+        [globalProps, alertProp])
     return <GlobalVariableContext.Provider value={value} {...props} />
 }
 

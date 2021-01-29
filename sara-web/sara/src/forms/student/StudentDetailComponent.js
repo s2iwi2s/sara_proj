@@ -8,17 +8,23 @@ import { selectSelectedItem, setOptionsList, setPageableEntity, resetSelectedIte
 import { useMessageAlert } from "../../api/useMessageAlert"
 
 export default function StudentDetailComponent(props) {
-  const [,
-    ,
-    showErrorMsgAlert,
-    ,
-    ,
-    ,
-  ] = useMessageAlert();
+  const alert = useMessageAlert();
   const dispatch = useDispatch();
   const selectedItem = useSelector(selectSelectedItem)
 
   const [message, setMessage] = useState("");
+
+  const showErrorMsgAlert = (error, errorCode, formMethod, serviceName) => {
+    alert({
+      type: 'form-error',
+      payload: {
+        error: error,
+        errorCode: errorCode,
+        formMethod: formMethod,
+        serviceName: serviceName
+      }
+    })
+  }
 
   const onSubmitForm = (data) => {
     console.log('[StudentDetailComponent.onSubmitForm] data==>', data)

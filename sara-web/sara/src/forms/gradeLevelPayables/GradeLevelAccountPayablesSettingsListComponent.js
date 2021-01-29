@@ -9,14 +9,7 @@ import { useMessageAlert } from "../../api/useMessageAlert"
 
 export default function GradeLevelAccountPayablesSettingsListComponent(props) {
 
-  const [,
-    showErrorAlert
-    ,
-    showErrorMsgAlert,
-    ,
-    ,
-    ,
-  ] = useMessageAlert();
+  const alert = useMessageAlert();
   const [store, setStore] = useState({
     list: [],
     searchValue: '',
@@ -27,10 +20,25 @@ export default function GradeLevelAccountPayablesSettingsListComponent(props) {
     }
   });
 
+  const showErrorMsgAlert = (error, errorCode, formMethod, serviceName) => {
+    alert({
+      type: 'form-error',
+      payload: {
+        error: error,
+        errorCode: errorCode,
+        formMethod: formMethod,
+        serviceName: serviceName
+      }
+    })
+  }
+
   const doRetrieve = () => {
     console.log(`[GradeLevelAccountPayablesSettingsListComponent.doRetrieve] props.selectedItem==>`, props.selectedItem)
     if (!props.selectedItem.period || !props.selectedItem.period.id) {
-      showErrorAlert('Please select period')
+      alert({
+        type: 'error',
+        payload: 'Please select period'
+      })
       return
     }
     getActiveList(props.selectedItem.period.id, store.searchValue, store.paging.currentPage, store.paging.rowsPerPage)
