@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 
-import { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils'
+import { ERROR_CODE, INIT_STATUS, OPTIONS, PAGE_URL } from '../../api/Utils'
 import { deleteItem, getList } from '../../api/school/SchoolService'
 import CustomTableGrid from '../common/CustomTableGrid'
 
@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { resetSelectedItem, selectPageable, setPageable, setSelectedItem, } from '../../api/school/SchoolSlice'
 import TitleComponent from '../common/TitleComponent'
 import { useMessageAlert } from "../../api/useMessageAlert"
+import ConfirmMsgDialog from '../common/ConfirmMsgDialog'
 
 export default function SchoolListComponent(props) {
   const [,
@@ -20,6 +21,9 @@ export default function SchoolListComponent(props) {
   ] = useMessageAlert();
   const dispatch = useDispatch()
   const currPageableSchools = useSelector(selectPageable)
+
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [deleteId, setDeleteId] = useState();
 
   useEffect(() => {
     dispatch(resetSelectedItem())
@@ -60,6 +64,20 @@ export default function SchoolListComponent(props) {
     props.history.push(`${PAGE_URL.SCHOOL_DETAIL_URL}/-1`)
   }
 
+  const doCloseConfirmDelete = () => {
+    setDeleteDialogOpen(false)
+  }
+  const doShowConfirmDelete = (id) => {
+    setDeleteId(id)
+    setDeleteDialogOpen(true)
+  }
+  const setDeleteDialogSelection = (value) => {
+    console.log(`[SchoolListComponent.setDeleteDialogSelection] value=${value}`);
+    if (value === OPTIONS.YES) {
+      doDelete(deleteId)
+    }
+    setDeleteId(null)
+  }
   const doDelete = (id) =>
     deleteItem(id)
       .then(doRetrieve())
@@ -98,8 +116,10 @@ export default function SchoolListComponent(props) {
       headerName: 'Name',
     },
     {
-      field: 'schoolYear',
-      headerName: 'School Year',
+      headerName: 'Current Period',
+      render: function (row) {
+        return row.currentPeriod ? row.currentPeriod.description : ''
+      }
     },
     {
       field: 'logo',
@@ -119,9 +139,15 @@ export default function SchoolListComponent(props) {
         doRetrieve={doRetrieve}
         doEdit={doEdit}
         doNew={doNew}
-        doDelete={doDelete}
+        doDelete={doShowConfirmDelete}
         doSearch={doSearch}
       />
+      <ConfirmMsgDialog
+        open={deleteDialogOpen}
+        title="Confirm delete"
+        msg="Are you sure you want to delete?"
+        closeDialog={doCloseConfirmDelete}
+        setDialogSelection={setDeleteDialogSelection} />
     </>
   )
 }

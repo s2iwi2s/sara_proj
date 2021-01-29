@@ -14,7 +14,7 @@ import lombok.Setter;
 public class GradeLevelPayablesResponse extends Response<GradeLevelPayables> {
 	private static final long serialVersionUID = -1164423995409192025L;
 	Iterable<Address> list = new ArrayList<Address>();
-
+	private GradeLevelPayablesListService gradeLevelPayablesListService;
 	public GradeLevelPayablesResponse(GradeLevelPayablesListService gradeLevelPayablesListService) {
 		super(gradeLevelPayablesListService);
 	}

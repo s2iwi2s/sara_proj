@@ -66,22 +66,29 @@ public class AccountPayablesSettingsServiceImpl extends AbstractService<AccountP
 		return entity;
 	}
 
-	public List<AccountPayablesSettings> findByApplyToAllList(School school) {
-		return ((AccountPayablesSettingsMongoRepository) repo).findByActiveAndApplyToAllAndSchoolOrderByPriority(true,
-				true, school);
+	public List<AccountPayablesSettings> findByApplyToAllList(School school, String periodId) {
+		CodeGroups period = codeGroupsServiceImpl.findById(periodId);
+//
+//		Criteria criteria = where("period").is(period).and("school").is(school);
+////		Sort sort = by(Sort.Direction.DESC, "accountPayablesSettings");
+//		List<AccountPayablesSettings> list = mongoTemplate.find(Query.query(criteria), AccountPayablesSettings.class);
+
+		return ((AccountPayablesSettingsMongoRepository) repo)
+				.findByActiveAndApplyToAllAndSchoolAndPeriodOrderByPriority(true, true, school, period);
 		// return findAll(pageable);
 	}
 
-	public Page<AccountPayablesSettings> findAllActiveList(String period, String searchValue, Pageable pageable, User user) throws NotFoundException {
-		if(period == null) {
+	public Page<AccountPayablesSettings> findAllActiveList(String period, String searchValue, Pageable pageable,
+			User user) throws NotFoundException {
+		if (period == null) {
 			throw new NotFoundException("No Accounts Payables Settings found");
 		}
-		
+
 		BooleanBuilder searchbb = new BooleanBuilder();
-		if(period != null) {
+		if (period != null) {
 			searchbb.and(QAccountPayablesSettings.accountPayablesSettings.period.eq(new CodeGroups(period)));
 		}
-		
+
 		searchbb.and(QAccountPayablesSettings.accountPayablesSettings.applyToAll.eq(false));
 		searchbb.and(QAccountPayablesSettings.accountPayablesSettings.active.eq(true));
 		searchbb.and(QAccountPayablesSettings.accountPayablesSettings.description.containsIgnoreCase(searchValue));

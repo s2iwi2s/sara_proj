@@ -3,12 +3,23 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
 import { Alert } from '@material-ui/lab';
 import { useMessageAlert } from "../../api/useMessageAlert"
 
-export default function GlobalAlertMsgDialog(props) {
+export default function GlobalAlertMsgDialog() {
     const [
-        globalProps, , , , , , closeMsgAlert] = useMessageAlert();
+        globalProps,
+        ,
+        ,
+        ,
+        ,
+        ,
+        closeMsgAlert,
+        ,
+        callback] = useMessageAlert();
 
-
-    console.log(`[GlobalAlertMsgDialog] globalProps=>`, globalProps)
+    const setReturnValue = value => {
+        console.log(`[GlobalAlertMsgDialog.setReturnValue] callback=${typeof callback}`);
+        callback(value)
+        closeMsgAlert()
+    }
     return (
         <>
             <Dialog fullWidth={true} maxWidth="md"
@@ -19,10 +30,7 @@ export default function GlobalAlertMsgDialog(props) {
             >
                 <DialogTitle id="alert-dialog-title"><Alert severity={globalProps.alert.severity} align="right">
                     <Typography variant="h6">
-                        {globalProps.alert.severity === 'error' && 'Error'}
-                        {globalProps.alert.severity === 'info' && 'Alert'}
-                        {globalProps.alert.severity === 'warning' && 'Warning'}
-                        {globalProps.alert.severity === 'success' && 'Success'}
+                        {globalProps.alert.title}
                     </Typography>
                 </Alert></DialogTitle>
                 <DialogContent>
@@ -30,9 +38,14 @@ export default function GlobalAlertMsgDialog(props) {
                         {globalProps.alert.msg}
                     </DialogContentText>
                 </DialogContent>
-                <DialogActions>
+                {globalProps.alert.type === 'OK' && <DialogActions>
                     <Button onClick={closeMsgAlert}>Ok</Button>
-                </DialogActions>
+                </DialogActions>}
+                {globalProps.alert.type === 'YESNO' && <DialogActions>
+                    <Button onClick={() => setReturnValue('YES')}>YES</Button>
+                    <Button onClick={() => setReturnValue('NO')}>NO</Button>
+                </DialogActions>}
+
             </Dialog>
         </>
     );

@@ -12,13 +12,17 @@ function useGlobalVariable() {
 
 function GlobalVariableProvider(props) {
     const [globalProps, setGlobalProps] = useState({
+
         ui: {
             darkMode: false
         },
         alert: {
+            title: '',
+            type: 'OK',
             open: false,
             severity: 'info',
-            msg: ''
+            msg: '',
+            value: {}
         }
     })
 

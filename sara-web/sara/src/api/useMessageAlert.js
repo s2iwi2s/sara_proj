@@ -5,35 +5,37 @@ export const useMessageAlert = () => {
 
     // const [globalProps, , setAlertProps, , , , ,] = useGlobalVariable();
     const [globalProps, , setAlertProps] = useGlobalVariable();
+
     const showErrorMsgAlert = (error, errorCode, formMethod, serviceName) => {
         let errMsg = getFormatedErrorMessage(error, errorCode, formMethod, serviceName)
-        showMsgAlert(true, errMsg, 'error')
+        showMsgAlert('Error', errMsg, 'error')
     }
 
     const showErrorAlert = (msg) => {
-        showMsgAlert(true, msg, 'error')
+        showMsgAlert('Error', msg, 'error')
     }
 
     const showInfoAlert = (msg) => {
-        showMsgAlert(true, msg, 'info')
+        showMsgAlert('Information', msg, 'info')
     }
 
     const showWarningAlert = (msg) => {
-        showMsgAlert(true, msg, 'warning')
+        showMsgAlert('Warning', 'warning')
     }
 
     const showSuccessAlert = (msg) => {
-        showMsgAlert(true, msg, 'success')
+        showMsgAlert('Alert', 'success')
     }
 
-    const showMsgAlert = (open, msg, severity) => {
+    const showMsgAlert = (title, msg, severity) => {
         setAlertProps({
-            open: open,
+            title: title,
+            type: 'OK',
+            open: true,
             severity: severity,
-            msg: msg,
+            msg: msg
         })
     }
-
     const closeMsgAlert = () => {
         console.log(`[useMessageAlert.closeMsgAlert] 1 globalProps=>`, globalProps)
         setAlertProps({

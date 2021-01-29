@@ -1,577 +1,214 @@
 [{
   "_id": {
-    "$oid": "5f8dbf79746e4b25b102facb"
-  },
-  "code": "STATUS",
-  "value": "New",
-  "description": "New",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102facc"
-  },
-  "code": "STATUS",
-  "value": "Dispatched",
-  "description": "Dispatched",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102facd"
-  },
-  "code": "STATUS",
-  "value": "Ack",
-  "description": "Ack",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102face"
-  },
-  "code": "STATUS",
-  "value": "Closed",
-  "description": "Closed",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102facf"
-  },
-  "code": "STATUS_CODE",
-  "value": "Open",
-  "description": "Open",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fad0"
-  },
-  "code": "STATUS_CODE",
-  "value": "Open-Dispatched",
-  "description": "Open-Dispatched",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fad1"
-  },
-  "code": "STATUS_CODE",
-  "value": "Awaiting Customer",
-  "description": "Awaiting Customer",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fad2"
-  },
-  "code": "STATUS_CODE",
-  "value": "Closed",
-  "description": "Closed",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fad3"
-  },
-  "code": "CASE_TYPE_1",
-  "value": "sit",
-  "description": "sit",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fad4"
-  },
-  "code": "CASE_TYPE_1",
-  "value": "eaque",
-  "description": "eaque",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fad5"
-  },
-  "code": "CASE_TYPE_1",
-  "value": "porro",
-  "description": "porro",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fad6"
-  },
-  "code": "CASE_TYPE_1",
-  "value": "inventore",
-  "description": "inventore",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fad7"
-  },
-  "code": "CASE_TYPE_1",
-  "value": "vel",
-  "description": "vel",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fad8"
-  },
-  "code": "CASE_TYPE_1",
-  "value": "cupiditate",
-  "description": "cupiditate",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fad9"
-  },
-  "code": "CASE_TYPE_1",
-  "value": "cupiditate",
-  "description": "cupiditate",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fada"
-  },
-  "code": "CASE_TYPE_1",
-  "value": "sit",
-  "description": "sit",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fadb"
-  },
-  "code": "CASE_TYPE_1",
-  "value": "repudiandae",
-  "description": "repudiandae",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fadc"
-  },
-  "code": "CASE_TYPE_1",
-  "value": "eum",
-  "description": "eum",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fadd"
-  },
-  "code": "CASE_TYPE_1",
-  "value": "odio",
-  "description": "odio",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fade"
-  },
-  "code": "CASE_TYPE_1",
-  "value": "minima",
-  "description": "minima",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fadf"
-  },
-  "code": "CASE_TYPE_1",
-  "value": "occaecati",
-  "description": "occaecati",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fae0"
-  },
-  "code": "CASE_TYPE_1",
-  "value": "sed",
-  "description": "sed",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fae1"
-  },
-  "code": "CASE_TYPE_1",
-  "value": "culpa",
-  "description": "culpa",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fae2"
-  },
-  "code": "CASE_TYPE_1",
-  "value": "magni",
-  "description": "magni",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fae3"
-  },
-  "code": "CASE_TYPE_1",
-  "value": "commodi",
-  "description": "commodi",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fae4"
-  },
-  "code": "CASE_TYPE_1",
-  "value": "incidunt",
-  "description": "incidunt",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fae5"
-  },
-  "code": "CASE_TYPE_1",
-  "value": "sit",
-  "description": "sit",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fae6"
-  },
-  "code": "CASE_TYPE_1",
-  "value": "rerum",
-  "description": "rerum",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fae7"
-  },
-  "code": "CASE_TYPE_2",
-  "value": "est",
-  "description": "est",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fae8"
-  },
-  "code": "CASE_TYPE_2",
-  "value": "dolorum",
-  "description": "dolorum",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fae9"
-  },
-  "code": "CASE_TYPE_2",
-  "value": "mollitia",
-  "description": "mollitia",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102faea"
-  },
-  "code": "CASE_TYPE_2",
-  "value": "non",
-  "description": "non",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102faeb"
-  },
-  "code": "CASE_TYPE_2",
-  "value": "saepe",
-  "description": "saepe",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102faec"
-  },
-  "code": "CASE_TYPE_2",
-  "value": "eos",
-  "description": "eos",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102faed"
-  },
-  "code": "CASE_TYPE_2",
-  "value": "iste",
-  "description": "iste",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102faee"
-  },
-  "code": "CASE_TYPE_2",
-  "value": "at",
-  "description": "at",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102faef"
-  },
-  "code": "CASE_TYPE_2",
-  "value": "omnis",
-  "description": "omnis",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102faf0"
-  },
-  "code": "CASE_TYPE_2",
-  "value": "quas",
-  "description": "quas",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102faf1"
-  },
-  "code": "CASE_TYPE_2",
-  "value": "cum",
-  "description": "cum",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102faf2"
-  },
-  "code": "CASE_TYPE_2",
-  "value": "quia",
-  "description": "quia",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102faf3"
-  },
-  "code": "CASE_TYPE_2",
-  "value": "eos",
-  "description": "eos",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102faf4"
-  },
-  "code": "CASE_TYPE_2",
-  "value": "assumenda",
-  "description": "assumenda",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102faf5"
-  },
-  "code": "CASE_TYPE_2",
-  "value": "nobis",
-  "description": "nobis",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102faf6"
-  },
-  "code": "CASE_TYPE_2",
-  "value": "repellat",
-  "description": "repellat",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102faf7"
-  },
-  "code": "CASE_TYPE_2",
-  "value": "perferendis",
-  "description": "perferendis",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102faf8"
-  },
-  "code": "CASE_TYPE_2",
-  "value": "expedita",
-  "description": "expedita",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102faf9"
-  },
-  "code": "CASE_TYPE_2",
-  "value": "possimus",
-  "description": "possimus",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fafa"
-  },
-  "code": "CASE_TYPE_2",
-  "value": "quis",
-  "description": "quis",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fafb"
-  },
-  "code": "CASE_TYPE_3",
-  "value": "vero",
-  "description": "vero",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fafc"
-  },
-  "code": "CASE_TYPE_3",
-  "value": "eos",
-  "description": "eos",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fafd"
-  },
-  "code": "CASE_TYPE_3",
-  "value": "recusandae",
-  "description": "recusandae",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fafe"
-  },
-  "code": "CASE_TYPE_3",
-  "value": "sint",
-  "description": "sint",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102faff"
-  },
-  "code": "CASE_TYPE_3",
-  "value": "omnis",
-  "description": "omnis",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fb00"
-  },
-  "code": "CASE_TYPE_3",
-  "value": "corrupti",
-  "description": "corrupti",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fb01"
-  },
-  "code": "CASE_TYPE_3",
-  "value": "modi",
-  "description": "modi",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fb02"
-  },
-  "code": "CASE_TYPE_3",
-  "value": "minus",
-  "description": "minus",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fb03"
-  },
-  "code": "CASE_TYPE_3",
-  "value": "eos",
-  "description": "eos",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fb04"
-  },
-  "code": "CASE_TYPE_3",
-  "value": "consequuntur",
-  "description": "consequuntur",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fb05"
-  },
-  "code": "CASE_TYPE_3",
-  "value": "blanditiis",
-  "description": "blanditiis",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fb06"
-  },
-  "code": "CASE_TYPE_3",
-  "value": "dicta",
-  "description": "dicta",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fb07"
-  },
-  "code": "CASE_TYPE_3",
-  "value": "possimus",
-  "description": "possimus",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fb08"
-  },
-  "code": "CASE_TYPE_3",
-  "value": "voluptates",
-  "description": "voluptates",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fb09"
-  },
-  "code": "CASE_TYPE_3",
-  "value": "id",
-  "description": "id",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fb0a"
-  },
-  "code": "CASE_TYPE_3",
-  "value": "placeat",
-  "description": "placeat",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fb0b"
-  },
-  "code": "CASE_TYPE_3",
-  "value": "id",
-  "description": "id",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fb0c"
-  },
-  "code": "CASE_TYPE_3",
-  "value": "eos",
-  "description": "eos",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fb0d"
-  },
-  "code": "CASE_TYPE_3",
-  "value": "magnam",
-  "description": "magnam",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f8dbf79746e4b25b102fb0e"
-  },
-  "code": "CASE_TYPE_3",
-  "value": "quia",
-  "description": "quia",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f976963d1c167348f6f4960"
-  },
-  "code": "STUDENT_TYPE",
-  "value": "New",
-  "description": "New / Transferring Student",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f9769b4d1c167348f6f4961"
-  },
-  "code": "STUDENT_TYPE",
-  "value": "Returning",
-  "description": "Returning Student",
-  "_class": "CodeGroups"
-},{
-  "_id": {
-    "$oid": "5f98aee0419c2a4777cfa86d"
-  },
-  "code": "STUDENT_LEVEL",
-  "value": "Grade 1",
-  "description": "Grade 1",
-  "_class": "CodeGroups"
-},{
-  "_id": {
     "$oid": "5f98aeec419c2a4777cfa86e"
   },
+  "priority": 2,
   "code": "STUDENT_LEVEL",
-  "value": "Grade 2",
+  "value": "grade_2",
   "description": "Grade 2",
+  "json": "",
+  "school": {
+    "$ref": "school",
+    "$id": {
+      "$oid": "5f9c52b3ef7618233e66f80e"
+    }
+  },
+  "_class": "CodeGroups"
+},{
+  "_id": {
+    "$oid": "5fa077353213dd53bb0f181c"
+  },
+  "code": "STUDENT_TYPE",
+  "value": "grade_1",
+  "description": "Grade 1",
+  "json": "",
+  "school": {
+    "$ref": "school",
+    "$id": {
+      "$oid": "5f9c52b3ef7618233e66f80e"
+    }
+  },
+  "_class": "CodeGroups"
+},{
+  "_id": {
+    "$oid": "5fa10e8255a1124149060a6c"
+  },
+  "priority": 1,
+  "code": "STUDENT_LEVEL",
+  "value": "grade_1",
+  "description": "Grade 1",
+  "json": "",
+  "school": {
+    "$ref": "school",
+    "$id": {
+      "$oid": "5f9c52b3ef7618233e66f80e"
+    }
+  },
+  "_class": "CodeGroups"
+},{
+  "_id": {
+    "$oid": "5fa216ea700d4308cdc16432"
+  },
+  "priority": 2,
+  "code": "CIVIL_STATUS",
+  "value": "Single",
+  "description": "Single",
+  "json": "",
+  "school": {
+    "$ref": "school",
+    "$id": {
+      "$oid": "5f9c52b3ef7618233e66f80e"
+    }
+  },
+  "_class": "CodeGroups"
+},{
+  "_id": {
+    "$oid": "5fa216f7700d4308cdc16433"
+  },
+  "priority": 1,
+  "code": "CIVIL_STATUS",
+  "value": "Married",
+  "description": "Married",
+  "json": "",
+  "school": {
+    "$ref": "school",
+    "$id": {
+      "$oid": "5f9c52b3ef7618233e66f80e"
+    }
+  },
+  "_class": "CodeGroups"
+},{
+  "_id": {
+    "$oid": "5fa21759700d4308cdc16434"
+  },
+  "priority": 3,
+  "code": "CIVIL_STATUS",
+  "value": "Divorced",
+  "description": "Divorced",
+  "json": "",
+  "school": {
+    "$ref": "school",
+    "$id": {
+      "$oid": "5f9c52b3ef7618233e66f80e"
+    }
+  },
+  "_class": "CodeGroups"
+},{
+  "_id": {
+    "$oid": "5fa2769fbdf1941cd6ed41d9"
+  },
+  "priority": 4,
+  "code": "CIVIL_STATUS",
+  "value": "Widower",
+  "description": "Widower",
+  "json": "",
+  "school": {
+    "$ref": "school",
+    "$id": {
+      "$oid": "5f9c52b3ef7618233e66f80e"
+    }
+  },
+  "_class": "CodeGroups"
+},{
+  "_id": {
+    "$oid": "5fa309c2d3e98654d02db47e"
+  },
+  "priority": 1,
+  "code": "PAYABLES_grade_1",
+  "value": "PAYABLES_grade_1",
+  "description": "PAYABLES_grade_1",
+  "json": "[\n\t{\n\t\t\"code\" : \"tuition_fee\",\n\t\t\"name\": \"Tuition Fee\",\n\t\t\"amount\": 15000\n\t},\n\t{\n\t\t\"code\": \"misc_fee\",\n\t\t\"name\": \"Misc.\",\n\t\t\"amount\": 500\n\t},\n\t{\n\t\t\"code\":\"books_fee\",\n\t\t\"name\": \"Books\",\n\t\t\"amount\": 3500\n\t},\n\t{\n\t\t\"code\" : \"hsa_fee\",\n\t\t\"name\": \"HSA\",\n\t\t\"amount\": 200\n\t},\n\t{\n\t\t\"code\": \"lib_fee\",\n\t\t\"name\": \"Library Fee\",\n\t\t\"amount\": 200\n\t}\n]",
+  "school": {
+    "$ref": "school",
+    "$id": {
+      "$oid": "5f9c52b3ef7618233e66f80e"
+    }
+  },
+  "_class": "CodeGroups"
+},{
+  "_id": {
+    "$oid": "5fa30a19d3e98654d02db47f"
+  },
+  "priority": 1,
+  "code": "PAYABLES_grade_2",
+  "value": "PAYABLES_grade_2",
+  "description": "PAYABLES_grade_2",
+  "json": "[\n\t{\n\t\t\"code\" : \"tuition_fee\",\n\t\t\"name\": \"Tuition Fee\",\n\t\t\"amount\": 16000\n\t},\n\t{\n\t\t\"code\": \"misc_fee\",\n\t\t\"name\": \"Misc.\",\n\t\t\"amount\": 550\n\t},\n\t{\n\t\t\"code\":\"books_fee\",\n\t\t\"name\": \"Books\",\n\t\t\"amount\": 3700\n\t},\n\t{\n\t\t\"code\" : \"hsa_fee\",\n\t\t\"name\": \"HSA\",\n\t\t\"amount\": 210\n\t},\n\t{\n\t\t\"code\": \"lib_fee\",\n\t\t\"name\": \"Library Fee\",\n\t\t\"amount\": 200\n\t}\n]",
+  "school": {
+    "$ref": "school",
+    "$id": {
+      "$oid": "5f9c52b3ef7618233e66f80e"
+    }
+  },
+  "_class": "CodeGroups"
+},{
+  "_id": "1",
+  "priority": 1,
+  "code": "PAYMENT_PERIOD",
+  "value": "Monthly",
+  "description": "Monthly",
+  "json": "",
+  "school": {
+    "$ref": "school",
+    "$id": {
+      "$oid": "5f9c52b3ef7618233e66f80e"
+    }
+  },
+  "_class": "CodeGroups"
+},{
+  "_id": "2",
+  "priority": 2,
+  "code": "PAYMENT_PERIOD",
+  "value": "Annual",
+  "description": "Annual",
+  "json": "",
+  "school": {
+    "$ref": "school",
+    "$id": {
+      "$oid": "5f9c52b3ef7618233e66f80e"
+    }
+  },
+  "_class": "CodeGroups"
+},{
+  "_id": "5",
+  "priority": 3,
+  "code": "PERIOD",
+  "value": "SY 2019-2020",
+  "description": "SY 2019-2020",
+  "json": "",
+  "school": {
+    "$ref": "school",
+    "$id": {
+      "$oid": "5f9c52b3ef7618233e66f80e"
+    }
+  },
+  "_class": "CodeGroups"
+},{
+  "_id": "6",
+  "priority": 1,
+  "code": "PERIOD",
+  "value": "2020-2021",
+  "description": "SY 2020-2021",
+  "json": "",
+  "school": {
+    "$ref": "school",
+    "$id": {
+      "$oid": "5f9c52b3ef7618233e66f80e"
+    }
+  },
+  "_class": "CodeGroups"
+},{
+  "_id": "7",
+  "priority": 2,
+  "code": "PERIOD",
+  "value": "2020-2021-S",
+  "description": "SY 2020-2021 SUMMER",
+  "json": "",
+  "school": {
+    "$ref": "school",
+    "$id": {
+      "$oid": "5f9c52b3ef7618233e66f80e"
+    }
+  },
   "_class": "CodeGroups"
 }]

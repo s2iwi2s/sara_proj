@@ -6,8 +6,8 @@ import { resetSelectedItemCommon, setSelectedItemCommon, updateSelectedItemCommo
 export const optionsList = {
 	billingSearchBy: [{
 		id: '1',
-		value: 'STUDENT_ID',
-		label: 'Student ID'
+		value: 'LRN',
+		label: 'LRN'
 	}, {
 		id: '2',
 		value: 'STUDENT_NAME',

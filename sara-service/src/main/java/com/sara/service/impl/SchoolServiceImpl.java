@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.sara.data.document.CodeGroups;
 import com.sara.data.document.QSchool;
 import com.sara.data.document.School;
 import com.sara.data.document.User;
@@ -18,20 +19,22 @@ import com.sara.service.SequenceGeneratorService;
 public class SchoolServiceImpl extends AbstractService<School, String> {
 	Logger log = LoggerFactory.getLogger(this.getClass());
 	
-	public SchoolServiceImpl(SchoolMongoRepository repo, SequenceGeneratorService sequenceGeneratorService) {
+	private CodeGroupsServiceImpl codeGroupsServiceImpl;
+	public SchoolServiceImpl(SchoolMongoRepository repo, SequenceGeneratorService sequenceGeneratorService, CodeGroupsServiceImpl codeGroupsServiceImpl) {
 		super(repo, sequenceGeneratorService);
+		this.codeGroupsServiceImpl = codeGroupsServiceImpl;
 	}
-	
+
 	@Override
 	public BooleanExpression getFindAllBooleanExpression(User user) {
 		return null;
 	}
-	
+
 	@Override
 	public Predicate findAllPredicate(User user, BooleanBuilder searchbb) {
 		return searchbb.getValue();
 	}
-	
+
 	@Override
 	public void findAllQBuilder(String searchValue, BooleanBuilder searchbb, User user) {
 		searchbb.or(QSchool.school.name.containsIgnoreCase(searchValue));
@@ -44,11 +47,16 @@ public class SchoolServiceImpl extends AbstractService<School, String> {
 	public School getNewEntity() {
 		return new School();
 	}
+
 	@Override
 	public School save(School entity, School school) {
-		if(entity.getId() == null || entity.getId().trim().length() == 0) {
+		if (entity.getId() == null || entity.getId().trim().length() == 0) {
 			String id = sequenceGeneratorService.nextSeq(School.SEQUENCE_NAME);
 			entity.setId(id);
+		}
+		if(entity.getCurrentPeriod() != null && entity.getCurrentPeriod().getId() != null) {
+			CodeGroups currentPeriod = codeGroupsServiceImpl.findById(entity.getCurrentPeriod().getId());
+			entity.setCurrentPeriod(currentPeriod);
 		}
 		return super.save(entity, school);
 	}

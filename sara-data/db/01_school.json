@@ -3,8 +3,22 @@
     "$oid": "5f9c52b3ef7618233e66f80e"
   },
   "name": "ST. LORENZO RUIZ ACADEMY OF TAGUM, INC.",
-  "shoolYear": "2020-2021",
+  "schoolYear": "2020-2021",
+  "currentPeriod": {
+    "$ref": "code_groups",
+    "$id": "6"
+  },
   "logo": "stlorenzoruiz",
   "address": "Tagum City, Davao del Norte",
+  "_class": "School"
+},{
+  "_id": "1",
+  "name": "ABC CHILDCARE CHRISTIAN SCHOOL, INC.",
+  "currentPeriod": {
+    "$ref": "code_groups",
+    "$id": "6"
+  },
+  "logo": "abcchildcare",
+  "address": "testc",
   "_class": "School"
 }]

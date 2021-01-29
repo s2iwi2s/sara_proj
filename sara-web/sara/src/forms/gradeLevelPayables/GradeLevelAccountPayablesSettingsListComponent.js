@@ -10,6 +10,7 @@ import { useMessageAlert } from "../../api/useMessageAlert"
 export default function GradeLevelAccountPayablesSettingsListComponent(props) {
 
   const [,
+    showErrorAlert
     ,
     showErrorMsgAlert,
     ,
@@ -27,8 +28,9 @@ export default function GradeLevelAccountPayablesSettingsListComponent(props) {
   });
 
   const doRetrieve = () => {
+    console.log(`[GradeLevelAccountPayablesSettingsListComponent.doRetrieve] props.selectedItem==>`, props.selectedItem)
     if (!props.selectedItem.period || !props.selectedItem.period.id) {
-      showErrorMsgAlert('Please select period')
+      showErrorAlert('Please select period')
       return
     }
     getActiveList(props.selectedItem.period.id, store.searchValue, store.paging.currentPage, store.paging.rowsPerPage)
@@ -46,8 +48,6 @@ export default function GradeLevelAccountPayablesSettingsListComponent(props) {
         setStore(data);
       }).catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'GradeLevelAccountPayablesSettingsListComponent.retrieve', 'AccountPayablesSettingsService.getActiveList'))
   }
-
-
 
   const doHandleChangePage = (e, newPage) => {
     let data = {

@@ -28,7 +28,7 @@
 		<skipTests>true</skipTests>
 		<profiles.active>prod</profiles.active>
 		<db.mongodb.url>mongodb+srv://learn:g389BDSRANliLC1f@cluster0.5qocd.mongodb.net/learn?retryWrites=true&amp;w=majority</db.mongodb.url>
-		<logo.location>..//</logo.location>
+		<logo.location>./</logo.location>
 		
 		<org.projectlombok.version>1.18.12</org.projectlombok.version>
 	</properties>
@@ -94,7 +94,7 @@
 			</activation>
 			<properties>
 				<profiles.active>dev</profiles.active>
-				<db.mongodb.url>mongodb://root:root@localhost:27017/sara_proj</db.mongodb.url>
+				<db.mongodb.url>mongodb://sara_admin:sara@localhost:27017/saradb</db.mongodb.url>
 				<logo.location>../logo/</logo.location>
 			</properties>
 		</profile>

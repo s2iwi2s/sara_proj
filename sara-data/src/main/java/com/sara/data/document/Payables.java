@@ -72,6 +72,8 @@ public class Payables {
 	private double amount;
 	private double payment;
 	private int order;
+	
+	private String status;
 
 	@DBRef(lazy = true)
 	private AccountPayablesSettings aps;

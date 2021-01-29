@@ -58,6 +58,12 @@ export const UPDATE_ERROR = 'Error: Unable to update. Please contact system admi
 export const REQUIRED_DESCRIPTION = 'Description is required';
 export const REQUIRED_5_DESCRIPTION = 'Description should be atleast 5 characters';
 export const REQUIRED_TARGET_DATE = 'Target date is required';
+
+
+export const OPTIONS = {
+    YES: 'YES',
+    NO: 'NO',
+}
 export const THEME = {
     DARK_MODE: 'dark',
     LIGHT_MODE: 'light',

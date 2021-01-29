@@ -15,8 +15,9 @@ import { useMessageAlert } from "../../api/useMessageAlert"
 
 export default function BillingComponent() {
   const [,
-    ,
+    showErrorAlert,
     showErrorMsgAlert,
+    ,
     ,
     ,
     ,

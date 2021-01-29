@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 
-import { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils'
+import { ERROR_CODE, INIT_STATUS, OPTIONS, PAGE_URL } from '../../api/Utils'
 import CustomTableGrid from '../common/CustomTableGrid'
 
 import { deleteItem, getList } from '../../api/accountPayablesSettings/AccountPayablesSettingsService';
 import { selectPageable, setPageable, setSelectedItem } from '../../api/accountPayablesSettings/AccountPayablesSettingsSlice';
 import TitleComponent from '../common/TitleComponent';
 import { useMessageAlert } from "../../api/useMessageAlert"
+import ConfirmMsgDialog from '../common/ConfirmMsgDialog';
 
 export default function AccountPayablesSettingsListComponent(props) {
   const dispatch = useDispatch();
@@ -20,6 +21,9 @@ export default function AccountPayablesSettingsListComponent(props) {
     ,
     ,
   ] = useMessageAlert();
+
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [deleteId, setDeleteId] = useState();
 
 
   const retrieve = ({ searchValue, paging }) => getList(searchValue, paging.currentPage, paging.rowsPerPage)
@@ -57,6 +61,20 @@ export default function AccountPayablesSettingsListComponent(props) {
     props.history.push(`${PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_DETAIL_URL}/-1`);
   }
 
+  const doCloseConfirmDelete = () => {
+    setDeleteDialogOpen(false)
+  }
+  const doShowConfirmDelete = (id) => {
+    setDeleteId(id)
+    setDeleteDialogOpen(true)
+  }
+  const setDeleteDialogSelection = (value) => {
+    console.log(`[CodeGroupsListComponent.setDeleteDialogSelection] value=${value}`);
+    if (value === OPTIONS.YES) {
+      doDelete(deleteId)
+    }
+    setDeleteId(null)
+  }
   const doDelete = (id) => deleteItem(id)
     .then(doRetrieve)
     .catch(error => showErrorMsgAlert(error, ERROR_CODE.RETRIEVE_ERROR, 'AccountPayablesSettingsListComponent.doDelete', 'AccountPayablesSettingsService.deleteItem'));
@@ -138,13 +156,16 @@ export default function AccountPayablesSettingsListComponent(props) {
         doRetrieve={doRetrieve}
         doEdit={doEdit}
         doNew={doNew}
-        doDelete={doDelete}
+        doDelete={doShowConfirmDelete}
         doSearch={doSearch}
-      >
+      />
 
-        {/* <Box pb={1}> Filter by: </Box> */}
-
-      </CustomTableGrid>
+      <ConfirmMsgDialog
+        open={deleteDialogOpen}
+        title="Confirm delete"
+        msg="Are you sure you want to delete?"
+        closeDialog={doCloseConfirmDelete}
+        setDialogSelection={setDeleteDialogSelection} />
     </ >
   );
 }

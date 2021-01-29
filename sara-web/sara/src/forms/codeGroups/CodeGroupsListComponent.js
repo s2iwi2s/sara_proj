@@ -1,14 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 
-import { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils'
+import { ERROR_CODE, INIT_STATUS, OPTIONS, PAGE_URL } from '../../api/Utils'
 import CustomTableGrid from '../common/CustomTableGrid'
 
 import { deleteItem, getList } from '../../api/codeGroups/CodeGroupsService';
 import { selectPageable, resetSelectedItem, setPageable, setSelectedItem } from '../../api/codeGroups/CodeGroupsSlice';
 import TitleComponent from '../common/TitleComponent';
 import { useMessageAlert } from "../../api/useMessageAlert"
+import ConfirmMsgDialog from '../common/ConfirmMsgDialog';
 
 export default function CodeGroupsListComponent(props) {
   const [,
@@ -17,9 +18,14 @@ export default function CodeGroupsListComponent(props) {
     ,
     ,
     ,
+    ,
+
   ] = useMessageAlert();
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
+
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [deleteId, setDeleteId] = useState();
 
   useEffect(() => {
     dispatch(resetSelectedItem())
@@ -53,6 +59,20 @@ export default function CodeGroupsListComponent(props) {
 
   const doNew = () => props.history.push(`${PAGE_URL.CODE_GROUPS_DETAIL_URL}/-1`)
 
+  const doCloseConfirmDelete = () => {
+    setDeleteDialogOpen(false)
+  }
+  const doShowConfirmDelete = (id) => {
+    setDeleteId(id)
+    setDeleteDialogOpen(true)
+  }
+  const setDeleteDialogSelection = (value) => {
+    console.log(`[CodeGroupsListComponent.setDeleteDialogSelection] value=${value}`);
+    if (value === OPTIONS.YES) {
+      doDelete(deleteId)
+    }
+    setDeleteId(null)
+  }
 
   const doDelete = (id) => deleteItem(id)
     .then(doRetrieve)
@@ -103,7 +123,6 @@ export default function CodeGroupsListComponent(props) {
 
   return (
     <>
-
       <TitleComponent>Code Groups List</TitleComponent>
       <CustomTableGrid
         store={currPageable}
@@ -113,9 +132,15 @@ export default function CodeGroupsListComponent(props) {
         doRetrieve={doRetrieve}
         doEdit={doEdit}
         doNew={doNew}
-        doDelete={doDelete}
+        doDelete={doShowConfirmDelete}
         doSearch={doSearch}
       />
+      <ConfirmMsgDialog
+        open={deleteDialogOpen}
+        title="Confirm delete"
+        msg="Are you sure you want to delete?"
+        closeDialog={doCloseConfirmDelete}
+        setDialogSelection={setDeleteDialogSelection} />
     </ >
   );
 }

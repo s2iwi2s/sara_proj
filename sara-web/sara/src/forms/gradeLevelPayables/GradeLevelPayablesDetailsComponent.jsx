@@ -15,7 +15,7 @@ import { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
 import GradeLevelAccountPayablesSettingsListComponent from './GradeLevelAccountPayablesSettingsListComponent'
 import CustomTableGrid from '../common/CustomTableGrid';
 import SelectGrid from '../common/SelectGrid';
-import { save, getOptions } from '../../api/gradeLevelPayables/GradeLevelPayablesService';
+import { save, getOptions, getOptionsByPeriod } from '../../api/gradeLevelPayables/GradeLevelPayablesService';
 import { selectSelectedItem, setOptionsList, updateSelectedItem, resetSelectedItem, setPageableEntity } from '../../api/gradeLevelPayables/GradeLevelSlice';
 import TitleComponent from '../common/TitleComponent';
 import { useMessageAlert } from "../../api/useMessageAlert"
@@ -24,7 +24,7 @@ let renderCount = 0;
 
 export default function GradeLevelPayablesDetailsComponent(props) {
   const [,
-    ,
+    showErrorAlert,
     showErrorMsgAlert,
     ,
     ,
@@ -60,15 +60,24 @@ export default function GradeLevelPayablesDetailsComponent(props) {
       [name]: checked
     }))
   };
-
   const onRetrieve = () => {
+    doRetrieve("-1")
+  }
+
+  const doRetrieve = (id) => {
     console.log(`[GradeLevelPayablesDetailsComponent.onRetrieve]  props.match.params.id==>${props.match.params.id}`)
 
     if (props.match.params.id === -1) {
       dispatch(resetSelectedItem())
     }
+    // if (!selectedItem.period || !selectedItem.period.id) {
+    //   showErrorAlert('Please select period')
+    //   return
+    // }
+
     setMessage(`Loading. Please wait...`);
-    getOptions().then(response => onRetrieveResponseAction(response))
+
+    getOptionsByPeriod(id).then(response => onRetrieveResponseAction(response))
       .catch(error => showErrorMsgAlert(error, ERROR_CODE.RETRIEVE_ERROR, 'GradeLevelPayablesDetailsComponent.onRetrieve', 'GradeLevelPayablesService.getOptions'));
   }
 
@@ -115,6 +124,12 @@ export default function GradeLevelPayablesDetailsComponent(props) {
   const doDeleteItem = (id) => dispatch(updateSelectedItem({
     list: [...selectedItem.list.filter(item => item.id !== id)]
   }))
+
+  const onChangePeriod = (e) => {
+    const { name, value } = e.target
+    changeSelectState(e)
+    doRetrieve(value)
+  }
 
   const changeSelectState = (e) => {
     const { name, value } = e.target
@@ -201,8 +216,8 @@ export default function GradeLevelPayablesDetailsComponent(props) {
             <SelectGrid sm={2} required name="level" label="Level" value={selectedItem.level.id} options={selectedItem.optionsList.levelList}
               onChange={e => changeSelectState(e)} />
 
-            <SelectGrid sm={3} required name="period" label="Period" value={selectedItem.period.id} options={selectedItem.optionsList.periodList}
-              onChange={e => changeSelectState(e)} />
+            <SelectGrid sm={3} required={selectedItem.id ? false : true} disabled={selectedItem.id ? true : false} name="period" label="Period" value={selectedItem.period.id} options={selectedItem.optionsList.periodList}
+              onChange={e => onChangePeriod(e)} />
 
             <Grid item xs={12} sm={2}>
               <FormGroup aria-label="position" row>

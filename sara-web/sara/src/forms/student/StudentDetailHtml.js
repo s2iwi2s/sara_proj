@@ -66,7 +66,6 @@ const StudentDetailHtml = props => {
         <Grid container spacing={3}>
           <Grid item xs={12} sm={3}>
             <TextField
-              required
               id="lrn"
               name="lrn"
               label="LRN"
@@ -78,7 +77,8 @@ const StudentDetailHtml = props => {
               inputRef={register}
               defaultValue={props.store.lrn}
             />
-          </Grid><Grid item xs={12} sm={3}>
+          </Grid>
+          {/* <Grid item xs={12} sm={3}>
             <TextField
               id="studentId"
               name="studentId"
@@ -90,7 +90,7 @@ const StudentDetailHtml = props => {
               inputRef={register}
               defaultValue={props.store.studentId}
             />
-          </Grid>
+          </Grid> */}
           <Grid item xs={12} sm={3}>
             <TextField
               required
@@ -105,7 +105,7 @@ const StudentDetailHtml = props => {
               defaultValue={props.store.firstName}
             />
           </Grid>
-          <Grid item xs={12} sm={3}>
+          <Grid item xs={12} sm={4}>
             <TextField
               required
               id="lastName"
@@ -159,7 +159,7 @@ const StudentDetailHtml = props => {
             />
           </Grid>
 
-          <Grid item xs={12} sm={2}>
+          <Grid item xs={12} sm={3}>
             <TextField
               required
               id="birthPlace"
@@ -174,7 +174,7 @@ const StudentDetailHtml = props => {
             />
           </Grid>
 
-          <Grid item xs={12} sm={3}>
+          <Grid item xs={12} sm={2}>
             <FormLabel component="gender"
               variant="filled">Gender</FormLabel>
             <Controller
@@ -209,7 +209,7 @@ const StudentDetailHtml = props => {
             />
           </Grid>
 
-          <Grid item xs={12} sm={3}>
+          <Grid item xs={12} sm={5}>
             <TextField
               required
               id="contactNo"

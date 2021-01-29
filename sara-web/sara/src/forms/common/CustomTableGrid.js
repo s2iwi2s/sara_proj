@@ -79,9 +79,7 @@ export default function CustomTableGrid(props) {
       {props.store.list.map(row => (
        <StyledTableRow key={row.id}>
         {props.cols.map(params => (
-         <>
-          <TableCell>{params.render ? params.render(row) : row[params.field]}</TableCell>
-         </>
+         <TableCell>{params.render ? params.render(row) : row[params.field]}</TableCell>
         ))}
         {showAction && <TableCell align="right">
          <IconButton aria-label="edit" onClick={() => props.doEdit(row)}>

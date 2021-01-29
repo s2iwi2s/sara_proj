@@ -26,7 +26,7 @@ public class CodeGroupsServiceImpl extends AbstractService<CodeGroups, String> {
 	private static final Logger log = LoggerFactory.getLogger(CodeGroupsServiceImpl.class);
 
 	@Autowired
-	public CodeGroupsServiceImpl(CodeGroupsMongoRepository repo, SchoolServiceImpl schoolServiceImpl,
+	public CodeGroupsServiceImpl(CodeGroupsMongoRepository repo,
 			SequenceGeneratorService sequenceGeneratorService) {
 		super(repo, sequenceGeneratorService);
 	}

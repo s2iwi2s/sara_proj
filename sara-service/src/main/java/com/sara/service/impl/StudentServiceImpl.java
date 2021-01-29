@@ -41,7 +41,7 @@ public class StudentServiceImpl extends AbstractService<Student, String> {
 	public void findAllQBuilder(String searchValue, BooleanBuilder searchbb, User user) {
 		searchbb.or(QStudent.student.firstName.containsIgnoreCase(searchValue));
 		searchbb.or(QStudent.student.lastName.containsIgnoreCase(searchValue));
-		searchbb.or(QStudent.student.studentId.containsIgnoreCase(searchValue));
+		searchbb.or(QStudent.student.lrn.containsIgnoreCase(searchValue));
 //		searchbb.or(QStudent.student.level.description.containsIgnoreCase(searchValue));
 	}
 
@@ -81,8 +81,8 @@ public class StudentServiceImpl extends AbstractService<Student, String> {
 
 			// log.debug("findAllBy={}, searchValue={}", by, searchValue);
 			BooleanBuilder studentbb = new BooleanBuilder();
-			if ("STUDENT_ID".equalsIgnoreCase(by)) {
-				studentbb.or(QStudent.student.studentId.containsIgnoreCase(searchValue));
+			if ("LRN".equalsIgnoreCase(by)) {
+				studentbb.or(QStudent.student.lrn.containsIgnoreCase(searchValue));
 			} else if ("STUDENT_NAME".equalsIgnoreCase(by)) {
 				String[] name = searchValue.split(" ");
 				// log.debug("findAllBy={}, {}", by, searchValue);

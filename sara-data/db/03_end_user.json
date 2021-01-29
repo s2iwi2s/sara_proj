@@ -3,17 +3,10 @@
     "$oid": "5f9c5e2d46aaf43d8da49976"
   },
   "userName": "wpidor",
-  "password": "$2a$10$SGlG29uErMdpDl6FZPA5P.dJ/Mzx3M72PidzwRK2bZVhBH1e/XgbW",
+  "password": "$2a$10$fdxH3igDJy0ZKUdpKWtAsuri0GRed6sO14NTxchvC5PdyztTD4ztm",
   "lastName": "Pidor",
   "firstName": "Winston",
-  "roles": [
-    {
-      "$ref": "role",
-      "$id": {
-        "$oid": "5f8dbd30d266c45504e620d6"
-      }
-    }
-  ],
+  "roles": [],
   "school": {
     "$ref": "school",
     "$id": {
@@ -25,23 +18,46 @@
   "_id": {
     "$oid": "5f9c5e2d46aaf43d8da49977"
   },
-  "userName": "test",
-  "password": "$2a$10$i2iaNsOyWO40VHUg4Qsgtu1OwWIpe5SYSVi0u76ZlJ59IkmkK0Wlu",
+  "userName": "SLRA",
+  "password": "$2a$10$fdxH3igDJy0ZKUdpKWtAsuri0GRed6sO14NTxchvC5PdyztTD4ztm",
   "lastName": "test",
-  "firstName": "test",
-  "roles": [
-    {
-      "$ref": "role",
-      "$id": {
-        "$oid": "5f8dbd30d266c45504e620d6"
-      }
-    }
-  ],
+  "firstName": "Admin",
+  "roles": [],
   "school": {
     "$ref": "school",
     "$id": {
       "$oid": "5f9c52b3ef7618233e66f80e"
     }
+  },
+  "_class": "User"
+},{
+  "_id": {
+    "$oid": "5fa728f622b36218182da55e"
+  },
+  "userName": "spidor",
+  "password": "$2a$10$fdxH3igDJy0ZKUdpKWtAsuri0GRed6sO14NTxchvC5PdyztTD4ztm",
+  "lastName": "Pidor",
+  "firstName": "Solenn",
+  "roles": [],
+  "school": {
+    "$ref": "school",
+    "$id": {
+      "$oid": "5f9c52b3ef7618233e66f80e"
+    }
+  },
+  "_class": "User"
+},{
+  "_id": {
+    "$oid": "5fab4035b38c8a341225247e"
+  },
+  "userName": "abc",
+  "password": "$2a$10$fdxH3igDJy0ZKUdpKWtAsuri0GRed6sO14NTxchvC5PdyztTD4ztm",
+  "lastName": "Admin",
+  "firstName": "ABC",
+  "roles": [],
+  "school": {
+    "$ref": "school",
+    "$id": "1"
   },
   "_class": "User"
 }]

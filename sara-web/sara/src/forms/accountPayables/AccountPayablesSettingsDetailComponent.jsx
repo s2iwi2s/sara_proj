@@ -152,6 +152,8 @@ export default function AccountPayablesSettingsDetailComponent(props) {
                   required
                   select
                   label="Period"
+                  required={selectedItem.id ? false : true}
+                  disabled={selectedItem.id ? true : false}
                   fullWidth
                   autoComplete="period"
                   variant="filled"

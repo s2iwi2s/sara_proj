@@ -1,14 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 
-import { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
+import { ERROR_CODE, INIT_STATUS, OPTIONS, PAGE_URL } from '../../api/Utils';
 import CustomTableGrid from '../common/CustomTableGrid';
 
 import { deleteItem, getList } from '../../api/student/StudentService'
 import { resetSelectedItem, selectPageable, setPageable, setSelectedItem } from '../../api/student/StudentSlice';
 import TitleComponent from '../common/TitleComponent';
 import { useMessageAlert } from "../../api/useMessageAlert"
+import ConfirmMsgDialog from '../common/ConfirmMsgDialog';
 
 export default function StudentListComponent(props) {
   const [,
@@ -21,6 +22,9 @@ export default function StudentListComponent(props) {
 
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
+
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [deleteId, setDeleteId] = useState();
 
   useEffect(() => {
     dispatch(resetSelectedItem())
@@ -59,6 +63,20 @@ export default function StudentListComponent(props) {
     props.history.push(`${PAGE_URL.STUDENT_DETAIL_URL}/-1`);
   }
 
+  const doCloseConfirmDelete = () => {
+    setDeleteDialogOpen(false)
+  }
+  const doShowConfirmDelete = (id) => {
+    setDeleteId(id)
+    setDeleteDialogOpen(true)
+  }
+  const setDeleteDialogSelection = (value) => {
+    console.log(`[StudentListComponent.setDeleteDialogSelection] value=${value}`);
+    if (value === OPTIONS.YES) {
+      doDelete(deleteId)
+    }
+    setDeleteId(null)
+  }
   const doDelete = (id) => {
     deleteItem(id)
       .then(doRetrieve)
@@ -97,10 +115,10 @@ export default function StudentListComponent(props) {
   }
 
   const cols = [
-    {
-      field: 'studentId',
-      headerName: 'Student ID',
-    },
+    // {
+    //   field: 'studentId',
+    //   headerName: 'Student ID',
+    // },
     {
       field: 'lrn',
       headerName: 'LRN',
@@ -138,9 +156,16 @@ export default function StudentListComponent(props) {
         doRetrieve={doRetrieve}
         doEdit={doEdit}
         doNew={doNew}
-        doDelete={doDelete}
+        doDelete={doShowConfirmDelete}
         doSearch={doSearch}
       />
+
+      <ConfirmMsgDialog
+        open={deleteDialogOpen}
+        title="Confirm delete"
+        msg="Are you sure you want to delete?"
+        closeDialog={doCloseConfirmDelete}
+        setDialogSelection={setDeleteDialogSelection} />
     </ >
   )
 

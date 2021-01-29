@@ -174,22 +174,7 @@ export default function SchoolDetailComponent(props) {
               defaultValue={selectedItem.name}
             />
           </Grid>
-          <Grid item xs={12} sm={2}>
-            <TextField
-              required
-              id='schoolYear'
-              name='schoolYear'
-              label='School Year'
-              fullWidth
-              autoComplete='school-schoolYear'
-              variant='filled'
-              InputLabelProps={{ shrink: true }}
-              inputRef={register}
-              defaultValue={selectedItem.schoolYear}
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={3}>
+          <Grid item xs={12} sm={6}>
             <Controller
               as={
                 <TextField id="currentPeriod"

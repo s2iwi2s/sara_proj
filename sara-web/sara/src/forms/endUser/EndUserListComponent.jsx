@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 
 
-import { PAGE_URL, INIT_STATUS, ERROR_CODE } from '../../api/Utils'
+import { PAGE_URL, INIT_STATUS, ERROR_CODE, OPTIONS } from '../../api/Utils'
 import CustomTableGrid from '../common/CustomTableGrid';
 
 import { deleteItem, getList } from '../../api/endUser/EndUserService';
 import { resetSelectedItem, selectPageable, setPageable, setSelectedItem } from '../../api/endUser/UsersSlice';
 import TitleComponent from '../common/TitleComponent';
 import { useMessageAlert } from "../../api/useMessageAlert"
+import ConfirmMsgDialog from '../common/ConfirmMsgDialog';
 
 export default function EndUserListComponent(props) {
 
@@ -23,6 +24,9 @@ export default function EndUserListComponent(props) {
 
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
+
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [deleteId, setDeleteId] = useState();
 
   useEffect(() => {
     dispatch(resetSelectedItem())
@@ -43,9 +47,6 @@ export default function EndUserListComponent(props) {
       }))
     }).catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'EndUserListComponent.retrieve', 'EndUserService.getList'))
 
-
-
-
   const doRetrieve = () => retrieve({
     searchValue: currPageable.searchValue,
     paging: currPageable.paging
@@ -60,6 +61,21 @@ export default function EndUserListComponent(props) {
     props.history.push(`${PAGE_URL.USER_DETAIL_URL}/-1`);
   }
 
+
+  const doCloseConfirmDelete = () => {
+    setDeleteDialogOpen(false)
+  }
+  const doShowConfirmDelete = (id) => {
+    setDeleteId(id)
+    setDeleteDialogOpen(true)
+  }
+  const setDeleteDialogSelection = (value) => {
+    console.log(`[CodeGroupsListComponent.setDeleteDialogSelection] value=${value}`);
+    if (value === OPTIONS.YES) {
+      doDelete(deleteId)
+    }
+    setDeleteId(null)
+  }
   const doDelete = (id) => deleteItem(id)
     .then(doRetrieve)
     .catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'EndUserListComponent.retrieve', 'EndUserService.deleteItem'))
@@ -113,9 +129,15 @@ export default function EndUserListComponent(props) {
         doRetrieve={doRetrieve}
         doEdit={doEdit}
         doNew={doNew}
-        doDelete={doDelete}
+        doDelete={doShowConfirmDelete}
         doSearch={doSearch}
       />
+      <ConfirmMsgDialog
+        open={deleteDialogOpen}
+        title="Confirm delete"
+        msg="Are you sure you want to delete?"
+        closeDialog={doCloseConfirmDelete}
+        setDialogSelection={setDeleteDialogSelection} />
     </ >
   );
 

@@ -98,9 +98,10 @@ public class PayablesController {
 //		ResponseEntity<Map<String, ?>> responseEntity = new ResponseEntity<>(map, HttpStatus.OK);
 //		return responseEntity;
 //	}
-	
+
 	@GetMapping(path = Constants.URL_BILLING_USER_PAYABLES_BY_PERIOD, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Map<String, ?>> payablesByPeriod(@PathVariable("id") String id, @PathVariable("periodId") String periodId) throws Exception {
+	public ResponseEntity<Map<String, ?>> payablesByPeriod(@PathVariable("id") String id,
+			@PathVariable("periodId") String periodId) throws Exception {
 		Map<String, Object> map = new HashMap<>();
 
 		Student student = studentServiceImpl.findById(id);
@@ -114,12 +115,11 @@ public class PayablesController {
 		map.put("billingByInvoice", billingByInvoice);
 
 		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
-		
+
 		Map<String, Object> optionsList = new HashMap<>();
 		List<CodeGroups> periodList = codeGroupsServiceImpl.findByCodeList("PERIOD", user.getSchool());
 		optionsList.put("periodList", periodList);
 		map.put("optionsList", optionsList);
-		
 
 		ResponseEntity<Map<String, ?>> responseEntity = new ResponseEntity<>(map, HttpStatus.OK);
 		return responseEntity;
@@ -142,7 +142,7 @@ public class PayablesController {
 
 		BillingByInvoice billingByInvoice = payablesServiceImpl.getBillingByInvoiceList(student, periodId);
 		map.put("billingByInvoice", billingByInvoice);
-		
+
 		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
 		Map<String, Object> optionsList = new HashMap<>();
 		List<CodeGroups> periodList = codeGroupsServiceImpl.findByCodeList("PERIOD", user.getSchool());
@@ -152,6 +152,5 @@ public class PayablesController {
 		ResponseEntity<Map<String, ?>> responseEntity = new ResponseEntity<>(map, HttpStatus.OK);
 		return responseEntity;
 	}
-	
 
 }

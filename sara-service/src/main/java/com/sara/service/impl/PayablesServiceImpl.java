@@ -1,9 +1,6 @@
 package com.sara.service.impl;
 
-import static org.springframework.data.mongodb.core.aggregation.Aggregation.group;
-import static org.springframework.data.mongodb.core.aggregation.Aggregation.match;
-import static org.springframework.data.mongodb.core.aggregation.Aggregation.newAggregation;
-import static org.springframework.data.mongodb.core.aggregation.Aggregation.project;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -186,9 +183,10 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 		return payableList;
 	}
 
-	public List<Payables> getStudentPayablesTemplate(Student student, CodeGroups period) throws GradeLevelPayablesResponseException {
-		GradeLevelPayables gradeLevelPayables = gradeLevelPayablesServiceImpl.findByLevel(student.getLevel(),
-				period);
+	public List<Payables> getStudentPayablesTemplate(Student student, CodeGroups period)
+			throws GradeLevelPayablesResponseException {
+		GradeLevelPayables gradeLevelPayables = gradeLevelPayablesServiceImpl.findByLevelAndPeriod(student.getLevel(),
+				period, student.getSchool());
 
 		List<Payables> payableList = new ArrayList<Payables>();
 		for (AccountPayablesSettings aps : gradeLevelPayables.getAccountPayablesSettings()) {
@@ -244,7 +242,7 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 		if (!StringUtils.isBlank(invoiceNo)) {
 			AggregationOperation match3 = match(Criteria.where("invoiceNo").is(invoiceNo));
 			aggregation = newAggregation(match, match2, match3, group("code", "name").sum("payment").as("payment"),
-//					sort(Sort.Direction.ASC, previousOperation(), "order"),
+//					sort(Sort.Direction.ASC, "aps.priority"),
 					project("code", "name", "payment"));
 
 		} else {
@@ -264,9 +262,10 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 			throws GradeLevelPayablesResponseException {
 		CodeGroups period = codeGroupsServiceImpl.findById(periodId);
 
-		GradeLevelPayables gradeLevelPayables = gradeLevelPayablesServiceImpl.findByLevel(student.getLevel(), period);
-		List<AccountPayablesSettings> accountPayablesSettings = gradeLevelPayables.getAccountPayablesSettings();
-		accountPayablesSettings.sort(Comparator.comparing(AccountPayablesSettings::getPriority));
+		GradeLevelPayables gradeLevelPayables = gradeLevelPayablesServiceImpl.findByLevelAndPeriod(student.getLevel(),
+				period, student.getSchool());
+//		List<AccountPayablesSettings> accountPayablesSettings = gradeLevelPayables.getAccountPayablesSettings();
+//		accountPayablesSettings.sort(Comparator.comparing(AccountPayablesSettings::getPriority));
 
 		List<Payables> payments = findPaymentByStudent(student, period);
 		payments.sort(Comparator.comparing(Payables::getInvoiceDate, Collections.reverseOrder()));
