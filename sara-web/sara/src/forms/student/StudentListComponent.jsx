@@ -12,13 +12,7 @@ import { useMessageAlert } from "../../api/useMessageAlert"
 import ConfirmMsgDialog from '../common/ConfirmMsgDialog';
 
 export default function StudentListComponent(props) {
-  const [,
-    ,
-    showErrorMsgAlert,
-    ,
-    ,
-    ,
-  ] = useMessageAlert();
+  const alert = useMessageAlert();
 
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
@@ -29,6 +23,18 @@ export default function StudentListComponent(props) {
   useEffect(() => {
     dispatch(resetSelectedItem())
   }, [currPageable]);
+
+  const showErrorMsgAlert = (error, errorCode, formMethod, serviceName) => {
+    alert({
+      type: 'form-error',
+      payload: {
+        error: error,
+        errorCode: errorCode,
+        formMethod: formMethod,
+        serviceName: serviceName
+      }
+    })
+  }
 
   const retrieve = ({ searchValue, paging }) =>
     getList(searchValue, paging.currentPage, paging.rowsPerPage)

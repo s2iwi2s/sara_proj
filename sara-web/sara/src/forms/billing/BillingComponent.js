@@ -14,14 +14,7 @@ import { optionsList, selectPageable, setPageable, updatePageable } from '../../
 import { useMessageAlert } from "../../api/useMessageAlert"
 
 export default function BillingComponent() {
-  const [,
-    showErrorAlert,
-    showErrorMsgAlert,
-    ,
-    ,
-    ,
-    ,
-  ] = useMessageAlert();
+  const alert = useMessageAlert();
 
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
@@ -52,6 +45,17 @@ export default function BillingComponent() {
     open: false
   })
 
+  const showErrorMsgAlert = (error, errorCode, formMethod, serviceName) => {
+    alert({
+      type: 'form-error',
+      payload: {
+        error: error,
+        errorCode: errorCode,
+        formMethod: formMethod,
+        serviceName: serviceName
+      }
+    })
+  }
 
   const doInitFormData = data => {
     //data.optionsList = optionsList;

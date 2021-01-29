@@ -9,13 +9,7 @@ import { ERROR_CODE } from '../api/Utils.js';
 
 export default function SignInComponent() {
 
-  const [,
-    ,
-    showErrorMsgAlert,
-    ,
-    ,
-    ,
-  ] = useMessageAlert();
+  const alert = useMessageAlert();
 
   const [,
     executeJwtAuthenticationService,
@@ -54,8 +48,16 @@ export default function SignInComponent() {
         setMessage('Login Successful!');
         history.push(`/`);
       })
-      .catch(error => showErrorMsgAlert(error, ERROR_CODE.LOGIN_ERROR, 'SignInComponent.onSignon', 'useAuthServices.executeJwtAuthenticationService'))
-
+      // .catch(error => showErrorMsgAlert(error, ERROR_CODE.LOGIN_ERROR, 'SignInComponent.onSignon', 'useAuthServices.executeJwtAuthenticationService'))
+      .catch(error => alert({
+        type: 'form-error',
+        payload: {
+          error: error,
+          errorCode: ERROR_CODE.LOGIN_ERROR,
+          formMethod: 'SignInComponent.onSignon',
+          serviceName: 'useAuthServices.executeJwtAuthenticationService'
+        }
+      }))
   }
   return (
     <SignInHtml message={message} onSignon={onSignon} />
