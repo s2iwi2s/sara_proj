@@ -8,12 +8,12 @@ import CustomTableGrid from '../common/CustomTableGrid';
 import { deleteItem, getList } from '../../api/student/StudentService'
 import { resetSelectedItem, selectPageable, setPageable, setSelectedItem } from '../../api/student/StudentSlice';
 import TitleComponent from '../common/TitleComponent';
-import { useMessageAlert } from "../../api/useMessageAlert"
+import useMessageAlert from "../../api/useMessageAlert"
 import ConfirmMsgDialog from '../common/ConfirmMsgDialog';
 
 export default function StudentListComponent(props) {
-  const useAlert = useMessageAlert();
 
+  const { showErrorMsgAlert } = useMessageAlert();
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
 
@@ -38,7 +38,7 @@ export default function StudentListComponent(props) {
             totalPage: data.pagingList.totalPage
           }
         }))
-      }).catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'StudentListComponent.retrieve', 'StudentService.getList'))
+      }).catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'StudentListComponent.retrieve', 'StudentService.getList'))
 
 
 
@@ -74,7 +74,7 @@ export default function StudentListComponent(props) {
   const doDelete = (id) => {
     deleteItem(id)
       .then(doRetrieve)
-      .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'StudentListComponent.doDelete', 'StudentService.deleteItem'))
+      .catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'StudentListComponent.doDelete', 'StudentService.deleteItem'))
   }
 
 

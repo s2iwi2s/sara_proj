@@ -18,12 +18,12 @@ import SelectGrid from '../common/SelectGrid';
 import { save, getOptions, getOptionsByPeriod } from '../../api/gradeLevelPayables/GradeLevelPayablesService';
 import { selectSelectedItem, setOptionsList, updateSelectedItem, resetSelectedItem, setPageableEntity } from '../../api/gradeLevelPayables/GradeLevelSlice';
 import TitleComponent from '../common/TitleComponent';
-import { useMessageAlert } from "../../api/useMessageAlert"
+import useMessageAlert from "../../api/useMessageAlert"
 
 let renderCount = 0;
 
 export default function GradeLevelPayablesDetailsComponent(props) {
-  const useAlert = useMessageAlert();
+  const { showErrorMsgAlert } = useMessageAlert();
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -72,7 +72,7 @@ export default function GradeLevelPayablesDetailsComponent(props) {
     setMessage(`Loading. Please wait...`);
 
     getOptionsByPeriod(id).then(response => onRetrieveResponseAction(response))
-      .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.RETRIEVE_ERROR, 'GradeLevelPayablesDetailsComponent.onRetrieve', 'GradeLevelPayablesService.getOptions'));
+      .catch(error => showErrorMsgAlert(error, ERROR_CODE.RETRIEVE_ERROR, 'GradeLevelPayablesDetailsComponent.onRetrieve', 'GradeLevelPayablesService.getOptions'));
   }
 
   const onRetrieveResponseAction = (response) => {
@@ -96,7 +96,7 @@ export default function GradeLevelPayablesDetailsComponent(props) {
         dispatch(setPageableEntity(response.data.entity))
         history.push(PAGE_URL.GRADE_LEVEL_PAYABLES_LIST)
       })
-      .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.SAVE_ERROR, 'GradeLevelPayablesDetailsComponent.onSubmitForm', 'GradeLevelPayablesService.save'));
+      .catch(error => showErrorMsgAlert(error, ERROR_CODE.SAVE_ERROR, 'GradeLevelPayablesDetailsComponent.onSubmitForm', 'GradeLevelPayablesService.save'));
   }
 
   const setGradeLevelPayables = (data) => {

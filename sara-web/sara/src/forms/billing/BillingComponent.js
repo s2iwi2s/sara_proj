@@ -11,10 +11,10 @@ import SavePayablesConfimationHtml from './SavePayablesConfimationHtml';
 
 import { getListBy, getStudentPayablesByPeriod, save } from '../../api/billing/BillingService'
 import { optionsList, selectPageable, setPageable, updatePageable } from '../../api/billing/BillingSlice';
-import { useMessageAlert } from "../../api/useMessageAlert"
+import useMessageAlert from "../../api/useMessageAlert"
 
 export default function BillingComponent() {
-  const useAlert = useMessageAlert();
+  const { showErrorMsgAlert } = useMessageAlert();
 
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
@@ -107,7 +107,7 @@ export default function BillingComponent() {
         doInitFormData(formData);
         dispatch(setPageable(formData))
       })
-      .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'BillingComponent.doRetrieve', 'BillingService.getListBy'));
+      .catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'BillingComponent.doRetrieve', 'BillingService.getListBy'));
   }
 
   const onChangeRowsPerPage = (e) => {
@@ -186,7 +186,7 @@ export default function BillingComponent() {
 
 
     })
-      .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'BillingComponent.doPayables', 'BillingService.getStudentPayables'));
+      .catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'BillingComponent.doPayables', 'BillingService.getStudentPayables'));
   }
   const doShowSaveConfirmDialog = (data) => {
     console.log(`[BillingComponent.doShowSaveConfirmDialog] data==>`, data);
@@ -300,7 +300,7 @@ export default function BillingComponent() {
         message: 'Payables saved successfully!'
       })
     })
-      .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'BillingComponent.doSavePayables', 'BillingService.save'));
+      .catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'BillingComponent.doSavePayables', 'BillingService.save'));
   }
 
   const doCloseSaveBillingDialog = () => {

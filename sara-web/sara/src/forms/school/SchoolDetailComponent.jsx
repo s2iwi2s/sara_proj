@@ -23,7 +23,7 @@ import {
   setOptionsList,
   resetSelectedItem,
 } from '../../api/school/SchoolSlice'
-import { useMessageAlert } from "../../api/useMessageAlert"
+import useMessageAlert from "../../api/useMessageAlert"
 
 export default function SchoolDetailComponent(props) {
 
@@ -35,7 +35,7 @@ export default function SchoolDetailComponent(props) {
   const [status, setStatus] = useState(INIT_STATUS.INIT)
 
   const selectedItem = useSelector(selectSelectedItem)
-  const useAlert = useMessageAlert();
+  const { showErrorMsgAlert } = useMessageAlert();
 
   useEffect(() => {
     console.log(
@@ -71,7 +71,7 @@ export default function SchoolDetailComponent(props) {
       setMessage('')
     })
       .catch((error) =>
-        useAlert.showErrorMsgAlert(
+        showErrorMsgAlert(
           error,
           ERROR_CODE.RETRIEVE_ERROR,
           'SchoolDetailComponent.doRetrieve',
@@ -95,7 +95,7 @@ export default function SchoolDetailComponent(props) {
         history.push(PAGE_URL.SCHOOL_LIST)
       })
       .catch((error) =>
-        useAlert.showErrorMsgAlert(
+        showErrorMsgAlert(
           error,
           ERROR_CODE.SAVE_ERROR,
           'SchoolDetailComponent.save',

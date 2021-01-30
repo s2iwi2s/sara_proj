@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 
-import { useSecurityServices } from './useSecurityServices'
+import useSecurityServices from './useSecurityServices'
 import { useAuth } from '../providers/AuthenticationProvider';
 
 export default function LogoutComponent() {
     const [userObj] = useAuth();
-    const useSec = useSecurityServices()
+    const { logout } = useSecurityServices()
 
     useEffect(() => {
         console.log('[LogoutComponent.useEffect]: userObj', userObj);
-        useSec.logout();
+        logout();
     });
 
     return (

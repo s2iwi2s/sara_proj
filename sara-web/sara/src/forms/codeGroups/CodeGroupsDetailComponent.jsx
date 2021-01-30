@@ -15,10 +15,10 @@ import { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
 import { selectSelectedItem, resetSelectedItem, setPageableEntity } from '../../api/codeGroups/CodeGroupsSlice';
 import { save } from '../../api/codeGroups/CodeGroupsService';
 import TitleComponent from '../common/TitleComponent';
-import { useMessageAlert } from "../../api/useMessageAlert"
+import useMessageAlert from "../../api/useMessageAlert"
 
 export default function CodeGroupsDetailComponent(props) {
-  const useAlert = useMessageAlert();
+  const { showErrorMsgAlert } = useMessageAlert();
   const dispatch = useDispatch();
   const history = useHistory();
   const { register, handleSubmit } = useForm();
@@ -45,7 +45,7 @@ export default function CodeGroupsDetailComponent(props) {
         setMessage('')
         history.push(PAGE_URL.CODE_GROUPS_LIST)
       })
-      .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.SAVE_ERROR, 'CodeGroupsDetailComponent.save', 'CodeGroupsService.save'))
+      .catch(error => showErrorMsgAlert(error, ERROR_CODE.SAVE_ERROR, 'CodeGroupsDetailComponent.save', 'CodeGroupsService.save'))
   }
 
   return (

@@ -27,11 +27,7 @@ const SearchResultsHtmlComponent = (props) => {
      <StyledTableHeadCell>LRN</StyledTableHeadCell>
      <StyledTableHeadCell>Name</StyledTableHeadCell>
      <StyledTableHeadCell>Grade Level</StyledTableHeadCell>
-     <StyledTableHeadCell align="right">
-      <IconButton aria-label="add" onClick={() => props.doEdit(-1)}>
-       <AddIcon fontSize="large" />
-      </IconButton>
-     </StyledTableHeadCell>
+
     </StyledTableHeadRow>
    </TableHead>
   </>)

@@ -1,7 +1,7 @@
 
 import { useGlobalVariable } from '../providers/GlobalVariableProvider'
 
-export const useMessageAlert = () => {
+const useMessageAlert = () => {
 
     const [globalProps, , setAlertProps,] = useGlobalVariable();
 
@@ -77,3 +77,4 @@ export const useMessageAlert = () => {
         showSuccessAlert: showSuccessAlert
     }
 }
+export default useMessageAlert

@@ -5,11 +5,11 @@ import AddIcon from '@material-ui/icons/Add';
 import { getActiveList } from '../../api/accountPayablesSettings/AccountPayablesSettingsService';
 import CustomTableGrid from '../common/CustomTableGrid'
 import { ERROR_CODE } from '../../api/Utils';
-import { useMessageAlert } from "../../api/useMessageAlert"
+import useMessageAlert from "../../api/useMessageAlert"
 
 export default function GradeLevelAccountPayablesSettingsListComponent(props) {
 
-  const useAlert = useMessageAlert();
+  const { showErrorMsgAlert } = useMessageAlert();
   const [store, setStore] = useState({
     list: [],
     searchValue: '',
@@ -42,7 +42,7 @@ export default function GradeLevelAccountPayablesSettingsListComponent(props) {
           }
         }
         setStore(data);
-      }).catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'GradeLevelAccountPayablesSettingsListComponent.retrieve', 'AccountPayablesSettingsService.getActiveList'))
+      }).catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'GradeLevelAccountPayablesSettingsListComponent.retrieve', 'AccountPayablesSettingsService.getActiveList'))
   }
 
   const doHandleChangePage = (e, newPage) => {

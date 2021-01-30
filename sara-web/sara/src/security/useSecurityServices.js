@@ -5,10 +5,10 @@ import { useAuth } from '../providers/AuthenticationProvider';
 
 let myInterceptor
 
-export const useSecurityServices = () => {
+const useSecurityServices = () => {
  const [userObj, setUserObj] = useAuth();
 
- const initialize = () => {
+ const initAxios = () => {
   if (isUserLoggedIn()) {
    let jwtTokenHeader = getJwtTokenHeader()
    setupAxiosInterceptors(jwtTokenHeader);
@@ -84,12 +84,14 @@ export const useSecurityServices = () => {
  }
 
  return {
-  init: initialize,
+  initAxios: initAxios,
   executeJwtAuthenticationService: executeJwtAuthenticationService,
   registerJwtSucessfulLogin: registerJwtSucessfulLogin,
   getLoggedUserObj: getLoggedUserObj,
   isUserLoggedIn: isUserLoggedIn,
   logout: logout
- }
+ } 
 
 }
+
+export default useSecurityServices;

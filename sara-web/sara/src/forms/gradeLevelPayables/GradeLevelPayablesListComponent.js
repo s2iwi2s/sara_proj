@@ -7,11 +7,11 @@ import CustomTableGrid from '../common/CustomTableGrid'
 import { deleteItem, getList } from '../../api/gradeLevelPayables/GradeLevelPayablesService';
 import { selectPageable, setPageable, setSelectedItem, resetSelectedItem } from '../../api/gradeLevelPayables/GradeLevelSlice';
 import TitleComponent from '../common/TitleComponent';
-import { useMessageAlert } from "../../api/useMessageAlert"
+import useMessageAlert from "../../api/useMessageAlert"
 import ConfirmMsgDialog from '../common/ConfirmMsgDialog';
 
 export default function GradeLevelPayablesListComponent(props) {
-  const useAlert = useMessageAlert();
+  const { showErrorMsgAlert } = useMessageAlert();
 
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
@@ -60,7 +60,7 @@ export default function GradeLevelPayablesListComponent(props) {
             totalPage: data.pagingList.totalPage
           }
         }))
-      }).catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'GradeLevelPayablesListComponent.retrieve', 'GradeLevelPayablesService.getList'))
+      }).catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'GradeLevelPayablesListComponent.retrieve', 'GradeLevelPayablesService.getList'))
 
 
 
@@ -105,7 +105,7 @@ export default function GradeLevelPayablesListComponent(props) {
   const doDelete = (id) => {
     deleteItem(id)
       .then(doRetrieve)
-      .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'GradeLevelPayablesListComponent.doDelete', 'GradeLevelPayablesService.deleteItem'))
+      .catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'GradeLevelPayablesListComponent.doDelete', 'GradeLevelPayablesService.deleteItem'))
   }
 
   const doHandleChangePage = (e, newPage) => {

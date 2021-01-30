@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 
-import SignInHtml from './SignInHtml.js';
-import { useMessageAlert } from "../api/useMessageAlert"
-import { useAuth } from '../providers/AuthenticationProvider';
-import { useSecurityServices } from './useSecurityServices'
 import { ERROR_CODE } from '../api/Utils.js';
+import useMessageAlert from "../api/useMessageAlert"
+import { useAuth } from '../providers/AuthenticationProvider';
+import SignInHtml from './SignInHtml.js';
+import useSecurityServices from './useSecurityServices.js';
 
 export default function SignInComponent() {
 
-  const useAlert = useMessageAlert();
-
-  const useSec = useSecurityServices()
+  const { showErrorMsgAlert } = useMessageAlert();
+  const { executeJwtAuthenticationService, registerJwtSucessfulLogin } = useSecurityServices()
 
 
   const [message, setMessage] = useState("");
@@ -19,22 +18,17 @@ export default function SignInComponent() {
 
   const history = useHistory();
 
-  // const setError = (error, errorCode, formMethod, serviceName) => {
-  //   console.error(`[SignInComponent.setError]  error=`, error)
-  //   showErrorMsgAlert(error, errorCode, formMethod, serviceName)
-  // }
-
   const onSignon = (userName, password) => {
     console.error(`[SignInComponent.onSignon] userName=${userName}`)
     setMessage('');
 
-    useSec.executeJwtAuthenticationService(userName, password)
+    executeJwtAuthenticationService(userName, password)
       .then(response => {
         const userDetails = {
           ...response.data.userDetails,
           isLoggedIn: true
         }
-        useSec.registerJwtSucessfulLogin(userDetails, response.data.token)
+        registerJwtSucessfulLogin(userDetails, response.data.token)
         setUserObj(userDetails)
 
         console.error(`[SignInComponent.onSignon useSec.registerJwtSucessfulLogin] userDetails=`, userDetails)
@@ -44,7 +38,7 @@ export default function SignInComponent() {
         history.push(`/`);
       })
       // .catch(error => showErrorMsgAlert(error, ERROR_CODE.LOGIN_ERROR, 'SignInComponent.onSignon', 'useAuthServices.executeJwtAuthenticationService'))
-      .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.LOGIN_ERROR, 'SignInComponent.onSignon', 'useAuthServices.executeJwtAuthenticationService'))
+      .catch(error => showErrorMsgAlert(error, ERROR_CODE.LOGIN_ERROR, 'SignInComponent.onSignon', 'useAuthServices.executeJwtAuthenticationService'))
   }
   return (
     <SignInHtml message={message} onSignon={onSignon} />
