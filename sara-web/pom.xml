@@ -63,30 +63,20 @@
 				<directory>src/main/resources</directory>
 				<filtering>true</filtering>
 			</resource>
+			<resource>
+				<directory>${config.dir}</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
 		</resources>
 		<plugins>
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>copy-resources</id>
-						<phase>validate</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<overwrite>true</overwrite>
-							<outputDirectory>${project.build.directory}/classes/static/</outputDirectory>
-							<resources>
-								<resource>
-									<directory>${frontend-bundle-dir}</directory>
-									<filtering>true</filtering>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+			<!-- <plugin> <artifactId>maven-resources-plugin</artifactId> <executions> 
+				<execution> <id>copy-resources</id> <phase>validate</phase> <goals> <goal>copy-resources</goal> 
+				</goals> <configuration> <overwrite>true</overwrite> <outputDirectory>${project.build.directory}/classes/static/</outputDirectory> 
+				<resources> <resource> <directory>${frontend-bundle-dir}</directory> <filtering>true</filtering> 
+				</resource> </resources> </configuration> </execution> </executions> </plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
@@ -104,11 +94,26 @@
 	</build>
 
 	<profiles>
+		
+		<profile>
+			<id>dev</id>
+			<!-- <activation> <activeByDefault>true</activeByDefault> </activation> -->
+			<!-- <activation> <property> <name>env</name> <value>dev</value> </property> 
+				</activation> -->
+			<properties>
+				<profiles.active>dev</profiles.active>
+				<config.dir>X:/config/sara/dev</config.dir>
+			</properties>
+		</profile>
 		<profile>
 			<id>prod</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
+			<properties>
+				<profiles.active>prod</profiles.active>
+				<config.dir>./config/prod</config.dir>
+			</properties>
 			<build>
 				<plugins>
 					<plugin>
