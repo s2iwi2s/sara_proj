@@ -36,8 +36,7 @@ import GradeLevelPayablesListComponent from './forms/gradeLevelPayables/GradeLev
 import GradeLevelPayablesDetailsComponent from './forms/gradeLevelPayables/GradeLevelPayablesDetailsComponent';
 import GlobalAlertMsgDialog from './forms/common/GlobalAlertMsgDialog';
 
-
-import { useAuthServices } from './security/useAuthServices'
+import { useSecurityServices } from './security/useSecurityServices'
 
 const useStylesRouting = makeStyles((theme) => ({
  root: {
@@ -72,15 +71,15 @@ const useStylesRouting = makeStyles((theme) => ({
 
 const AppRouting = () => {
 
- const useAuths = useAuthServices()
+ const useSec = useSecurityServices()
  const [userObj, setUserObj] = useAuth();
 
  useEffect(() => {
   console.log(`[AppRouting.useEffect] 1 userObj=>`, userObj)
 
   //initialize user
-  useAuths.init()
-  let lu = useAuths.getLoggedUserObj()
+  useSec.init()
+  let lu = useSec.getLoggedUserObj()
   setUserObj(lu);
  }, []);
 

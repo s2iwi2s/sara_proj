@@ -20,11 +20,11 @@ import { useHistory } from 'react-router-dom';
 import { PAGE_URL } from '../../api/Utils'
 import { Divider } from '@material-ui/core';
 
-import { useAuthServices } from '../../security/useAuthServices'
+import { useSecurityServices } from '../../security/useSecurityServices'
 
 export default function MenuListItems() {
-  const useAuths = useAuthServices()
-  const isLoggedIn = useAuths.isUserLoggedIn();
+  const useSec = useSecurityServices()
+  const isLoggedIn = useSec.isUserLoggedIn();
 
   const history = useHistory();
   return (
