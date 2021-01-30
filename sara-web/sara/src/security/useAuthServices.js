@@ -83,12 +83,13 @@ export const useAuthServices = () => {
   console.log('[useAuthServices.logout]  userObj=>', userObj);
  }
 
- return [
-  initialize,
-  executeJwtAuthenticationService,
-  registerJwtSucessfulLogin,
-  getLoggedUserObj,
-  isUserLoggedIn,
-  logout
- ]
+ return {
+  init: initialize,
+  executeJwtAuthenticationService: executeJwtAuthenticationService,
+  registerJwtSucessfulLogin: registerJwtSucessfulLogin,
+  getLoggedUserObj: getLoggedUserObj,
+  isUserLoggedIn: isUserLoggedIn,
+  logout: logout
+ }
+
 }

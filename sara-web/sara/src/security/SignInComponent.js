@@ -11,12 +11,7 @@ export default function SignInComponent() {
 
   const useAlert = useMessageAlert();
 
-  const [,
-    executeJwtAuthenticationService,
-    registerJwtSucessfulLogin,
-    ,
-    ,
-  ] = useAuthServices()
+  const useAuths = useAuthServices()
 
 
   const [message, setMessage] = useState("");
@@ -33,13 +28,13 @@ export default function SignInComponent() {
     console.error(`[SignInComponent.onSignon] userName=${userName}`)
     setMessage('');
 
-    executeJwtAuthenticationService(userName, password)
+    useAuths.executeJwtAuthenticationService(userName, password)
       .then(response => {
         const userDetails = {
           ...response.data.userDetails,
           isLoggedIn: true
         }
-        registerJwtSucessfulLogin(userDetails, response.data.token)
+        useAuths.registerJwtSucessfulLogin(userDetails, response.data.token)
         setUserObj(userDetails)
 
         console.error(`[SignInComponent.onSignon useAuthServices.xecuteJwtAuthenticationService] userDetails=`, userDetails)

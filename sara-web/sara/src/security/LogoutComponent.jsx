@@ -5,16 +5,11 @@ import { useAuth } from '../providers/AuthenticationProvider';
 
 export default function LogoutComponent() {
     const [userObj] = useAuth();
-    const [,
-        ,
-        ,
-        ,
-        ,
-        logout] = useAuthServices()
+    const useAuths = useAuthServices()
 
     useEffect(() => {
         console.log('[LogoutComponent.useEffect]: userObj', userObj);
-        logout();
+        useAuths.logout();
     });
 
     return (

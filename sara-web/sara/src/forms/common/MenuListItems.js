@@ -22,14 +22,8 @@ import { Divider } from '@material-ui/core';
 import { useAuthServices } from '../../security/useAuthServices'
 
 export default function MenuListItems() {
-  const [,
-    ,
-    ,
-    ,
-    isUserLoggedIn,
-    
-  ] = useAuthServices()
-  const isLoggedIn = isUserLoggedIn();
+  const useAuths = useAuthServices()
+  const isLoggedIn = useAuths.isUserLoggedIn();
 
   const history = useHistory();
   return (

@@ -72,25 +72,16 @@ const useStylesRouting = makeStyles((theme) => ({
 
 const AppRouting = () => {
 
-
- const [initialize,
-  ,
-  ,
-  getLoggedUserObj,
- ] = useAuthServices()
-
-
+ const useAuths = useAuthServices()
  const [userObj, setUserObj] = useAuth();
 
  useEffect(() => {
   console.log(`[AppRouting.useEffect] 1 userObj=>`, userObj)
 
   //initialize user
-  initialize()
-  let lu = getLoggedUserObj()
-  // console.log(`[AppRouting.useEffect] 2 lu=>`, lu)
+  useAuths.init()
+  let lu = useAuths.getLoggedUserObj()
   setUserObj(lu);
-  // console.log(`[AppRouting.useEffect] 3 userObj=>`, userObj)
  }, []);
 
 
