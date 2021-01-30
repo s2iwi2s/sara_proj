@@ -9,7 +9,7 @@ import { useMessageAlert } from "../../api/useMessageAlert"
 
 export default function GradeLevelAccountPayablesSettingsListComponent(props) {
 
-  const alert = useMessageAlert();
+  const useAlert = useMessageAlert();
   const [store, setStore] = useState({
     list: [],
     searchValue: '',
@@ -19,18 +19,6 @@ export default function GradeLevelAccountPayablesSettingsListComponent(props) {
       currentPage: 0
     }
   });
-
-  const showErrorMsgAlert = (error, errorCode, formMethod, serviceName) => {
-    alert({
-      type: 'form-error',
-      payload: {
-        error: error,
-        errorCode: errorCode,
-        formMethod: formMethod,
-        serviceName: serviceName
-      }
-    })
-  }
 
   const doRetrieve = () => {
     console.log(`[GradeLevelAccountPayablesSettingsListComponent.doRetrieve] props.selectedItem==>`, props.selectedItem)
@@ -54,7 +42,7 @@ export default function GradeLevelAccountPayablesSettingsListComponent(props) {
           }
         }
         setStore(data);
-      }).catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'GradeLevelAccountPayablesSettingsListComponent.retrieve', 'AccountPayablesSettingsService.getActiveList'))
+      }).catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'GradeLevelAccountPayablesSettingsListComponent.retrieve', 'AccountPayablesSettingsService.getActiveList'))
   }
 
   const doHandleChangePage = (e, newPage) => {

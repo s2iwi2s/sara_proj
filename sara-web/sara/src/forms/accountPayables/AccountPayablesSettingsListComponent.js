@@ -14,22 +14,10 @@ import ConfirmMsgDialog from '../common/ConfirmMsgDialog';
 export default function AccountPayablesSettingsListComponent(props) {
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
-  const alert = useMessageAlert();
+  const useAlert = useMessageAlert();
 
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [deleteId, setDeleteId] = useState();
-
-  const showErrorMsgAlert = (error, errorCode, formMethod, serviceName) => {
-    alert({
-      type: 'form-error',
-      payload: {
-        error: error,
-        errorCode: errorCode,
-        formMethod: formMethod,
-        serviceName: serviceName
-      }
-    })
-  }
 
   const retrieve = ({ searchValue, paging }) => getList(searchValue, paging.currentPage, paging.rowsPerPage)
     .then(({ data }) => dispatch(setPageable({
@@ -43,7 +31,7 @@ export default function AccountPayablesSettingsListComponent(props) {
         totalPage: data.pagingList.totalPage
       }
     })))
-    .catch(error => showErrorMsgAlert(error, ERROR_CODE.RETRIEVE_ERROR, 'AccountPayablesSettingsListComponent.retrieve', 'AccountPayablesSettingsService.getList'));
+    .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.RETRIEVE_ERROR, 'AccountPayablesSettingsListComponent.retrieve', 'AccountPayablesSettingsService.getList'));
 
   const doRetrieve = () => retrieve({
     searchValue: currPageable.searchValue,
@@ -82,7 +70,7 @@ export default function AccountPayablesSettingsListComponent(props) {
   }
   const doDelete = (id) => deleteItem(id)
     .then(doRetrieve)
-    .catch(error => showErrorMsgAlert(error, ERROR_CODE.RETRIEVE_ERROR, 'AccountPayablesSettingsListComponent.doDelete', 'AccountPayablesSettingsService.deleteItem'));
+    .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.RETRIEVE_ERROR, 'AccountPayablesSettingsListComponent.doDelete', 'AccountPayablesSettingsService.deleteItem'));
 
   const doHandleChangePage = (e, newPage) => retrieve({
     searchValue: currPageable.searchValue,

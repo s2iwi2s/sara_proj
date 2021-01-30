@@ -8,23 +8,11 @@ import { selectSelectedItem, setOptionsList, setPageableEntity, resetSelectedIte
 import { useMessageAlert } from "../../api/useMessageAlert"
 
 export default function StudentDetailComponent(props) {
-  const alert = useMessageAlert();
+  const useAlert = useMessageAlert();
   const dispatch = useDispatch();
   const selectedItem = useSelector(selectSelectedItem)
 
   const [message, setMessage] = useState("");
-
-  const showErrorMsgAlert = (error, errorCode, formMethod, serviceName) => {
-    alert({
-      type: 'form-error',
-      payload: {
-        error: error,
-        errorCode: errorCode,
-        formMethod: formMethod,
-        serviceName: serviceName
-      }
-    })
-  }
 
   const onSubmitForm = (data) => {
     console.log('[StudentDetailComponent.onSubmitForm] data==>', data)
@@ -36,7 +24,7 @@ export default function StudentDetailComponent(props) {
         setMessage('')
         props.history.push(PAGE_URL.STUDENT_LIST)
       })
-      .catch(error => showErrorMsgAlert(error, ERROR_CODE.SAVE_ERROR, 'StudentDetailComponent.onSubmitForm', 'StudentService.save'));
+      .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.SAVE_ERROR, 'StudentDetailComponent.onSubmitForm', 'StudentService.save'));
   }
 
   const onRetrieve = () => {
@@ -50,7 +38,7 @@ export default function StudentDetailComponent(props) {
         dispatch(setOptionsList(response.data.listService))
         setMessage(``)
       })
-      .catch(error => showErrorMsgAlert(error, ERROR_CODE.RETRIEVE_ERROR, 'StudentDetailComponent.onRetrieve', 'StudentService.getOptions'));
+      .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.RETRIEVE_ERROR, 'StudentDetailComponent.onRetrieve', 'StudentService.getOptions'));
   }
 
   return (

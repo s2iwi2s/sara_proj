@@ -3,17 +3,11 @@ import { Route, Redirect } from 'react-router-dom';
 import { useAuthServices } from './useAuthServices'
 
 const AuthenticatedRoute = (props) => {
-    const [,
-        ,
-        ,
-        ,
-        isUserLoggedIn,
+    const useAuths = useAuthServices()
 
-    ] = useAuthServices()
-
-    const isLoggedin = isUserLoggedIn()
+    const isLoggedin = useAuths.isUserLoggedIn()
     console.log(`[AuthenticatedRoute] isLoggedin=>`, isLoggedin)
-    if (isUserLoggedIn()) {
+    if (isLoggedin) {
         return <Route {...props} />;
     } else {
         return <Redirect to="/login" />;

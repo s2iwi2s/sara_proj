@@ -3,25 +3,7 @@ import { useGlobalVariable } from '../providers/GlobalVariableProvider'
 
 export const useMessageAlert = () => {
 
-    const [globalProps, setGlobalProps, setAlertProps, setUIProps, alertProp] = useGlobalVariable();
-
-    // const alert = (action = {}) => {
-    //     if (action.type === 'close') {
-    //         closeMsgAlert()
-    //     } else if (action.type === 'form-error') {
-    //         showErrorMsgAlert(action.payload.error, action.payload.errorCode, action.payload.formMethod, action.payload.serviceName)
-    //     } else if (action.type === 'error') {
-    //         showErrorAlert(action.payload.message)
-    //     } else if (action.type === 'info') {
-    //         showInfoAlert(action.payload.message)
-    //     } else if (action.type === 'warning') {
-    //         showWarningAlert(action.payload.message)
-    //     } else if (action.type === 'success') {
-    //         showSuccessAlert(action.payload.message)
-    //     }
-
-    //     return alertProp
-    // }
+    const [globalProps, , setAlertProps,] = useGlobalVariable();
 
     const showErrorMsgAlert = (error, errorCode, formMethod, serviceName) => {
         let errMsg = getFormatedErrorMessage(error, errorCode, formMethod, serviceName)
@@ -53,12 +35,9 @@ export const useMessageAlert = () => {
         })
     }
     const closeMsgAlert = () => {
-        console.log(`[useMessageAlert.closeMsgAlert] 1 globalProps=>`, globalProps)
         setAlertProps({
             open: false
         })
-
-        console.log(`[useMessageAlert.closeMsgAlert] 2 globalProps=>`, globalProps)
     }
 
     const getFormatedErrorMessage = (error, errorCode, formMethod, serviceName) => {
@@ -88,22 +67,13 @@ export const useMessageAlert = () => {
         return errMsg;
     }
 
-    return (action = {}) => {
-        if (action.type === 'close') {
-            closeMsgAlert()
-        } else if (action.type === 'form-error') {
-            showErrorMsgAlert(action.payload.error, action.payload.errorCode, action.payload.formMethod, action.payload.serviceName)
-        } else if (action.type === 'error') {
-            showErrorAlert(action.payload)
-        } else if (action.type === 'info') {
-            showInfoAlert(action.payload)
-        } else if (action.type === 'warning') {
-            showWarningAlert(action.payload)
-        } else if (action.type === 'success') {
-            showSuccessAlert(action.payload)
-        }
-
-        return alertProp
+    return {
+        props: globalProps.alert,
+        closeMsgAlert: closeMsgAlert,
+        showErrorMsgAlert: showErrorMsgAlert,
+        showErrorAlert: showErrorAlert,
+        showInfoAlert: showInfoAlert,
+        showWarningAlert: showWarningAlert,
+        showSuccessAlert: showSuccessAlert
     }
-
 }

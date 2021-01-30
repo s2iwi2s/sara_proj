@@ -10,9 +10,12 @@ import SchoolIcon from '@material-ui/icons/School';
 import { PAGE_URL, URL_BASE } from '../../api/Utils'
 import { useAuth } from '../../providers/AuthenticationProvider';
 import MiniDrawer from './MiniDrawer';
+import { useTheme } from '../../api/useTheme';
 
 export default function AppBarComponent(props) {
  const [userObj] = useAuth();
+
+ const useAppTheme = useTheme()
 
  const drawerWidth = 240;
  const useStylesAppBar = makeStyles((theme) => ({
@@ -105,7 +108,7 @@ export default function AppBarComponent(props) {
      {userObj && <div>Welcome <b>{userObj.userFullName}</b></div>}
 
      <Box pl={5}>
-      <FormControlLabel control={<Switch checked={props.darkMode} onChange={props.toggleDarkMode} />} />
+      <FormControlLabel control={<Switch checked={useAppTheme.props.darkMode} onChange={() => useAppTheme.toggleDarkMode()} />} />
      </Box>
     </Toolbar>
    </AppBar>

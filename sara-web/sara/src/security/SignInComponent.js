@@ -9,14 +9,9 @@ import { ERROR_CODE } from '../api/Utils.js';
 
 export default function SignInComponent() {
 
-  const alert = useMessageAlert();
+  const useAlert = useMessageAlert();
 
-  const [,
-    executeJwtAuthenticationService,
-    registerJwtSucessfulLogin,
-    ,
-    ,
-  ] = useAuthServices()
+  const useAuths = useAuthServices()
 
 
   const [message, setMessage] = useState("");
@@ -33,13 +28,13 @@ export default function SignInComponent() {
     console.error(`[SignInComponent.onSignon] userName=${userName}`)
     setMessage('');
 
-    executeJwtAuthenticationService(userName, password)
+    useAuths.executeJwtAuthenticationService(userName, password)
       .then(response => {
         const userDetails = {
           ...response.data.userDetails,
           isLoggedIn: true
         }
-        registerJwtSucessfulLogin(userDetails, response.data.token)
+        useAuths.registerJwtSucessfulLogin(userDetails, response.data.token)
         setUserObj(userDetails)
 
         console.error(`[SignInComponent.onSignon useAuthServices.xecuteJwtAuthenticationService] userDetails=`, userDetails)
@@ -49,15 +44,7 @@ export default function SignInComponent() {
         history.push(`/`);
       })
       // .catch(error => showErrorMsgAlert(error, ERROR_CODE.LOGIN_ERROR, 'SignInComponent.onSignon', 'useAuthServices.executeJwtAuthenticationService'))
-      .catch(error => alert({
-        type: 'form-error',
-        payload: {
-          error: error,
-          errorCode: ERROR_CODE.LOGIN_ERROR,
-          formMethod: 'SignInComponent.onSignon',
-          serviceName: 'useAuthServices.executeJwtAuthenticationService'
-        }
-      }))
+      .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.LOGIN_ERROR, 'SignInComponent.onSignon', 'useAuthServices.executeJwtAuthenticationService'))
   }
   return (
     <SignInHtml message={message} onSignon={onSignon} />

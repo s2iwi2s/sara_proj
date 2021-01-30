@@ -14,6 +14,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
+import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
 
 import { useHistory } from 'react-router-dom';
 import { PAGE_URL } from '../../api/Utils'
@@ -22,14 +23,8 @@ import { Divider } from '@material-ui/core';
 import { useAuthServices } from '../../security/useAuthServices'
 
 export default function MenuListItems() {
-  const [,
-    ,
-    ,
-    ,
-    isUserLoggedIn,
-    
-  ] = useAuthServices()
-  const isLoggedIn = isUserLoggedIn();
+  const useAuths = useAuthServices()
+  const isLoggedIn = useAuths.isUserLoggedIn();
 
   const history = useHistory();
   return (
@@ -44,11 +39,11 @@ export default function MenuListItems() {
     >
       {
         isLoggedIn && <>
-          <ListItem button>
+          <ListItem button onClick={() => history.push(PAGE_URL.BILLING)}>
             <ListItemIcon>
-              <AccountBalanceWalletIcon onClick={() => history.push(PAGE_URL.BILLING)} />
+              <AccountBalanceWalletIcon />
             </ListItemIcon>
-            <ListItemText primary="Billing" onClick={() => history.push(PAGE_URL.BILLING)} />
+            <ListItemText primary="Billing" />
           </ListItem>
 
           <ListItem button onClick={() => history.push(PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_LIST)}>
@@ -91,6 +86,12 @@ export default function MenuListItems() {
             <ListItemText primary="Code Groups" />
           </ListItem>
 
+          <ListItem button>
+            <ListItemIcon>
+              <AllInclusiveIcon />
+            </ListItemIcon>
+            <ListItemText primary="Processing" />
+          </ListItem>
         </>
       }
 

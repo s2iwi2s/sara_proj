@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
-import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 
 import { CssBaseline } from '@material-ui/core';
 
@@ -73,106 +72,77 @@ const useStylesRouting = makeStyles((theme) => ({
 
 const AppRouting = () => {
 
-
- const [initialize,
-  ,
-  ,
-  getLoggedUserObj,
- ] = useAuthServices()
-
-
+ const useAuths = useAuthServices()
  const [userObj, setUserObj] = useAuth();
 
  useEffect(() => {
   console.log(`[AppRouting.useEffect] 1 userObj=>`, userObj)
-  initTheme();
 
   //initialize user
-  initialize()
-  let lu = getLoggedUserObj()
-  // console.log(`[AppRouting.useEffect] 2 lu=>`, lu)
+  useAuths.init()
+  let lu = useAuths.getLoggedUserObj()
   setUserObj(lu);
-  // console.log(`[AppRouting.useEffect] 3 userObj=>`, userObj)
  }, []);
 
- const initTheme = () => {
-  const themeDarkMode = localStorage.getItem(THEME.THEME_STORAGE_NAME);
-  setDarkMode(themeDarkMode === 'Y' ? true : false);
- }
-
- const [darkMode, setDarkMode] = useState(false);
-
- const toggleDarkMode = () => {
-  setDarkMode(!darkMode);
-  localStorage.setItem(THEME.THEME_STORAGE_NAME, !darkMode ? 'Y' : 'N');
- }
-
- const theme = createMuiTheme({
-  palette: {
-   type: darkMode ? THEME.DARK_MODE : THEME.LIGHT_MODE,
-  },
- });
 
  // render = () => {
  const classes = useStylesRouting();
 
  return (
   <div className="">
-   <MuiThemeProvider theme={theme}>
-    <CssBaseline />
-    <Router>
-     <div className={classes.root}>
+   <CssBaseline />
+   <Router>
+    <div className={classes.root}>
 
-      <AppBarComponent darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+     <AppBarComponent />
 
-      <main className={classes.content}>
-       <div className={classes.toolbar} />
+     <main className={classes.content}>
+      <div className={classes.toolbar} />
 
-       <GlobalAlertMsgDialog />
+      <GlobalAlertMsgDialog />
 
-       {/* <Container component="main" className={classes.container}> */}
-       <Switch>
-        <Route path={PAGE_URL.ROOT} exact component={Dashboard} />
-        <Route path={PAGE_URL.INDEX} exact component={Dashboard} />
+      {/* <Container component="main" className={classes.container}> */}
+      <Switch>
+       <Route path={PAGE_URL.ROOT} exact component={Dashboard} />
+       <Route path={PAGE_URL.INDEX} exact component={Dashboard} />
 
-        <Route path={PAGE_URL.LOGOUT} component={LogoutComponent} />
-        <Route path={PAGE_URL.LOGIN} component={SignInComponent} />
+       <Route path={PAGE_URL.LOGOUT} component={LogoutComponent} />
+       <Route path={PAGE_URL.LOGIN} component={SignInComponent} />
 
-        <AuthenticatedRoute path={PAGE_URL.STUDENT_LIST} component={StudentListComponent} />
-        <AuthenticatedRoute path={PAGE_URL.STUDENT_DETAIL} component={StudentDetailComponent} />
-        <AuthenticatedRoute path={PAGE_URL.STUDENT_DETAIL_URL} component={StudentDetailComponent} />
+       <AuthenticatedRoute path={PAGE_URL.STUDENT_LIST} component={StudentListComponent} />
+       <AuthenticatedRoute path={PAGE_URL.STUDENT_DETAIL} component={StudentDetailComponent} />
+       <AuthenticatedRoute path={PAGE_URL.STUDENT_DETAIL_URL} component={StudentDetailComponent} />
 
-        <AuthenticatedRoute path={PAGE_URL.BILLING_PAYABLES} exact component={BillingComponent} />
-        <AuthenticatedRoute path={PAGE_URL.BILLING} exact component={BillingComponent} />
+       <AuthenticatedRoute path={PAGE_URL.BILLING_PAYABLES} exact component={BillingComponent} />
+       <AuthenticatedRoute path={PAGE_URL.BILLING} exact component={BillingComponent} />
 
-        <AuthenticatedRoute path={PAGE_URL.USER_LIST} exact component={EndUserListComponent} />
-        <AuthenticatedRoute path={PAGE_URL.USER_DETAIL} exact component={EndUserDetailComponent} />
-        <AuthenticatedRoute path={PAGE_URL.USER_DETAIL_URL} exact component={EndUserDetailComponent} />
+       <AuthenticatedRoute path={PAGE_URL.USER_LIST} exact component={EndUserListComponent} />
+       <AuthenticatedRoute path={PAGE_URL.USER_DETAIL} exact component={EndUserDetailComponent} />
+       <AuthenticatedRoute path={PAGE_URL.USER_DETAIL_URL} exact component={EndUserDetailComponent} />
 
-        <AuthenticatedRoute path={PAGE_URL.CODE_GROUPS_LIST} exact component={CodeGroupsListComponent} />
-        <AuthenticatedRoute path={PAGE_URL.CODE_GROUPS_DETAIL} exact component={CodeGroupsDetailComponent} />
-        <AuthenticatedRoute path={PAGE_URL.CODE_GROUPS_DETAIL_URL} exact component={CodeGroupsDetailComponent} />
+       <AuthenticatedRoute path={PAGE_URL.CODE_GROUPS_LIST} exact component={CodeGroupsListComponent} />
+       <AuthenticatedRoute path={PAGE_URL.CODE_GROUPS_DETAIL} exact component={CodeGroupsDetailComponent} />
+       <AuthenticatedRoute path={PAGE_URL.CODE_GROUPS_DETAIL_URL} exact component={CodeGroupsDetailComponent} />
 
-        <AuthenticatedRoute path={PAGE_URL.SCHOOL_LIST} exact component={SchoolListComponent} />
-        <AuthenticatedRoute path={PAGE_URL.SCHOOL_DETAIL} exact component={SchoolDetailComponent} />
-        <AuthenticatedRoute path={PAGE_URL.SCHOOL_DETAIL_URL} exact component={SchoolDetailComponent} />
+       <AuthenticatedRoute path={PAGE_URL.SCHOOL_LIST} exact component={SchoolListComponent} />
+       <AuthenticatedRoute path={PAGE_URL.SCHOOL_DETAIL} exact component={SchoolDetailComponent} />
+       <AuthenticatedRoute path={PAGE_URL.SCHOOL_DETAIL_URL} exact component={SchoolDetailComponent} />
 
-        <AuthenticatedRoute path={PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_LIST} exact component={AccountPayablesSettingsListComponent} />
-        <AuthenticatedRoute path={PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_DETAIL} exact component={AccountPayablesSettingsDetailComponent} />
-        <AuthenticatedRoute path={PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_DETAIL_URL} exact component={AccountPayablesSettingsDetailComponent} />
+       <AuthenticatedRoute path={PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_LIST} exact component={AccountPayablesSettingsListComponent} />
+       <AuthenticatedRoute path={PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_DETAIL} exact component={AccountPayablesSettingsDetailComponent} />
+       <AuthenticatedRoute path={PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_DETAIL_URL} exact component={AccountPayablesSettingsDetailComponent} />
 
-        <AuthenticatedRoute path={PAGE_URL.GRADE_LEVEL_PAYABLES_LIST} exact component={GradeLevelPayablesListComponent} />
-        <AuthenticatedRoute path={PAGE_URL.GRADE_LEVEL_PAYABLES_DETAIL} exact component={GradeLevelPayablesDetailsComponent} />
-        <AuthenticatedRoute path={PAGE_URL.GRADE_LEVEL_PAYABLES_DETAIL_URL} exact component={GradeLevelPayablesDetailsComponent} />
+       <AuthenticatedRoute path={PAGE_URL.GRADE_LEVEL_PAYABLES_LIST} exact component={GradeLevelPayablesListComponent} />
+       <AuthenticatedRoute path={PAGE_URL.GRADE_LEVEL_PAYABLES_DETAIL} exact component={GradeLevelPayablesDetailsComponent} />
+       <AuthenticatedRoute path={PAGE_URL.GRADE_LEVEL_PAYABLES_DETAIL_URL} exact component={GradeLevelPayablesDetailsComponent} />
 
-        <Route component={ErrorComponent} />
-       </Switch>
-       {/* </Container> */}
-       <FooterComponent />
-      </main>
-     </div>
-    </Router>
-   </MuiThemeProvider>
+       <Route component={ErrorComponent} />
+      </Switch>
+      {/* </Container> */}
+      <FooterComponent />
+     </main>
+    </div>
+   </Router>
   </div>
  );
  // }
