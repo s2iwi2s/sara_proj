@@ -14,7 +14,7 @@ import { optionsList, selectPageable, setPageable, updatePageable } from '../../
 import { useMessageAlert } from "../../api/useMessageAlert"
 
 export default function BillingComponent() {
-  const alert = useMessageAlert();
+  const useAlert = useMessageAlert();
 
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
@@ -44,18 +44,6 @@ export default function BillingComponent() {
     payablesByInvoiceNo: [],
     open: false
   })
-
-  const showErrorMsgAlert = (error, errorCode, formMethod, serviceName) => {
-    alert({
-      type: 'form-error',
-      payload: {
-        error: error,
-        errorCode: errorCode,
-        formMethod: formMethod,
-        serviceName: serviceName
-      }
-    })
-  }
 
   const doInitFormData = data => {
     //data.optionsList = optionsList;
@@ -119,7 +107,7 @@ export default function BillingComponent() {
         doInitFormData(formData);
         dispatch(setPageable(formData))
       })
-      .catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'BillingComponent.doRetrieve', 'BillingService.getListBy'));
+      .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'BillingComponent.doRetrieve', 'BillingService.getListBy'));
   }
 
   const onChangeRowsPerPage = (e) => {
@@ -198,7 +186,7 @@ export default function BillingComponent() {
 
 
     })
-      .catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'BillingComponent.doPayables', 'BillingService.getStudentPayables'));
+      .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'BillingComponent.doPayables', 'BillingService.getStudentPayables'));
   }
   const doShowSaveConfirmDialog = (data) => {
     console.log(`[BillingComponent.doShowSaveConfirmDialog] data==>`, data);
@@ -312,7 +300,7 @@ export default function BillingComponent() {
         message: 'Payables saved successfully!'
       })
     })
-      .catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'BillingComponent.doSavePayables', 'BillingService.save'));
+      .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'BillingComponent.doSavePayables', 'BillingService.save'));
   }
 
   const doCloseSaveBillingDialog = () => {

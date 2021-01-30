@@ -3,11 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
+import { GlobalVariableProvider } from './providers/GlobalVariableProvider';
+import { AuthenticationProvider } from './providers/AuthenticationProvider';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <GlobalVariableProvider>
+      <AuthenticationProvider>
+        <App />
+      </AuthenticationProvider>
+    </GlobalVariableProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -11,7 +11,7 @@ import { useMessageAlert } from "../../api/useMessageAlert"
 import ConfirmMsgDialog from '../common/ConfirmMsgDialog';
 
 export default function GradeLevelPayablesListComponent(props) {
-  const alert = useMessageAlert();
+  const useAlert = useMessageAlert();
 
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
@@ -45,18 +45,6 @@ export default function GradeLevelPayablesListComponent(props) {
     dispatch(resetSelectedItem())
   }, []);
 
-  const showErrorMsgAlert = (error, errorCode, formMethod, serviceName) => {
-    alert({
-      type: 'form-error',
-      payload: {
-        error: error,
-        errorCode: errorCode,
-        formMethod: formMethod,
-        serviceName: serviceName
-      }
-    })
-  }
-
   const retrieve = ({ searchValue, paging }) =>
     getList(searchValue, paging.currentPage, paging.rowsPerPage)
       .then(({ data }) => {
@@ -72,7 +60,7 @@ export default function GradeLevelPayablesListComponent(props) {
             totalPage: data.pagingList.totalPage
           }
         }))
-      }).catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'GradeLevelPayablesListComponent.retrieve', 'GradeLevelPayablesService.getList'))
+      }).catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'GradeLevelPayablesListComponent.retrieve', 'GradeLevelPayablesService.getList'))
 
 
 
@@ -117,7 +105,7 @@ export default function GradeLevelPayablesListComponent(props) {
   const doDelete = (id) => {
     deleteItem(id)
       .then(doRetrieve)
-      .catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'GradeLevelPayablesListComponent.doDelete', 'GradeLevelPayablesService.deleteItem'))
+      .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'GradeLevelPayablesListComponent.doDelete', 'GradeLevelPayablesService.deleteItem'))
   }
 
   const doHandleChangePage = (e, newPage) => {

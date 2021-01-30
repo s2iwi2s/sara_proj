@@ -12,7 +12,7 @@ import { useMessageAlert } from "../../api/useMessageAlert"
 import ConfirmMsgDialog from '../common/ConfirmMsgDialog';
 
 export default function CodeGroupsListComponent(props) {
-  const alert = useMessageAlert();
+  const useAlert = useMessageAlert();
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
 
@@ -22,18 +22,6 @@ export default function CodeGroupsListComponent(props) {
   useEffect(() => {
     dispatch(resetSelectedItem())
   }, []);
-
-  const showErrorMsgAlert = (error, errorCode, formMethod, serviceName) => {
-    alert({
-      type: 'form-error',
-      payload: {
-        error: error,
-        errorCode: errorCode,
-        formMethod: formMethod,
-        serviceName: serviceName
-      }
-    })
-  }
 
   const retrieve = ({ searchValue, paging }) => getList(searchValue, paging.currentPage, paging.rowsPerPage)
     .then(({ data }) => {
@@ -48,7 +36,7 @@ export default function CodeGroupsListComponent(props) {
           totalPage: data.pagingList.totalPage
         }
       }))
-    }).catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'CodeGroupsListComponent.retrieve', 'CodeGroupsService.getList'))
+    }).catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'CodeGroupsListComponent.retrieve', 'CodeGroupsService.getList'))
 
 
   const doRetrieve = () => retrieve({
@@ -80,7 +68,7 @@ export default function CodeGroupsListComponent(props) {
 
   const doDelete = (id) => deleteItem(id)
     .then(doRetrieve)
-    .catch(error => showErrorMsgAlert(error, ERROR_CODE.DELETE_ERROR, 'CodeGroupsListComponent.doDelete', 'CodeGroupsService.deleteItem'))
+    .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.DELETE_ERROR, 'CodeGroupsListComponent.doDelete', 'CodeGroupsService.deleteItem'))
 
   const doHandleChangePage = (e, newPage) => retrieve({
     searchValue: currPageable.searchValue,

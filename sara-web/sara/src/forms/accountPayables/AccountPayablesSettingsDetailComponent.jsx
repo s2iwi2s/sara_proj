@@ -20,7 +20,7 @@ import { useMessageAlert } from "../../api/useMessageAlert"
 let renderCount = 0;
 
 export default function AccountPayablesSettingsDetailComponent(props) {
-  const alert = useMessageAlert();
+  const useAlert = useMessageAlert();
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -53,17 +53,7 @@ export default function AccountPayablesSettingsDetailComponent(props) {
     }
   }, [selectedItem, status]);
 
-  const showErrorMsgAlert = (error, errorCode, formMethod, serviceName) => {
-    alert({
-      type: 'form-error',
-      payload: {
-        error: error,
-        errorCode: errorCode,
-        formMethod: formMethod,
-        serviceName: serviceName
-      }
-    })
-  }
+
 
   const onRetrieve = () => {
     console.log(`[AccountPayablesSettingsDetailComponent.onRetrieve]  props.match.params.id==>${props.match.params.id}`)
@@ -76,7 +66,7 @@ export default function AccountPayablesSettingsDetailComponent(props) {
         dispatch(setOptionsList(response.data.listService))
         setMessage('')
       })
-      .catch(error => showErrorMsgAlert(error, ERROR_CODE.RETRIEVE_ERROR, 'AccountPayablesSettingsDetailComponent.onRetrieve', 'AccountPayablesSettingsService.getOptions'));
+      .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.RETRIEVE_ERROR, 'AccountPayablesSettingsDetailComponent.onRetrieve', 'AccountPayablesSettingsService.getOptions'));
   }
 
 
@@ -88,7 +78,7 @@ export default function AccountPayablesSettingsDetailComponent(props) {
         setMessage('')
         history.push(PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_LIST)
       })
-      .catch(error => showErrorMsgAlert(error, ERROR_CODE.SAVE_ERROR, 'CodeGroupsDetailComponent.save', 'CodeGroupsService.save'))
+      .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.SAVE_ERROR, 'CodeGroupsDetailComponent.save', 'CodeGroupsService.save'))
   }
 
   renderCount++;

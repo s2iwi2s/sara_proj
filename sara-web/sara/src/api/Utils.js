@@ -64,11 +64,6 @@ export const OPTIONS = {
     YES: 'YES',
     NO: 'NO',
 }
-export const THEME = {
-    DARK_MODE: 'dark',
-    LIGHT_MODE: 'light',
-    THEME_STORAGE_NAME: 'THEME_DARK_MODE'
-}
 export const PAGE_URL = {
     LOGO_URL: '/r/logo/',
     ROOT: '/',

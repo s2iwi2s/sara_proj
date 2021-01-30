@@ -8,23 +8,11 @@ import { resetSelectedItem, selectSelectedItem, setOptionsList, setPageableEntit
 import { useMessageAlert } from "../../api/useMessageAlert"
 
 export default function EndUserDetailComponent(props) {
-  const alert = useMessageAlert();
+  const useAlert = useMessageAlert();
   const [message, setMessage] = useState("");
 
   const dispatch = useDispatch();
   const selectedItem = useSelector(selectSelectedItem)
-
-  const showErrorMsgAlert = (error, errorCode, formMethod, serviceName) => {
-    alert({
-      type: 'form-error',
-      payload: {
-        error: error,
-        errorCode: errorCode,
-        formMethod: formMethod,
-        serviceName: serviceName
-      }
-    })
-  }
 
   const doRetrieve = () => {
     if (props.match.params.id == -1) {
@@ -37,7 +25,7 @@ export default function EndUserDetailComponent(props) {
         dispatch(setOptionsList(response.data.listService))
         setMessage(``);
       })
-      .catch(error => showErrorMsgAlert(error, ERROR_CODE.RETRIEVE_ERROR, 'EndUserDetailComponent.doRetrieve', 'EndUserService.getOptions'))
+      .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.RETRIEVE_ERROR, 'EndUserDetailComponent.doRetrieve', 'EndUserService.getOptions'))
   }
 
   const onSubmitForm = (data) => {
@@ -48,7 +36,7 @@ export default function EndUserDetailComponent(props) {
         setMessage(``);
         props.history.push(PAGE_URL.USER_LIST)
       })
-      .catch(error => showErrorMsgAlert(error, ERROR_CODE.SAVE_ERROR, 'EndUserDetailComponent.onSubmitForm', 'EndUserService.save'))
+      .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.SAVE_ERROR, 'EndUserDetailComponent.onSubmitForm', 'EndUserService.save'))
   }
 
 

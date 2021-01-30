@@ -12,7 +12,7 @@ import { useMessageAlert } from "../../api/useMessageAlert"
 import ConfirmMsgDialog from '../common/ConfirmMsgDialog'
 
 export default function SchoolListComponent(props) {
-  const alert = useMessageAlert();
+  const useAlert = useMessageAlert();
   const dispatch = useDispatch()
   const currPageableSchools = useSelector(selectPageable)
 
@@ -22,18 +22,6 @@ export default function SchoolListComponent(props) {
   useEffect(() => {
     dispatch(resetSelectedItem())
   }, [])
-
-  const showErrorMsgAlert = (error, errorCode, formMethod, serviceName) => {
-    alert({
-      type: 'form-error',
-      payload: {
-        error: error,
-        errorCode: errorCode,
-        formMethod: formMethod,
-        serviceName: serviceName
-      }
-    })
-  }
 
   const retrieve = ({ searchValue, paging }) =>
     getList(searchValue, paging.currentPage, paging.rowsPerPage).then(
@@ -50,7 +38,7 @@ export default function SchoolListComponent(props) {
               totalPage: data.pagingList.totalPage,
             },
           })
-        )).catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'SchoolListComponent.retrieve', 'SchoolService.getList'))
+        )).catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'SchoolListComponent.retrieve', 'SchoolService.getList'))
 
 
 
@@ -87,7 +75,7 @@ export default function SchoolListComponent(props) {
   const doDelete = (id) =>
     deleteItem(id)
       .then(doRetrieve())
-      .catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'SchoolListComponent.retrieve', 'SchoolService.getList'))
+      .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'SchoolListComponent.retrieve', 'SchoolService.getList'))
 
   const doHandleChangePage = (e, newPage) =>
     retrieve({

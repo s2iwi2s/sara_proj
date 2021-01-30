@@ -18,7 +18,7 @@ import TitleComponent from '../common/TitleComponent';
 import { useMessageAlert } from "../../api/useMessageAlert"
 
 export default function CodeGroupsDetailComponent(props) {
-  const alert = useMessageAlert();
+  const useAlert = useMessageAlert();
   const dispatch = useDispatch();
   const history = useHistory();
   const { register, handleSubmit } = useForm();
@@ -37,19 +37,6 @@ export default function CodeGroupsDetailComponent(props) {
     }
   }, [selectedItem, status]);
 
-
-  const showErrorMsgAlert = (error, errorCode, formMethod, serviceName) => {
-    alert({
-      type: 'form-error',
-      payload: {
-        error: error,
-        errorCode: errorCode,
-        formMethod: formMethod,
-        serviceName: serviceName
-      }
-    })
-  }
-
   const doSave = data => {
     setMessage(`Saving...`);
     save(data)
@@ -58,7 +45,7 @@ export default function CodeGroupsDetailComponent(props) {
         setMessage('')
         history.push(PAGE_URL.CODE_GROUPS_LIST)
       })
-      .catch(error => showErrorMsgAlert(error, ERROR_CODE.SAVE_ERROR, 'CodeGroupsDetailComponent.save', 'CodeGroupsService.save'))
+      .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.SAVE_ERROR, 'CodeGroupsDetailComponent.save', 'CodeGroupsService.save'))
   }
 
   return (

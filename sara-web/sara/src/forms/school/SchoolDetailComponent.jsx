@@ -35,7 +35,7 @@ export default function SchoolDetailComponent(props) {
   const [status, setStatus] = useState(INIT_STATUS.INIT)
 
   const selectedItem = useSelector(selectSelectedItem)
-  const alert = useMessageAlert();
+  const useAlert = useMessageAlert();
 
   useEffect(() => {
     console.log(
@@ -59,18 +59,6 @@ export default function SchoolDetailComponent(props) {
     }
   }, [selectedItem])
 
-  const showErrorMsgAlert = (error, errorCode, formMethod, serviceName) => {
-    alert({
-      type: 'form-error',
-      payload: {
-        error: error,
-        errorCode: errorCode,
-        formMethod: formMethod,
-        serviceName: serviceName
-      }
-    })
-  }
-
   const doRetrieve = () => {
     if (props.match.params.id == -1) {
       dispatch(resetSelectedItem())
@@ -83,7 +71,7 @@ export default function SchoolDetailComponent(props) {
       setMessage('')
     })
       .catch((error) =>
-        showErrorMsgAlert(
+        useAlert.showErrorMsgAlert(
           error,
           ERROR_CODE.RETRIEVE_ERROR,
           'SchoolDetailComponent.doRetrieve',
@@ -107,7 +95,7 @@ export default function SchoolDetailComponent(props) {
         history.push(PAGE_URL.SCHOOL_LIST)
       })
       .catch((error) =>
-        showErrorMsgAlert(
+        useAlert.showErrorMsgAlert(
           error,
           ERROR_CODE.SAVE_ERROR,
           'SchoolDetailComponent.save',

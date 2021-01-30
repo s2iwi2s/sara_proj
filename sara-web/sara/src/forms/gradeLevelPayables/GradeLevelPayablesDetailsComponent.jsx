@@ -23,7 +23,7 @@ import { useMessageAlert } from "../../api/useMessageAlert"
 let renderCount = 0;
 
 export default function GradeLevelPayablesDetailsComponent(props) {
-  const alert = useMessageAlert();
+  const useAlert = useMessageAlert();
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -45,18 +45,6 @@ export default function GradeLevelPayablesDetailsComponent(props) {
     }
 
   }, [selectedItem, status]);
-
-  const showErrorMsgAlert = (error, errorCode, formMethod, serviceName) => {
-    alert({
-      type: 'form-error',
-      payload: {
-        error: error,
-        errorCode: errorCode,
-        formMethod: formMethod,
-        serviceName: serviceName
-      }
-    })
-  }
 
   const handleCheckboxChange = (e) => {
     const { name, checked } = e.target
@@ -84,7 +72,7 @@ export default function GradeLevelPayablesDetailsComponent(props) {
     setMessage(`Loading. Please wait...`);
 
     getOptionsByPeriod(id).then(response => onRetrieveResponseAction(response))
-      .catch(error => showErrorMsgAlert(error, ERROR_CODE.RETRIEVE_ERROR, 'GradeLevelPayablesDetailsComponent.onRetrieve', 'GradeLevelPayablesService.getOptions'));
+      .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.RETRIEVE_ERROR, 'GradeLevelPayablesDetailsComponent.onRetrieve', 'GradeLevelPayablesService.getOptions'));
   }
 
   const onRetrieveResponseAction = (response) => {
@@ -108,7 +96,7 @@ export default function GradeLevelPayablesDetailsComponent(props) {
         dispatch(setPageableEntity(response.data.entity))
         history.push(PAGE_URL.GRADE_LEVEL_PAYABLES_LIST)
       })
-      .catch(error => showErrorMsgAlert(error, ERROR_CODE.SAVE_ERROR, 'GradeLevelPayablesDetailsComponent.onSubmitForm', 'GradeLevelPayablesService.save'));
+      .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.SAVE_ERROR, 'GradeLevelPayablesDetailsComponent.onSubmitForm', 'GradeLevelPayablesService.save'));
   }
 
   const setGradeLevelPayables = (data) => {
