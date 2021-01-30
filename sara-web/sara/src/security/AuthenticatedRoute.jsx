@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { useSecurityServices } from './useSecurityServices'
+import useSecurityServices from './useSecurityServices'
 
 const AuthenticatedRoute = (props) => {
-    const useSec = useSecurityServices()
+    const { isUserLoggedIn } = useSecurityServices()
 
-    const isLoggedin = useSec.isUserLoggedIn()
+    const isLoggedin = isUserLoggedIn()
     console.log(`[AuthenticatedRoute] isLoggedin=>`, isLoggedin)
     if (isLoggedin) {
         return <Route {...props} />;

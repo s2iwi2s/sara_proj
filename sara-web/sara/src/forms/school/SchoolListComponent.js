@@ -8,11 +8,11 @@ import CustomTableGrid from '../common/CustomTableGrid'
 import { useSelector, useDispatch } from 'react-redux'
 import { resetSelectedItem, selectPageable, setPageable, setSelectedItem, } from '../../api/school/SchoolSlice'
 import TitleComponent from '../common/TitleComponent'
-import { useMessageAlert } from "../../api/useMessageAlert"
+import useMessageAlert from "../../api/useMessageAlert"
 import ConfirmMsgDialog from '../common/ConfirmMsgDialog'
 
 export default function SchoolListComponent(props) {
-  const useAlert = useMessageAlert();
+  const { showErrorMsgAlert } = useMessageAlert();
   const dispatch = useDispatch()
   const currPageableSchools = useSelector(selectPageable)
 
@@ -38,7 +38,7 @@ export default function SchoolListComponent(props) {
               totalPage: data.pagingList.totalPage,
             },
           })
-        )).catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'SchoolListComponent.retrieve', 'SchoolService.getList'))
+        )).catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'SchoolListComponent.retrieve', 'SchoolService.getList'))
 
 
 
@@ -75,7 +75,7 @@ export default function SchoolListComponent(props) {
   const doDelete = (id) =>
     deleteItem(id)
       .then(doRetrieve())
-      .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'SchoolListComponent.retrieve', 'SchoolService.getList'))
+      .catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'SchoolListComponent.retrieve', 'SchoolService.getList'))
 
   const doHandleChangePage = (e, newPage) =>
     retrieve({

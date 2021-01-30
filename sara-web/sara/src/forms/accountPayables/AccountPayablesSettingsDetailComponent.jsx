@@ -15,12 +15,12 @@ import { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
 import { selectSelectedItem, resetSelectedItem, setPageableEntity, setOptionsList } from '../../api/accountPayablesSettings/AccountPayablesSettingsSlice';
 import { save, getOptions } from '../../api/accountPayablesSettings/AccountPayablesSettingsService';
 import TitleComponent from '../common/TitleComponent';
-import { useMessageAlert } from "../../api/useMessageAlert"
+import useMessageAlert from "../../api/useMessageAlert"
 
 let renderCount = 0;
 
 export default function AccountPayablesSettingsDetailComponent(props) {
-  const useAlert = useMessageAlert();
+  const { showErrorMsgAlert } = useMessageAlert();
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -66,7 +66,7 @@ export default function AccountPayablesSettingsDetailComponent(props) {
         dispatch(setOptionsList(response.data.listService))
         setMessage('')
       })
-      .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.RETRIEVE_ERROR, 'AccountPayablesSettingsDetailComponent.onRetrieve', 'AccountPayablesSettingsService.getOptions'));
+      .catch(error => showErrorMsgAlert(error, ERROR_CODE.RETRIEVE_ERROR, 'AccountPayablesSettingsDetailComponent.onRetrieve', 'AccountPayablesSettingsService.getOptions'));
   }
 
 
@@ -78,7 +78,7 @@ export default function AccountPayablesSettingsDetailComponent(props) {
         setMessage('')
         history.push(PAGE_URL.ACCOUNT_PAYABLES_SETTINGS_LIST)
       })
-      .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.SAVE_ERROR, 'CodeGroupsDetailComponent.save', 'CodeGroupsService.save'))
+      .catch(error => showErrorMsgAlert(error, ERROR_CODE.SAVE_ERROR, 'CodeGroupsDetailComponent.save', 'CodeGroupsService.save'))
   }
 
   renderCount++;

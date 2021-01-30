@@ -8,7 +8,7 @@ import Chart from './Chart';
 import StackedBarChart from './StackedBarChart';
 import CustomContentOfTooltip from './CustomContentOfTooltip';
 
-import { useSecurityServices } from '../../security/useSecurityServices'
+import useSecurityServices from '../../security/useSecurityServices'
 
 export default function Dashboard() {
   const classes = useStyles();

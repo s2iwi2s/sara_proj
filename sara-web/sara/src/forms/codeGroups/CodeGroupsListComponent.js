@@ -8,11 +8,11 @@ import CustomTableGrid from '../common/CustomTableGrid'
 import { deleteItem, getList } from '../../api/codeGroups/CodeGroupsService';
 import { selectPageable, resetSelectedItem, setPageable, setSelectedItem } from '../../api/codeGroups/CodeGroupsSlice';
 import TitleComponent from '../common/TitleComponent';
-import { useMessageAlert } from "../../api/useMessageAlert"
+import useMessageAlert  from "../../api/useMessageAlert"
 import ConfirmMsgDialog from '../common/ConfirmMsgDialog';
 
 export default function CodeGroupsListComponent(props) {
-  const useAlert = useMessageAlert();
+  const {showErrorMsgAlert} = useMessageAlert();
   const dispatch = useDispatch();
   const currPageable = useSelector(selectPageable)
 
@@ -36,7 +36,7 @@ export default function CodeGroupsListComponent(props) {
           totalPage: data.pagingList.totalPage
         }
       }))
-    }).catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'CodeGroupsListComponent.retrieve', 'CodeGroupsService.getList'))
+    }).catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'CodeGroupsListComponent.retrieve', 'CodeGroupsService.getList'))
 
 
   const doRetrieve = () => retrieve({
@@ -68,7 +68,7 @@ export default function CodeGroupsListComponent(props) {
 
   const doDelete = (id) => deleteItem(id)
     .then(doRetrieve)
-    .catch(error => useAlert.showErrorMsgAlert(error, ERROR_CODE.DELETE_ERROR, 'CodeGroupsListComponent.doDelete', 'CodeGroupsService.deleteItem'))
+    .catch(error => showErrorMsgAlert(error, ERROR_CODE.DELETE_ERROR, 'CodeGroupsListComponent.doDelete', 'CodeGroupsService.deleteItem'))
 
   const doHandleChangePage = (e, newPage) => retrieve({
     searchValue: currPageable.searchValue,
