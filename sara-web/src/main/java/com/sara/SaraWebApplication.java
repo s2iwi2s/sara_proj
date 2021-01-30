@@ -7,8 +7,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.mongodb.config.EnableMongoAuditing;
 
+@PropertySource(value = { "classpath:application.properties", "classpath:mongodb.properties",
+		"classpath:jwt.properties", "classpath:logger.properties" })
 @SpringBootApplication
 @EnableMongoAuditing
 public class SaraWebApplication implements CommandLineRunner {
@@ -24,12 +27,13 @@ public class SaraWebApplication implements CommandLineRunner {
 
 	@Bean
 	public String profilesActive(@Value("${profiles.active}") String profilesActive,
-			@Value("${logo.location}") String logoLocation,
-			@Value("${spring.data.mongodb.uri}") String mongodb) {
+			@Value("${logo.location}") String logoLocation, @Value("${spring.data.mongodb.uri}") String mongodb,
+			@Value("${jwt.token.expiration.in.seconds}") String jwtExpiration) {
 		log.info("\n\n\n" + "***************************************************\n"
-				+ "** @SpringBootApplication PROFILESACTIVE ==>>" + profilesActive + "\n"
-				+ "** @SpringBootApplication MONGODB ==>>" + mongodb + "\n"
-				+ "** @SpringBootApplication LOGOLOCATION ==>>" + logoLocation + "\n"
+				+ "** @SpringBootApplication profiles.active ==>>" + profilesActive + "\n"
+				+ "** @SpringBootApplication spring.data.mongodb.uri ==>>" + mongodb + "\n"
+				+ "** @SpringBootApplication logo.location ==>>" + logoLocation + "\n"
+				+ "** @SpringBootApplication jwt.token.expiration.in.seconds ==>>" + jwtExpiration + "\n"
 				+ "***************************************************\n\n\n");
 		return profilesActive;
 	}
