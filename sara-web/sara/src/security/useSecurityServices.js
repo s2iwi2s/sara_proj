@@ -5,7 +5,7 @@ import { useAuth } from '../providers/AuthenticationProvider';
 
 let myInterceptor
 
-export const useAuthServices = () => {
+export const useSecurityServices = () => {
  const [userObj, setUserObj] = useAuth();
 
  const initialize = () => {
@@ -16,14 +16,14 @@ export const useAuthServices = () => {
  }
 
  const executeJwtAuthenticationService = (username, password) => {
-  console.log('[useAuthServices.executeJwtAuthenticationService]');
+  console.log('[useSecurityServices.executeJwtAuthenticationService]');
 
   return axios.post(`${AUTH_URL_BASE}`, { username, password })
  }
 
  const registerJwtSucessfulLogin = (userObj, jwtToken) => {
-  console.log('[useAuthServices.registerJwtSucessfulLogin] jwtToken=', jwtToken);
-  console.log('[useAuthServices.registerJwtSucessfulLogin] userObj=', userObj);
+  console.log('[useSecurityServices.registerJwtSucessfulLogin] jwtToken=', jwtToken);
+  console.log('[useSecurityServices.registerJwtSucessfulLogin] userObj=', userObj);
   sessionStorage.setItem(AUTH_USER_OBJ, JSON.stringify(userObj));
   sessionStorage.setItem(AUTH_USER, userObj.userName);
   sessionStorage.setItem(JWT_TOKEN, jwtToken);
@@ -42,8 +42,8 @@ export const useAuthServices = () => {
  const getJwtToken = () => sessionStorage.getItem(JWT_TOKEN)
 
  const setupAxiosInterceptors = (authHeader) => {
-  console.log('[useAuthServices.setupAxiosInterceptors] init..');
-  console.log(`[useAuthServices.setupAxiosInterceptors] authHeader: ${authHeader}`);
+  console.log('[useSecurityServices.setupAxiosInterceptors] init..');
+  console.log(`[useSecurityServices.setupAxiosInterceptors] authHeader: ${authHeader}`);
   myInterceptor = axios.interceptors.request.use(
    async config => {
     if (isUserLoggedIn()) {
@@ -52,7 +52,7 @@ export const useAuthServices = () => {
     return config;
    }
   );
-  console.log('[useAuthServices.setupAxiosInterceptors] done!');
+  console.log('[useSecurityServices.setupAxiosInterceptors] done!');
  }
 
  const isUserLoggedIn = () => {
@@ -64,11 +64,11 @@ export const useAuthServices = () => {
 
  const getLoggedUserObj = () => {
   let user = JSON.parse(sessionStorage.getItem(AUTH_USER_OBJ));
-  console.error('[useAuthServices.getLoggedUserObj] 1 user=>', user);
+  console.error('[useSecurityServices.getLoggedUserObj] 1 user=>', user);
   if (!user) {
    user = USER_TEMP;
   }
-  console.error('[useAuthServices.getLoggedUserObj] 2 user=>', user);
+  console.error('[useSecurityServices.getLoggedUserObj] 2 user=>', user);
   return user;
   // return {}
  }
@@ -80,7 +80,7 @@ export const useAuthServices = () => {
   sessionStorage.removeItem(JWT_TOKEN);
 
   setUserObj(USER_TEMP)
-  console.log('[useAuthServices.logout]  userObj=>', userObj);
+  console.log('[useSecurityServices.logout]  userObj=>', userObj);
  }
 
  return {

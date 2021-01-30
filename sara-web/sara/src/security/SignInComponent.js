@@ -4,14 +4,14 @@ import { useHistory } from "react-router-dom";
 import SignInHtml from './SignInHtml.js';
 import { useMessageAlert } from "../api/useMessageAlert"
 import { useAuth } from '../providers/AuthenticationProvider';
-import { useAuthServices } from './useAuthServices'
+import { useSecurityServices } from './useSecurityServices'
 import { ERROR_CODE } from '../api/Utils.js';
 
 export default function SignInComponent() {
 
   const useAlert = useMessageAlert();
 
-  const useAuths = useAuthServices()
+  const useSec = useSecurityServices()
 
 
   const [message, setMessage] = useState("");
@@ -28,17 +28,17 @@ export default function SignInComponent() {
     console.error(`[SignInComponent.onSignon] userName=${userName}`)
     setMessage('');
 
-    useAuths.executeJwtAuthenticationService(userName, password)
+    useSec.executeJwtAuthenticationService(userName, password)
       .then(response => {
         const userDetails = {
           ...response.data.userDetails,
           isLoggedIn: true
         }
-        useAuths.registerJwtSucessfulLogin(userDetails, response.data.token)
+        useSec.registerJwtSucessfulLogin(userDetails, response.data.token)
         setUserObj(userDetails)
 
-        console.error(`[SignInComponent.onSignon useAuthServices.xecuteJwtAuthenticationService] userDetails=`, userDetails)
-        console.error(`[SignInComponent.onSignon useAuthServices.xecuteJwtAuthenticationService] userObj=`, userObj)
+        console.error(`[SignInComponent.onSignon useSec.registerJwtSucessfulLogin] userDetails=`, userDetails)
+        console.error(`[SignInComponent.onSignon useSec.registerJwtSucessfulLogin] userObj=`, userObj)
 
         setMessage('Login Successful!');
         history.push(`/`);

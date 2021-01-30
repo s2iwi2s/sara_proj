@@ -8,15 +8,15 @@ import Chart from './Chart';
 import StackedBarChart from './StackedBarChart';
 import CustomContentOfTooltip from './CustomContentOfTooltip';
 
-import { useAuthServices } from '../../security/useAuthServices'
+import { useSecurityServices } from '../../security/useSecurityServices'
 
 export default function Dashboard() {
   const classes = useStyles();
   console.log(`[Dashboard] process.env.NODE_ENV= ${process.env.NODE_ENV}`)
   console.log(`[Dashboard] URL_BASE= ${URL_BASE}`)
 
-  const useAuths = useAuthServices()
-  const isLogin = useAuths.isUserLoggedIn()
+  const useSec = useSecurityServices()
+  const isLogin = useSec.isUserLoggedIn()
 
   console.log(`[Dashboard] isLogin=${isLogin}`)
   return (
