@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 
 import useSecurityServices from './useSecurityServices'
-import { useAuth } from '../providers/AuthenticationProvider';
+import { useGlobalVariable } from '../providers/GlobalVariableProvider'
 
 export default function LogoutComponent() {
-    const [userObj] = useAuth();
+    const { userLogin } = useGlobalVariable();
     const { logout } = useSecurityServices()
 
     useEffect(() => {
-        console.log('[LogoutComponent.useEffect]: userObj', userObj);
+        console.log('[LogoutComponent.useEffect]: userLogin', userLogin);
         logout();
     });
 

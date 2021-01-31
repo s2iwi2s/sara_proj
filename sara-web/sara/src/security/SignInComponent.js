@@ -3,18 +3,18 @@ import { useHistory } from "react-router-dom";
 
 import { ERROR_CODE } from '../api/Utils.js';
 import useMessageAlert from "../api/useMessageAlert"
-import { useAuth } from '../providers/AuthenticationProvider';
 import SignInHtml from './SignInHtml.js';
 import useSecurityServices from './useSecurityServices.js';
+import { useGlobalVariable } from '../providers/GlobalVariableProvider'
 
 export default function SignInComponent() {
 
+  const { userLogin, setUserLogin } = useGlobalVariable();
   const { showErrorMsgAlert } = useMessageAlert();
   const { executeJwtAuthenticationService, registerJwtSucessfulLogin } = useSecurityServices()
 
 
   const [message, setMessage] = useState("");
-  const [userObj, setUserObj] = useAuth();
 
   const history = useHistory();
 
@@ -29,10 +29,10 @@ export default function SignInComponent() {
           isLoggedIn: true
         }
         registerJwtSucessfulLogin(userDetails, response.data.token)
-        setUserObj(userDetails)
+        setUserLogin(userDetails);// setUserObj(userDetails)
 
         console.error(`[SignInComponent.onSignon useSec.registerJwtSucessfulLogin] userDetails=`, userDetails)
-        console.error(`[SignInComponent.onSignon useSec.registerJwtSucessfulLogin] userObj=`, userObj)
+        console.error(`[SignInComponent.onSignon useSec.registerJwtSucessfulLogin] userLogin=`, userLogin)
 
         setMessage('Login Successful!');
         history.push(`/`);

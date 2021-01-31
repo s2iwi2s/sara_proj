@@ -8,12 +8,12 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SchoolIcon from '@material-ui/icons/School';
 
 import { PAGE_URL, URL_BASE } from '../../api/Utils'
-import { useAuth } from '../../providers/AuthenticationProvider';
 import MiniDrawer from './MiniDrawer';
 import { useTheme } from '../../api/useTheme';
+import { useGlobalVariable } from '../../providers/GlobalVariableProvider'
 
-export default function AppBarComponent(props) {
- const [userObj] = useAuth();
+export default function AppBarComponent() {
+ const { userLogin } = useGlobalVariable();
 
  const useAppTheme = useTheme()
 
@@ -78,7 +78,7 @@ export default function AppBarComponent(props) {
  }
  return (
   < div className={classes.root} >
-   {console.log('[AppBarComponent.return] userObj=>', userObj)}
+   {console.log('[AppBarComponent.return] userLogin=>', userLogin)}
    <AppBar
     position="fixed"
     className={clsx(classes.appBar, {
@@ -97,15 +97,15 @@ export default function AppBarComponent(props) {
       <MenuIcon />
      </IconButton>
 
-     {userObj && userObj.schoolLogo && <Avatar src={(URL_BASE + PAGE_URL.LOGO_URL + userObj.schoolLogo)} />}
-     {(!userObj || !userObj.schoolLogo) && <SchoolIcon />}
+     {userLogin && userLogin.schoolLogo && <Avatar src={(URL_BASE + PAGE_URL.LOGO_URL + userLogin.schoolLogo)} />}
+     {(!userLogin || !userLogin.schoolLogo) && <SchoolIcon />}
 
      <Typography className={classes.title} variant="h6" noWrap>
       <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
-       {userObj && <b>{userObj.schoolName}</b>}
+       {userLogin && <b>{userLogin.schoolName}</b>}
       </Link>
      </Typography>
-     {userObj && <div>Welcome <b>{userObj.userFullName}</b></div>}
+     {userLogin && <div>Welcome <b>{userLogin.userFullName}</b></div>}
 
      <Box pl={5}>
       <FormControlLabel control={<Switch checked={useAppTheme.props.darkMode} onChange={() => useAppTheme.toggleDarkMode()} />} />

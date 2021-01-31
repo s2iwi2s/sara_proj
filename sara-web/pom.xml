@@ -17,7 +17,6 @@
 	<properties>
 		<project.war.name>sara-web</project.war.name>
 		<frontend-bundle-dir>${project.basedir}/sara/build/</frontend-bundle-dir>
-		<java.version>1.8</java.version>
 		<jjwt.version>0.9.1</jjwt.version>
 	</properties>
 	<dependencies>

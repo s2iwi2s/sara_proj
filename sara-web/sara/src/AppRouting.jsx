@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 import { CssBaseline } from '@material-ui/core';
 
-import { PAGE_URL, THEME } from './api/Utils';
-import { useAuth } from './providers/AuthenticationProvider';
+import { PAGE_URL } from './api/Utils';
 
 import ErrorComponent from './api/ErrorComponent'
 import FooterComponent from './forms/common/FooterComponent'
@@ -36,7 +35,8 @@ import GradeLevelPayablesListComponent from './forms/gradeLevelPayables/GradeLev
 import GradeLevelPayablesDetailsComponent from './forms/gradeLevelPayables/GradeLevelPayablesDetailsComponent';
 import GlobalAlertMsgDialog from './forms/common/GlobalAlertMsgDialog';
 
-import useSecurityServices  from './security/useSecurityServices'
+import useSecurityServices from './security/useSecurityServices'
+import { useGlobalVariable } from './providers/GlobalVariableProvider'
 
 const useStylesRouting = makeStyles((theme) => ({
  root: {
@@ -71,16 +71,15 @@ const useStylesRouting = makeStyles((theme) => ({
 
 const AppRouting = () => {
 
- const { initAxios, getLoggedUserObj } = useSecurityServices()
- const [userObj, setUserObj] = useAuth();
+ const { initAxios, initUser } = useSecurityServices()
+ const { userLogin } = useGlobalVariable();
 
  useEffect(() => {
-  console.log(`[AppRouting.useEffect] 1 userObj=>`, userObj)
+  console.log(`[AppRouting.useEffect] userLogin =>`, userLogin)
 
   //initialize user
   initAxios()
-  let lu = getLoggedUserObj()
-  setUserObj(lu);
+  initUser()
  }, []);
 
 

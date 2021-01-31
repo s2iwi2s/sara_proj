@@ -9,7 +9,7 @@ export const THEME = {
 
 export const useTheme = () => {
 
- const [globalProps, , , setUIProps] = useGlobalVariable();
+ const { globalProps, setUIProps } = useGlobalVariable();
 
  const initTheme = () => {
   const darkMode = localStorage.getItem(THEME.THEME_STORAGE_NAME);

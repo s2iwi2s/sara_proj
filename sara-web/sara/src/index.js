@@ -4,14 +4,11 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { GlobalVariableProvider } from './providers/GlobalVariableProvider';
-import { AuthenticationProvider } from './providers/AuthenticationProvider';
 
 ReactDOM.render(
   <React.StrictMode>
     <GlobalVariableProvider>
-      <AuthenticationProvider>
-        <App />
-      </AuthenticationProvider>
+      <App />
     </GlobalVariableProvider>
   </React.StrictMode>,
   document.getElementById('root')

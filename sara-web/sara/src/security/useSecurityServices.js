@@ -1,12 +1,12 @@
 import axios from "axios"
-import { AUTH_URL_BASE, AUTH_USER, AUTH_USER_OBJ, JWT_TOKEN, USER_TEMP } from "../api/Utils"
+import { AUTH_URL_BASE, AUTH_USER, AUTH_USER_OBJ, JWT_TOKEN } from "../api/Utils"
 
-import { useAuth } from '../providers/AuthenticationProvider';
+import { useGlobalVariable } from '../providers/GlobalVariableProvider'
 
 let myInterceptor
 
 const useSecurityServices = () => {
- const [userObj, setUserObj] = useAuth();
+ const { userLogin, setUserLogin, clearUser } = useGlobalVariable();
 
  const initAxios = () => {
   if (isUserLoggedIn()) {
@@ -15,17 +15,27 @@ const useSecurityServices = () => {
   }
  }
 
+ const initUser = () => {
+  let lu = getLoggedUserObj()
+  if (lu == null) {
+   clearUser()
+  } else {
+   setUserLogin(lu);
+  }
+
+ }
+
  const executeJwtAuthenticationService = (username, password) => {
   console.log('[useSecurityServices.executeJwtAuthenticationService]');
 
   return axios.post(`${AUTH_URL_BASE}`, { username, password })
  }
 
- const registerJwtSucessfulLogin = (userObj, jwtToken) => {
+ const registerJwtSucessfulLogin = (userLogin, jwtToken) => {
   console.log('[useSecurityServices.registerJwtSucessfulLogin] jwtToken=', jwtToken);
-  console.log('[useSecurityServices.registerJwtSucessfulLogin] userObj=', userObj);
-  sessionStorage.setItem(AUTH_USER_OBJ, JSON.stringify(userObj));
-  sessionStorage.setItem(AUTH_USER, userObj.userName);
+  console.log('[useSecurityServices.registerJwtSucessfulLogin] userObj=', userLogin);
+  sessionStorage.setItem(AUTH_USER_OBJ, JSON.stringify(userLogin));
+  sessionStorage.setItem(AUTH_USER, userLogin.userName);
   sessionStorage.setItem(JWT_TOKEN, jwtToken);
 
 
@@ -66,7 +76,7 @@ const useSecurityServices = () => {
   let user = JSON.parse(sessionStorage.getItem(AUTH_USER_OBJ));
   console.error('[useSecurityServices.getLoggedUserObj] 1 user=>', user);
   if (!user) {
-   user = USER_TEMP;
+   user = null;
   }
   console.error('[useSecurityServices.getLoggedUserObj] 2 user=>', user);
   return user;
@@ -79,18 +89,19 @@ const useSecurityServices = () => {
   sessionStorage.removeItem(AUTH_USER_OBJ);
   sessionStorage.removeItem(JWT_TOKEN);
 
-  setUserObj(USER_TEMP)
-  console.log('[useSecurityServices.logout]  userObj=>', userObj);
+  clearUser()
+  console.log('[useSecurityServices.logout]  userLogin=>', userLogin);
  }
 
  return {
   initAxios: initAxios,
+  initUser: initUser,
   executeJwtAuthenticationService: executeJwtAuthenticationService,
   registerJwtSucessfulLogin: registerJwtSucessfulLogin,
   getLoggedUserObj: getLoggedUserObj,
   isUserLoggedIn: isUserLoggedIn,
   logout: logout
- } 
+ }
 
 }
 

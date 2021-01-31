@@ -11,11 +11,11 @@ import { useReactToPrint } from "react-to-print";
 
 import { formatter, INIT_STATUS, StyledTableCell, StyledTableHeadCell, StyledTableHeadRow, StyledTableRow } from '../../api/Utils';
 
-import { useAuth } from '../../providers/AuthenticationProvider';
+import { useGlobalVariable } from '../../providers/GlobalVariableProvider'
 
 export default function SavePayablesConfimationHtml(props) {
 
-  const [userObj] = useAuth();
+  const { userLogin } = useGlobalVariable();
   const { reset } = useForm(props.confirmStore);
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
@@ -121,10 +121,10 @@ export default function SavePayablesConfimationHtml(props) {
       <div ref={componentRef} className="root">
         <table width="100%" border="0">
           <tr>
-            <th colSpan={4} align="center">{userObj.schoolName}</th>
+            <th colSpan={4} align="center">{userLogin.schoolName}</th>
           </tr>
           <tr>
-            <th colSpan={4} align="center">{userObj.schoolAddress}</th>
+            <th colSpan={4} align="center">{userLogin.schoolAddress}</th>
           </tr>
           <tr>
             <th colSpan={4} align="center">&nbsp;</th>

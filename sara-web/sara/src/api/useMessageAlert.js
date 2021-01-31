@@ -3,7 +3,7 @@ import { useGlobalVariable } from '../providers/GlobalVariableProvider'
 
 const useMessageAlert = () => {
 
-    const [globalProps, , setAlertProps,] = useGlobalVariable();
+    const { globalProps, setAlertProps, } = useGlobalVariable();
 
     const showErrorMsgAlert = (error, errorCode, formMethod, serviceName) => {
         let errMsg = getFormatedErrorMessage(error, errorCode, formMethod, serviceName)

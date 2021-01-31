@@ -11,6 +11,15 @@ function useGlobalVariable() {
 }
 
 function GlobalVariableProvider(props) {
+    const USER_TEMP = {
+        userName: '',
+        userFullName: 'Guest',
+        schoolName: 'SARA PROJECT',
+        schoolAddress: '',
+        schoolLogo: '',
+        schoolId: '',
+    }
+    const [userLogin, setUserLogin] = useState(USER_TEMP)
     const [globalProps, setGlobalProps] = useState({
         ui: {
             darkMode: false
@@ -24,6 +33,10 @@ function GlobalVariableProvider(props) {
             value: {}
         }
     })
+
+    const clearUser = () => {
+        setUserLogin(USER_TEMP)
+    }
 
     const setAlertProps = (prop) => {
         setGlobalProps({
@@ -46,8 +59,15 @@ function GlobalVariableProvider(props) {
         })
     }
 
-    const value = useMemo(() => [globalProps, setGlobalProps, setAlertProps, setUIProps],
-        [globalProps])
+    const value = {
+        globalProps: globalProps,
+        USER_TEMP: USER_TEMP,
+        userLogin: userLogin,
+        clearUser: clearUser,
+        setUserLogin: setUserLogin,
+        setAlertProps: setAlertProps,
+        setUIProps: setUIProps
+    }
     return <GlobalVariableContext.Provider value={value} {...props} />
 }
 
