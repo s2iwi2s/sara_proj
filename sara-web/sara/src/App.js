@@ -7,8 +7,10 @@ import store from './api/store'
 
 import AppRouting from './AppRouting'
 import { THEME, useTheme } from './api/useTheme'
+import useSecurityServices from './security/useSecurityServices'
 
 function App() {
+  const { initAxios, initUser } = useSecurityServices()
   const useAppTheme = useTheme()
   const theme = createMuiTheme({
     palette: {
@@ -17,6 +19,9 @@ function App() {
   });
 
   useEffect(() => {
+    //initialize user
+    initAxios()
+    initUser()
     useAppTheme.initTheme()
   }, []);
 

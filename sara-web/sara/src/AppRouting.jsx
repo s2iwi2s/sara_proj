@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -24,19 +23,12 @@ import StudentDetailComponent from './forms/student/StudentDetailComponent';
 import StudentListComponent from './forms/student/StudentListComponent';
 import SchoolDetailComponent from './forms/school/SchoolDetailComponent';
 import SchoolListComponent from './forms/school/SchoolListComponent';
-
-// import AuthenticationService from './security/AuthenticationService';
 import BillingComponent from './forms/billing/BillingComponent';
-
 import AccountPayablesSettingsListComponent from './forms/accountPayables/AccountPayablesSettingsListComponent';
 import AccountPayablesSettingsDetailComponent from './forms/accountPayables/AccountPayablesSettingsDetailComponent';
-
 import GradeLevelPayablesListComponent from './forms/gradeLevelPayables/GradeLevelPayablesListComponent';
 import GradeLevelPayablesDetailsComponent from './forms/gradeLevelPayables/GradeLevelPayablesDetailsComponent';
 import GlobalAlertMsgDialog from './forms/common/GlobalAlertMsgDialog';
-
-import useSecurityServices from './security/useSecurityServices'
-import { useGlobalVariable } from './providers/GlobalVariableProvider'
 
 const useStylesRouting = makeStyles((theme) => ({
  root: {
@@ -58,36 +50,14 @@ const useStylesRouting = makeStyles((theme) => ({
   paddingTop: theme.spacing(4),
   paddingBottom: theme.spacing(4),
  },
- // content: {
- //  backgroundColor:
- //   theme.palette.mode === 'light'
- //    ? theme.palette.grey[100]
- //    : theme.palette.grey[900],
- //  flexGrow: 1,
- //  height: '100vh',
- //  overflow: 'auto',
- // },
+
 }));
 
 const AppRouting = () => {
-
- const { initAxios, initUser } = useSecurityServices()
- const { userLogin } = useGlobalVariable();
-
- useEffect(() => {
-  console.log(`[AppRouting.useEffect] userLogin =>`, userLogin)
-
-  //initialize user
-  initAxios()
-  initUser()
- }, []);
-
-
- // render = () => {
  const classes = useStylesRouting();
 
  return (
-  <div className="">
+  <>
    <CssBaseline />
    <Router>
     <div className={classes.root}>
@@ -95,11 +65,12 @@ const AppRouting = () => {
      <AppBarComponent />
 
      <main className={classes.content}>
+
+      {/* to display content below the toolbar */}
       <div className={classes.toolbar} />
 
       <GlobalAlertMsgDialog />
 
-      {/* <Container component="main" className={classes.container}> */}
       <Switch>
        <Route path={PAGE_URL.ROOT} exact component={Dashboard} />
        <Route path={PAGE_URL.INDEX} exact component={Dashboard} />
@@ -136,14 +107,14 @@ const AppRouting = () => {
 
        <Route component={ErrorComponent} />
       </Switch>
-      {/* </Container> */}
+
       <FooterComponent />
      </main>
     </div>
    </Router>
-  </div>
+  </>
  );
- // }
+
 }
 
 export default AppRouting;

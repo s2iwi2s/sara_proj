@@ -16,28 +16,12 @@
   "_class": "User"
 },{
   "_id": {
-    "$oid": "5f9c5e2d46aaf43d8da49977"
-  },
-  "userName": "SLRA",
-  "password": "$2a$10$fdxH3igDJy0ZKUdpKWtAsuri0GRed6sO14NTxchvC5PdyztTD4ztm",
-  "lastName": "test",
-  "firstName": "Admin",
-  "roles": [],
-  "school": {
-    "$ref": "school",
-    "$id": {
-      "$oid": "5f9c52b3ef7618233e66f80e"
-    }
-  },
-  "_class": "User"
-},{
-  "_id": {
     "$oid": "5fa728f622b36218182da55e"
   },
-  "userName": "spidor",
-  "password": "$2a$10$fdxH3igDJy0ZKUdpKWtAsuri0GRed6sO14NTxchvC5PdyztTD4ztm",
-  "lastName": "Pidor",
-  "firstName": "Solenn",
+  "userName": "slra",
+  "password": "$2a$10$t/YeTJEaHAx4.PEnTsHm4uprLj6/f/yLm1Qil6UBdKDyIpAGNdP8u",
+  "lastName": "ADMIN",
+  "firstName": "SLRA",
   "roles": [],
   "school": {
     "$ref": "school",
