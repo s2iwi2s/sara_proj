@@ -5,16 +5,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sara.data.document.User;
+import com.sara.service.dtos.UserDto;
 import com.sara.service.impl.CodeGroupsServiceImpl;
 import com.sara.service.impl.SchoolServiceImpl;
 import com.sara.service.impl.UserServiceImpl;
 import com.sara.web.common.Constants;
+import com.sara.web.common.Response;
 import com.sara.web.controller.endUser.EndUserListService;
 import com.sara.web.controller.endUser.EndUserResponse;
 
 @RestController
 @RequestMapping(path = Constants.URL_API_BASE + UserController.URL_BASE)
-public class UserController extends AbstractCrudController<User, String> {
+public class UserController extends AbstractCrudController<User, UserDto, String> {
 
 	public static final String URL_BASE = "/user";
 
@@ -37,5 +39,6 @@ public class UserController extends AbstractCrudController<User, String> {
 	public EndUserResponse getResponse(User user) {
 		return new EndUserResponse(new EndUserListService(schoolServiceImpl));
 	}
+
 
 }

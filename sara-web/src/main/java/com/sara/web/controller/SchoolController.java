@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sara.data.document.School;
 import com.sara.data.document.User;
+import com.sara.service.dtos.SchoolDto;
 import com.sara.service.impl.CodeGroupsServiceImpl;
 import com.sara.service.impl.SchoolServiceImpl;
 import com.sara.service.impl.UserServiceImpl;
@@ -14,7 +15,7 @@ import com.sara.web.controller.school.SchoolResponse;
 
 @RestController
 @RequestMapping(path = Constants.URL_API_BASE + SchoolController.URL_BASE)
-public class SchoolController extends AbstractCrudController<School, String> {
+public class SchoolController extends AbstractCrudController<School, SchoolDto, String> {
 
 	public static final String URL_BASE = "/school";
 

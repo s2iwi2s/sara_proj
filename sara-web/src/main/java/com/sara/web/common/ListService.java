@@ -1,5 +1,5 @@
 package com.sara.web.common;
 
-public interface ListService <T>{
+public interface ListService {
 
 }

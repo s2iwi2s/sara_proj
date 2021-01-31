@@ -3,8 +3,8 @@ package com.sara.service.impl;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -19,17 +19,23 @@ import com.sara.data.document.User;
 import com.sara.data.repository.StudentMongoRepository;
 import com.sara.service.AbstractService;
 import com.sara.service.SequenceGeneratorService;
+import com.sara.service.dtos.StudentDto;
+import com.sara.service.dtos.StudentSearchDto;
+import com.sara.service.dtos.UserDto;
+import com.sara.service.mappers.StudentMapper;
 
 @Service
-public class StudentServiceImpl extends AbstractService<Student, String> {
+public class StudentServiceImpl extends AbstractService<Student, StudentDto, String> {
 	Logger log = LoggerFactory.getLogger(this.getClass());
 
 	private CodeGroupsServiceImpl codeGroupsServiceImpl;
+	private StudentMapper studentMapper;
 
 	public StudentServiceImpl(StudentMongoRepository repo, SequenceGeneratorService sequenceGeneratorService,
-			CodeGroupsServiceImpl codeGroupsServiceImpl) {
+			CodeGroupsServiceImpl codeGroupsServiceImpl, StudentMapper studentMapper) {
 		super(repo, sequenceGeneratorService);
 		this.codeGroupsServiceImpl = codeGroupsServiceImpl;
+		this.studentMapper = studentMapper;
 	}
 
 	@Override
@@ -45,34 +51,7 @@ public class StudentServiceImpl extends AbstractService<Student, String> {
 //		searchbb.or(QStudent.student.level.description.containsIgnoreCase(searchValue));
 	}
 
-	@Override
-	public Student getNewEntity() {
-		return new Student();
-	}
-
-	@Override
-	public Student save(Student entity, School school) {
-		log.debug("sequenceGeneratorService={}", sequenceGeneratorService);
-		if (StringUtils.isBlank(entity.getId())) {
-			String id = sequenceGeneratorService.nextSeq(Student.SEQUENCE_NAME);
-			entity.setId(id);
-		}
-		entity.setSchool(school);
-
-		if (!StringUtils.isBlank(entity.getLevel().getId())) {
-			CodeGroups level = codeGroupsServiceImpl.findById(entity.getLevel().getId());
-			entity.setLevel(level);
-		}
-		if (StringUtils.isBlank(entity.getStudentId())) {
-			String studentId = sequenceGeneratorService.nextSeq(entity.getSchoolYear().replaceAll("-", ""),
-					Student.SEQUENCE_STUDENT_ID);
-			entity.setStudentId(studentId);
-		}
-		entity = super.save(entity, school);
-		return entity;
-	}
-
-	public Page<Student> findAllBy(String by, String searchValue, Pageable pageable, School school) {
+	public Page<StudentSearchDto> findAllBy(String by, String searchValue, Pageable pageable, School school) {
 		if (!StringUtils.isBlank(by) && !StringUtils.isBlank(searchValue)) {
 			// searchValue = searchValue.toLowerCase();
 			BooleanBuilder param = new BooleanBuilder();
@@ -99,9 +78,52 @@ public class StudentServiceImpl extends AbstractService<Student, String> {
 			param.and(studentbb);
 			log.debug("findAllBy=>" + param.toString());
 			Predicate predicate = param.getValue();
-			return repo.findAll(predicate, pageable);
-		}
+			Page<Student> page = repo.findAll(predicate, pageable);
 
-		return findAll(pageable);
+			return new PageImpl<StudentSearchDto>(studentMapper.toSearchDtos(page.getContent()), page.getPageable(),
+					page.getTotalElements());
+
+		}
+		Page<Student> page = findAll(pageable);
+		return new PageImpl<StudentSearchDto>(studentMapper.toSearchDtos(page.getContent()), page.getPageable(),
+				page.getTotalElements());
 	}
+
+	public Page<StudentDto> toDto(Page<Student> page) {
+		return new PageImpl<StudentDto>(studentMapper.toDtos(page.getContent()), page.getPageable(),
+				page.getTotalElements());
+	}
+
+	@Override
+	public StudentDto toDto(Student entity) {
+		return studentMapper.toDto(entity);
+	}
+
+	@Override
+	public Student toEntity(StudentDto dto) {
+		return studentMapper.toEntity(dto);
+	}
+
+	@Override
+	public StudentDto saveDto(StudentDto dto, School school) {
+		Student entity = toEntity(dto);
+		log.debug("sequenceGeneratorService={}", sequenceGeneratorService);
+		if (StringUtils.isBlank(entity.getId())) {
+			String id = sequenceGeneratorService.nextSeq(Student.SEQUENCE_NAME);
+			entity.setId(id);
+		}
+		entity.setSchool(school);
+
+		if (!StringUtils.isBlank(entity.getLevel().getId())) {
+			CodeGroups level = codeGroupsServiceImpl.findById(entity.getLevel().getId());
+			entity.setLevel(level);
+		}
+		if (StringUtils.isBlank(entity.getStudentId())) {
+			String studentId = sequenceGeneratorService.nextSeq(entity.getSchoolYear().replaceAll("-", ""),
+					Student.SEQUENCE_STUDENT_ID);
+			entity.setStudentId(studentId);
+		}
+		return super.save(entity, school);
+	}
+
 }

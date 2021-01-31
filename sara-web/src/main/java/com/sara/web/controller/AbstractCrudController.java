@@ -20,23 +20,21 @@ import com.sara.data.document.User;
 import com.sara.service.AbstractService;
 import com.sara.service.impl.CodeGroupsServiceImpl;
 import com.sara.service.impl.UserServiceImpl;
-import com.sara.web.beans.ResponseStatus;
 import com.sara.web.common.Constants;
 import com.sara.web.common.Response;
 import com.sara.web.common.UserUtil;
 
-public abstract class AbstractCrudController<T, ID> {
-	
+public abstract class AbstractCrudController<T, D, ID> {
+
 	private static final Logger log = LoggerFactory.getLogger(AbstractCrudController.class);
 
+	public abstract AbstractService<T, D, ID> getService();
 
-	public abstract AbstractService<T, ID> getService();
-
-	public abstract Response<T> getResponse(User user);
+	public abstract Response<D> getResponse(User user);
 
 	protected UserServiceImpl userServiceImpl;
 	protected CodeGroupsServiceImpl codeGroupsServiceImpl;
-	
+
 	public AbstractCrudController(UserServiceImpl userServiceImpl, CodeGroupsServiceImpl codeGroupsServiceImpl) {
 		this.userServiceImpl = userServiceImpl;
 		this.codeGroupsServiceImpl = codeGroupsServiceImpl;
@@ -47,95 +45,52 @@ public abstract class AbstractCrudController<T, ID> {
 			"id" }, direction = Direction.ASC, page = Constants.DEFAULT_PAGE_NUMBER, size = Constants.DEFAULT_PAGE_SIZE) Pageable pageable) {
 
 		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
-		Response<T> res = getResponse(user);
-		ResponseStatus status = new ResponseStatus();
-		res.setResponseStatus(status);
+		Response<D> res = getResponse(user);
 		res.setSearchValue(searchValue);
 
-		Page<T> pagingList = null;
-		try {
-			pagingList = getService().findAll(searchValue, pageable, user);
-			status.setMessage("SUCCESS!");
-		} catch (Exception e) {
-			status.setException(e);
-			e.printStackTrace();
-		}
+		Page<D> pagingList = null;
+		pagingList = getService().findAll(searchValue, pageable, user);
+
 		res.setPagingList(pagingList);
 		res.setListService(null);
-		return new ResponseEntity<Response<T>>(res, HttpStatus.OK);
+		return new ResponseEntity<Response<D>>(res, HttpStatus.OK);
 	}
 
 	@DeleteMapping(Constants.URL_DELETE)
 	public ResponseEntity<?> delete(@PathVariable("id") ID id) {
-		ResponseStatus status = new ResponseStatus();
 		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
-		Response<T> res = getResponse(user);
-		res.setResponseStatus(status);
-		try {
-			getService().deleteById(id);
-			status.setMessage("SUCCESS!");
-		} catch (Exception e) {
-			e.printStackTrace();
-			status.setException(e);
-		}
+		Response<D> res = getResponse(user);
+		getService().deleteById(id);
 
-		return new ResponseEntity<Response<T>>(res, HttpStatus.OK);
+		return new ResponseEntity<Response<D>>(res, HttpStatus.OK);
 	}
 
 	@GetMapping(Constants.URL_DETAILS)
 	public ResponseEntity<?> details(@PathVariable("id") ID id) {
-		T entity = null;
+		D entity = null;
 		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
-		ResponseStatus status = new ResponseStatus();
-		Response<T> res = getResponse(user);
-		res.setResponseStatus(status);
 
-		try {
-			entity = getService().findById(id);
-			status.setMessage("SUCCESS!");
-		} catch (Exception e) {
-			e.printStackTrace();
-			status.setException(e);
-		}
-
+		Response<D> res = getResponse(user);
+		entity = getService().findByIdDto(id);
 		res.setEntity(entity);
-		
-		return new ResponseEntity<Response<T>>(res, HttpStatus.OK);
+
+		return new ResponseEntity<Response<D>>(res, HttpStatus.OK);
 	}
 
 	@GetMapping(Constants.URL_OPTIONS)
 	public ResponseEntity<?> options() {
-		T entity = null;
 		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
-		ResponseStatus status = new ResponseStatus();
-		Response<T> res = getResponse(user);
-		res.setResponseStatus(status);
-
-		try {
-			status.setMessage("SUCCESS!");
-		} catch (Exception e) {
-			e.printStackTrace();
-			status.setException(e);
-		}
-
-		res.setEntity(entity);
-		
-		return new ResponseEntity<Response<T>>(res, HttpStatus.OK);
+		Response<D> res = getResponse(user);
+		return new ResponseEntity<Response<D>>(res, HttpStatus.OK);
 	}
 
 	@PostMapping(path = Constants.URL_SAVE, consumes = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<?> save(@RequestBody T entity) {
-		log.debug("save entity => {}", entity);
-		ResponseStatus status = new ResponseStatus();
+	public ResponseEntity<?> save(@RequestBody D dto) {
+		log.debug("save dto => {}", dto);
 		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
-		Response<T> res = getResponse(user);
-		res.setResponseStatus(status);
-//		try {
-			entity = getService().save(entity, user.getSchool());
-			status.setMessage("SUCCESS!");
-//		} catch (Exception e) {
-		res.setEntity(entity);
-		//return entity;
-		return new ResponseEntity<Response<T>>(res, HttpStatus.OK);
+		Response<D> res = getResponse(user);
+		dto = getService().saveDto(dto, user.getSchool());
+		res.setEntity(dto);
+		return new ResponseEntity<Response<D>>(res, HttpStatus.OK);
 	}
 }

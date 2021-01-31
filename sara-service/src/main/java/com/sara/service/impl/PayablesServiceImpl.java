@@ -1,6 +1,9 @@
 package com.sara.service.impl;
 
-import static org.springframework.data.mongodb.core.aggregation.Aggregation.*;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.group;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.match;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.newAggregation;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.project;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,6 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
@@ -42,10 +46,14 @@ import com.sara.service.bean.BillingByInvoice;
 import com.sara.service.bean.Invoice;
 import com.sara.service.bean.PaymentInfo;
 import com.sara.service.bean.StudentPayables;
+import com.sara.service.dtos.AccountPayablesSettingsDto;
+import com.sara.service.dtos.PayablesDto;
 import com.sara.service.exception.GradeLevelPayablesResponseException;
+import com.sara.service.mappers.AccountPayablesSettingsMapper;
+import com.sara.service.mappers.PayablesMapper;
 
 @Service
-public class PayablesServiceImpl extends AbstractService<Payables, String> {
+public class PayablesServiceImpl extends AbstractService<Payables, PayablesDto, String> {
 
 	private static final Logger log = LoggerFactory.getLogger(PayablesServiceImpl.class);
 
@@ -53,20 +61,24 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 	private GradeLevelPayablesServiceImpl gradeLevelPayablesServiceImpl;
 	private AccountPayablesSettingsMongoRepository accountPayablesSettingsMongoRepository;
 	private CodeGroupsServiceImpl codeGroupsServiceImpl;
-
+	private PayablesMapper payablesMapper;
+	private AccountPayablesSettingsMapper accountPayablesSettingsMapper;
 	private MongoTemplate mongoTemplate;
 
 	public PayablesServiceImpl(PayablesMongoRepository repo, SequenceGeneratorService sequenceGeneratorService,
 			MongoTemplate mongoTemplate, StudentServiceImpl studentServiceImpl,
 			GradeLevelPayablesServiceImpl gradeLevelPayablesServiceImpl,
 			AccountPayablesSettingsMongoRepository accountPayablesSettingsMongoRepository,
-			CodeGroupsServiceImpl codeGroupsServiceImpl) {
+			CodeGroupsServiceImpl codeGroupsServiceImpl, PayablesMapper payablesMapper,
+			AccountPayablesSettingsMapper accountPayablesSettingsMapper) {
 		super(repo, sequenceGeneratorService);
 		this.studentServiceImpl = studentServiceImpl;
 		this.mongoTemplate = mongoTemplate;
 		this.gradeLevelPayablesServiceImpl = gradeLevelPayablesServiceImpl;
 		this.accountPayablesSettingsMongoRepository = accountPayablesSettingsMongoRepository;
 		this.codeGroupsServiceImpl = codeGroupsServiceImpl;
+		this.payablesMapper = payablesMapper;
+		this.accountPayablesSettingsMapper = accountPayablesSettingsMapper;
 	}
 
 	@Override
@@ -85,25 +97,13 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 		searchbb.or(QPayables.payables.student.lastName.containsIgnoreCase(searchValue));
 	}
 
-	@Override
-	public Payables getNewEntity() {
-		return new Payables();
-	}
-
-	@Override
-	public Payables save(Payables entity, School school) {
-		if (StringUtils.isBlank(entity.getId())) {
-			String id = sequenceGeneratorService.nextSeq(Payables.SEQUENCE_NAME);
-			entity.setId(id);
-		}
-		return super.save(entity, school);
-	}
-
-	public StudentPayables savePayables(List<Payables> list, Student student, String periodId) throws Exception {
+	public StudentPayables savePayables(List<PayablesDto> dtoList, Student student, String periodId) throws Exception {
 		CodeGroups period = codeGroupsServiceImpl.findById(periodId);
 
 		double remainingAmt = 0;
 		student = studentServiceImpl.findById(student.getId());
+		
+		List<Payables> list = payablesMapper.toEntities(dtoList);
 		for (Payables p : list) {
 			double payment = p.getPayment() + remainingAmt;
 			double balance = p.getAmount() - p.getPaid();
@@ -121,28 +121,28 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 		Date invoiceDate = new Date();
 		String invoiceNo = this.save(list, invoiceDate, period);
 
-		List<Payables> payables = getStudentPayables(student);
-		List<Payables> payablesByInvoiceNo = getStudentPayables(student, period, invoiceNo);
+		List<PayablesDto> payables = getStudentPayables(student);
+		List<PayablesDto> payablesByInvoiceNo = getStudentPayables(student, period, invoiceNo);
 
 		return new StudentPayables(payables, payablesByInvoiceNo, invoiceNo, invoiceDate);
 	}
 
-	public List<Payables> getStudentPayables(String id) throws GradeLevelPayablesResponseException {
+	public List<PayablesDto> getStudentPayables(String id) throws GradeLevelPayablesResponseException {
 		Student student = studentServiceImpl.findById(id);
 		return getStudentPayables(student);
 	}
 
-	public List<Payables> getStudentPayables(Student student) throws GradeLevelPayablesResponseException {
+	public List<PayablesDto> getStudentPayables(Student student) throws GradeLevelPayablesResponseException {
 		return getStudentPayables(student, student.getSchool().getCurrentPeriod(), null);
 	}
 
-	public List<Payables> getStudentPayables(Student student, String periodId)
+	public List<PayablesDto> getStudentPayables(Student student, String periodId)
 			throws GradeLevelPayablesResponseException {
 		CodeGroups period = codeGroupsServiceImpl.findById(periodId);
 		return getStudentPayables(student, period, null);
 	}
 
-	public List<Payables> getStudentPayables(Student student, CodeGroups period, String invoiceNo)
+	public List<PayablesDto> getStudentPayables(Student student, CodeGroups period, String invoiceNo)
 			throws GradeLevelPayablesResponseException {
 		List<Payables> payablesTmpl = getStudentPayablesTemplate(student, period);
 		List<PaymentInfo> totalPayableList = findPaymentSumByStudent(student, period);
@@ -180,7 +180,7 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 			}
 		}
 
-		return payableList;
+		return payablesMapper.toDtos(payableList);
 	}
 
 	public List<Payables> getStudentPayablesTemplate(Student student, CodeGroups period)
@@ -226,8 +226,8 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 //		Student student = studentServiceImpl.findById(id);
 //		return findPaymentSumByStudent(student, student.getSchool().getSchoolYear(), null);
 //	}
-	public List<Payables> findPaymentByStudent(Student student, CodeGroups period) {
-		return ((PayablesMongoRepository) repo).findByStudentAndPeriod(student, period);
+	public List<PayablesDto> findPaymentByStudent(Student student, CodeGroups period) {
+		return payablesMapper.toDtos(((PayablesMongoRepository) repo).findByStudentAndPeriod(student, period));
 	}
 
 	public List<PaymentInfo> findPaymentSumByStudent(Student student, CodeGroups period) {
@@ -267,21 +267,49 @@ public class PayablesServiceImpl extends AbstractService<Payables, String> {
 //		List<AccountPayablesSettings> accountPayablesSettings = gradeLevelPayables.getAccountPayablesSettings();
 //		accountPayablesSettings.sort(Comparator.comparing(AccountPayablesSettings::getPriority));
 
-		List<Payables> payments = findPaymentByStudent(student, period);
-		payments.sort(Comparator.comparing(Payables::getInvoiceDate, Collections.reverseOrder()));
+		List<PayablesDto> payments = findPaymentByStudent(student, period);
+		payments.sort(Comparator.comparing(PayablesDto::getInvoiceDate, Collections.reverseOrder()));
 
 		Map<String, Invoice> mapper = new HashMap<>();
-		List<Invoice> list = new ArrayList<>();
-		for (Payables payables : payments) {
+		List<Invoice> invoiceList = new ArrayList<>();
+		for (PayablesDto payables : payments) {
 			String invoiceNo = payables.getInvoiceNo();
 			Invoice invoice = mapper.get(invoiceNo);
 			if (invoice == null) {
-				invoice = new Invoice(invoiceNo, payables.getInvoiceDate(), new HashMap<String, Payables>());
+				invoice = new Invoice(invoiceNo, payables.getInvoiceDate(), new HashMap<String, PayablesDto>());
 				mapper.put(invoiceNo, invoice);
-				list.add(invoice);
+				invoiceList.add(invoice);
 			}
 			invoice.getPayablesMap().put(payables.getCode(), payables);
 		}
-		return new BillingByInvoice(gradeLevelPayables.getAccountPayablesSettings(), list);
+		List<AccountPayablesSettingsDto> acctPayablesList = accountPayablesSettingsMapper
+				.toDtos(gradeLevelPayables.getAccountPayablesSettings());
+		return new BillingByInvoice(acctPayablesList, invoiceList);
+	}
+
+	@Override
+	public PayablesDto toDto(Payables entity) {
+		return payablesMapper.toDto(entity);
+	}
+
+	@Override
+	public Payables toEntity(PayablesDto dto) {
+		return payablesMapper.toEntity(dto);
+	}
+
+	@Override
+	public Page<PayablesDto> toDto(Page<Payables> page) {
+		Page<PayablesDto> newpage = new PageImpl<PayablesDto>(payablesMapper.toDtos(page.getContent()),page.getPageable(), page.getTotalElements());
+		return newpage;
+	}
+
+	@Override
+	public PayablesDto saveDto(PayablesDto dto, School school) {
+		Payables entity = toEntity(dto);
+		if (StringUtils.isBlank(entity.getId())) {
+			String id = sequenceGeneratorService.nextSeq(Payables.SEQUENCE_NAME);
+			entity.setId(id);
+		}
+		return super.save(entity, school);
 	}
 }

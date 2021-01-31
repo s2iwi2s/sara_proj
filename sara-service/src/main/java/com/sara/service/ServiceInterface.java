@@ -10,17 +10,27 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.sara.data.document.School;
 import com.sara.data.document.User;
 
-public interface ServiceInterface<T, ID> {
-	public Page<T> findAll(String searchValue, Pageable pageable, User user);
-	public List<T> findAll();
-	public void findAllQBuilder(String searchValue, BooleanBuilder mainbb, User user);
-	public BooleanExpression getFindAllBooleanExpression(User user);
+public interface ServiceInterface<T, D, ID> {
+	public D toDto(T entity);
 
-	public T getNewEntity();
+	public T toEntity(D dto);
+
+	public Page<D> toDto(Page<T> page);
+
+	public Page<D> findAll(String searchValue, Pageable pageable, User user);
+
+	public List<T> findAll();
+
+	public void findAllQBuilder(String searchValue, BooleanBuilder mainbb, User user);
+
+	public BooleanExpression getFindAllBooleanExpression(User user);
 
 	public void deleteById(ID id);
 
 	public T findById(ID id);
+	public D findByIdDto(ID id);
 
-	public T save(T entity, School school);
+	public D saveDto(D dto, School school);
+	public D save(T entity, School school);
+
 }

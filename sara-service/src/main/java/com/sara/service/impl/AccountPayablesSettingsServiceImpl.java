@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -19,18 +20,24 @@ import com.sara.data.document.User;
 import com.sara.data.repository.AccountPayablesSettingsMongoRepository;
 import com.sara.service.AbstractService;
 import com.sara.service.SequenceGeneratorService;
+import com.sara.service.dtos.AccountPayablesSettingsDto;
 import com.sara.service.exception.NotFoundException;
+import com.sara.service.mappers.AccountPayablesSettingsMapper;
 
 @Service
-public class AccountPayablesSettingsServiceImpl extends AbstractService<AccountPayablesSettings, String> {
+public class AccountPayablesSettingsServiceImpl
+		extends AbstractService<AccountPayablesSettings, AccountPayablesSettingsDto, String> {
 	Logger log = LoggerFactory.getLogger(this.getClass());
 
 	private CodeGroupsServiceImpl codeGroupsServiceImpl;
+	private AccountPayablesSettingsMapper accountPayablesSettingsMapper;
 
 	public AccountPayablesSettingsServiceImpl(AccountPayablesSettingsMongoRepository repo,
-			SequenceGeneratorService sequenceGeneratorService, CodeGroupsServiceImpl codeGroupsServiceImpl) {
+			SequenceGeneratorService sequenceGeneratorService, CodeGroupsServiceImpl codeGroupsServiceImpl,
+			AccountPayablesSettingsMapper accountPayablesSettingsMapper) {
 		super(repo, sequenceGeneratorService);
 		this.codeGroupsServiceImpl = codeGroupsServiceImpl;
+		this.accountPayablesSettingsMapper = accountPayablesSettingsMapper;
 	}
 
 	@Override
@@ -41,44 +48,20 @@ public class AccountPayablesSettingsServiceImpl extends AbstractService<AccountP
 	@Override
 	public void findAllQBuilder(String searchValue, BooleanBuilder searchbb, User user) {
 		searchbb.or(QAccountPayablesSettings.accountPayablesSettings.description.containsIgnoreCase(searchValue));
-//		searchbb.or(QAccountPayablesSettings.accountPayablesSettings.paymentPeriod.description
-//				.containsIgnoreCase(searchValue));
 	}
 
-	@Override
-	public AccountPayablesSettings getNewEntity() {
-		return new AccountPayablesSettings();
-	}
-
-	@Override
-	public AccountPayablesSettings save(AccountPayablesSettings entity, School school) {
-		entity.setSchool(school);
-		if (entity.getPeriod() != null && !StringUtils.isBlank(entity.getPeriod().getId())) {
-			CodeGroups period = codeGroupsServiceImpl.findById(entity.getPeriod().getId());
-			entity.setPeriod(period);
-		}
-
-		if (entity.getPaymentPeriod() != null && !StringUtils.isBlank(entity.getPaymentPeriod().getId())) {
-			CodeGroups paymentPeriod = codeGroupsServiceImpl.findById(entity.getPaymentPeriod().getId());
-			entity.setPaymentPeriod(paymentPeriod);
-		}
-		entity = super.save(entity, school);
-		return entity;
-	}
-
-	public List<AccountPayablesSettings> findByApplyToAllList(School school, String periodId) {
+	public List<AccountPayablesSettingsDto> findByApplyToAllList(School school, String periodId) {
 		CodeGroups period = codeGroupsServiceImpl.findById(periodId);
 //
 //		Criteria criteria = where("period").is(period).and("school").is(school);
 ////		Sort sort = by(Sort.Direction.DESC, "accountPayablesSettings");
 //		List<AccountPayablesSettings> list = mongoTemplate.find(Query.query(criteria), AccountPayablesSettings.class);
-
-		return ((AccountPayablesSettingsMongoRepository) repo)
+		List<AccountPayablesSettings> list = ((AccountPayablesSettingsMongoRepository) repo)
 				.findByActiveAndApplyToAllAndSchoolAndPeriodOrderByPriority(true, true, school, period);
-		// return findAll(pageable);
+		return accountPayablesSettingsMapper.toDtos(list);
 	}
 
-	public Page<AccountPayablesSettings> findAllActiveList(String period, String searchValue, Pageable pageable,
+	public Page<AccountPayablesSettingsDto> findAllActiveList(String period, String searchValue, Pageable pageable,
 			User user) throws NotFoundException {
 		if (period == null) {
 			throw new NotFoundException("No Accounts Payables Settings found");
@@ -93,6 +76,38 @@ public class AccountPayablesSettingsServiceImpl extends AbstractService<AccountP
 		searchbb.and(QAccountPayablesSettings.accountPayablesSettings.active.eq(true));
 		searchbb.and(QAccountPayablesSettings.accountPayablesSettings.description.containsIgnoreCase(searchValue));
 		searchbb.and(QAccountPayablesSettings.accountPayablesSettings.school.eq(user.getSchool()));
-		return repo.findAll(searchbb.getValue(), pageable);
+		return toDto(repo.findAll(searchbb.getValue(), pageable));
+	}
+
+	@Override
+	public AccountPayablesSettingsDto toDto(AccountPayablesSettings entity) {
+		return accountPayablesSettingsMapper.toDto(entity);
+	}
+
+	@Override
+	public AccountPayablesSettings toEntity(AccountPayablesSettingsDto dto) {
+		return accountPayablesSettingsMapper.toEntity(dto);
+	}
+
+	@Override
+	public Page<AccountPayablesSettingsDto> toDto(Page<AccountPayablesSettings> page) {
+		return new PageImpl<AccountPayablesSettingsDto>(accountPayablesSettingsMapper.toDtos(page.getContent()),
+				page.getPageable(), page.getTotalElements());
+	}
+
+	@Override
+	public AccountPayablesSettingsDto saveDto(AccountPayablesSettingsDto dto, School school) {
+		AccountPayablesSettings entity = accountPayablesSettingsMapper.toEntity(dto);
+		entity.setSchool(school);
+		if (entity.getPeriod() != null && !StringUtils.isBlank(entity.getPeriod().getId())) {
+			CodeGroups period = codeGroupsServiceImpl.findById(entity.getPeriod().getId());
+			entity.setPeriod(period);
+		}
+
+		if (entity.getPaymentPeriod() != null && !StringUtils.isBlank(entity.getPaymentPeriod().getId())) {
+			CodeGroups paymentPeriod = codeGroupsServiceImpl.findById(entity.getPaymentPeriod().getId());
+			entity.setPaymentPeriod(paymentPeriod);
+		}
+		return super.save(entity, school);
 	}
 }

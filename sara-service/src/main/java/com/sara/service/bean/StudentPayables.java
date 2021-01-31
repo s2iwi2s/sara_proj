@@ -3,7 +3,7 @@ package com.sara.service.bean;
 import java.util.Date;
 import java.util.List;
 
-import com.sara.data.document.Payables;
+import com.sara.service.dtos.PayablesDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,10 +13,10 @@ import lombok.Getter;
 public class StudentPayables {
 	private String invoiceNo;
 	private Date invoiceDate;
-	private List<Payables> payables;
-	private List<Payables> payablesByInvoiceNo;
+	private List<PayablesDto> payables;
+	private List<PayablesDto> payablesByInvoiceNo;
 
-	public StudentPayables(List<Payables> payables, List<Payables> payablesByInvoiceNo, String invoiceNo,
+	public StudentPayables(List<PayablesDto> payables, List<PayablesDto> payablesByInvoiceNo, String invoiceNo,
 			Date invoiceDate) {
 		this.payables = payables;
 		this.payablesByInvoiceNo = payablesByInvoiceNo;

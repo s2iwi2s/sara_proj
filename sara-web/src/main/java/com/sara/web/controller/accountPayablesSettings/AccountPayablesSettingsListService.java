@@ -2,9 +2,8 @@ package com.sara.web.controller.accountPayablesSettings;
 
 import java.util.List;
 
-import com.sara.data.document.AccountPayablesSettings;
-import com.sara.data.document.CodeGroups;
 import com.sara.data.document.School;
+import com.sara.service.dtos.CodeGroupsDto;
 import com.sara.service.impl.CodeGroupsServiceImpl;
 import com.sara.web.common.ListService;
 
@@ -13,10 +12,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AccountPayablesSettingsListService implements ListService<AccountPayablesSettings> {
+public class AccountPayablesSettingsListService implements ListService {
 
-	private List<CodeGroups> paymentPeriodList = null;
-	private List<CodeGroups> periodList = null;
+	private List<CodeGroupsDto> paymentPeriodList = null;
+	private List<CodeGroupsDto> periodList = null;
 
 	public AccountPayablesSettingsListService(CodeGroupsServiceImpl codeGroupsServiceImpl, School school) {
 		paymentPeriodList = codeGroupsServiceImpl.findByCodeList("PAYMENT_PERIOD", school);
