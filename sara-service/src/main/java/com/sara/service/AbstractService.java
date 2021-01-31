@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import com.querydsl.core.BooleanBuilder;
@@ -12,6 +13,8 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.sara.data.document.School;
 import com.sara.data.document.User;
 import com.sara.data.repository.CustomRepository;
+import com.sara.service.dtos.SchoolDto;
+
 /**
  * 
  * @author WPidor
@@ -19,9 +22,9 @@ import com.sara.data.repository.CustomRepository;
  * @since 10/05/2020
  */
 
-public abstract class AbstractService<T, ID> implements ServiceInterface<T, ID> {
+public abstract class AbstractService<T, D, ID> implements ServiceInterface<T, D, ID> {
 	protected CustomRepository<T, ID> repo;
-	
+
 	protected SequenceGeneratorService sequenceGeneratorService;
 
 	public AbstractService(CustomRepository<T, ID> repo, SequenceGeneratorService sequenceGeneratorService) {
@@ -38,14 +41,14 @@ public abstract class AbstractService<T, ID> implements ServiceInterface<T, ID> 
 	}
 
 	@Override
-	public Page<T> findAll(String searchValue, Pageable pageable, User user) {	
+	public Page<D> findAll(String searchValue, Pageable pageable, User user) {
 		BooleanBuilder searchbb = new BooleanBuilder();
 		findAllQBuilder(searchValue, searchbb, user);
-		
+
 		Predicate predicate = findAllPredicate(user, searchbb);
-		
-		return repo.findAll(predicate, pageable);
-		//return findAll(pageable);
+
+		// return repo.findAll(predicate, pageable);
+		return toDto(repo.findAll(predicate, pageable));
 	}
 
 	public Predicate findAllPredicate(User user, BooleanBuilder searchbb) {
@@ -62,25 +65,29 @@ public abstract class AbstractService<T, ID> implements ServiceInterface<T, ID> 
 		repo.deleteById(id);
 	}
 
+	@Override
+	public D findByIdDto(ID id) {
+		return toDto(findById(id));
+	}
+	@Override
 	public T findById(ID id) throws IllegalArgumentException {
 		if (id != null && "-1".equals(id)) {
-			return getNewEntity();
+			return null;
 		}
-		
-		if(id == null) {
+
+		if (id == null) {
 			throw new IllegalArgumentException("No Data Found");
 		}
-		
+
 		Optional<T> oEntity = repo.findById(id);
-		if(!oEntity.isPresent()) {
+		if (!oEntity.isPresent()) {
 			throw new IllegalArgumentException("No Data Found");
 		}
 		return oEntity.get();
 	}
 
 	@Override
-	public T save(T entity, School school) {
-		return repo.save(entity);
+	public D save(T entity, School school) {
+		return toDto(repo.save(entity));
 	}
-
 }

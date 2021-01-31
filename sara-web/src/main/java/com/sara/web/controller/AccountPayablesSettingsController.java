@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sara.data.document.AccountPayablesSettings;
 import com.sara.data.document.User;
+import com.sara.service.dtos.AccountPayablesSettingsDto;
 import com.sara.service.exception.NotFoundException;
 import com.sara.service.impl.AccountPayablesSettingsServiceImpl;
 import com.sara.service.impl.CodeGroupsServiceImpl;
 import com.sara.service.impl.UserServiceImpl;
-import com.sara.web.beans.ResponseStatus;
 import com.sara.web.common.Constants;
 import com.sara.web.common.Response;
 import com.sara.web.common.UserUtil;
@@ -29,7 +29,7 @@ import com.sara.web.controller.accountPayablesSettings.AccountPayablesSettingsRe
 
 @RestController
 @RequestMapping(path = Constants.URL_API_BASE + AccountPayablesSettingsController.URL_BASE)
-public class AccountPayablesSettingsController extends AbstractCrudController<AccountPayablesSettings, String> {
+public class AccountPayablesSettingsController extends AbstractCrudController<AccountPayablesSettings,AccountPayablesSettingsDto, String> {
 
 	private static final Logger log = LoggerFactory.getLogger(AccountPayablesSettingsController.class);
 
@@ -60,18 +60,15 @@ public class AccountPayablesSettingsController extends AbstractCrudController<Ac
 			@RequestParam("searchValue") String searchValue, @PageableDefault(sort = {
 					"id" }, direction = Direction.ASC, page = Constants.DEFAULT_PAGE_NUMBER, size = Constants.DEFAULT_PAGE_SIZE) Pageable pageable) throws NotFoundException {
 		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
-		Response<AccountPayablesSettings> res = getResponse(user);
-		ResponseStatus status = new ResponseStatus();
-		res.setResponseStatus(status);
+		Response<AccountPayablesSettingsDto> res = getResponse(user);
 		res.setSearchValue(searchValue);
 
-		Page<AccountPayablesSettings> pagingList = null;
+		Page<AccountPayablesSettingsDto> pagingList = null;
 
 		pagingList = getService().findAllActiveList(period, searchValue, pageable, user);
-		status.setMessage("SUCCESS!");
 
 		res.setPagingList(pagingList);
 		res.setListService(null);
-		return new ResponseEntity<Response<AccountPayablesSettings>>(res, HttpStatus.OK);
+		return new ResponseEntity<Response<AccountPayablesSettingsDto>>(res, HttpStatus.OK);
 	}
 }

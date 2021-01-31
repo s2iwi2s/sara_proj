@@ -8,19 +8,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.sara.data.repository.AddressMongoRepository;
 import com.sara.data.repository.AuthorizedUrlMongoRepository;
 import com.sara.data.repository.CodeGroupsMongoRepository;
-import com.sara.data.repository.UserMongoRepository;
 import com.sara.data.repository.RoleMongoRepository;
 import com.sara.data.repository.SchoolMongoRepository;
 import com.sara.data.repository.StudentMongoRepository;
+import com.sara.data.repository.UserMongoRepository;
 
 @SpringBootTest
 class SaraDataApplicationTest {
-
-	@Autowired
-	private AddressMongoRepository addressMongoRepository;
 
 	@Autowired
 	private CodeGroupsMongoRepository codeGroupsMongoRepository;
@@ -56,7 +52,6 @@ class SaraDataApplicationTest {
 
 	@Test
 	void test() {
-		assertNotNull(addressMongoRepository);
 		assertNotNull(codeGroupsMongoRepository);
 		assertNotNull(userMongoRepository);
 		assertNotNull(authorizedUrlMongoRepository);

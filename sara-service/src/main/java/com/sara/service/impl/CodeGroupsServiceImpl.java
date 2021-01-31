@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -19,16 +20,20 @@ import com.sara.data.document.User;
 import com.sara.data.repository.CodeGroupsMongoRepository;
 import com.sara.service.AbstractService;
 import com.sara.service.SequenceGeneratorService;
+import com.sara.service.dtos.CodeGroupsDto;
+import com.sara.service.mappers.CodeGroupsMapper;
 
 @Service
-public class CodeGroupsServiceImpl extends AbstractService<CodeGroups, String> {
+public class CodeGroupsServiceImpl extends AbstractService<CodeGroups, CodeGroupsDto, String> {
 
 	private static final Logger log = LoggerFactory.getLogger(CodeGroupsServiceImpl.class);
+	private CodeGroupsMapper codeGroupsMapper;
 
 	@Autowired
-	public CodeGroupsServiceImpl(CodeGroupsMongoRepository repo,
-			SequenceGeneratorService sequenceGeneratorService) {
+	public CodeGroupsServiceImpl(CodeGroupsMongoRepository repo, SequenceGeneratorService sequenceGeneratorService,
+			CodeGroupsMapper codeGroupsMapper) {
 		super(repo, sequenceGeneratorService);
+		this.codeGroupsMapper = codeGroupsMapper;
 	}
 
 	public Page<CodeGroups> findAll(Pageable pageable) {
@@ -47,21 +52,40 @@ public class CodeGroupsServiceImpl extends AbstractService<CodeGroups, String> {
 		searchbb.or(QCodeGroups.codeGroups.description.containsIgnoreCase(searchValue));
 	}
 
-	@Override
-	public CodeGroups getNewEntity() {
-		return new CodeGroups();
+	public List<CodeGroupsDto> findByCodeList(String code, School school) {
+		List<CodeGroups> list = ((CodeGroupsMongoRepository) repo).findByCodeAndSchoolOrderByPriority(code, school);
+		return codeGroupsMapper.toDtos(list);
 	}
 
-	public List<CodeGroups> findByCodeList(String code, School school) {
-		return ((CodeGroupsMongoRepository) repo).findByCodeAndSchoolOrderByPriority(code, school);
-	}
+//	public List<CodeGroupsDto> findByCodeDto(String code, School school) {
+//		List<CodeGroups> codeGroups = ((CodeGroupsMongoRepository) repo).findByCodeAndSchoolOrderByPriority(code,
+//				school);
+//		return codeGroupsMapper.toDto(codeGroups);
+//	}
 
 	public CodeGroups findByCode(String code, School school) {
 		return ((CodeGroupsMongoRepository) repo).findByCodeAndSchool(code, school);
 	}
 
 	@Override
-	public CodeGroups save(CodeGroups entity, School school) {
+	public CodeGroupsDto toDto(CodeGroups entity) {
+		return codeGroupsMapper.toDto(entity);
+	}
+
+	@Override
+	public CodeGroups toEntity(CodeGroupsDto dto) {
+		return codeGroupsMapper.toEntity(dto);
+	}
+
+	@Override
+	public Page<CodeGroupsDto> toDto(Page<CodeGroups> page) {
+		return new PageImpl<CodeGroupsDto>(codeGroupsMapper.toDtos(page.getContent()), page.getPageable(),
+				page.getTotalElements());
+	}
+
+	@Override
+	public CodeGroupsDto saveDto(CodeGroupsDto dto, School school) {
+		CodeGroups entity = toEntity(dto);
 		log.info("save CodeGroups entity==>{}", entity);
 		log.info("save CodeGroups schoolId==>{}", entity.getSchool());
 		if (StringUtils.isBlank(entity.getId())) {

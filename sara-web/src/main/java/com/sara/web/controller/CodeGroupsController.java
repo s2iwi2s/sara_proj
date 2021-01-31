@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sara.data.document.CodeGroups;
 import com.sara.data.document.User;
+import com.sara.service.dtos.CodeGroupsDto;
 import com.sara.service.impl.CodeGroupsServiceImpl;
 import com.sara.service.impl.UserServiceImpl;
 import com.sara.web.common.Constants;
@@ -13,16 +14,13 @@ import com.sara.web.controller.codeGroups.CodeGroupsResponse;
 
 @RestController
 @RequestMapping(path = Constants.URL_API_BASE + CodeGroupsController.URL_BASE)
-public class CodeGroupsController extends AbstractCrudController<CodeGroups, String> {
+public class CodeGroupsController extends AbstractCrudController<CodeGroups, CodeGroupsDto, String> {
 
 	public static final String URL_BASE = "/codeGroups";
 
 	public CodeGroupsController(UserServiceImpl userServiceImpl, CodeGroupsServiceImpl codeGroupsServiceImpl) {
 		super(userServiceImpl, codeGroupsServiceImpl);
 	}
-
-//	@Autowired
-//	private CodeGroupsServiceImpl codeGroupsService;
 
 	@Override
 	public CodeGroupsServiceImpl getService() {
@@ -31,7 +29,7 @@ public class CodeGroupsController extends AbstractCrudController<CodeGroups, Str
 
 	@Override
 	public CodeGroupsResponse getResponse(User user) {
-		return new CodeGroupsResponse(new CodeGroupsListService(codeGroupsServiceImpl));
+		return new CodeGroupsResponse(new CodeGroupsListService(codeGroupsServiceImpl, user.getSchool()));
 	}
 
 }

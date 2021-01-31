@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sara.data.document.Student;
 import com.sara.data.document.User;
+import com.sara.service.dtos.StudentDto;
 import com.sara.service.impl.CodeGroupsServiceImpl;
 import com.sara.service.impl.StudentServiceImpl;
 import com.sara.service.impl.UserServiceImpl;
@@ -16,7 +17,7 @@ import com.sara.web.controller.student.StudentResponse;
 @RestController
 @Primary
 @RequestMapping(path = Constants.URL_API_BASE + StudentController.URL_BASE)
-public class StudentController extends AbstractCrudController<Student, String> {
+public class StudentController extends AbstractCrudController<Student, StudentDto, String> {
 
 //	private static final Logger log = LoggerFactory.getLogger(StudentController.class);
 

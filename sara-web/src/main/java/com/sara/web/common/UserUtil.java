@@ -14,6 +14,7 @@ public class UserUtil {
 				.getContext().getAuthentication();
 		UserDetails userDetails = (UserDetails) userAuth.getPrincipal();
 		String userName = userDetails.getUsername();
-		return userServiceImpl.findByUserName(userName);
+		User entity = userServiceImpl.findByUserName(userName);
+		return entity;
 	}
 }
