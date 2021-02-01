@@ -2,8 +2,6 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead } from '@material-ui/core';
 
-
-import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 
