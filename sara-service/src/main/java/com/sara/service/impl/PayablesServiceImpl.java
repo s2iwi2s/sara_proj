@@ -284,8 +284,14 @@ public class PayablesServiceImpl extends AbstractService<Payables, PayablesDto, 
 			}
 			invoice.getPayablesMap().put(payables.getCode(), payables);
 		}
-		List<AccountPayablesSettingsDto> acctPayablesList = accountPayablesSettingsMapper
-				.toDtos(gradeLevelPayables.getAccountPayablesSettings());
+		List<AccountPayablesSettings> accountPayablesSettings = gradeLevelPayables.getAccountPayablesSettings();
+		List<AccountPayablesSettingsDto> acctPayablesList = null;
+		if(accountPayablesSettings != null) {
+			acctPayablesList = new ArrayList<AccountPayablesSettingsDto>();
+		} else {
+			acctPayablesList = accountPayablesSettingsMapper
+					.toDtos(accountPayablesSettings);
+		}
 		return new BillingByInvoice(acctPayablesList, invoiceList);
 	}
 
