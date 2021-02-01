@@ -80,7 +80,6 @@ public class PayablesServiceImpl extends AbstractService<Payables, PayablesDto, 
 		this.accountPayablesSettingsMongoRepository = accountPayablesSettingsMongoRepository;
 		this.codeGroupsServiceImpl = codeGroupsServiceImpl;
 		this.payablesMapper = payablesMapper;
-		this.accountPayablesSettingsMapper = accountPayablesSettingsMapper;
 	}
 
 	@Override
