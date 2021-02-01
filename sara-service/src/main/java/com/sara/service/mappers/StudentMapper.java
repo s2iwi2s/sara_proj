@@ -11,7 +11,10 @@ import com.sara.service.dtos.StudentSearchDto;
 @Mapper(componentModel = "spring")
 public interface StudentMapper {
 	public StudentDto toDto(Student entity);
+	public StudentSearchDto toSearchDto(Student entity);
 	public Student toEntity(StudentDto dto);
+	public Student toEntity(StudentSearchDto dto);
+	
 	public List<StudentDto> toDtos(List<Student> list);
 	public List<StudentSearchDto> toSearchDtos(List<Student> list);
 }

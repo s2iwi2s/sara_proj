@@ -21,7 +21,6 @@ import com.sara.service.AbstractService;
 import com.sara.service.SequenceGeneratorService;
 import com.sara.service.dtos.StudentDto;
 import com.sara.service.dtos.StudentSearchDto;
-import com.sara.service.dtos.UserDto;
 import com.sara.service.mappers.StudentMapper;
 
 @Service
@@ -126,4 +125,7 @@ public class StudentServiceImpl extends AbstractService<Student, StudentDto, Str
 		return super.save(entity, school);
 	}
 
+	public StudentSearchDto searchByIdDto(String id) {
+		return studentMapper.toSearchDto(findById(id));
+	}
 }

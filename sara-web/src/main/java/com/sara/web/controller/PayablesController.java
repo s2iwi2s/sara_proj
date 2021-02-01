@@ -33,6 +33,7 @@ import com.sara.service.impl.CodeGroupsServiceImpl;
 import com.sara.service.impl.PayablesServiceImpl;
 import com.sara.service.impl.StudentServiceImpl;
 import com.sara.service.impl.UserServiceImpl;
+import com.sara.service.mappers.StudentMapper;
 import com.sara.web.common.Constants;
 import com.sara.web.common.UserUtil;
 
@@ -51,18 +52,21 @@ public class PayablesController {
 	private StudentServiceImpl studentServiceImpl;
 
 	private CodeGroupsServiceImpl codeGroupsServiceImpl;
+	private StudentMapper studentMapper;
 
 	public PayablesController(PayablesServiceImpl payablesServiceImpl, UserServiceImpl userServiceImpl,
-			StudentServiceImpl studentServiceImpl, CodeGroupsServiceImpl codeGroupsServiceImpl) {
+			StudentServiceImpl studentServiceImpl, CodeGroupsServiceImpl codeGroupsServiceImpl,
+			StudentMapper studentMapper) {
 		this.payablesServiceImpl = payablesServiceImpl;
 		this.userServiceImpl = userServiceImpl;
 		this.studentServiceImpl = studentServiceImpl;
 		this.codeGroupsServiceImpl = codeGroupsServiceImpl;
+		this.studentMapper = studentMapper;
 	}
 
 	@GetMapping(Constants.URL_BILLING_USER_SEARCH)
-	public ResponseEntity<?> search(@PathVariable("by") String by,
-			@RequestParam("searchValue") String searchValue, @PageableDefault(sort = { "lastName",
+	public ResponseEntity<?> search(@PathVariable("by") String by, @RequestParam("searchValue") String searchValue,
+			@PageableDefault(sort = { "lastName",
 					"firstName" }, direction = Direction.ASC, page = Constants.DEFAULT_PAGE_NUMBER, size = Constants.DEFAULT_PAGE_SIZE) Pageable pageable) {
 		log.debug("by={}, searchValue={}", by, searchValue);
 
@@ -77,14 +81,15 @@ public class PayablesController {
 			@PathVariable("periodId") String periodId) throws Exception {
 		Map<String, Object> map = new HashMap<>();
 
-		Student student = studentServiceImpl.findById(id);
+		StudentSearchDto student = studentServiceImpl.searchByIdDto(id);
 		map.put("student", student);
 
-		List<PayablesDto> payables = payablesServiceImpl.getStudentPayables(student, periodId);
+		Student entity = studentMapper.toEntity(student);
+		List<PayablesDto> payables = payablesServiceImpl.getStudentPayables(entity, periodId);
 		StudentPayables studentPayables = new StudentPayables(payables, new ArrayList<PayablesDto>(), null, null);
 		map.put("studentPayables", studentPayables);
 
-		BillingByInvoice billingByInvoice = payablesServiceImpl.getBillingByInvoiceList(student, periodId);
+		BillingByInvoice billingByInvoice = payablesServiceImpl.getBillingByInvoiceList(entity, periodId);
 		map.put("billingByInvoice", billingByInvoice);
 
 		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
@@ -105,15 +110,15 @@ public class PayablesController {
 
 		Map<String, Object> map = new HashMap<>();
 		log.debug("savePayables id={}", id);
-		Student student = studentServiceImpl.findById(id);
+		StudentSearchDto student = studentServiceImpl.searchByIdDto(id);
 		log.debug("savePayables student={}", student);
 
 		map.put("student", student);
-
-		StudentPayables studentPayables = payablesServiceImpl.savePayables(payableList, student, periodId);
+		Student entity = studentMapper.toEntity(student);
+		StudentPayables studentPayables = payablesServiceImpl.savePayables(payableList, entity, periodId);
 		map.put("studentPayables", studentPayables);
 
-		BillingByInvoice billingByInvoice = payablesServiceImpl.getBillingByInvoiceList(student, periodId);
+		BillingByInvoice billingByInvoice = payablesServiceImpl.getBillingByInvoiceList(entity, periodId);
 		map.put("billingByInvoice", billingByInvoice);
 
 		User user = UserUtil.getAuthenticatedUser(userServiceImpl);

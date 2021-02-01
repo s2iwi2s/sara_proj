@@ -48,9 +48,11 @@ import com.sara.service.bean.PaymentInfo;
 import com.sara.service.bean.StudentPayables;
 import com.sara.service.dtos.AccountPayablesSettingsDto;
 import com.sara.service.dtos.PayablesDto;
+import com.sara.service.dtos.StudentSearchDto;
 import com.sara.service.exception.GradeLevelPayablesResponseException;
 import com.sara.service.mappers.AccountPayablesSettingsMapper;
 import com.sara.service.mappers.PayablesMapper;
+import com.sara.service.mappers.StudentMapper;
 
 @Service
 public class PayablesServiceImpl extends AbstractService<Payables, PayablesDto, String> {
@@ -102,7 +104,7 @@ public class PayablesServiceImpl extends AbstractService<Payables, PayablesDto, 
 
 		double remainingAmt = 0;
 		student = studentServiceImpl.findById(student.getId());
-		
+
 		List<Payables> list = payablesMapper.toEntities(dtoList);
 		for (Payables p : list) {
 			double payment = p.getPayment() + remainingAmt;
@@ -139,6 +141,7 @@ public class PayablesServiceImpl extends AbstractService<Payables, PayablesDto, 
 	public List<PayablesDto> getStudentPayables(Student student, String periodId)
 			throws GradeLevelPayablesResponseException {
 		CodeGroups period = codeGroupsServiceImpl.findById(periodId);
+
 		return getStudentPayables(student, period, null);
 	}
 
@@ -299,7 +302,8 @@ public class PayablesServiceImpl extends AbstractService<Payables, PayablesDto, 
 
 	@Override
 	public Page<PayablesDto> toDto(Page<Payables> page) {
-		Page<PayablesDto> newpage = new PageImpl<PayablesDto>(payablesMapper.toDtos(page.getContent()),page.getPageable(), page.getTotalElements());
+		Page<PayablesDto> newpage = new PageImpl<PayablesDto>(payablesMapper.toDtos(page.getContent()),
+				page.getPageable(), page.getTotalElements());
 		return newpage;
 	}
 

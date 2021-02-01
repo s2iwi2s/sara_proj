@@ -26,7 +26,7 @@ public class PayablesDto {
 
 	private AccountPayablesSettingsDto aps;
 	
-	private StudentDto student;// Student.id
+	private StudentSearchDto student;// Student.id
 
 	@Transient
 	private double balance;
@@ -34,10 +34,5 @@ public class PayablesDto {
 	@Transient
 	private double paid;
 
-	@Override
-	public String toString() {
-		return String.format("Payables [id=%s, code=%s, name=%s, amount=%s, payment=%s, balance=%s, paid=%s]",
-				id, code, name, amount, payment, balance, paid);
-	}
 
 }
