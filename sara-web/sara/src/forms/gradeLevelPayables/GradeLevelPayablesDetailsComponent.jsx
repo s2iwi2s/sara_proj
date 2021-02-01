@@ -15,7 +15,7 @@ import { ERROR_CODE, INIT_STATUS, PAGE_URL } from '../../api/Utils';
 import GradeLevelAccountPayablesSettingsListComponent from './GradeLevelAccountPayablesSettingsListComponent'
 import CustomTableGrid from '../common/CustomTableGrid';
 import SelectGrid from '../common/SelectGrid';
-import { save, getOptions, getOptionsByPeriod } from '../../api/gradeLevelPayables/GradeLevelPayablesService';
+import { save, getOptionsByPeriod } from '../../api/gradeLevelPayables/GradeLevelPayablesService';
 import { selectSelectedItem, setOptionsList, updateSelectedItem, resetSelectedItem, setPageableEntity } from '../../api/gradeLevelPayables/GradeLevelSlice';
 import TitleComponent from '../common/TitleComponent';
 import useMessageAlert from "../../api/useMessageAlert"
@@ -120,7 +120,7 @@ export default function GradeLevelPayablesDetailsComponent(props) {
   }))
 
   const onChangePeriod = (e) => {
-    const { name, value } = e.target
+    const { value } = e.target
     changeSelectState(e)
     doRetrieve(value)
   }
