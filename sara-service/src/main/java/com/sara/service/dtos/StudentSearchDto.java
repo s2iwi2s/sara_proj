@@ -16,7 +16,13 @@ public class StudentSearchDto {
 	private String firstName;
 	private String gender;
 	private String lastName;
+	
 
 	private CodeGroupsDto level;
 	private SchoolDto school;
+	
+
+	public String getFullName() {
+		return lastName + ", " + firstName;
+	}
 }

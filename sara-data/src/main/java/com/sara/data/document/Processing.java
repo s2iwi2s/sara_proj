@@ -5,7 +5,6 @@ import java.util.Date;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -18,39 +17,50 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "payables_balance")
-@TypeAlias("PayablesBalance")
-public class PayablesBalance {
+@Document(collection = "processing")
+@TypeAlias("Processing")
+public class Processing {
+
 	@Transient
-	public static final String SEQUENCE_NAME = "payables_balance_sequence";
+    public static final String SEQUENCE_NAME = "processing_sequence";
 	
+	public Processing(String type, String status, String jsonParams, School school) {
+		super();
+		this.type = type;
+		this.status = status;
+		this.school = school;
+		this.jsonParams = jsonParams;
+	}
+
 	@Id
 	private String id;
 	
-	@DBRef(lazy = true)
-	private CodeGroups period;
-	
-	private double amount;
+	private String type;
+	private String status;
 
-	@DBRef(lazy = true)
-	private AccountPayablesSettings aps;
+	private String jsonParams;
 	
-	@DBRef(lazy = true)
-	private Student student;
-
+	private String statusMessage;
+	
 	@CreatedDate
 	private Date createdDate;
-
-	@LastModifiedDate
-	private Date lastModifiedDate;
 
 	@CreatedBy
 	@DBRef
 	private User user;
+	
+	@DBRef
+	private School school;
+
+	@Override
+	public String toString() {
+		return String.format("Processing [id=%s, type=%s, status=%s, createdDate=%s, user=%s, school=%s]", id, type,
+				status, createdDate, user, school);
+	}
+	
 }

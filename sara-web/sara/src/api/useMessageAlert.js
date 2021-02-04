@@ -69,6 +69,7 @@ const useMessageAlert = () => {
 
     return {
         props: globalProps.alert,
+        getFormatedErrorMessage: getFormatedErrorMessage,
         closeMsgAlert: closeMsgAlert,
         showErrorMsgAlert: showErrorMsgAlert,
         showErrorAlert: showErrorAlert,

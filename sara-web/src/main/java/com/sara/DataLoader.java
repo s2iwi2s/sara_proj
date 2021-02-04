@@ -13,14 +13,10 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.github.javafaker.Faker;
 import com.sara.data.document.Role;
 import com.sara.data.document.School;
 import com.sara.data.document.User;
-import com.sara.data.repository.CodeGroupsMongoRepository;
 import com.sara.data.repository.RoleMongoRepository;
 import com.sara.data.repository.SchoolMongoRepository;
 import com.sara.data.repository.UserMongoRepository;
@@ -86,16 +82,5 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 //		userMongoRepository.save(user1);
 //		userMongoRepository.save(user2);
 		userMongoRepository.saveAll(Arrays.asList(user1, user2));
-	}
-
-
-	private void toJson(Object obj) {
-		try {
-			ObjectMapper jsonObjMap = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
-			String json = jsonObjMap.writeValueAsString(obj);
-			log.debug("jInfo:\n" + json);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
 	}
 }

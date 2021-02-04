@@ -3,7 +3,7 @@ import Utils, { API_URL_BASE } from "../Utils";
 
 
 export const ENTITY = "accountPayablesSettings";
-const sort = "period desc,priority,description,amount"
+const sort = "period,desc,priority,asc,description,amount"
 
 export const getList = (searchValue, page, pageSize) => axios.get(`${Utils.urlListPattern(ENTITY)}?searchValue=${searchValue}&page=${page}&size=${pageSize}&sort=${sort}`)
 export const get = (id) => axios.get(`${Utils.urlListPattern(ENTITY)}/${id}`)

@@ -1,5 +1,9 @@
 package com.sara.service.impl;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -127,5 +131,16 @@ public class StudentServiceImpl extends AbstractService<Student, StudentDto, Str
 
 	public StudentSearchDto searchByIdDto(String id) {
 		return studentMapper.toSearchDto(findById(id));
+	}
+
+	public List<Student> findAll(School school) {
+		StudentMongoRepository srepo = ((StudentMongoRepository) repo);
+//		List<Student> list = srepo.findBySchoolOrderByLastNameAndFirstName(school);
+		List<Student> list = srepo.findBySchool(school);
+		log.info("[findAll] list.size={}", list.size());
+		
+		Comparator<Student> comparebyFullNameAndLevel = Comparator.comparing(Student::getFullName)
+				.thenComparing(Student::getLevelPriority);
+		return list.stream().sorted(comparebyFullNameAndLevel).collect(Collectors.toList());
 	}
 }

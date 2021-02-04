@@ -50,7 +50,9 @@ public class SchoolServiceImpl extends AbstractService<School, SchoolDto, String
 		searchbb.or(QSchool.school.address.containsIgnoreCase(searchValue));
 //		booleanBuilder.or(QSchool.school.address.address1.containsIgnoreCase(searchValue));
 	}
-
+	public SchoolDto save(School entity) {
+		return toDto(repo.save(entity));
+	}
 	@Override
 	public SchoolDto saveDto(SchoolDto dto, School school) {
 		School entity = toEntity(dto);
@@ -62,7 +64,7 @@ public class SchoolServiceImpl extends AbstractService<School, SchoolDto, String
 			CodeGroups currentPeriod = codeGroupsServiceImpl.findById(entity.getCurrentPeriod().getId());
 			entity.setCurrentPeriod(currentPeriod);
 		}
-		return super.save(entity, school);
+		return save(entity);
 	}
 
 	@Override

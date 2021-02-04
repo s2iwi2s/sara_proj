@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.sara.service.exception.ClosePeriodException;
 import com.sara.service.exception.DuplicateException;
 import com.sara.service.exception.GradeLevelPayablesResponseException;
 import com.sara.service.exception.InvalidCredentialsException;
@@ -38,6 +39,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(value = { GradeLevelPayablesResponseException.class })
 	public ResponseEntity<Object> handleGradeLevelPayablesResponseException(Exception ex,
+			WebRequest request) {
+		return handleExceptionInternal(ex, ex.getMessage(), null, HttpStatus.INTERNAL_SERVER_ERROR, request);
+	}
+
+	@ExceptionHandler(value = { ClosePeriodException.class })
+	public ResponseEntity<Object> handleClosePeriodException(Exception ex,
 			WebRequest request) {
 		return handleExceptionInternal(ex, ex.getMessage(), null, HttpStatus.INTERNAL_SERVER_ERROR, request);
 	}

@@ -29,6 +29,7 @@ public class Constants {
 	public static final String URL_BILLING_USER_PAYABLES = "/payables/{id}";
 	public static final String URL_BILLING_USER_PAYABLES_BY_PERIOD = "/payables/{id}/period/{periodId}";
 
+	public static final String URL_PROCESS_BY_PERIOD = "/period";
 	public static final String URL_LOGO = "/r/logo/{logo}";
 
 //	public static enum ADDRESS_SEARCH_TYPE {
@@ -52,7 +53,7 @@ public class Constants {
 		try {
 			ObjectMapper jsonObjMap = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
 			String json = jsonObjMap.writeValueAsString(obj);
-			log.debug("jInfo:\n" + json);
+			log.info("jInfo:\n" + json);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}

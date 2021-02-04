@@ -29,6 +29,7 @@ import AccountPayablesSettingsDetailComponent from './forms/accountPayables/Acco
 import GradeLevelPayablesListComponent from './forms/gradeLevelPayables/GradeLevelPayablesListComponent';
 import GradeLevelPayablesDetailsComponent from './forms/gradeLevelPayables/GradeLevelPayablesDetailsComponent';
 import GlobalAlertMsgDialog from './forms/common/GlobalAlertMsgDialog';
+import ClosePeriodComponent from './forms/closePeriod/ClosePeriodComponent';
 
 const useStylesRouting = makeStyles((theme) => ({
  root: {
@@ -104,6 +105,8 @@ const AppRouting = () => {
        <AuthenticatedRoute path={PAGE_URL.GRADE_LEVEL_PAYABLES_LIST} exact component={GradeLevelPayablesListComponent} />
        <AuthenticatedRoute path={PAGE_URL.GRADE_LEVEL_PAYABLES_DETAIL} exact component={GradeLevelPayablesDetailsComponent} />
        <AuthenticatedRoute path={PAGE_URL.GRADE_LEVEL_PAYABLES_DETAIL_URL} exact component={GradeLevelPayablesDetailsComponent} />
+       <AuthenticatedRoute path={PAGE_URL.CLOSE_PERIOD_DETAIL_URL} exact component={ClosePeriodComponent} />
+
 
        <Route component={ErrorComponent} />
       </Switch>

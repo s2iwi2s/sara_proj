@@ -31,25 +31,25 @@ public class Payables {
 	@Transient
 	public static final String SEQUENCE_INVOICE_NUM = "payables_invoice_sequence";
 
-	public Payables(String code, String name, double amount, double payment, int order, Student student, double balance,
-			double paid) {
-		super();
-		this.code = code;
-		this.name = name;
-		this.amount = amount;
-		this.payment = payment;
-		this.order = order;
-		this.student = student;
-		this.balance = balance;
-		this.paid = paid;
-	}
+//	public Payables(String code, String name, double amount, double payment, int order, Student student, double balance,
+//			double paid) {
+//		super();
+//		this.code = code;
+//		this.name = name;
+//		this.amount = amount;
+//		this.payment = payment;
+//		this.order = order;
+//		this.student = student;
+//		this.balance = balance;
+//		this.paid = paid;
+//	}
 	public Payables(AccountPayablesSettings aps, Student student) {
 		this.aps = aps;
 		this.student = student;
 		this.amount = aps.getAmount();
 		this.order = aps.getPriority();
 		this.code = aps.getId();
-		this.name = aps.getDescription();
+		this.name = aps.getLabel();
 	}
 
 	public Payables(AccountPayablesSettings aps) {
@@ -73,13 +73,15 @@ public class Payables {
 	private double payment;
 	private int order;
 	
-	private String status;
+	private String statusCode;
 
 	@DBRef(lazy = true)
 	private AccountPayablesSettings aps;
 	
 	@DBRef(lazy = true)
-	private Student student;// Student.id
+	private Student student;
+	@DBRef(lazy = true)
+	private School school;
 
 	@CreatedDate
 	private Date createdDate;
@@ -88,6 +90,7 @@ public class Payables {
 	private Date lastModifiedDate;
 
 	@CreatedBy
+	@DBRef
 	private User user;
 
 	@Transient
