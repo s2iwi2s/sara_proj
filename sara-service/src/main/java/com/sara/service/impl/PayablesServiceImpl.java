@@ -3,7 +3,9 @@ package com.sara.service.impl;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.group;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.match;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.newAggregation;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.previousOperation;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.project;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.sort;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,6 +16,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -21,11 +24,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationOperation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import com.querydsl.core.BooleanBuilder;
@@ -34,13 +40,19 @@ import com.sara.data.document.AccountPayablesSettings;
 import com.sara.data.document.CodeGroups;
 import com.sara.data.document.GradeLevelPayables;
 import com.sara.data.document.Payables;
+import com.sara.data.document.PayablesOld;
+import com.sara.data.document.PaymentBalance;
+import com.sara.data.document.Processing;
 import com.sara.data.document.QPayables;
 import com.sara.data.document.School;
 import com.sara.data.document.Student;
 import com.sara.data.document.User;
 import com.sara.data.repository.AccountPayablesSettingsMongoRepository;
 import com.sara.data.repository.PayablesMongoRepository;
+import com.sara.data.repository.PayablesOldMongoRepository;
+import com.sara.data.repository.PaymentBalanceRepository;
 import com.sara.service.AbstractService;
+import com.sara.service.Constants;
 import com.sara.service.SequenceGeneratorService;
 import com.sara.service.bean.BillingByInvoice;
 import com.sara.service.bean.Invoice;
@@ -48,11 +60,10 @@ import com.sara.service.bean.PaymentInfo;
 import com.sara.service.bean.StudentPayables;
 import com.sara.service.dtos.AccountPayablesSettingsDto;
 import com.sara.service.dtos.PayablesDto;
-import com.sara.service.dtos.StudentSearchDto;
+import com.sara.service.exception.ClosePeriodException;
 import com.sara.service.exception.GradeLevelPayablesResponseException;
 import com.sara.service.mappers.AccountPayablesSettingsMapper;
 import com.sara.service.mappers.PayablesMapper;
-import com.sara.service.mappers.StudentMapper;
 
 @Service
 public class PayablesServiceImpl extends AbstractService<Payables, PayablesDto, String> {
@@ -66,13 +77,19 @@ public class PayablesServiceImpl extends AbstractService<Payables, PayablesDto, 
 	private PayablesMapper payablesMapper;
 	private AccountPayablesSettingsMapper accountPayablesSettingsMapper;
 	private MongoTemplate mongoTemplate;
+	private PayablesMongoRepository payablesMongoRepository;
+	private PayablesOldMongoRepository payablesOldMongoRepository;
+	private SchoolServiceImpl schoolServiceImpl;
+	private PaymentBalanceRepository paymentBalanceRepository;
 
 	public PayablesServiceImpl(PayablesMongoRepository repo, SequenceGeneratorService sequenceGeneratorService,
 			MongoTemplate mongoTemplate, StudentServiceImpl studentServiceImpl,
 			GradeLevelPayablesServiceImpl gradeLevelPayablesServiceImpl,
 			AccountPayablesSettingsMongoRepository accountPayablesSettingsMongoRepository,
 			CodeGroupsServiceImpl codeGroupsServiceImpl, PayablesMapper payablesMapper,
-			AccountPayablesSettingsMapper accountPayablesSettingsMapper) {
+			AccountPayablesSettingsMapper accountPayablesSettingsMapper,
+			PayablesOldMongoRepository payablesOldMongoRepository, SchoolServiceImpl schoolServiceImpl,
+			PaymentBalanceRepository paymentBalanceRepository) {
 		super(repo, sequenceGeneratorService);
 		this.studentServiceImpl = studentServiceImpl;
 		this.mongoTemplate = mongoTemplate;
@@ -80,6 +97,11 @@ public class PayablesServiceImpl extends AbstractService<Payables, PayablesDto, 
 		this.accountPayablesSettingsMongoRepository = accountPayablesSettingsMongoRepository;
 		this.codeGroupsServiceImpl = codeGroupsServiceImpl;
 		this.payablesMapper = payablesMapper;
+		this.accountPayablesSettingsMapper = accountPayablesSettingsMapper;
+		this.payablesMongoRepository = repo;
+		this.payablesOldMongoRepository = payablesOldMongoRepository;
+		this.schoolServiceImpl = schoolServiceImpl;
+		this.paymentBalanceRepository = paymentBalanceRepository;
 	}
 
 	@Override
@@ -146,8 +168,14 @@ public class PayablesServiceImpl extends AbstractService<Payables, PayablesDto, 
 
 	public List<PayablesDto> getStudentPayables(Student student, CodeGroups period, String invoiceNo)
 			throws GradeLevelPayablesResponseException {
+		List<Payables> studentPayables = getStudentPayables(student, period, invoiceNo, false);
+		return payablesMapper.toDtos(studentPayables);
+	}
+
+	public List<Payables> getStudentPayables(Student student, CodeGroups period, String invoiceNo, boolean isProcess)
+			throws GradeLevelPayablesResponseException {
 		List<Payables> payablesTmpl = getStudentPayablesTemplate(student, period);
-		List<PaymentInfo> totalPayableList = findPaymentSumByStudent(student, period);
+		List<PaymentInfo> totalPayableList = findPaymentSumByStudent(student, period, isProcess);
 
 		List<Payables> payableList = new ArrayList<Payables>();
 		for (Payables tmpl : payablesTmpl) {
@@ -174,15 +202,16 @@ public class PayablesServiceImpl extends AbstractService<Payables, PayablesDto, 
 					PaymentInfo paymentInfo = ptinfo.get();
 					tmpl.setBalance(tmpl.getAmount() - paymentInfo.getPayment());
 					tmpl.setPaid(paymentInfo.getPayment());
-
+					tmpl.setPeriod(period);
 				} else {
+					tmpl.setPeriod(period);
 					tmpl.setBalance(tmpl.getAmount());
 				}
 				payableList.add(tmpl);
 			}
 		}
 
-		return payablesMapper.toDtos(payableList);
+		return payableList;
 	}
 
 	public List<Payables> getStudentPayablesTemplate(Student student, CodeGroups period)
@@ -214,9 +243,12 @@ public class PayablesServiceImpl extends AbstractService<Payables, PayablesDto, 
 				entity.setInvoiceNo(invoiceNo);
 				entity.setInvoiceDate(invoiceDate);
 				entity.setPeriod(period);
+				entity.setSchool(entity.getStudent().getSchool());
+				entity.setStatusCode(Constants.PROCESS_STATUS_CREATED);
 				Optional<AccountPayablesSettings> apsTemp = accountPayablesSettingsMongoRepository
 						.findById(entity.getCode());
 				entity.setAps(apsTemp.get());
+				entity.setOrder(apsTemp.get().getPriority());
 			}
 		}
 		repo.saveAll(list);
@@ -232,32 +264,45 @@ public class PayablesServiceImpl extends AbstractService<Payables, PayablesDto, 
 		return payablesMapper.toDtos(((PayablesMongoRepository) repo).findByStudentAndPeriod(student, period));
 	}
 
-	public List<PaymentInfo> findPaymentSumByStudent(Student student, CodeGroups period) {
-		return findPaymentSumByStudent(student, period, null);
+	public List<PaymentInfo> findPaymentSumByStudent(Student student, CodeGroups period, boolean isProcess) {
+		return findPaymentSumByStudent(student, period, null, isProcess);
 	}
 
 	public List<PaymentInfo> findPaymentSumByStudent(Student student, CodeGroups period, String invoiceNo) {
-		AggregationOperation match = match(Criteria.where("student").is(student));
-		AggregationOperation match2 = match(Criteria.where("period").is(period));
+		return findPaymentSumByStudent(student, period, invoiceNo, false);
+	}
 
-		Aggregation aggregation;
+	public List<PaymentInfo> findPaymentSumByStudent(Student student, CodeGroups period, String invoiceNo,
+			boolean isProcess) {
+		Criteria filter = Criteria.where("student").is(student).and("period").is(period);
 		if (!StringUtils.isBlank(invoiceNo)) {
-			AggregationOperation match3 = match(Criteria.where("invoiceNo").is(invoiceNo));
-			aggregation = newAggregation(match, match2, match3, group("code", "name").sum("payment").as("payment"),
-//					sort(Sort.Direction.ASC, "aps.priority"),
-					project("code", "name", "payment"));
-
-		} else {
-			aggregation = newAggregation(match, match2, group("code", "name").sum("payment").as("payment"),
-//					sort(Sort.Direction.ASC, previousOperation(), "order"),
-					project("code", "name", "payment"));
-
+			filter.and("invoiceNo").is(invoiceNo);
+		}
+		if (isProcess) {
+			filter.and("statusCode").is(Constants.PROCESS_STATUS_PROCESSING);
 		}
 
+		AggregationOperation match = match(filter);
+
+		List<PaymentInfo> list = new ArrayList<PaymentInfo>();
+		Aggregation aggregation = newAggregation(match,
+				group("student", "order", "code", "name").sum("payment").as("payment"),
+				sort(Sort.Direction.ASC, previousOperation(), "order"),
+				project("student", "order", "code", "name", "payment"));
 		AggregationResults<PaymentInfo> groupResults = mongoTemplate.aggregate(aggregation, Payables.class,
 				PaymentInfo.class);
-		List<PaymentInfo> list = groupResults.getMappedResults();
+		list = groupResults.getMappedResults();
 		return list;
+	}
+
+	public void updateStudentPayablesStatus(Student student, CodeGroups period, String status) {
+		Criteria filter = Criteria.where("student").is(student).and("period").is(period);
+		Query query = new Query(filter);
+
+		Update update = new Update();
+		update.set("statusCode", status);
+		mongoTemplate.updateMulti(query, update, Payables.class);
+		mongoTemplate.updateMulti(query, update, PayablesOld.class);
 	}
 
 	public BillingByInvoice getBillingByInvoiceList(Student student, String periodId)
@@ -266,9 +311,6 @@ public class PayablesServiceImpl extends AbstractService<Payables, PayablesDto, 
 
 		GradeLevelPayables gradeLevelPayables = gradeLevelPayablesServiceImpl.findByLevelAndPeriod(student.getLevel(),
 				period, student.getSchool());
-//		List<AccountPayablesSettings> accountPayablesSettings = gradeLevelPayables.getAccountPayablesSettings();
-//		accountPayablesSettings.sort(Comparator.comparing(AccountPayablesSettings::getPriority));
-
 		List<PayablesDto> payments = findPaymentByStudent(student, period);
 		payments.sort(Comparator.comparing(PayablesDto::getInvoiceDate, Collections.reverseOrder()));
 
@@ -285,13 +327,13 @@ public class PayablesServiceImpl extends AbstractService<Payables, PayablesDto, 
 			invoice.getPayablesMap().put(payables.getCode(), payables);
 		}
 		List<AccountPayablesSettings> accountPayablesSettings = gradeLevelPayables.getAccountPayablesSettings();
-		List<AccountPayablesSettingsDto> acctPayablesList = null;
-		if(accountPayablesSettings != null) {
-			acctPayablesList = new ArrayList<AccountPayablesSettingsDto>();
-		} else {
-			acctPayablesList = accountPayablesSettingsMapper
-					.toDtos(accountPayablesSettings);
-		}
+
+		log.info("accountPayablesSettings={}", accountPayablesSettings);
+
+		List<AccountPayablesSettingsDto> acctPayablesList = accountPayablesSettingsMapper
+				.toDtos(accountPayablesSettings);
+
+		log.info("acctPayablesList.size={}", acctPayablesList.size());
 		return new BillingByInvoice(acctPayablesList, invoiceList);
 	}
 
@@ -319,6 +361,67 @@ public class PayablesServiceImpl extends AbstractService<Payables, PayablesDto, 
 			String id = sequenceGeneratorService.nextSeq(Payables.SEQUENCE_NAME);
 			entity.setId(id);
 		}
+		entity.setStatusCode(Constants.PROCESS_STATUS_CREATED);
 		return super.save(entity, school);
+	}
+
+	public void processPayables(Processing processing, CodeGroups fromPeriod, CodeGroups toPeriod, School school)
+			throws ClosePeriodException, GradeLevelPayablesResponseException {
+		log.info("[processPayables] fromPeriod={}, school period={}", fromPeriod.getId(),
+				school.getCurrentPeriod().getId());
+
+		// copy payables to payablesold and mark with 'P' for processing
+		List<PayablesOld> payables = clonePayablesToPayablesOld(school, fromPeriod);
+		payablesOldMongoRepository.saveAll(payables);
+
+		// get all student
+		List<Student> students = studentServiceImpl.findAll(school);
+
+		// process each student
+		for (Student s : students) {
+			updateStudentPayablesStatus(s, fromPeriod, Constants.PROCESS_STATUS_PROCESSING);
+
+			// get student payables marked with processing
+			List<Payables> list = getStudentPayables(s, fromPeriod, null, true);
+			List<Payables> studentPayablesFiltered = list.stream().filter(p -> p.getBalance() != 0)
+					.collect(Collectors.toList());
+			for (Payables p : studentPayablesFiltered) {
+				p.setPeriod(toPeriod);
+			}
+			List<PaymentBalance> bals = payablesMapper.toBal(studentPayablesFiltered);
+			paymentBalanceRepository.saveAll(bals);
+
+			updateStudentPayablesStatus(s, fromPeriod, Constants.PROCESS_STATUS_COMPLETED);
+			payablesMongoRepository.deleteByStudentAndStatusCode(s, Constants.PROCESS_STATUS_PROCESSING);
+		}
+		updateCurrentPeriod(toPeriod, school);
+	}
+
+	private void updateCurrentPeriod(CodeGroups toPeriod, School school) {
+		school.setCurrentPeriod(toPeriod);
+		schoolServiceImpl.save(school);
+	}
+
+	private List<PayablesOld> clonePayablesToPayablesOld(School school, CodeGroups fromPeriod)
+			throws ClosePeriodException {
+		Query query = new Query(Criteria.where("period").is(fromPeriod).and("school").is(school));
+		long count = mongoTemplate.count(query, Payables.class);
+		if (count == 0) {
+			throw new ClosePeriodException(
+					String.format("No records found from period: %s", fromPeriod.getDescription()));
+		}
+
+		Update update = new Update();
+		update.set("statusCode", Constants.PROCESS_STATUS_PENDING);
+		mongoTemplate.updateMulti(query, update, Payables.class);
+
+		query = new Query(Criteria.where("period").is(fromPeriod).and("school").is(school).and("statusCode")
+				.is(Constants.PROCESS_STATUS_PENDING));
+		//long pendingCount = mongoTemplate.count(query, Payables.class);
+
+		List<Payables> payables = payablesMongoRepository.findBySchoolAndPeriodAndStatusCode(school, fromPeriod,
+				Constants.PROCESS_STATUS_PENDING);
+
+		return payablesMapper.toOld(payables);
 	}
 }

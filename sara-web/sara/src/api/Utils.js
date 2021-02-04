@@ -61,8 +61,12 @@ export const REQUIRED_TARGET_DATE = 'Target date is required';
 
 
 export const OPTIONS = {
+    YESNO: 'YESNO',
     YES: 'YES',
     NO: 'NO',
+    OKCANCEL: 'OKCANCEL',
+    OK: 'OK',
+    CANCEL: 'CANCEL'
 }
 export const PAGE_URL = {
     LOGO_URL: '/r/logo/',
@@ -94,7 +98,9 @@ export const PAGE_URL = {
     CODE_GROUPS_LIST: '/ui/code-groups-list',
     ADDRESS_LIST: '/ui/address-list',
     ADDRESS_DETAIL: '/ui/address-detail/:id',
-    USER_ADDRESS_DETAIL: '/ui/address-detail/:id/:refId/:typeId'
+    USER_ADDRESS_DETAIL: '/ui/address-detail/:id/:refId/:typeId',
+    CLOSE_PERIOD_DETAIL_URL: '/ui/close-period-detail'
+
 }
 export const ERROR_CODE = {
     LOGIN_ERROR: '100000',

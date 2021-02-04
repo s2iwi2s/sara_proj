@@ -10,7 +10,6 @@ import com.sara.service.impl.CodeGroupsServiceImpl;
 import com.sara.service.impl.SchoolServiceImpl;
 import com.sara.service.impl.UserServiceImpl;
 import com.sara.web.common.Constants;
-import com.sara.web.common.Response;
 import com.sara.web.controller.endUser.EndUserListService;
 import com.sara.web.controller.endUser.EndUserResponse;
 

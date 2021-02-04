@@ -9,7 +9,8 @@ export default function GlobalAlertMsgDialog() {
 
     return (
         <>
-            <Dialog fullWidth={true} maxWidth="md"
+            {/* <Dialog fullWidth={true} maxWidth="md" */}
+            <Dialog
                 open={props.open}
                 onClose={() => closeMsgAlert()}
                 aria-labelledby="alert-dialog-title"

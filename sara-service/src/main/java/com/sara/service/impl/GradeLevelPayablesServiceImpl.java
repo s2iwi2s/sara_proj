@@ -77,6 +77,23 @@ public class GradeLevelPayablesServiceImpl extends AbstractService<GradeLevelPay
 
 	}
 
+	public List<GradeLevelPayables> findByPeriod(CodeGroups period, School school)
+			throws GradeLevelPayablesResponseException {
+//		List<GradeLevelPayables> list = ((GradeLevelPayablesMongoRepository) repo)
+//				.findByLevelAndPeriodAndActiveOrderByAccountPayablesSettingsPriority(level, period, true);
+		Criteria criteria = where("period").is(period).and("school").is(school);
+//		Sort sort = by(Sort.Direction.DESC, "accountPayablesSettings");
+		List<GradeLevelPayables> list = mongoTemplate.find(Query.query(criteria), GradeLevelPayables.class);
+
+		log.debug("list=" + list);
+		if (list.size() == 0) {
+			throw new GradeLevelPayablesResponseException("Grade Level Payables has no active settings");
+		}
+
+		return list;
+
+	}
+
 	@Override
 	public GradeLevelPayablesDto toDto(GradeLevelPayables entity) {
 		return gradeLevelPayablesMapper.toDto(entity);

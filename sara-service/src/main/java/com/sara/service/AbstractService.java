@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import com.querydsl.core.BooleanBuilder;
@@ -13,7 +12,6 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.sara.data.document.School;
 import com.sara.data.document.User;
 import com.sara.data.repository.CustomRepository;
-import com.sara.service.dtos.SchoolDto;
 
 /**
  * 

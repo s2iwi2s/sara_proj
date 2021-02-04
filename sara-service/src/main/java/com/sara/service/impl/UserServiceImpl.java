@@ -83,4 +83,8 @@ public class UserServiceImpl extends AbstractService<User, UserDto, String> {
 	public User findByUserName(String userName) {
 		return ((UserMongoRepository) repo).findByUserName(userName);
 	}
+
+	public UserDto findByUserNameDto(String userName) {
+		return toDto(((UserMongoRepository) repo).findByUserName(userName));
+	}
 }

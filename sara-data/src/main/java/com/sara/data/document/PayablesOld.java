@@ -2,7 +2,11 @@ package com.sara.data.document;
 
 import java.util.Date;
 
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -22,7 +26,6 @@ import lombok.Setter;
 @Document(collection = "payables_old")
 @TypeAlias("PayablesOld")
 public class PayablesOld {
-
 	@Id
 	private String id;
 
@@ -38,18 +41,36 @@ public class PayablesOld {
 	private double payment;
 	private int order;
 	
-	private String status;
+	private String statusCode;
 
 	@DBRef(lazy = true)
 	private AccountPayablesSettings aps;
 	
 	@DBRef(lazy = true)
 	private Student student;
+	@DBRef(lazy = true)
+	private School school;
 
+	@CreatedDate
 	private Date createdDate;
 
+	@LastModifiedDate
 	private Date lastModifiedDate;
 
+	@CreatedBy
+	@DBRef
 	private User user;
+
+	@Transient
+	private double balance;
+
+	@Transient
+	private double paid;
+
+	@Override
+	public String toString() {
+		return String.format("PayablesOld [id=%s, code=%s, name=%s, amount=%s, payment=%s, balance=%s, paid=%s]",
+				id, code, name, amount, payment, balance, paid);
+	}
 
 }

@@ -4,6 +4,8 @@ import { Alert } from '@material-ui/lab';
 import { OPTIONS } from '../../api/Utils';
 
 export default function ConfirmMsgDialog(props) {
+    const { open, closeDialog, title, msg, type = OPTIONS.YESNO } = props
+
     const setReturnValue = (value) => {
         props.closeDialog();
         props.setDialogSelection(value)
@@ -11,29 +13,36 @@ export default function ConfirmMsgDialog(props) {
 
     return (
         <>
-            <Dialog fullWidth={true} maxWidth="md"
-                open={props.open}
-                onClose={props.closeDialog}
+            {console.log(`[ConfirmMsgDialog.return] type=${type}`)}
+            <Dialog
+                open={open}
+                onClose={closeDialog}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description">
 
                 <DialogTitle id="alert-dialog-title">
                     <Alert severity="info" align="right">
                         <Typography variant="h6">
-                            {props.title}
+                            {title}
                         </Typography>
                     </Alert>
                 </DialogTitle>
 
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        {props.msg}
+                        {msg}
                     </DialogContentText>
                 </DialogContent>
 
                 <DialogActions>
-                    <Button onClick={() => setReturnValue(OPTIONS.YES)}>YES</Button>
-                    <Button onClick={() => setReturnValue(OPTIONS.NO)}>NO</Button>
+                    {type === OPTIONS.YESNO && <>
+                        <Button onClick={() => setReturnValue(OPTIONS.YES)}>{OPTIONS.YES}</Button>
+                        <Button onClick={() => setReturnValue(OPTIONS.NO)}>{OPTIONS.NO}</Button>
+                    </>}
+                    {type === OPTIONS.OKCANCEL && <>
+                        <Button onClick={() => setReturnValue(OPTIONS.OK)}>{OPTIONS.OK}</Button>
+                        <Button onClick={() => setReturnValue(OPTIONS.CANCEL)}>{OPTIONS.CANCEL}</Button>
+                    </>}
                 </DialogActions>
 
             </Dialog>

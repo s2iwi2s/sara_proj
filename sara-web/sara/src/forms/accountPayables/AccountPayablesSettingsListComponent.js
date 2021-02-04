@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 
 import { ERROR_CODE, INIT_STATUS, OPTIONS, PAGE_URL } from '../../api/Utils'
 import CustomTableGrid from '../common/CustomTableGrid'
 
-import { deleteItem, getList } from '../../api/accountPayablesSettings/AccountPayablesSettingsService';
+import { deleteItem, getList, getOptions } from '../../api/accountPayablesSettings/AccountPayablesSettingsService';
 import { selectPageable, setPageable, setSelectedItem } from '../../api/accountPayablesSettings/AccountPayablesSettingsSlice';
 import TitleComponent from '../common/TitleComponent';
 import useMessageAlert from "../../api/useMessageAlert"
 import ConfirmMsgDialog from '../common/ConfirmMsgDialog';
+import SubTitleComponent from '../common/SubTitleComponent';
+import { Box, Grid, Paper } from '@material-ui/core';
+import SelectGrid from '../common/SelectGrid';
 
 export default function AccountPayablesSettingsListComponent(props) {
   const dispatch = useDispatch();
@@ -18,6 +21,34 @@ export default function AccountPayablesSettingsListComponent(props) {
 
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [deleteId, setDeleteId] = useState();
+
+  const [optionsList, setOptionsList] = useState({
+    periodList: []
+  });
+
+  const [filter, setFilter] = useState({
+    period: { id: 'All' }
+  });
+
+  useEffect(() => {
+    doInitOptions()
+  }, []);
+
+  const doInitOptions = () => {
+    getOptions().then(response => {
+      let list = {
+        ...response.data.listService,
+        periodList: [{
+          "id": "ALL",
+          "description": "All",
+        },
+        ...response.data.listService.periodList]
+      }
+
+      setOptionsList(list)
+    })
+  }
+
 
   const retrieve = ({ searchValue, paging }) => getList(searchValue, paging.currentPage, paging.rowsPerPage)
     .then(({ data }) => dispatch(setPageable({
@@ -140,9 +171,31 @@ export default function AccountPayablesSettingsListComponent(props) {
     }
   ];
 
+
+  const changeSelectState = (e) => {
+    const { name, value } = e.target
+    console.log(`[AccountPayablesSettingsListComponent.changeSelectState] name=${name}, value=${value}`)
+    setFilter({
+      ...filter,
+      [name]: { id: value }
+    })
+    console.log(`[AccountPayablesSettingsListComponent.changeSelectState]  filter=`, filter)
+  }
   return (
     <>
       <TitleComponent>Accounts Payables Settings List</TitleComponent>
+
+      <Box py={5}>
+        <Paper elevation={2} variant="elevation" >
+          <Box pb={3} px={3}>
+            <SubTitleComponent>Filter</SubTitleComponent>
+            <Grid container spacing={3}>
+              <SelectGrid sm={3} name="period" label="Period" value={filter.period.id} options={optionsList.periodList}
+                onChange={e => changeSelectState(e)} />
+            </Grid>
+          </Box>
+        </Paper>
+      </Box>
 
       <CustomTableGrid
         store={currPageable}

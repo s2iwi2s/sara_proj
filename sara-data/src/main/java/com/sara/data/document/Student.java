@@ -62,11 +62,20 @@ public class Student {
 	private School school;
 
 	@Transient
+	public String getFullName() {
+		return lastName + ", " + firstName;
+	}
+	@Transient
+	public int getLevelPriority() {
+		return level.getPriority();
+	}
+
+	@Transient
 	public String getSchoolYear() {
 		if (school != null && school.getCurrentPeriod() != null && school.getCurrentPeriod().getValue() != null) {
 			return school.getCurrentPeriod().getValue();
 		}
-		
+
 		return "";
 	}
 

@@ -295,16 +295,21 @@ const PayablesHtmlComponent = (props) => {
             <TableBody>
               {
                 props.store.billingByInvoice.list.map(({ invoiceNo, invoiceDate, payablesMap }) => (
-                  < StyledTableRow >
+                  <StyledTableRow key={invoiceNo}>
                     <TableCell>{moment(invoiceDate).format('lll')}</TableCell>
                     <TableCell>{invoiceNo}</TableCell>
                     {
                       props.store.billingByInvoice.accountPayablesSettings.map(({ id }) => (
-                        <TableCell key={id} align="right">{(payablesMap[id] ? payablesMap[id].payment : 0).toLocaleString(undefined, {
-                          maximumFractionDigits: 2,
-                          minimumFractionDigits: 2
-                        }
-                        )}</TableCell>
+                        <>
+                          {console.log(`invoiceNo=${invoiceNo}, id=$id, payablesMap==>`, payablesMap)}
+
+                          <TableCell key={id} align="right">{(payablesMap[id] ? payablesMap[id].payment : 0).toLocaleString(undefined, {
+                            maximumFractionDigits: 2,
+                            minimumFractionDigits: 2
+                          }
+                          )}
+                          </TableCell>
+                        </>
                       ))
                     }
                   </ StyledTableRow>
