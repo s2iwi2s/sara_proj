@@ -54,6 +54,7 @@ const SearchResultsHtmlComponent = (props) => {
 
  return (
   <>
+   {console.log(`[SearchResultsHtmlComponent.useEffect] props.store=>`, props.store)}
    <SubTitleComponent>Search Results</SubTitleComponent>
    {/* <PaginationComponent
     paging={paging}

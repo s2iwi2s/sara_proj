@@ -9,7 +9,7 @@ export default function GlobalAlertMsgDialog() {
 
     return (
         <>
-            {/* <Dialog fullWidth={true} maxWidth="md" */}
+            {console.log(`[GlobalAlertMsgDialog.return] props=>`, props)}
             <Dialog
                 open={props.open}
                 onClose={() => closeMsgAlert()}

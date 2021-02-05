@@ -169,7 +169,7 @@ const PayablesHtmlComponent = (props) => {
               {
                 props.store.studentPayables.payables.map((row, i) => (
                   < StyledTableRow key={row.id}>
-                    <TableCell>{row.aps.label}</TableCell>
+                    <TableCell>{row.aps ? row.aps.label : row.name}</TableCell>
 
                     {row.code === 'balance' &&
                       <>
@@ -283,7 +283,7 @@ const PayablesHtmlComponent = (props) => {
           <Table>
             <TableHead>
               <StyledTableHeadRow>
-                <StyledTableHeadCell variant="head" style={{ width: "10%" }} >Date</StyledTableHeadCell>
+                <StyledTableHeadCell variant="head" style={{ width: "15%" }} >Date</StyledTableHeadCell>
                 <StyledTableHeadCell variant="head" style={{ width: "10%" }} >Invoice #</StyledTableHeadCell>
                 {
                   props.store.billingByInvoice.accountPayablesSettings.map(({ id, label }) => (

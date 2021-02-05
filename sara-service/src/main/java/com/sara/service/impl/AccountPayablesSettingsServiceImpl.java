@@ -20,6 +20,7 @@ import com.sara.data.document.School;
 import com.sara.data.document.User;
 import com.sara.data.repository.AccountPayablesSettingsMongoRepository;
 import com.sara.service.AbstractService;
+import com.sara.service.Constants;
 import com.sara.service.SequenceGeneratorService;
 import com.sara.service.dtos.AccountPayablesSettingsDto;
 import com.sara.service.exception.NotFoundException;
@@ -54,7 +55,7 @@ public class AccountPayablesSettingsServiceImpl
 	public Predicate findAllPredicate(String periodId, User user, BooleanBuilder searchbb) {
 		BooleanBuilder mainbb = new BooleanBuilder();
 		log.info("[findAllPredicate] periodId={}", periodId);
-		if(!"all".equalsIgnoreCase(periodId)) {
+		if (!"all".equalsIgnoreCase(periodId)) {
 			mainbb.and(QAccountPayablesSettings.accountPayablesSettings.period.id.eq(periodId));
 		}
 
@@ -135,5 +136,10 @@ public class AccountPayablesSettingsServiceImpl
 			entity.setPaymentPeriod(paymentPeriod);
 		}
 		return super.save(entity, school);
+	}
+
+	public List<AccountPayablesSettings> getOldAccounts(School school) {
+		return ((AccountPayablesSettingsMongoRepository) repo)
+				.findByLabelAndSchoolAndPeriod(Constants.OLD_ACCOUNTS, school, school.getCurrentPeriod());
 	}
 }

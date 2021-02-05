@@ -1,5 +1,6 @@
 package com.sara.data.document;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -19,6 +20,8 @@ import lombok.Setter;
 @Document(collection = "payment_balance")
 @TypeAlias("PaymentBalance")
 public class PaymentBalance {
+	@Id
+	private String id;
 	@DBRef
 	private Student student;
 	@DBRef
@@ -27,16 +30,16 @@ public class PaymentBalance {
 	private String name;
 	private double amount;
 	private double paid;
-	private double balance;
 	private int order;
+	
 	@DBRef
 	private School school;
 
 	@Override
 	public String toString() {
 		return String.format(
-				"PaymentBalance [student=%s, code=%s, name=%s, amount=%s, paid=%s, balance=%s, order=%s, period=%s, school=%s]",
-				student.getFullName(), code, name, amount, paid, balance, order, period.getDescription(),
+				"PaymentBalance [student=%s, code=%s, name=%s, amount=%s, paid=%s, order=%s, period=%s, school=%s]",
+				student.getFullName(), code, name, amount, paid, order, period.getDescription(),
 				school.getName());
 	}
 }

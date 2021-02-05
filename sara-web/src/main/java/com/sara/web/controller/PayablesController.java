@@ -91,6 +91,9 @@ public class PayablesController {
 
 		BillingByInvoice billingByInvoice = payablesServiceImpl.getBillingByInvoiceList(entity, periodId);
 		map.put("billingByInvoice", billingByInvoice);
+		
+//		PaymentBalanceResponse paymentBalance = payablesServiceImpl.getPaymentBalanceByStudent(entity, periodId);
+//		map.put("paymentBalance", paymentBalance);
 
 		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
 

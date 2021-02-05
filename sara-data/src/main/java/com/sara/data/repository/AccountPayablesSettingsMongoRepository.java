@@ -10,4 +10,5 @@ public interface AccountPayablesSettingsMongoRepository extends CustomRepository
 	List<AccountPayablesSettings> findByActiveAndApplyToAllAndSchoolAndPeriodOrderByPriority(boolean active,
 			boolean applyToAll, School school, CodeGroups period);
 
+	List<AccountPayablesSettings> findByLabelAndSchoolAndPeriod(String label, School school, CodeGroups period);
 }
