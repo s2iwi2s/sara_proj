@@ -9,21 +9,25 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.sara.data.document.CodeGroups;
 import com.sara.data.document.GradeLevelPayables;
+import com.sara.data.document.QAccountPayablesSettings;
 import com.sara.data.document.QGradeLevelPayables;
 import com.sara.data.document.School;
 import com.sara.data.document.User;
 import com.sara.data.repository.GradeLevelPayablesMongoRepository;
 import com.sara.service.AbstractService;
 import com.sara.service.SequenceGeneratorService;
+import com.sara.service.dtos.AccountPayablesSettingsDto;
 import com.sara.service.dtos.GradeLevelPayablesDto;
 import com.sara.service.exception.GradeLevelPayablesResponseException;
 import com.sara.service.mappers.GradeLevelPayablesMapper;
@@ -124,6 +128,31 @@ public class GradeLevelPayablesServiceImpl extends AbstractService<GradeLevelPay
 		}
 
 		return super.save(entity, school);
+	}
+
+	public Page<GradeLevelPayablesDto> findAll(String periodId, String searchValue, Pageable pageable, User user) {
+		BooleanBuilder searchbb = new BooleanBuilder();
+		findAllQBuilder(searchValue, searchbb, user);
+
+		Predicate predicate = findAllPredicate(periodId, user, searchbb);
+		log.info("[findAll] predicate={}", predicate);
+		// return repo.findAll(predicate, pageable);
+		return toDto(repo.findAll(predicate, pageable));
+	}
+
+	public Predicate findAllPredicate(String periodId, User user, BooleanBuilder searchbb) {
+		BooleanBuilder mainbb = new BooleanBuilder();
+		log.info("[findAllPredicate] periodId={}", periodId);
+		if(!"all".equalsIgnoreCase(periodId)) {
+			mainbb.and(QAccountPayablesSettings.accountPayablesSettings.period.id.eq(periodId));
+		}
+
+		BooleanExpression bex = getFindAllBooleanExpression(user);
+		mainbb.and(bex);
+
+		mainbb.and(searchbb);
+		Predicate predicate = mainbb.getValue();
+		return predicate;
 	}
 
 }
