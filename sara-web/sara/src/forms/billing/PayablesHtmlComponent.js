@@ -138,6 +138,31 @@ const PayablesHtmlComponent = (props) => {
           </Grid>
         </Box>
       </Paper>
+      <SubTitleComponent>Old Accounts</SubTitleComponent>
+      <TableContainer component={Paper} elevation={3} variant="elevation" >
+        <Table>
+          <TableHead>
+            <StyledTableHeadRow>
+              <StyledTableHeadCell key={0} variant="head" style={{ width: "10%" }}>Total: P{props.store.paymentBalance.totalBalance.toLocaleString(undefined, {
+                maximumFractionDigits: 2,
+                minimumFractionDigits: 2
+              })}</StyledTableHeadCell>
+              {
+                props.store.paymentBalance.balances.map(({ id, name, balance }) => (
+                  <StyledTableHeadCell key={id} variant="head" align="right" style={{ width: "20%" }}>{name}: P{balance.toLocaleString(undefined, {
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2
+                  })}</StyledTableHeadCell>
+                ))
+              }
+              <StyledTableHeadCell></StyledTableHeadCell>
+            </StyledTableHeadRow>
+          </TableHead>
+          <TableBody>
+
+          </TableBody>
+        </Table>
+      </TableContainer>
       <form onSubmit={handleSubmit(props.doShowSaveBillingDialog)}>
         <TextField
           type="hidden"
