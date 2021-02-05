@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Predicate;
 import com.sara.data.document.AccountPayablesSettings;
 import com.sara.data.document.User;
 import com.sara.service.dtos.AccountPayablesSettingsDto;
@@ -29,7 +31,8 @@ import com.sara.web.controller.accountPayablesSettings.AccountPayablesSettingsRe
 
 @RestController
 @RequestMapping(path = Constants.URL_API_BASE + AccountPayablesSettingsController.URL_BASE)
-public class AccountPayablesSettingsController extends AbstractCrudController<AccountPayablesSettings,AccountPayablesSettingsDto, String> {
+public class AccountPayablesSettingsController
+		extends AbstractCrudController<AccountPayablesSettings, AccountPayablesSettingsDto, String> {
 
 	private static final Logger log = LoggerFactory.getLogger(AccountPayablesSettingsController.class);
 
@@ -55,17 +58,36 @@ public class AccountPayablesSettingsController extends AbstractCrudController<Ac
 
 	}
 
-	@GetMapping("/active/{period}")
-	public ResponseEntity<?> getExceptApplyToAllList(@PathVariable("period") String period,
+	@GetMapping(Constants.URL_LIST + "/period/{periodId}")
+	public ResponseEntity<?> listByPeriod(@PathVariable("periodId") String periodId,
 			@RequestParam("searchValue") String searchValue, @PageableDefault(sort = {
-					"id" }, direction = Direction.ASC, page = Constants.DEFAULT_PAGE_NUMBER, size = Constants.DEFAULT_PAGE_SIZE) Pageable pageable) throws NotFoundException {
+					"id" }, direction = Direction.ASC, page = Constants.DEFAULT_PAGE_NUMBER, size = Constants.DEFAULT_PAGE_SIZE) Pageable pageable) {
+		log.info("[listByPeriod] periodId={}", periodId);
+		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
+		Response<AccountPayablesSettingsDto> res = getResponse(user);
+		res.setSearchValue(searchValue);
+
+		Page<AccountPayablesSettingsDto> pagingList = null;
+		pagingList = getService().findAll(periodId, searchValue, pageable, user);
+
+		res.setPagingList(pagingList);
+		res.setListService(null);
+		return new ResponseEntity<Response<AccountPayablesSettingsDto>>(res, HttpStatus.OK);
+	}
+
+	@GetMapping(Constants.URL_LIST + "/active/{periodId}")
+	public ResponseEntity<?> getExceptApplyToAllList(@PathVariable("periodId") String periodId,
+			@RequestParam("searchValue") String searchValue,
+			@PageableDefault(sort = {
+					"id" }, direction = Direction.ASC, page = Constants.DEFAULT_PAGE_NUMBER, size = Constants.DEFAULT_PAGE_SIZE) Pageable pageable)
+			throws NotFoundException {
 		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
 		Response<AccountPayablesSettingsDto> res = getResponse(user);
 		res.setSearchValue(searchValue);
 
 		Page<AccountPayablesSettingsDto> pagingList = null;
 
-		pagingList = getService().findAllActiveList(period, searchValue, pageable, user);
+		pagingList = getService().findAllActiveList(periodId, searchValue, pageable, user);
 
 		res.setPagingList(pagingList);
 		res.setListService(null);

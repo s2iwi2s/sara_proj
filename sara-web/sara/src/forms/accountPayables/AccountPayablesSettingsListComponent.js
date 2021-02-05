@@ -49,8 +49,7 @@ export default function AccountPayablesSettingsListComponent(props) {
     })
   }
 
-
-  const retrieve = ({ searchValue, paging }) => getList(searchValue, paging.currentPage, paging.rowsPerPage)
+  const retrieve = ({ searchValue, paging }) => getList(searchValue, paging.currentPage, paging.rowsPerPage, filter.period.id)
     .then(({ data }) => dispatch(setPageable({
       INIT_STATUS: INIT_STATUS.LOAD,
       list: data.pagingList.content,
@@ -125,6 +124,7 @@ export default function AccountPayablesSettingsListComponent(props) {
 
   const doSearch = (searchValue) => retrieve({
     searchValue: searchValue,
+
     paging: {
       ...currPageable.paging
     }

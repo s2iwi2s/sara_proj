@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { IconButton } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
@@ -9,7 +9,7 @@ import useMessageAlert from "../../api/useMessageAlert"
 
 export default function GradeLevelAccountPayablesSettingsListComponent(props) {
 
-  const { showErrorMsgAlert } = useMessageAlert();
+  const { showErrorAlert, showErrorMsgAlert } = useMessageAlert();
   const [store, setStore] = useState({
     list: [],
     searchValue: '',
@@ -20,13 +20,14 @@ export default function GradeLevelAccountPayablesSettingsListComponent(props) {
     }
   });
 
+  useEffect(() => {
+    doRetrieve()
+  }, [props.selectedItem])
+
   const doRetrieve = () => {
     console.log(`[GradeLevelAccountPayablesSettingsListComponent.doRetrieve] props.selectedItem==>`, props.selectedItem)
     if (!props.selectedItem.period || !props.selectedItem.period.id) {
-      alert({
-        type: 'error',
-        payload: 'Please select period'
-      })
+      showErrorAlert('Please select period')
       return
     }
     getActiveList(props.selectedItem.period.id, store.searchValue, store.paging.currentPage, store.paging.rowsPerPage)

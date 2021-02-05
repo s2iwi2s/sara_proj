@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.sara.data.document.AccountPayablesSettings;
 import com.sara.data.document.CodeGroups;
@@ -38,6 +39,31 @@ public class AccountPayablesSettingsServiceImpl
 		super(repo, sequenceGeneratorService);
 		this.codeGroupsServiceImpl = codeGroupsServiceImpl;
 		this.accountPayablesSettingsMapper = accountPayablesSettingsMapper;
+	}
+
+	public Page<AccountPayablesSettingsDto> findAll(String periodId, String searchValue, Pageable pageable, User user) {
+		BooleanBuilder searchbb = new BooleanBuilder();
+		findAllQBuilder(searchValue, searchbb, user);
+
+		Predicate predicate = findAllPredicate(periodId, user, searchbb);
+		log.info("[findAll] predicate={}", predicate);
+		// return repo.findAll(predicate, pageable);
+		return toDto(repo.findAll(predicate, pageable));
+	}
+
+	public Predicate findAllPredicate(String periodId, User user, BooleanBuilder searchbb) {
+		BooleanBuilder mainbb = new BooleanBuilder();
+		log.info("[findAllPredicate] periodId={}", periodId);
+		if(!"all".equalsIgnoreCase(periodId)) {
+			mainbb.and(QAccountPayablesSettings.accountPayablesSettings.period.id.eq(periodId));
+		}
+
+		BooleanExpression bex = getFindAllBooleanExpression(user);
+		mainbb.and(bex);
+
+		mainbb.and(searchbb);
+		Predicate predicate = mainbb.getValue();
+		return predicate;
 	}
 
 	@Override
