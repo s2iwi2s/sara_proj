@@ -1,4 +1,4 @@
-package com.sara.web.security.controller;
+package com.sara.web.controller.security;
 
 import java.util.Objects;
 

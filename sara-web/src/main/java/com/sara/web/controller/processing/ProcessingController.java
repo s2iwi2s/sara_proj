@@ -1,4 +1,4 @@
-package com.sara.web.controller;
+package com.sara.web.controller.processing;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,8 +28,7 @@ import com.sara.service.impl.UserServiceImpl;
 import com.sara.web.common.Constants;
 import com.sara.web.common.Response;
 import com.sara.web.common.UserUtil;
-import com.sara.web.controller.processing.ProcessingListService;
-import com.sara.web.controller.processing.ProcessingResponse;
+import com.sara.web.controller.AbstractCrudController;
 
 @RestController
 @RequestMapping(path = Constants.URL_API_BASE + ProcessingController.URL_BASE)
