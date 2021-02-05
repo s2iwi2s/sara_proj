@@ -58,6 +58,10 @@ public class Payables {
 		this.order = aps.getPriority();
 		this.code = aps.getId();
 	}
+
+	public Payables(String code, String name) {
+	}
+	
 	@Id
 	private String id;
 

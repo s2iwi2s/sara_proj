@@ -14,9 +14,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -26,11 +28,24 @@ import lombok.Setter;
 @NoArgsConstructor
 @Document(collection = "account_payables_settings")
 @TypeAlias("AccountPayablesSettings")
+@ToString
 public class AccountPayablesSettings {
 
 	@Transient
 	public static final String SEQUENCE_NAME = "account_payables_settings_sequence";
 	
+	public AccountPayablesSettings(Boolean dontDelete, String description, CodeGroups period, School school) {
+		super();
+		this.label = description;
+		this.description = "SYSTEM.DONT.DELETE!";
+		this.amount = 0.0;
+		this.priority = 1000;
+		this.applyToAll = true;
+		this.active = true;
+		this.period = period;
+		this.school = school;
+	}
+
 	@Id
 	private String id;
 	

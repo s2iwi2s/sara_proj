@@ -84,6 +84,10 @@ public abstract class AbstractService<T, D, ID> implements ServiceInterface<T, D
 		return oEntity.get();
 	}
 
+	public T save(T entity) {
+		return repo.save(entity);
+	}
+
 	@Override
 	public D save(T entity, School school) {
 		return toDto(repo.save(entity));

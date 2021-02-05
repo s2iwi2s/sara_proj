@@ -2,8 +2,6 @@ package com.sara.service.dtos;
 
 import java.util.Date;
 
-import org.springframework.data.annotation.Transient;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,13 +26,10 @@ public class PayablesDto {
 
 	private AccountPayablesSettingsDto aps;
 
-	@Transient
 	private double balance;
 
-	@Transient
 	private double paid;
 
-	@Transient
 	public SchoolDto getSchool() {
 		return student.getSchool();
 	}
