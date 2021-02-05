@@ -183,11 +183,11 @@ const PayablesHtmlComponent = (props) => {
           <Table>
             <TableHead>
               <StyledTableHeadRow>
-                <StyledTableHeadCell variant="head">Payables</StyledTableHeadCell>
-                <StyledTableHeadCell variant="head" style={{ width: "20%" }} align="right">Total</StyledTableHeadCell>
-                <StyledTableHeadCell variant="head" style={{ width: "20%" }} align="right">Paid</StyledTableHeadCell>
-                <StyledTableHeadCell variant="head" style={{ width: "20%" }} align="right">Balance</StyledTableHeadCell>
-                <StyledTableHeadCell variant="head" style={{ width: "20%" }}>Amount to Pay</StyledTableHeadCell>
+                <StyledTableHeadCell variant="head" style={{ width: "10%" }} >Payables</StyledTableHeadCell>
+                <StyledTableHeadCell variant="head" style={{ width: "10%" }} align="right">Total</StyledTableHeadCell>
+                <StyledTableHeadCell variant="head" style={{ width: "10%" }} align="right">Paid</StyledTableHeadCell>
+                <StyledTableHeadCell variant="head" style={{ width: "10%" }} align="right">Balance</StyledTableHeadCell>
+                <StyledTableHeadCell variant="head" >Amount to Pay</StyledTableHeadCell>
               </StyledTableHeadRow>
             </TableHead>
             <TableBody>
