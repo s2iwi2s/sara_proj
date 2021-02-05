@@ -6,7 +6,7 @@ export const ENTITY = "accountPayablesSettings";
 const sort = "period,desc,priority,asc,description,amount"
 const sort2 = "priority,description,amount"
 
-export const getList = (searchValue, page, pageSize, periodId) => axios.get(`${Utils.urlListPattern(ENTITY)}/period/${periodId}?`, {
+export const getList = (searchValue, page, pageSize, periodId) => axios.get(`${Utils.urlListPattern(ENTITY)}/period/${periodId}`, {
  params: {
   searchValue: searchValue,
   page: page,

@@ -49,7 +49,7 @@ export default function AccountPayablesSettingsListComponent(props) {
     })
   }
 
-  const retrieve = ({ searchValue, paging }) => getList(searchValue, paging.currentPage, paging.rowsPerPage, filter.period.id)
+  const retrieve = ({ searchValue, paging, periodId = filter.period.id }) => getList(searchValue, paging.currentPage, paging.rowsPerPage, periodId)
     .then(({ data }) => dispatch(setPageable({
       INIT_STATUS: INIT_STATUS.LOAD,
       list: data.pagingList.content,
@@ -180,7 +180,16 @@ export default function AccountPayablesSettingsListComponent(props) {
       [name]: { id: value }
     })
     console.log(`[AccountPayablesSettingsListComponent.changeSelectState]  filter=`, filter)
+
+    retrieve({
+      searchValue: currPageable.searchValue,
+      paging: {
+        ...currPageable.paging
+      },
+      periodId: value
+    })
   }
+
   return (
     <>
       <TitleComponent>Accounts Payables Settings List</TitleComponent>

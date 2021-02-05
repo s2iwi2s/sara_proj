@@ -4,13 +4,19 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { ERROR_CODE, INIT_STATUS, OPTIONS, PAGE_URL } from '../../api/Utils'
 import CustomTableGrid from '../common/CustomTableGrid'
-import { deleteItem, getList } from '../../api/gradeLevelPayables/GradeLevelPayablesService';
+import { deleteItem, getList, getOptions } from '../../api/gradeLevelPayables/GradeLevelPayablesService';
 import { selectPageable, setPageable, setSelectedItem, resetSelectedItem } from '../../api/gradeLevelPayables/GradeLevelSlice';
 import TitleComponent from '../common/TitleComponent';
 import useMessageAlert from "../../api/useMessageAlert"
 import ConfirmMsgDialog from '../common/ConfirmMsgDialog';
+import { Box, Grid, Paper } from '@material-ui/core';
+import SubTitleComponent from '../common/SubTitleComponent';
+import SelectGrid from '../common/SelectGrid';
+
 
 export default function GradeLevelPayablesListComponent(props) {
+
+
   const { showErrorMsgAlert } = useMessageAlert();
 
   const dispatch = useDispatch();
@@ -18,6 +24,14 @@ export default function GradeLevelPayablesListComponent(props) {
 
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [deleteId, setDeleteId] = useState();
+
+  const [optionsList, setOptionsList] = useState({
+    periodList: []
+  });
+
+  const [filter, setFilter] = useState({
+    period: { id: 'All' }
+  });
 
   const cols = [
     {
@@ -43,10 +57,30 @@ export default function GradeLevelPayablesListComponent(props) {
 
   useEffect(() => {
     dispatch(resetSelectedItem())
+
+    doInitOptions()
   }, []);
 
-  const retrieve = ({ searchValue, paging }) =>
-    getList(searchValue, paging.currentPage, paging.rowsPerPage)
+
+
+  const doInitOptions = () => {
+    getOptions().then(response => {
+      let list = {
+        ...response.data.listService,
+        periodList: [{
+          "id": "ALL",
+          "description": "All",
+        },
+        ...response.data.listService.periodList]
+      }
+
+      setOptionsList(list)
+    })
+  }
+
+
+  const retrieve = ({ searchValue, paging, periodId = filter.period.id }) =>
+    getList(searchValue, paging.currentPage, paging.rowsPerPage, periodId)
       .then(({ data }) => {
         console.log(`[GradeLevelPayablesListComponent.retrieve] data=`, data)
         dispatch(setPageable({
@@ -61,9 +95,6 @@ export default function GradeLevelPayablesListComponent(props) {
           }
         }))
       }).catch(error => showErrorMsgAlert(error, ERROR_CODE.LIST_ERROR, 'GradeLevelPayablesListComponent.retrieve', 'GradeLevelPayablesService.getList'))
-
-
-
 
   const doRetrieve = () => {
     retrieve({
@@ -138,9 +169,40 @@ export default function GradeLevelPayablesListComponent(props) {
     })
   }
 
+  const changeSelectState = (e) => {
+    const { name, value } = e.target
+    console.log(`[AccountPayablesSettingsListComponent.changeSelectState] name=${name}, value=${value}`)
+    setFilter({
+      ...filter,
+      [name]: { id: value }
+    })
+    console.log(`[AccountPayablesSettingsListComponent.changeSelectState]  filter=`, filter)
+
+    retrieve({
+      searchValue: currPageable.searchValue,
+      paging: {
+        ...currPageable.paging
+      },
+      periodId: value
+    })
+  }
+
+
   return (
     <>
       <TitleComponent>Grade Level Payables List</TitleComponent>
+
+      <Box py={5}>
+        <Paper elevation={2} variant="elevation" >
+          <Box pb={3} px={3}>
+            <SubTitleComponent>Filter</SubTitleComponent>
+            <Grid container spacing={3}>
+              <SelectGrid sm={3} name="period" label="Period" value={filter.period.id} options={optionsList.periodList}
+                onChange={e => changeSelectState(e)} />
+            </Grid>
+          </Box>
+        </Paper>
+      </Box>
 
       <CustomTableGrid
         store={currPageable}
