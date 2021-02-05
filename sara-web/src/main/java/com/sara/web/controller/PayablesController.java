@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sara.data.document.Student;
 import com.sara.data.document.User;
 import com.sara.service.bean.BillingByInvoice;
+import com.sara.service.bean.PaymentBalanceResponse;
 import com.sara.service.bean.StudentPayables;
 import com.sara.service.dtos.CodeGroupsDto;
 import com.sara.service.dtos.PayablesDto;
@@ -92,8 +93,8 @@ public class PayablesController {
 		BillingByInvoice billingByInvoice = payablesServiceImpl.getBillingByInvoiceList(entity, periodId);
 		map.put("billingByInvoice", billingByInvoice);
 		
-//		PaymentBalanceResponse paymentBalance = payablesServiceImpl.getPaymentBalanceByStudent(entity, periodId);
-//		map.put("paymentBalance", paymentBalance);
+		PaymentBalanceResponse paymentBalance = payablesServiceImpl.getPaymentBalanceByStudent(entity, periodId);
+		map.put("paymentBalance", paymentBalance);
 
 		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
 

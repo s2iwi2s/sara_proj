@@ -174,6 +174,10 @@ export default function BillingComponent() {
         billingByInvoice: {
           ...response.data.billingByInvoice
         },
+        paymentBalance: {
+          ...response.data.paymentBalance
+        },
+
         searchFlag: false,
         payablesFlag: true
       }
