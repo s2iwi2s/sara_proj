@@ -20,49 +20,50 @@ export default function Dashboard() {
 
   console.log(`[Dashboard] isLogin=${isLogin}`)
   return (
-    <> {
-      !isLogin &&
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={4}>
-          <Avatar src={faker.image.fashion(140, 140)} className={classes.avatar_40} />
-          <h2>{faker.commerce.productName()}</h2>
-          <p>{faker.random.words(30)}</p>
-          <p><Button variant="contained" color="primary" href="#">View details</Button></p>
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <Avatar src={faker.image.people(140, 140)} className={classes.avatar_40} />
-          <h2>{faker.commerce.productName()}</h2>
-          <p>{faker.random.words(30)}</p>
-          <p><Button variant="contained" color="primary" href="#">View details</Button></p>
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <Avatar src={faker.image.food(140, 140)} className={classes.avatar_40} />
-          <h2>{faker.commerce.productName()}</h2>
-          <p>{faker.random.words(30)}</p>
-          <p><Button variant="contained" color="primary" href="#">View details</Button></p>
-        </Grid>
-      </Grid>
-    }
+    <Typography variant="h4">Welcome to Sara Project</Typography>
+    // <> {
+    //   !isLogin &&
+    //   <Grid container spacing={3}>
+    //     <Grid item xs={12} sm={4}>
+    //       <Avatar src={faker.image.fashion(140, 140)} className={classes.avatar_40} />
+    //       <h2>{faker.commerce.productName()}</h2>
+    //       <p>{faker.random.words(30)}</p>
+    //       <p><Button variant="contained" color="primary" href="#">View details</Button></p>
+    //     </Grid>
+    //     <Grid item xs={12} sm={4}>
+    //       <Avatar src={faker.image.people(140, 140)} className={classes.avatar_40} />
+    //       <h2>{faker.commerce.productName()}</h2>
+    //       <p>{faker.random.words(30)}</p>
+    //       <p><Button variant="contained" color="primary" href="#">View details</Button></p>
+    //     </Grid>
+    //     <Grid item xs={12} sm={4}>
+    //       <Avatar src={faker.image.food(140, 140)} className={classes.avatar_40} />
+    //       <h2>{faker.commerce.productName()}</h2>
+    //       <p>{faker.random.words(30)}</p>
+    //       <p><Button variant="contained" color="primary" href="#">View details</Button></p>
+    //     </Grid>
+    //   </Grid>
+    // }
 
-      {
-        isLogin &&
-        <>
-          <Box component={Paper} elevation={3} variant="elevation" px={3} py={3} m="auto">
-            <Typography variant="h4">Chart samples click <a href="https://recharts.org/en-US/examples">here</a></Typography>
-            <Grid container spacing={5}>
-              <Grid item xs={12} sm={4}>
-                <Chart />
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                <StackedBarChart />
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                <CustomContentOfTooltip />
-              </Grid>
-            </Grid>
-          </Box>
-        </>
-      }
-    </ >
+    //   {
+    //     isLogin &&
+    //     <>
+    //       <Box component={Paper} elevation={3} variant="elevation" px={3} py={3} m="auto">
+    //         <Typography variant="h4">Chart samples click <a href="https://recharts.org/en-US/examples">here</a></Typography>
+    //         <Grid container spacing={5}>
+    //           <Grid item xs={12} sm={4}>
+    //             <Chart />
+    //           </Grid>
+    //           <Grid item xs={12} sm={4}>
+    //             <StackedBarChart />
+    //           </Grid>
+    //           <Grid item xs={12} sm={4}>
+    //             <CustomContentOfTooltip />
+    //           </Grid>
+    //         </Grid>
+    //       </Box>
+    //     </>
+    //   }
+    // </ >
   )
 }
