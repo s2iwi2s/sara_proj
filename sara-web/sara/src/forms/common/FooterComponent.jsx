@@ -16,10 +16,9 @@ function Copyright() {
         <>
             <Box mx="auto" pt={3}><Divider />
                 <Typography variant="body2" color="textSecondary" align="center">
-                    {'Copyright © '}
-                    <Link color="inherit" href="https://material-ui.com/">Your Website</Link>{' '}
+
+                    Sara Project{' '} {' © '}
                     {new Date().getFullYear()}
-                    {'.'}
                 </Typography>
             </Box>
         </>
