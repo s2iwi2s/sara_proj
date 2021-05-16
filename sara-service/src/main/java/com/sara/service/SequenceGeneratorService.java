@@ -54,7 +54,7 @@ public class SequenceGeneratorService {
 			nextSeq = prefix + "-" + fmtNum.format(seq);
 		}
 		
-		log.info("nextSeq==>" + nextSeq);
+		log.info("_seq={}, nextSeq==>{}", _seq, nextSeq);
 		return nextSeq;
 
 	}
