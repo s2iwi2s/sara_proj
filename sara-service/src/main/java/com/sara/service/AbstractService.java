@@ -73,13 +73,13 @@ public abstract class AbstractService<T, D, ID> implements ServiceInterface<T, D
 			return null;
 		}
 
-		if (id == null) {
-			throw new IllegalArgumentException("No Data Found");
-		}
+//		if (id == null) {
+//			throw new IllegalArgumentException("No Data Found");
+//		}
 
 		Optional<T> oEntity = repo.findById(id);
 		if (!oEntity.isPresent()) {
-			throw new IllegalArgumentException("No Data Found");
+			throw new IllegalArgumentException("Not Found!");
 		}
 		return oEntity.get();
 	}
