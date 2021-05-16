@@ -25,4 +25,20 @@ public class StudentSearchDto {
 	public String getFullName() {
 		return lastName + ", " + firstName;
 	}
+
+	@Override
+	public String toString() {
+		return "StudentSearchDto{" +
+				"id='" + id + '\'' +
+				", lrn='" + lrn + '\'' +
+				", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+
+				", fullName='" + getFullName() + '\'' +
+
+				", gender='" + gender + '\'' +
+				", level=" + level +
+				", school=" + school +
+				'}';
+	}
 }
