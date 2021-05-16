@@ -39,7 +39,7 @@ public class PayablesDto {
 		return String.format(
 				"PayablesDto [id=%s, student=%s, invoiceNo=%s, invoiceDate=%s, code=%s, name=%s, period=%s, amount=%s, payment=%s, order=%s, status=%s, aps=%s, balance=%s, paid=%s]",
 				id, student!= null? student.getFullName() : "NO Full Name", invoiceNo, invoiceDate, code, name, period != null?period.getDescription() : "No Period Description", amount, payment, order, status,
-				aps.getId(), balance, paid);
+				aps != null? aps.getId() : "", balance, paid);
 	}
 
 }
