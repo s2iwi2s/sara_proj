@@ -110,12 +110,13 @@ public class PayablesController {
 	@PostMapping(path = Constants.URL_SAVE + "/{id}/period/{periodId}")
 	public ResponseEntity<Map<String, ?>> savePayables(@RequestBody List<PayablesDto> payableList,
 			@PathVariable("id") String id, @PathVariable("periodId") String periodId) throws Exception {
-		log.debug("payableList=>{}", payableList);
+		log.info("savePayables START --");
+		log.info("payableList=>{}", payableList);
 
 		Map<String, Object> map = new HashMap<>();
-		log.debug("savePayables id={}", id);
+		log.info("savePayables id={}", id);
 		StudentSearchDto student = studentServiceImpl.searchByIdDto(id);
-		log.debug("savePayables student={}", student);
+		log.info("savePayables student={}", student);
 
 		map.put("student", student);
 		Student entity = studentMapper.toEntity(student);
@@ -130,6 +131,8 @@ public class PayablesController {
 		List<CodeGroupsDto> periodList = codeGroupsServiceImpl.findByCodeList("PERIOD", user.getSchool());
 		optionsList.put("periodList", periodList);
 		map.put("optionsList", optionsList);
+
+		log.info("savePayables END --");
 
 		return new ResponseEntity<>(map, HttpStatus.OK);
 	}
