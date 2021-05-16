@@ -174,7 +174,7 @@ export default function GradeLevelPayablesDetailsComponent(props) {
   {
     headerName: 'Payment Period',
     render: function (row) {
-      return row.paymentPeriod.description;
+      return row.paymentPeriod? row.paymentPeriod.description : '';
     }
   },
   {
