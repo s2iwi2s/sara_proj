@@ -119,12 +119,18 @@ public class PayablesController {
 		log.info("savePayables student={}", student);
 
 		map.put("student", student);
-		Student entity = studentMapper.toEntity(student);
-		StudentPayables studentPayables = payablesServiceImpl.savePayables(payableList, entity, periodId);
-		map.put("studentPayables", studentPayables);
+		try{
+			Student entity = studentMapper.toEntity(student);
+			StudentPayables studentPayables = payablesServiceImpl.savePayables(payableList, entity, periodId);
+			log.info("savePayables studentPayables={}", studentPayables);
+			map.put("studentPayables", studentPayables);
 
-		BillingByInvoice billingByInvoice = payablesServiceImpl.getBillingByInvoiceList(entity, periodId);
-		map.put("billingByInvoice", billingByInvoice);
+			BillingByInvoice billingByInvoice = payablesServiceImpl.getBillingByInvoiceList(entity, periodId);
+			log.info("savePayables billingByInvoice={}", billingByInvoice);
+			map.put("billingByInvoice", billingByInvoice);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 
 		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
 		Map<String, Object> optionsList = new HashMap<>();
