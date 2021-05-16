@@ -34,17 +34,28 @@ public class SaraWebApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SaraWebApplication.class, args);
+
+//		System.setProperty("spring.profiles.active", "dev")
+
+//		new SpringApplicationBuilder()
+//        .profiles("dev") // and so does this
+//        .sources(SaraWebApplication.class)
+//        .run(args);
+
 	}
 
 	@Bean
-	public String currentInfo(@Value("${logo.location}") String logoLocation,
-			@Value("${spring.data.mongodb.uri}") String mongodb,
-			@Value("${jwt.token.expiration.in.seconds}") String jwtExpiration) {
+	public String currentInfo(@Value("${logo.location}") String logoLocation, @Value("${spring.data.mongodb.uri}") String mongodb,
+			@Value("${jwt.token.expiration.in.seconds}") String jwtExpiration,
+							  @Value("${jwt.signing.key.secret}") String jwtSecret) {
+
 		Map<String, String> params = new HashMap<>();
 		params.put("logo.location", logoLocation);
 		params.put("spring.data.mongodb.uri", mongodb);
 		params.put("jwt.token.expiration.in.seconds", jwtExpiration);
-		
+		params.put("jwt.signing.key.secret", jwtSecret);
+
+
 		StringBuilder sb = new StringBuilder();
 		for (String profileName : environment.getActiveProfiles()) {
 			if (sb.length() > 0) {
@@ -54,7 +65,7 @@ public class SaraWebApplication implements CommandLineRunner {
 		}
 		params.put("activeProfile", sb.toString());
 		System.out.println("Currently active profile - " + sb);
-		
+
 		String jsonParams = "{}";
 		try {
 			ObjectMapper jsonObjMap = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
@@ -62,15 +73,11 @@ public class SaraWebApplication implements CommandLineRunner {
 		} catch (JsonProcessingException e) {
 			// e.printStackTrace();
 		}
-		
 
-		log.info("\n\n\n" + "***************************************************\n"
-				+ jsonParams
+		log.info("\n\n\n" + "***************************************************\n" + jsonParams
 				+ "\n***************************************************\n\n");
 		return jsonParams;
 	}
-
-	
 
 	@Override
 	public void run(String... args) throws Exception {
