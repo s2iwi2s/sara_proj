@@ -25,7 +25,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Document(collection = "payables")
 @TypeAlias("Payables")
-public class Payables {
+public class Payables implements Comparable<Payables> {
 	@Transient
 	public static final String SEQUENCE_NAME = "payables_sequence";
 	@Transient
@@ -74,6 +74,7 @@ public class Payables {
 	private CodeGroups period;
 	
 	private double amount;
+	private String textValue;
 	private double payment;
 	private int order;
 	
@@ -105,8 +106,12 @@ public class Payables {
 
 	@Override
 	public String toString() {
-		return String.format("Payables [id=%s, code=%s, name=%s, amount=%s, payment=%s, balance=%s, paid=%s]",
-				id, code, name, amount, payment, balance, paid);
+		return String.format("Payables [id=%s, code=%s, name=%s, amount=%s, payment=%s, balance=%s, paid=%s, textValue=%s]",
+				id, code, name, amount, payment, balance, paid, textValue);
 	}
 
+	@Override
+	public int compareTo(Payables o) {
+		return this.aps.getPriority() - o.aps.getPriority();
+	}
 }

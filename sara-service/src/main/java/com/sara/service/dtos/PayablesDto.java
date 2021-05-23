@@ -19,6 +19,7 @@ public class PayablesDto {
 	private String name;
 
 	private double amount;
+	private String textValue;
 	private double payment;
 	private int order;
 
@@ -37,9 +38,9 @@ public class PayablesDto {
 	@Override
 	public String toString() {
 		return String.format(
-				"PayablesDto [id=%s, student=%s, invoiceNo=%s, invoiceDate=%s, code=%s, name=%s, period=%s, amount=%s, payment=%s, order=%s, status=%s, aps=%s, balance=%s, paid=%s]",
+				"PayablesDto [id=%s, student=%s, invoiceNo=%s, invoiceDate=%s, code=%s, name=%s, period=%s, amount=%s, payment=%s, order=%s, status=%s, aps=%s, balance=%s, paid=%s, textValue=%s]",
 				id, student!= null? student.getFullName() : "NO Full Name", invoiceNo, invoiceDate, code, name, period != null?period.getDescription() : "No Period Description", amount, payment, order, status,
-				aps != null? aps.getId() : "", balance, paid);
+				aps != null? aps.getId() : "", balance, paid, textValue);
 	}
 
 }

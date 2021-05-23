@@ -7,9 +7,11 @@ import com.sara.service.dtos.PayablesDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
 @AllArgsConstructor
+@ToString
 public class StudentPayables {
 	private String invoiceNo;
 	private Date invoiceDate;
@@ -23,4 +25,5 @@ public class StudentPayables {
 		this.invoiceNo = invoiceNo;
 		this.invoiceDate = invoiceDate;
 	}
+	
 }

@@ -107,6 +107,10 @@ export default function GradeLevelAccountPayablesSettingsListComponent(props) {
       headerName: 'Amount',
     },
     {
+      field: 'text',
+      headerName: 'text',
+    },
+    {
       field: 'priority',
       headerName: 'Priority',
     }

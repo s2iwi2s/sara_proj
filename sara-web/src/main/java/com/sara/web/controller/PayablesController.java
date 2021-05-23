@@ -109,8 +109,9 @@ public class PayablesController {
 
 	@PostMapping(path = Constants.URL_SAVE + "/{id}/period/{periodId}")
 	public ResponseEntity<Map<String, ?>> savePayables(@RequestBody List<PayablesDto> payableList,
-			@PathVariable("id") String id, @PathVariable("periodId") String periodId) throws Exception {
+													   @PathVariable("id") String id, @PathVariable("periodId") String periodId) throws Exception {
 		log.info("savePayables START --");
+
 		log.info("payableList=>{}", payableList);
 
 		Map<String, Object> map = new HashMap<>();

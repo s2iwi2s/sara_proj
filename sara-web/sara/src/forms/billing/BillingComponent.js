@@ -230,7 +230,8 @@ export default function BillingComponent() {
         paymentTotal: paymentTotal,
         balanceTotal: balanceTotal - paymentTotal,
         invoiceNo: '',
-        periodId: currPageable.periodId
+        periodId: currPageable.periodId,
+        comment: data.comment
       }
       doInitConfirmStore(confirmStoreTemp);
 

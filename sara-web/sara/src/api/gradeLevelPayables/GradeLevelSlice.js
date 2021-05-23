@@ -9,6 +9,7 @@ const blankSelectedItem = {
 	level: { 'id': '' },
 	period: { 'id': '' },
 	active: true,
+	text: false,
 	list: [],
 	optionsList: {
 		levelList: [],

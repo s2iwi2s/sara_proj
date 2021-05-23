@@ -149,7 +149,7 @@ const PayablesHtmlComponent = (props) => {
               })}</StyledTableHeadCell>
               {
                 props.store.paymentBalance.balances.map(({ id, name, balance }) => (
-                  <StyledTableHeadCell key={id} variant="head" align="right" style={{ width: "20%" }}>{name}: P{balance.toLocaleString(undefined, {
+                  <StyledTableHeadCell key={`$balances${id}`} variant="head" align="right" style={{ width: "20%" }}>{name}: P{balance.toLocaleString(undefined, {
                     maximumFractionDigits: 2,
                     minimumFractionDigits: 2
                   })}</StyledTableHeadCell>
@@ -193,98 +193,135 @@ const PayablesHtmlComponent = (props) => {
             <TableBody>
               {
                 props.store.studentPayables.payables.map((row, i) => (
-                  < StyledTableRow key={row.id}>
-                    <TableCell>{row.aps ? row.aps.label : row.name}</TableCell>
+                  <>
+                    <TextField
+                      type="hidden"
+                      name={`payables[${i}].student.id`}
+                      value={props.store.entity.id}
+                      inputRef={register}
+                    />
+                    <TextField
+                      type="hidden"
+                      name={`payables[${i}].balance`}
+                      value={row.balance}
+                      inputRef={register}
+                    />
+                    <TextField
+                      type="hidden"
+                      name={`payables[${i}].order`}
+                      value={i}
+                      inputRef={register}
+                    />
+                    <TextField
+                      type="hidden"
+                      name={`payables[${i}].code`}
+                      value={row.code}
+                      inputRef={register}
+                    />
+                    <TextField
+                      type="hidden"
+                      name={`payables[${i}].amount`}
+                      value={row.amount}
+                      inputRef={register}
+                    />
+                    <TextField
+                      type="hidden"
+                      name={`payables[${i}].name`}
+                      value={row.name}
+                      inputRef={register}
+                    />
+                    <TextField
+                      type="hidden"
+                      name={`payables[${i}].paid`}
+                      value={row.paid}
+                      inputRef={register}
+                    />
+                    <StyledTableRow key={`pabayables${i}`}>
+                      {!row.aps.text &&
+                        <>
+                          <TableCell>{row.aps ? row.aps.label : row.name}</TableCell>
+                          {row.code === 'balance' &&
+                            <>
+                              <TableCell align="right"></TableCell>
+                              <TableCell align="right"></TableCell>
+                              <TableCell align="right"></TableCell>
+                              <TableCell align="right">({row.payment})</TableCell>
+                            </>
+                          }
 
-                    {row.code === 'balance' &&
-                      <>
-                        <TableCell align="right"></TableCell>
-                        <TableCell align="right"></TableCell>
-                        <TableCell align="right"></TableCell>
-                        <TableCell align="right">({row.payment})</TableCell>
-                      </>
-                    }
+                          {row.code !== 'balance' && !row.aps.text &&
+                            <>
+                              <TableCell align="right">P{row.amount.toLocaleString(undefined, {
+                                maximumFractionDigits: 2,
+                                minimumFractionDigits: 2
+                              })}</TableCell>
+                              <TableCell align="right">P{row.paid.toLocaleString(undefined, {
+                                maximumFractionDigits: 2,
+                                minimumFractionDigits: 2
+                              })}</TableCell>
+                              <TableCell align="right">P{row.balance.toLocaleString(undefined, {
+                                maximumFractionDigits: 2,
+                                minimumFractionDigits: 2
+                              }
+                              )}</ TableCell>
+                              <TableCell align="right">
+                                <TextField id={row.code}
+                                  type="currency"
+                                  name={`payables[${i}].payment`}
+                                  onBlur={e => onPaymentBlur(e)}
+                                  fullWidth
+                                  inputRef={register}
+                                  // disabled={row.balance === 0}
+                                  defaultValue={row.payment}
+                                  variant="filled"
+                                  InputProps={{
+                                    startAdornment: <InputAdornment position="start">P</InputAdornment>,
+                                  }} />
 
-                    {row.code !== 'balance' &&
-                      <>
-                        <TableCell align="right">P{row.amount.toLocaleString(undefined, {
-                          maximumFractionDigits: 2,
-                          minimumFractionDigits: 2
-                        })}</TableCell>
-                        <TableCell align="right">P{row.paid.toLocaleString(undefined, {
-                          maximumFractionDigits: 2,
-                          minimumFractionDigits: 2
-                        })}</TableCell>
-                        <TableCell align="right">P{row.balance.toLocaleString(undefined, {
-                          maximumFractionDigits: 2,
-                          minimumFractionDigits: 2
-                        }
-                        )}</ TableCell>
-                        <TableCell align="right">
-                          <TextField
-                            type="hidden"
-                            name={`payables[${i}].student.id`}
-                            value={props.store.entity.id}
-                            inputRef={register}
-                          />
-                          <TextField
-                            type="hidden"
-                            name={`payables[${i}].balance`}
-                            value={row.balance}
-                            inputRef={register}
-                          />
-                          <TextField
-                            type="hidden"
-                            name={`payables[${i}].order`}
-                            value={i}
-                            inputRef={register}
-                          />
-                          <TextField
-                            type="hidden"
-                            name={`payables[${i}].code`}
-                            value={row.code}
-                            inputRef={register}
-                          />
-                          <TextField
-                            type="hidden"
-                            name={`payables[${i}].amount`}
-                            value={row.amount}
-                            inputRef={register}
-                          />
-                          <TextField
-                            type="hidden"
-                            name={`payables[${i}].name`}
-                            value={row.name}
-                            inputRef={register}
-                          />
-                          <TextField
-                            type="hidden"
-                            name={`payables[${i}].paid`}
-                            value={row.paid}
-                            inputRef={register}
-                          />
-                          <TextField id={row.code}
-                            type="currency"
-                            name={`payables[${i}].payment`}
-                            onBlur={e => onPaymentBlur(e)}
-                            fullWidth
-                            inputRef={register}
-                            // disabled={row.balance === 0}
-                            defaultValue={row.payment}
-                            variant="filled"
-                            InputProps={{
-                              startAdornment: <InputAdornment position="start">P</InputAdornment>,
-                            }} />
-
+                              </TableCell>
+                            </>}
+                        </>
+                      }
+                      {row.aps.text &&
+                        <TableCell colSpan="5">
+                          {row.aps.text && row.aps.multilineRows > 0 &&
+                            <TextField id={row.code}
+                              type="currency"
+                              name={`payables[${i}].textValue`}
+                              label={row.aps ? row.aps.label : row.name}
+                              fullWidth
+                              inputRef={register}
+                              // disabled={row.balance === 0}
+                              defaultValue={row.textValue}
+                              variant="filled"
+                              multiline
+                              multilineRows={row.aps.multilineRows} />
+                          }
+                          {row.aps.text && row.aps.multilineRows === 0 &&
+                            <TextField id={row.code}
+                              type="currency"
+                              name={`payables[${i}].textValue`}
+                              label={row.aps ? row.aps.label : row.name}
+                              fullWidth
+                              inputRef={register}
+                              // disabled={row.balance === 0}
+                              defaultValue={row.textValue}
+                              variant="filled" />
+                          }
                         </TableCell>
-                      </>}
-                  </StyledTableRow>
+                      }
+                    </StyledTableRow>
+
+                  </>
                 ))
+
               }
+
               <StyledTableRow>
                 <TableCell colSpan="4" align="right">Total</TableCell>
                 <TableCell align="right">{total}</TableCell>
               </StyledTableRow>
+
             </TableBody>
           </Table>
         </TableContainer>
@@ -326,14 +363,24 @@ const PayablesHtmlComponent = (props) => {
                     {
                       props.store.billingByInvoice.accountPayablesSettings.map(({ id }) => (
                         <>
-                          {console.log(`invoiceNo=${invoiceNo}, id=$id, payablesMap==>`, payablesMap)}
+                          {console.log(`invoiceNo=${invoiceNo}, id=${id}, payablesMap==>`, payablesMap)}
 
-                          <TableCell key={id} align="right">{(payablesMap[id] ? payablesMap[id].payment : 0).toLocaleString(undefined, {
-                            maximumFractionDigits: 2,
-                            minimumFractionDigits: 2
+                          {
+                            payablesMap[id] && payablesMap[id].aps.text &&
+                            <TableCell key={`list${id}`}>
+                              {payablesMap[id].textValue}
+                            </TableCell>
                           }
-                          )}
-                          </TableCell>
+                          {
+                            !(payablesMap[id] && payablesMap[id].aps.text) &&
+                            <TableCell key={`list${id}`} align="right">
+                              {(payablesMap[id] ? payablesMap[id].payment : 0).toLocaleString(undefined, {
+                                maximumFractionDigits: 2,
+                                minimumFractionDigits: 2
+                              })}
+                            </TableCell>
+                          }
+
                         </>
                       ))
                     }

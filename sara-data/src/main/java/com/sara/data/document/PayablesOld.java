@@ -38,6 +38,7 @@ public class PayablesOld {
 	private CodeGroups period;
 	
 	private double amount;
+	private String textValue;
 	private double payment;
 	private int order;
 	
@@ -69,8 +70,8 @@ public class PayablesOld {
 
 	@Override
 	public String toString() {
-		return String.format("PayablesOld [id=%s, code=%s, name=%s, amount=%s, payment=%s, balance=%s, paid=%s]",
-				id, code, name, amount, payment, balance, paid);
+		return String.format("PayablesOld [id=%s, code=%s, name=%s, amount=%s, payment=%s, balance=%s, paid=%s, textValue=%s]",
+				id, code, name, amount, payment, balance, paid, textValue);
 	}
 
 }

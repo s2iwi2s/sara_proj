@@ -77,10 +77,10 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 			Role role = adminRoleOptional.get();
 			roles = Arrays.asList(role);
 		}
-		User user1 = new User(null, "wpidor", bcryptEncoder.encode("test"), "Pidor", "Winston", roles, school);
-		User user2 = new User(null, "test", bcryptEncoder.encode("test"), "test", "test", roles, school);
+//		User user1 = new User(null, "wpidor", bcryptEncoder.encode("test"), "Pidor", "Winston", roles, school);
+//		User user2 = new User(null, "test", bcryptEncoder.encode("test"), "test", "test", roles, school);
 //		userMongoRepository.save(user1);
 //		userMongoRepository.save(user2);
-		userMongoRepository.saveAll(Arrays.asList(user1, user2));
+//		userMongoRepository.saveAll(Arrays.asList(user1, user2));
 	}
 }

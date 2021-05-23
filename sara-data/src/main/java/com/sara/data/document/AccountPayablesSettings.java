@@ -53,6 +53,11 @@ public class AccountPayablesSettings {
 	private String description;
 	private Double amount;
 	private Short priority;
+
+	private boolean text;
+	private String textValue;
+	private Short multilineRows;
+
 	private boolean applyToAll;
 	private boolean active = true;
 

@@ -130,6 +130,8 @@ public class PayablesServiceImpl extends AbstractService<Payables, PayablesDto, 
 		student = studentServiceImpl.findById(student.getId());
 
 		List<Payables> list = payablesMapper.toEntities(dtoList);
+		log.info("savePayables1 list={}", list);
+		log.info("savePayables1 list.size={}", list.size());
 		for (Payables p : list) {
 			double payment = p.getPayment() + remainingAmt;
 			double balance = p.getAmount() - p.getPaid();
@@ -144,6 +146,7 @@ public class PayablesServiceImpl extends AbstractService<Payables, PayablesDto, 
 			p.setStudent(student);
 		}
 
+		log.info("savePayables2 list={}", list);
 		Date invoiceDate = new Date();
 		String invoiceNo = this.save(list, invoiceDate, period);
 
@@ -259,6 +262,8 @@ public class PayablesServiceImpl extends AbstractService<Payables, PayablesDto, 
 		for (AccountPayablesSettings aps : gradeLevelPayables.getAccountPayablesSettings()) {
 			payableList.add(new Payables(aps, student));
 		}
+
+		Collections.sort(payableList);
 		return payableList;
 	}
 
@@ -268,7 +273,8 @@ public class PayablesServiceImpl extends AbstractService<Payables, PayablesDto, 
 		Iterator<Payables> it = list.iterator();
 		while (it.hasNext()) {
 			Payables entity = it.next();
-			if (entity.getPayment() == 0) {
+			AccountPayablesSettings aps = accountPayablesSettingsServiceImpl.findById(entity.getCode());
+			if (entity.getPayment() == 0 && !aps.isText()) {
 				it.remove();
 			} else {
 				if (StringUtils.isBlank(invoiceNo)) {
@@ -281,7 +287,6 @@ public class PayablesServiceImpl extends AbstractService<Payables, PayablesDto, 
 				entity.setPeriod(period);
 				entity.setSchool(entity.getStudent().getSchool());
 				entity.setStatusCode(Constants.PROCESS_STATUS_CREATED);
-				AccountPayablesSettings aps = accountPayablesSettingsServiceImpl.findById(entity.getCode());
 				entity.setAps(aps);
 				entity.setOrder(aps.getPriority());
 			}
@@ -371,6 +376,9 @@ public class PayablesServiceImpl extends AbstractService<Payables, PayablesDto, 
 				.toDtos(accountPayablesSettings);
 
 		log.info("acctPayablesList.size={}", acctPayablesList.size());
+		
+
+		Collections.sort(acctPayablesList);
 		return new BillingByInvoice(acctPayablesList, invoiceList);
 	}
 
