@@ -97,19 +97,19 @@
 
 		<profile>
 			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<!-- <activation> <activeByDefault>true</activeByDefault> </activation> -->
-			<!-- <activation> <property> <name>env</name> <value>dev</value> </property> 
+			<!-- <activation> <property> <name>env</name> <value>dev</value> </property>
 				</activation> -->
 			<properties>
 				<profiles.active>dev</profiles.active>
-				<config.dir>X:/config/sara/dev</config.dir>
+				<config.dir>w:/config/sara/dev</config.dir>
 			</properties>
 		</profile>
 		<profile>
 			<id>prod</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 			<properties>
 				<profiles.active>prod</profiles.active>
 				<config.dir>./config/prod</config.dir>
