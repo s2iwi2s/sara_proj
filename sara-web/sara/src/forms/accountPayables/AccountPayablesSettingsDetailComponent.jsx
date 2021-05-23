@@ -266,7 +266,7 @@ export default function AccountPayablesSettingsDetailComponent (props) {
           <Grid item xs={12} sm={4}>
             <TextField
               required
-              type='number'
+              type='currency'
               id='amount'
               name='amount'
               label='Amount'
