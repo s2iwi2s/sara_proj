@@ -6,11 +6,18 @@ import { Box, Paper, Grid, TextField, Table, TableContainer, TableHead, TableCel
 import SaveIcon from '@material-ui/icons/Save'
 import SubTitleComponent from '../common/SubTitleComponent'
 import SelectGrid from '../common/SelectGrid'
+import {makeStyles} from "@material-ui/core/styles";
 
 const { StyledTableRow, StyledTableHeadRow, StyledTableHeadCell, INIT_STATUS } = require("../../api/Utils")
-
+const useStyles = makeStyles({
+  cell: {
+    minWidth: 150,
+    width: 150,
+  },
+});
 
 const PayablesHtmlComponent = (props) => {
+  const classes = useStyles();
   const { register, handleSubmit, reset } = useForm()
 
   const [total, setTotal] = useState(0)
@@ -177,6 +184,22 @@ const PayablesHtmlComponent = (props) => {
               value={currentState.period.id}
               options={props.store.optionsList.periodList}
               onChange={e => changeSelectStateByPeriod(e)} />
+
+            <Grid item xs={12} sm={2}>
+              <TextField
+                  required
+                  id="invoiceDate"
+                  name="invoiceDate"
+                  label="Invoice Date"
+                  type="date"
+                  fullWidth
+                  autoComplete="invoice-date"
+                  variant="filled"
+                  InputLabelProps={{ shrink: true }}
+                  inputRef={register}
+                  defaultValue={props.store.invoiceDate}
+              />
+            </Grid>
           </Grid>
         </Box>
         <TableContainer component={Paper} elevation={3} variant="elevation" >
@@ -358,13 +381,11 @@ const PayablesHtmlComponent = (props) => {
               {
                 props.store.billingByInvoice.list.map(({ invoiceNo, invoiceDate, payablesMap }) => (
                   <StyledTableRow key={invoiceNo}>
-                    <TableCell>{moment(invoiceDate).format('lll')}</TableCell>
+                    <TableCell className={classes.cell}>{moment(invoiceDate).format('L')}</TableCell>
                     <TableCell>{invoiceNo}</TableCell>
                     {
                       props.store.billingByInvoice.accountPayablesSettings.map(({ id }) => (
                         <>
-                          {console.log(`invoiceNo=${invoiceNo}, id=${id}, payablesMap==>`, payablesMap)}
-
                           {
                             payablesMap[id] && payablesMap[id].aps.text &&
                             <TableCell key={`list${id}`}>

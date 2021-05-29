@@ -123,7 +123,7 @@ public class PayablesServiceImpl extends AbstractService<Payables, PayablesDto, 
 		searchbb.or(QPayables.payables.student.lastName.containsIgnoreCase(searchValue));
 	}
 
-	public StudentPayables savePayables(List<PayablesDto> dtoList, Student student, String periodId) throws Exception {
+	public StudentPayables savePayables(List<PayablesDto> dtoList, Student student, String periodId, Date invoiceDate) throws Exception {
 		CodeGroups period = codeGroupsServiceImpl.findById(periodId);
 
 		double remainingAmt = 0;
@@ -147,7 +147,7 @@ public class PayablesServiceImpl extends AbstractService<Payables, PayablesDto, 
 		}
 
 		log.info("savePayables2 list={}", list);
-		Date invoiceDate = new Date();
+//		Date invoiceDate = new Date();
 		String invoiceNo = this.save(list, invoiceDate, period);
 
 		List<PayablesDto> payables = getStudentPayables(student);

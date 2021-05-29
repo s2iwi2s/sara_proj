@@ -1,9 +1,6 @@
 package com.sara.web.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -107,9 +104,10 @@ public class PayablesController {
 		return responseEntity;
 	}
 
-	@PostMapping(path = Constants.URL_SAVE + "/{id}/period/{periodId}")
+	@PostMapping(path = Constants.URL_SAVE + "/{id}/{periodId}/{invoiceDate}")
 	public ResponseEntity<Map<String, ?>> savePayables(@RequestBody List<PayablesDto> payableList,
-													   @PathVariable("id") String id, @PathVariable("periodId") String periodId) throws Exception {
+													   @PathVariable("id") String id, @PathVariable("periodId") String periodId,
+													   @PathVariable("invoiceDate") Date invoiceDate) throws Exception {
 		log.info("savePayables START --");
 
 		log.info("payableList=>{}", payableList);
@@ -122,7 +120,7 @@ public class PayablesController {
 		map.put("student", student);
 		try{
 			Student entity = studentMapper.toEntity(student);
-			StudentPayables studentPayables = payablesServiceImpl.savePayables(payableList, entity, periodId);
+			StudentPayables studentPayables = payablesServiceImpl.savePayables(payableList, entity, periodId, invoiceDate);
 			log.info("savePayables studentPayables={}", studentPayables);
 			map.put("studentPayables", studentPayables);
 

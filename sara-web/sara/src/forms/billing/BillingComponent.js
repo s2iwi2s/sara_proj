@@ -231,7 +231,8 @@ export default function BillingComponent() {
         balanceTotal: balanceTotal - paymentTotal,
         invoiceNo: '',
         periodId: currPageable.periodId,
-        comment: data.comment
+        comment: data.comment,
+        invoiceDate: data.invoiceDate
       }
       doInitConfirmStore(confirmStoreTemp);
 
@@ -248,7 +249,7 @@ export default function BillingComponent() {
   const doSavePayables = (data) => {
     console.log(`[BillingComponent.doSavePayables] data==>`, data);
 
-    save(data.payables, data.entity.id, data.periodId).then(response => {
+    save(data.payables, data.entity.id, data.periodId, moment(data.invoiceDate)).then(response => {
       console.log(`[BillingComponent.doSavePayables BillingService.save] response==>`, response)
       let formData = {
         INIT_STATUS: INIT_STATUS.PAYABLES_RESET,
@@ -288,7 +289,7 @@ export default function BillingComponent() {
         ...confirmStore,
         INIT_STATUS: INIT_STATUS.RESET,
         payables: [],
-        invoiceDate: moment(response.data.studentPayables.invoiceDate).format('lll'),
+        invoiceDate: moment(response.data.studentPayables.invoiceDate).format('L'),
         invoiceNo: response.data.studentPayables.invoiceNo,
         payablesByInvoiceNo: payablesByInvoiceNo,
         paymentTotal: paymentTotal,
