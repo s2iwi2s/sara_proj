@@ -1,5 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
+import moment from 'moment'
 
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, Typography } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
@@ -54,8 +55,8 @@ export default function SavePayablesConfimationHtml(props) {
           <Grid container spacing={3}>
             <Grid item xs={12} sm={2}>Student Name</Grid>
             <Grid item xs={12} sm={4}>{props.confirmStore.entity.firstName + ' ' + props.confirmStore.entity.lastName}</Grid>
-            <Grid item xs={12} sm={2}></Grid>
-            <Grid item xs={12} sm={4}></Grid>
+            <Grid item xs={12} sm={2}>Date</Grid>
+            <Grid item xs={12} sm={4}>{moment(props.confirmStore.invoiceDate).format('L')}</Grid>
 
             <Grid item xs={12} sm={2}>LRN</Grid>
             <Grid item xs={12} sm={4}>{props.confirmStore.entity.lrn}</Grid>
