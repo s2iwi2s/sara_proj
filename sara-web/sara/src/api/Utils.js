@@ -1,5 +1,5 @@
 
-import { TableCell, TableRow } from '@material-ui/core';
+import {Grid, TableCell, TableRow} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 
@@ -144,7 +144,7 @@ export const StyledTableHeadCell = withStyles((theme) => ({
     head: {
         fontWeight: "bold",
         fontStyle: "bold",
-        fontSize: 16,
+        fontSize: 16
         //     backgroundColor: theme.palette.common.black,
         //     color: theme.palette.common.white,
     },
@@ -168,6 +168,12 @@ export const StyledTableCell = withStyles((theme) => ({
         fontSize: 20,
     },
 }))(TableCell);
+
+export const StyledGrid = withStyles((theme) => ({
+    root: {
+        padding: theme.spacing(0, 0),
+    },
+}))(Grid);
 
 
 class Utils {

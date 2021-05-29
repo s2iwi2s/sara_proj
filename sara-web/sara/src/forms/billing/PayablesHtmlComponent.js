@@ -8,7 +8,7 @@ import SubTitleComponent from '../common/SubTitleComponent'
 import SelectGrid from '../common/SelectGrid'
 import {makeStyles} from "@material-ui/core/styles";
 
-const { StyledTableRow, StyledTableHeadRow, StyledTableHeadCell, INIT_STATUS } = require("../../api/Utils")
+const { StyledTableRow, StyledTableHeadRow, StyledTableHeadCell, StyledGrid, INIT_STATUS } = require("../../api/Utils")
 const useStyles = makeStyles({
   cell: {
     minWidth: 150,
@@ -134,19 +134,19 @@ const PayablesHtmlComponent = (props) => {
       {console.log(`[PayablesHtmlComponent.return] props.store => `, props.store)}
       <SubTitleComponent>Student Information</SubTitleComponent>
       <Paper elevation={3} variant="elevation" >
-        <Box py={3} px={3}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} sm={2}>LRN</Grid>
-            <Grid item xs={12} sm={10}>{props.store.entity.lrn}</Grid>
-            <Grid item xs={12} sm={2}>Student Name</Grid>
-            <Grid item xs={12} sm={10}>{props.store.entity.firstName + ' ' + props.store.entity.lastName}</Grid>
-            <Grid item xs={12} sm={2}>Level</Grid>
-            <Grid item xs={12} sm={10}>{props.store.entity.level.description}</Grid>
-          </Grid>
+        <Box py={1} px={2}>
+          <StyledGrid container spacing={1}>
+            <StyledGrid item xs={12} sm={2}>LRN</StyledGrid>
+            <StyledGrid item xs={12} sm={10}>{props.store.entity.lrn}</StyledGrid>
+            <StyledGrid item xs={12} sm={2}>Student Name</StyledGrid>
+            <StyledGrid item xs={12} sm={10}>{props.store.entity.firstName + ' ' + props.store.entity.lastName}</StyledGrid>
+            <StyledGrid item xs={12} sm={2}>Level</StyledGrid>
+            <StyledGrid item xs={12} sm={10}>{props.store.entity.level.description}</StyledGrid>
+          </StyledGrid>
         </Box>
       </Paper>
       <SubTitleComponent>Old Accounts</SubTitleComponent>
-      <TableContainer component={Paper} elevation={3} variant="elevation" >
+      <TableContainer component={Paper} elevation={1} variant="elevation" >
         <Table>
           <TableHead>
             <StyledTableHeadRow>
@@ -296,11 +296,9 @@ const PayablesHtmlComponent = (props) => {
                                   inputRef={register}
                                   // disabled={row.balance === 0}
                                   defaultValue={row.payment}
-                                  variant="filled"
                                   InputProps={{
                                     startAdornment: <InputAdornment position="start">P</InputAdornment>,
                                   }} />
-
                               </TableCell>
                             </>}
                         </>
@@ -316,7 +314,6 @@ const PayablesHtmlComponent = (props) => {
                               inputRef={register}
                               // disabled={row.balance === 0}
                               defaultValue={row.textValue}
-                              variant="filled"
                               multiline
                               multilineRows={row.aps.multilineRows} />
                           }
@@ -363,56 +360,57 @@ const PayablesHtmlComponent = (props) => {
             </Grid> */}
           </Grid>
         </Box>
-        <SubTitleComponent>Invoice</SubTitleComponent>
-        <TableContainer component={Paper} elevation={3} variant="elevation" >
-          <Table>
-            <TableHead>
-              <StyledTableHeadRow>
-                <StyledTableHeadCell variant="head" style={{ width: "15%" }} >Date</StyledTableHeadCell>
-                <StyledTableHeadCell variant="head" style={{ width: "10%" }} >Invoice #</StyledTableHeadCell>
-                {
-                  props.store.billingByInvoice.accountPayablesSettings.map(({ id, label }) => (
-                    <StyledTableHeadCell key={id} variant="head" align="right">{label}</StyledTableHeadCell>
-                  ))
-                }
-              </StyledTableHeadRow>
-            </TableHead>
-            <TableBody>
+      </form>
+
+      <SubTitleComponent>Invoice</SubTitleComponent>
+      <TableContainer component={Paper} elevation={3} variant="elevation" >
+        <Table>
+          <TableHead>
+            <StyledTableHeadRow>
+              <StyledTableHeadCell variant="head" style={{ width: "15%" }} >Date</StyledTableHeadCell>
+              <StyledTableHeadCell variant="head" style={{ width: "10%" }} >Invoice #</StyledTableHeadCell>
               {
-                props.store.billingByInvoice.list.map(({ invoiceNo, invoiceDate, payablesMap }) => (
+                props.store.billingByInvoice.accountPayablesSettings.map(({ id, label }) => (
+                    <StyledTableHeadCell key={id} variant="head" align="right">{label}</StyledTableHeadCell>
+                ))
+              }
+            </StyledTableHeadRow>
+          </TableHead>
+          <TableBody>
+            {
+              props.store.billingByInvoice.list.map(({ invoiceNo, invoiceDate, payablesMap }) => (
                   <StyledTableRow key={invoiceNo}>
                     <TableCell className={classes.cell}>{moment(invoiceDate).format('L')}</TableCell>
                     <TableCell>{invoiceNo}</TableCell>
                     {
                       props.store.billingByInvoice.accountPayablesSettings.map(({ id }) => (
-                        <>
-                          {
-                            payablesMap[id] && payablesMap[id].aps.text &&
-                            <TableCell key={`list${id}`}>
-                              {payablesMap[id].textValue}
-                            </TableCell>
-                          }
-                          {
-                            !(payablesMap[id] && payablesMap[id].aps.text) &&
-                            <TableCell key={`list${id}`} align="right">
-                              {(payablesMap[id] ? payablesMap[id].payment : 0).toLocaleString(undefined, {
-                                maximumFractionDigits: 2,
-                                minimumFractionDigits: 2
-                              })}
-                            </TableCell>
-                          }
+                          <>
+                            {
+                              payablesMap[id] && payablesMap[id].aps.text &&
+                              <TableCell key={`list${id}`}>
+                                {payablesMap[id].textValue}
+                              </TableCell>
+                            }
+                            {
+                              !(payablesMap[id] && payablesMap[id].aps.text) &&
+                              <TableCell key={`list${id}`} align="right">
+                                {(payablesMap[id] ? payablesMap[id].payment : 0).toLocaleString(undefined, {
+                                  maximumFractionDigits: 2,
+                                  minimumFractionDigits: 2
+                                })}
+                              </TableCell>
+                            }
 
-                        </>
+                          </>
                       ))
                     }
                   </ StyledTableRow>
-                ))
-              }
+              ))
+            }
 
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </form>
+          </TableBody>
+        </Table>
+      </TableContainer>
     </>
   )
 }
