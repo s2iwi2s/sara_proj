@@ -273,6 +273,7 @@ public class PayablesServiceImpl extends AbstractService<Payables, PayablesDto, 
 		Iterator<Payables> it = list.iterator();
 		while (it.hasNext()) {
 			Payables entity = it.next();
+			log.info("[save] AccountPayablesSettings code=>{}", entity.getCode());
 			AccountPayablesSettings aps = accountPayablesSettingsServiceImpl.findById(entity.getCode());
 			if (entity.getPayment() == 0 && !aps.isText()) {
 				it.remove();
