@@ -1,36 +1,38 @@
-import axios from "axios";
-import Utils, { API_URL_BASE } from "../Utils";
+import axios from 'axios'
+import Utils, { API_URL_BASE } from '../Utils'
 
+export const ENTITY = 'accountPayablesSettings'
+const sort = 'period,desc,priority,asc,description,amount'
+const sort2 = 'priority,description,amount'
 
-export const ENTITY = "accountPayablesSettings";
-const sort = "period,desc,priority,asc,description,amount"
-const sort2 = "priority,description,amount"
-
-export const getList = (searchValue, page, pageSize, periodId) => axios.get(`${Utils.urlListPattern(ENTITY)}/period/${periodId}`, {
- params: {
-  searchValue: searchValue,
-  page: page,
-  size: pageSize,
-  sort: sort
- }
-})
-export const get = (id) => axios.get(`${Utils.urlListPattern(ENTITY)}/${id}`)
+export const getList = (searchValue, page, pageSize, periodId, activeId) =>
+  axios.get(`${Utils.urlListPattern(ENTITY)}/period/${periodId}/${activeId}`, {
+    params: {
+      searchValue: searchValue,
+      page: page,
+      size: pageSize,
+      sort: sort
+    }
+  })
+export const get = id => axios.get(`${Utils.urlListPattern(ENTITY)}/${id}`)
 export const getOptions = () => axios.get(`${Utils.urlOptionsPattern(ENTITY)}`)
-export const deleteItem = (id) => axios.delete(`${Utils.urlDeletePattern(ENTITY)}/${id}`)
-export const save = (data) => axios.post(`${Utils.urlSavePattern(ENTITY)}`, data)
+export const deleteItem = id =>
+  axios.delete(`${Utils.urlDeletePattern(ENTITY)}/${id}`)
+export const save = data => axios.post(`${Utils.urlSavePattern(ENTITY)}`, data)
 
-export const getActiveList = (period, searchValue, page, pageSize) => axios.get(`${Utils.urlListPattern(ENTITY)}/active/${period}`, {
- params: {
-  searchValue: searchValue,
-  page: page,
-  size: pageSize,
-  sort: sort2
- }
-})
-export const getApplyToAllList = () => axios.get(`${API_URL_BASE + ENTITY + "/applyToAllList"}`)
+export const getActiveList = (period, searchValue, page, pageSize) =>
+  axios.get(`${Utils.urlListPattern(ENTITY)}/active/${period}`, {
+    params: {
+      searchValue: searchValue,
+      page: page,
+      size: pageSize,
+      sort: sort2
+    }
+  })
+export const getApplyToAllList = () =>
+  axios.get(`${API_URL_BASE + ENTITY + '/applyToAllList'}`)
 
-export default function AccountPayablesSettingsService() {
-}
+export default function AccountPayablesSettingsService () {}
 
 // class AccountPayablesSettingsService {
 
@@ -61,5 +63,3 @@ export default function AccountPayablesSettingsService() {
 // }
 
 // export default new AccountPayablesSettingsService();
-
-

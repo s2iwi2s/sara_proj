@@ -23,11 +23,13 @@ export default function AccountPayablesSettingsListComponent(props) {
   const [deleteId, setDeleteId] = useState();
 
   const [optionsList, setOptionsList] = useState({
-    periodList: []
+    periodList: [],
+    activeList: []
   });
 
   const [filter, setFilter] = useState({
-    period: { id: 'All' }
+    period: { id: 'All' },
+    active: { id: 'All' }
   });
 
   useEffect(() => {
@@ -42,14 +44,26 @@ export default function AccountPayablesSettingsListComponent(props) {
           "id": "ALL",
           "description": "All",
         },
-        ...response.data.listService.periodList]
+        ...response.data.listService.periodList],
+        activeList: [{
+          "id": "All",
+          "description": "All",
+        }, {
+          "id": "Y",
+          "description": "Yes",
+        },
+        {
+          "id": "N",
+          "description": "No",
+        }]
+
       }
 
       setOptionsList(list)
     })
   }
 
-  const retrieve = ({ searchValue, paging, periodId = filter.period.id }) => getList(searchValue, paging.currentPage, paging.rowsPerPage, periodId)
+  const retrieve = ({ searchValue, paging, periodId = filter.period, activeId = filter.active.id }) => getList(searchValue, paging.currentPage, paging.rowsPerPage, periodId, activeId)
     .then(({ data }) => dispatch(setPageable({
       INIT_STATUS: INIT_STATUS.LOAD,
       list: data.pagingList.content,
@@ -186,7 +200,8 @@ export default function AccountPayablesSettingsListComponent(props) {
       paging: {
         ...currPageable.paging
       },
-      periodId: value
+      periodId: (name === 'period' ? value : filter.period.id),
+      activeId: (name === 'active' ? value : filter.active.id)
     })
   }
 
@@ -199,7 +214,9 @@ export default function AccountPayablesSettingsListComponent(props) {
           <Box pb={3} px={3}>
             <SubTitleComponent>Filter</SubTitleComponent>
             <Grid container spacing={3}>
-              <SelectGrid sm={3} name="period" label="Period" value={filter.period.id} options={optionsList.periodList}
+              <SelectGrid sm={2} name="period" label="Period" value={filter.period.id} options={optionsList.periodList}
+                onChange={e => changeSelectState(e)} />
+              <SelectGrid sm={1} name="active" label="Active" value={filter.active.id} options={optionsList.activeList}
                 onChange={e => changeSelectState(e)} />
             </Grid>
           </Box>

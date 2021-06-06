@@ -14,7 +14,8 @@ const blankPageable = {
 	}
 }
 const blankSelectedItem = {
-	period: { 'id': '' },
+	period: { 'id': 'All' },
+	active: { 'id': 'All' },
 	paymentPeriod: { 'id': '' },
 	optionsList: {
 		paymentPeriodList: [],

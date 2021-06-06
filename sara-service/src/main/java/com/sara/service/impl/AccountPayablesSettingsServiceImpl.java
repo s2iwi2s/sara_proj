@@ -42,21 +42,24 @@ public class AccountPayablesSettingsServiceImpl
 		this.accountPayablesSettingsMapper = accountPayablesSettingsMapper;
 	}
 
-	public Page<AccountPayablesSettingsDto> findAll(String periodId, String searchValue, Pageable pageable, User user) {
+	public Page<AccountPayablesSettingsDto> findAll(String periodId, String active, String searchValue, Pageable pageable, User user) {
 		BooleanBuilder searchbb = new BooleanBuilder();
 		findAllQBuilder(searchValue, searchbb, user);
 
-		Predicate predicate = findAllPredicate(periodId, user, searchbb);
+		Predicate predicate = findAllPredicate(periodId, active, user, searchbb);
 		log.info("[findAll] predicate={}", predicate);
 		// return repo.findAll(predicate, pageable);
 		return toDto(repo.findAll(predicate, pageable));
 	}
 
-	public Predicate findAllPredicate(String periodId, User user, BooleanBuilder searchbb) {
+	public Predicate findAllPredicate(String periodId, String active, User user, BooleanBuilder searchbb) {
 		BooleanBuilder mainbb = new BooleanBuilder();
-		log.info("[findAllPredicate] periodId={}", periodId);
+		log.info("[findAllPredicate] periodId={}, active={}", periodId, active);
 		if (!"all".equalsIgnoreCase(periodId)) {
 			mainbb.and(QAccountPayablesSettings.accountPayablesSettings.period.id.eq(periodId));
+		}
+		if(!"all".equalsIgnoreCase(active)) {
+			mainbb.and(QAccountPayablesSettings.accountPayablesSettings.active.eq("Y".equalsIgnoreCase(active)));
 		}
 
 		BooleanExpression bex = getFindAllBooleanExpression(user);

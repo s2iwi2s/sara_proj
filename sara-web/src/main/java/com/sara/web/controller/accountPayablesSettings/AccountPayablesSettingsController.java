@@ -55,8 +55,8 @@ public class AccountPayablesSettingsController
 
 	}
 
-	@GetMapping(Constants.URL_LIST + "/period/{periodId}")
-	public ResponseEntity<?> listByPeriod(@PathVariable("periodId") String periodId,
+	@GetMapping(Constants.URL_LIST + "/period/{periodId}/{active}")
+	public ResponseEntity<?> listByPeriod(@PathVariable("periodId") String periodId,@PathVariable("active") String active,
 			@RequestParam("searchValue") String searchValue, @PageableDefault(sort = {
 					"id" }, direction = Direction.ASC, page = Constants.DEFAULT_PAGE_NUMBER, size = Constants.DEFAULT_PAGE_SIZE) Pageable pageable) {
 		log.info("[listByPeriod] periodId={}", periodId);
@@ -65,7 +65,7 @@ public class AccountPayablesSettingsController
 		res.setSearchValue(searchValue);
 
 		Page<AccountPayablesSettingsDto> pagingList = null;
-		pagingList = getService().findAll(periodId, searchValue, pageable, user);
+		pagingList = getService().findAll(periodId, active, searchValue, pageable, user);
 
 		res.setPagingList(pagingList);
 		res.setListService(null);
