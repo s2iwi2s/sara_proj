@@ -62,13 +62,14 @@ public class GradeLevelPayablesController extends AbstractCrudController<GradeLe
 
 	@GetMapping(Constants.URL_OPTIONS + "/period/{periodId}")
 	public ResponseEntity<?> optionsByPeriod(@PathVariable("periodId") String periodId) {
-		log.debug("periodId=>{}", periodId);
+		log.info("periodId=>{}", periodId);
 		User user = UserUtil.getAuthenticatedUser(userServiceImpl);
 		GradeLevelPayablesResponse res = getResponse(user);
 		List<AccountPayablesSettingsDto> applyToAllList = new ArrayList<AccountPayablesSettingsDto>();
 		if (!"-1".equals(periodId)) {
 			applyToAllList = accountPayablesSettingsServiceImpl.findByApplyToAllList(user.getSchool(), periodId);
 		}
+		log.info("applyToAllList=>{}", applyToAllList);
 		GradeLevelPayablesListService listService = (GradeLevelPayablesListService) res.getListService();
 		listService.setApplyToAllList(applyToAllList);
 

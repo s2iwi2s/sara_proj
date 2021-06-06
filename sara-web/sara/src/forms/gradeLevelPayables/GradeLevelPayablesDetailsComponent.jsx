@@ -56,8 +56,8 @@ export default function GradeLevelPayablesDetailsComponent (props) {
       }
       setStatus(INIT_STATUS.LOAD)
     } else if (status === INIT_STATUS.LOAD) {
-      onRetrieve()
       setStatus(INIT_STATUS.RESET)
+      onRetrieve()
     }
   }, [selectedItem, status])
 
@@ -79,7 +79,7 @@ export default function GradeLevelPayablesDetailsComponent (props) {
 
   const doRetrieve = id => {
     console.log(
-      `[GradeLevelPayablesDetailsComponent.onRetrieve]  props.match.params.id==>${props.match.params.id}`
+      `[GradeLevelPayablesDetailsComponent.onRetrieve] id=${id}, props.match.params.id==>${props.match.params.id}`
     )
 
     if (props.match.params.id === -1) {
@@ -92,7 +92,8 @@ export default function GradeLevelPayablesDetailsComponent (props) {
 
     setMessage(`Loading. Please wait...`)
 
-    getOptionsByPeriod(id)
+    const period = selectedItem.period && selectedItem.period.id? selectedItem.period.id:  id;//selectedItem.period? selectedItem.period.id : id;
+    getOptionsByPeriod(period)
       .then(response => onRetrieveResponseAction(response))
       .catch(error =>
         showErrorMsgAlert(
@@ -106,10 +107,15 @@ export default function GradeLevelPayablesDetailsComponent (props) {
 
   const onRetrieveResponseAction = response => {
     console.log(
-      `[GradeLevelPayablesDetailsComponent.onRetrieveResponseAction]  response==>`,
+      `[GradeLevelPayablesDetailsComponent.onRetrieveResponseAction] response==>`,
       response
     )
-    dispatch(setOptionsList(response.data.listService))
+    dispatch(setOptionsList({
+      accountPayablesSettings: [...(selectedItem.accountPayablesSettings?selectedItem.accountPayablesSettings: [])],
+      optionsList: response.data.listService
+    }))
+
+
     setMessage(``)
   }
 

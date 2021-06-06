@@ -43,28 +43,36 @@ export const GradeLevelSlice = createSlice({
 	reducers: {
 		resetSelectedItem: (state, action) => resetSelectedItemCommon(state, action, blankSelectedItem),
 		setSelectedItem: (state, action) => {
+			console.log(`[GradeLevelSlice.setSelectedItem] action=`, action)
 			const data = initForm(action.payload)
 			state.selectedItem = {
 				...blankSelectedItem,
 				...data
 			}
+			console.log(`[GradeLevelSlice.setSelectedItem] state.selectedItem=`, state.selectedItem)
 		},
 
 		setOptionsList: (state, action) => {
-			console.log(`[GradeLevelSlice.setOptionsList] action=`, action)
-			const optionsList = action.payload
-			let list = state.selectedItem.accountPayablesSettings ? state.selectedItem.accountPayablesSettings : []
+			console.log(`[GradeLevelSlice.setOptionsList] START =====>`)
+			console.log(`[GradeLevelSlice.setOptionsList] action=>`, action)
+			const optionsList = action.payload.optionsList
+
+			state.selectedItem = {
+				...state.selectedItem,
+				list: [],
+				optionsList: { ...optionsList }
+			}
+
+			let list = action.payload.accountPayablesSettings? action.payload.accountPayablesSettings : []
 			let applyToAllList = optionsList.applyToAllList;
 			if (list.length === 0) {
-				list = [...applyToAllList]
-				list.map(i => i.status = 'NEW')
+				list = [...applyToAllList];
+				list.map(i => i.status = 'NEW');
 			} else {
-				let temp = [];
 				let tempList = [];
-
-				list.map(({ id }) => temp.push(id));
 				applyToAllList.map(row => {
-					if (temp.indexOf(row.id) === -1) {
+					const filterCount = list.filter(item => row.id === item.id).length;
+					if (filterCount === 0) {
 						let rowTemp = {
 							...row,
 							status: 'NEW'
@@ -80,6 +88,9 @@ export const GradeLevelSlice = createSlice({
 				];
 				list = tempList2;
 			}
+			list = list.sort((o1, o2) => {
+				return o1.priority - o2.priority;
+			})
 			state.selectedItem = {
 				...state.selectedItem,
 				list: list,
