@@ -79,7 +79,7 @@ public abstract class AbstractService<T, D, ID> implements ServiceInterface<T, D
 
 		Optional<T> oEntity = repo.findById(id);
 		if (!oEntity.isPresent()) {
-			throw new IllegalArgumentException("Not Found!");
+			throw new IllegalArgumentException(String.format("_id: ObjectId(\"{}\") Not Found!", id));
 		}
 		return oEntity.get();
 	}
