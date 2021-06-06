@@ -40,7 +40,7 @@ export default function AccountPayablesSettingsParentComponent (props) {
     paging,
     periodId = selectedItem.period.id
   }) =>
-    getList(searchValue, paging.currentPage, paging.rowsPerPage, periodId, true)
+    getList(searchValue, paging.currentPage, paging.rowsPerPage, periodId, 'y')
       .then(({ data }) => {
         if (data.pagingList) {
           let list = data.pagingList.content
