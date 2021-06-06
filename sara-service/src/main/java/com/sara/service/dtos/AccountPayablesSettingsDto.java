@@ -14,6 +14,7 @@ public class AccountPayablesSettingsDto implements Comparable<AccountPayablesSet
 	private Short priority;
 	private boolean applyToAll;
 	private boolean active = true;
+	private AccountPayablesSettingsDto parent;
 	private CodeGroupsDto period;
 	private CodeGroupsDto paymentPeriod;
 

@@ -18,12 +18,14 @@ import {
   setPageableEntity,
   setOptionsList
 } from '../../api/accountPayablesSettings/AccountPayablesSettingsSlice'
+
 import {
   save,
   getOptions
 } from '../../api/accountPayablesSettings/AccountPayablesSettingsService'
 import TitleComponent from '../common/TitleComponent'
 import useMessageAlert from '../../api/useMessageAlert'
+import AccountPayablesSettingsParentComponent from './AccountPayablesSettingsParentComponent'
 
 let renderCount = 0
 
@@ -88,6 +90,7 @@ export default function AccountPayablesSettingsDetailComponent (props) {
 
   const doSave = data => {
     setMessage(`Saving...`)
+    data.parent = selectedItem.parent
     save(data)
       .then(response => {
         dispatch(setPageableEntity(response.data.entity))
@@ -155,7 +158,7 @@ export default function AccountPayablesSettingsDetailComponent (props) {
           inputRef={register}
           defaultValue={selectedItem.id}
         />
-        <Grid container spacing={3}>
+        <Grid container spacing={2}>
           <Grid item xs={12} sm={4}>
             <TextField
               required
@@ -263,7 +266,7 @@ export default function AccountPayablesSettingsDetailComponent (props) {
               defaultValue={selectedItem.priority}
             />
           </Grid>
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={3}>
             <TextField
               required
               type='currency'
@@ -306,7 +309,7 @@ export default function AccountPayablesSettingsDetailComponent (props) {
               defaultValue={selectedItem.applyToAll}
             />
           </Grid>
-          <Grid item xs={12} sm={2}>
+          <Grid item xs={12} sm={1}>
             <Controller
               as={
                 <TextField
@@ -335,7 +338,7 @@ export default function AccountPayablesSettingsDetailComponent (props) {
             />
           </Grid>
 
-          <Grid item xs={12} sm={2}>
+          <Grid item xs={12} sm={1}>
             <Controller
               as={
                 <TextField
@@ -375,6 +378,9 @@ export default function AccountPayablesSettingsDetailComponent (props) {
               defaultValue={selectedItem.multilineRows}
             />
           </Grid>
+          {selectedItem.paymentPeriod && selectedItem.paymentPeriod.id && (
+            <AccountPayablesSettingsParentComponent />
+          )}
         </Grid>
 
         <Grid container spacing={3}>

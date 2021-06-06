@@ -62,6 +62,9 @@ public class AccountPayablesSettings {
 	private boolean active = true;
 
 	@DBRef
+	private AccountPayablesSettings parent;
+
+	@DBRef
 	private CodeGroups period;
 	
 	@DBRef
