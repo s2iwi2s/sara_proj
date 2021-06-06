@@ -278,7 +278,7 @@ public class PayablesServiceImpl extends AbstractService<Payables, PayablesDto, 
 			try {
 				aps = accountPayablesSettingsServiceImpl.findById(entity.getCode());
 			} catch (Exception e) {
-				e.printStackTrace();
+				continue;
 			}
 			if (entity.getPayment() == 0 && !aps.isText()) {
 				it.remove();
