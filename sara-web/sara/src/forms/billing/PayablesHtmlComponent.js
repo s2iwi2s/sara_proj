@@ -6,7 +6,7 @@ import { Box, Paper, Grid, TextField, Table, TableContainer, TableHead, TableCel
 import SaveIcon from '@material-ui/icons/Save'
 import SubTitleComponent from '../common/SubTitleComponent'
 import SelectGrid from '../common/SelectGrid'
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 const { StyledTableRow, StyledTableHeadRow, StyledTableHeadCell, StyledGrid, INIT_STATUS } = require("../../api/Utils")
 const useStyles = makeStyles({
@@ -187,17 +187,17 @@ const PayablesHtmlComponent = (props) => {
 
             <Grid item xs={12} sm={2}>
               <TextField
-                  required
-                  id="invoiceDate"
-                  name="invoiceDate"
-                  label="Invoice Date"
-                  type="date"
-                  fullWidth
-                  autoComplete="invoice-date"
-                  variant="filled"
-                  InputLabelProps={{ shrink: true }}
-                  inputRef={register}
-                  defaultValue={props.store.invoiceDate}
+                required
+                id="invoiceDate"
+                name="invoiceDate"
+                label="Invoice Date"
+                type="date"
+                fullWidth
+                autoComplete="invoice-date"
+                variant="filled"
+                InputLabelProps={{ shrink: true }}
+                inputRef={register}
+                defaultValue={props.store.invoiceDate}
               />
             </Grid>
           </Grid>
@@ -215,7 +215,7 @@ const PayablesHtmlComponent = (props) => {
             </TableHead>
             <TableBody>
               {
-                props.store.studentPayables.payables.map((row, i) => (
+                props.store.studentPayables.payables.filter(row => !row.aps.parent).map((row, i) => (
                   <>
                     <TextField
                       type="hidden"
@@ -293,6 +293,7 @@ const PayablesHtmlComponent = (props) => {
                                   name={`payables[${i}].payment`}
                                   onBlur={e => onPaymentBlur(e)}
                                   fullWidth
+                                  size="small"
                                   inputRef={register}
                                   // disabled={row.balance === 0}
                                   defaultValue={row.payment}
@@ -311,6 +312,7 @@ const PayablesHtmlComponent = (props) => {
                               name={`payables[${i}].textValue`}
                               label={row.aps ? row.aps.label : row.name}
                               fullWidth
+                              size="small"
                               inputRef={register}
                               // disabled={row.balance === 0}
                               defaultValue={row.textValue}
@@ -323,6 +325,7 @@ const PayablesHtmlComponent = (props) => {
                               name={`payables[${i}].textValue`}
                               label={row.aps ? row.aps.label : row.name}
                               fullWidth
+                              size="small"
                               inputRef={register}
                               // disabled={row.balance === 0}
                               defaultValue={row.textValue}
@@ -371,7 +374,7 @@ const PayablesHtmlComponent = (props) => {
               <StyledTableHeadCell variant="head" style={{ width: "10%" }} >Invoice #</StyledTableHeadCell>
               {
                 props.store.billingByInvoice.accountPayablesSettings.map(({ id, label }) => (
-                    <StyledTableHeadCell key={id} variant="head" align="right">{label}</StyledTableHeadCell>
+                  <StyledTableHeadCell key={id} variant="head" align="right">{label}</StyledTableHeadCell>
                 ))
               }
             </StyledTableHeadRow>
@@ -379,32 +382,32 @@ const PayablesHtmlComponent = (props) => {
           <TableBody>
             {
               props.store.billingByInvoice.list.map(({ invoiceNo, invoiceDate, payablesMap }) => (
-                  <StyledTableRow key={invoiceNo}>
-                    <TableCell className={classes.cell}>{moment(invoiceDate).format('L')}</TableCell>
-                    <TableCell>{invoiceNo}</TableCell>
-                    {
-                      props.store.billingByInvoice.accountPayablesSettings.map(({ id }) => (
-                          <>
-                            {
-                              payablesMap[id] && payablesMap[id].aps.text &&
-                              <TableCell key={`list${id}`}>
-                                {payablesMap[id].textValue}
-                              </TableCell>
-                            }
-                            {
-                              !(payablesMap[id] && payablesMap[id].aps.text) &&
-                              <TableCell key={`list${id}`} align="right">
-                                {(payablesMap[id] ? payablesMap[id].payment : 0).toLocaleString(undefined, {
-                                  maximumFractionDigits: 2,
-                                  minimumFractionDigits: 2
-                                })}
-                              </TableCell>
-                            }
+                <StyledTableRow key={invoiceNo}>
+                  <TableCell className={classes.cell}>{moment(invoiceDate).format('L')}</TableCell>
+                  <TableCell>{invoiceNo}</TableCell>
+                  {
+                    props.store.billingByInvoice.accountPayablesSettings.map(({ id }) => (
+                      <>
+                        {
+                          payablesMap[id] && payablesMap[id].aps.text &&
+                          <TableCell key={`list${id}`}>
+                            {payablesMap[id].textValue}
+                          </TableCell>
+                        }
+                        {
+                          !(payablesMap[id] && payablesMap[id].aps.text) &&
+                          <TableCell key={`list${id}`} align="right">
+                            {(payablesMap[id] ? payablesMap[id].payment : 0).toLocaleString(undefined, {
+                              maximumFractionDigits: 2,
+                              minimumFractionDigits: 2
+                            })}
+                          </TableCell>
+                        }
 
-                          </>
-                      ))
-                    }
-                  </ StyledTableRow>
+                      </>
+                    ))
+                  }
+                </ StyledTableRow>
               ))
             }
 
