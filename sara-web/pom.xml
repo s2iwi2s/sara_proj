@@ -105,7 +105,7 @@
 				</activation> -->
 			<properties>
 				<profiles.active>dev</profiles.active>
-				<config.dir>w:/config/sara/dev</config.dir>
+				<config.dir>D:/_jbin/config/sara/dev</config.dir>
 			</properties>
 		</profile>
 		<profile>
