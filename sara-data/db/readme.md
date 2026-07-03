@@ -31,3 +31,5 @@ test/test
 learn:g389BDSRANliLC1f
 ```
 
+mongodump mongodb+srv://learn:s5icpWvaBLbptujR@awscluster0.fvz4qbq.mongodb.net/sis?appName=AWSCluster0
+mongorestore mongodb+srv://learn:s5icpWvaBLbptujR@awscluster0.fvz4qbq.mongodb.net/sis?appName=AWSCluster0 --dir dump/sis
